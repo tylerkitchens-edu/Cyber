@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>History of Computers and Tech - Lesson</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="slide-container" role="region" aria-labelledby="slide-title">
+    <header class="slide-header">
+      <h1 id="slide-title">History of Computers and Tech</h1>
+      <h2>Lesson</h2>
+    </header>
+
+    <section aria-labelledby="objectives-heading">
+      <h3 id="objectives-heading">Learning Objectives</h3>
+      <ul>
+        <li>Understand the history of tech</li>
+        <li>Understand the importance of tech and computers in today’s society</li>
+        <li>Define a computer</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="lesson-heading">
+      <h3 id="lesson-heading">Lesson Content</h3>
+      <p>The development of the integrated circuit (IC) in the 1950s and 1960s was a major milestone in computer history, as it allowed for the creation of smaller and more efficient computers. This technology paved the way for the development of the first personal computers in the 1970s, which were groundbreaking in their ability to bring computing power to individuals rather than just large organizations.</p>
+
+      <p>Today, computers are used in a wide variety of fields, from scientific research to entertainment and gaming. They have become an essential tool for businesses, governments, and individuals alike, enabling us to connect with others, process vast amounts of data, and explore new frontiers of knowledge.</p>
+
+      <p>Looking to the future, it's clear that computer technology will continue to play an increasingly important role in our lives. As new breakthroughs in artificial intelligence, quantum computing, and other cutting-edge fields are made, we can expect computers to become even more powerful, versatile, and transformative.</p>
+
+      <p>Peruse Technology’s history! We’ve had a long road up to this point.</p>
+    </section>
+
+    <section aria-labelledby="milestones-heading">
+      <h3 id="milestones-heading">Important Milestones in Computer History</h3>
+      <ol>
+        <li>
+          The development of the first electronic computers: The first electronic computers, such as the ENIAC and UNIVAC, were developed in the 1940s and were used for scientific and military purposes.
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/23cecb7d-e09b-427b-b64d-b7b72d4a4b7c/Screenshot_2023-04-14_at_10.13.42_AM.png" alt="ENIAC and UNIVAC" />
+        </li>
+        <li>
+          The invention of the microprocessor: In 1971, Intel released the first microprocessor, the Intel 4004, which allowed for the development of smaller and more affordable computers.
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b141b90-8fba-441f-9fd3-9ccf08e6dbdb/Screenshot_2023-04-14_at_10.15.32_AM.png" alt="Intel 4004 Microprocessor" />
+        </li>
+        <li>The rise of the internet: The development of the internet in the 1960s and 1970s created a global network of computers that could communicate with one another.</li>
+        <li>
+          The development of graphical user interfaces (GUIs): The introduction of GUIs in the 1980s made computers more accessible.
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/de736256-2466-49a7-ba1a-a103d86e662b/Untitled.png" alt="GUI Example" />
+        </li>
+        <li>The emergence of mobile computing: The development of laptops, smartphones, and tablets in the 2000s and 2010s made computing more portable.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="tool-heading">
+      <h3 id="tool-heading">Tech is (just) a tool</h3>
+      <p>Technology is neither inherently helpful nor harmful. It’s simply a tool. It can be used to inspire and catalyze change just as easily as it can be used in ways that are detrimental to society.</p>
+    </section>
+
+    <section aria-labelledby="computer-heading">
+      <h3 id="computer-heading">What is a Computer?</h3>
+      <p>The word "Computer" was first used in the 16th century for a person who computed. Now, a computer is an electronic machine that collects information, stores it, processes it according to user instructions, and returns the result.</p>
+
+      <ul>
+        <li>Abacus (c. 4000 years ago, China)
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/662fa3fd-6d04-4272-a318-f6bdde0edcec/Screenshot_2023-04-14_at_10.17.29_AM.png" alt="Abacus" />
+        </li>
+        <li>Napier’s Bone (early calculating device)
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/67e81193-efc8-4d5e-af09-f1dbde65c5e2/Screenshot_2023-04-14_at_10.19.08_AM.png" alt="Napier's Bone" />
+        </li>
+        <li>Pascaline (1642)
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0bb32361-5b69-45b7-8310-2285860e83ae/Screenshot_2023-04-14_at_10.22.50_AM.png" alt="Pascaline" />
+        </li>
+        <li>Stepped Reckoner (1673)
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/76936f73-0124-45a2-ad0a-8eadb0a40956/Screenshot_2023-04-14_at_10.24.42_AM.png" alt="Stepped Reckoner" />
+        </li>
+        <li>Difference Engine (1820s)
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a919daf8-ee30-4ab3-9047-89d425b56322/Screenshot_2023-04-14_at_10.25.40_AM.png" alt="Difference Engine" />
+        </li>
+        <li>Analytical Engine (1830s)</li>
+        <li>Tabulating Machine (1890)
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/735b13eb-ec67-4533-85ce-842f05d0afff/Screenshot_2023-04-14_at_10.28.36_AM.png" alt="Tabulating Machine" />
+        </li>
+        <li>Differential Analyzer (1930)
+          <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/094159d8-fc5d-4c75-8b01-b22b8eca2c60/Screenshot_2023-04-14_at_10.28.08_AM.png" alt="Differential Analyzer" />
+        </li>
+        <li>Mark 1 (1944)</li>
+      </ul>
+    </section>
+
+    <footer class="slide-footer">
+      <p>Resources: freeCodeCamp, MDN (as provided)</p>
+    </footer>
+  </div>
+
+  <!-- Lesson entry script -->
+  <script
+    src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-001"
+    data-lesson-title="History of Computers and Tech"
+    data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback script -->
+  <script
+    src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-001"
+    data-lesson-title="History of Computers and Tech"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+
+  <!-- Summary report -->
+  <!--
+    SUMMARY REPORT
+    ----------------
+    Generated slide: /slides/history_of_computers_and_tech_l1_hardware_cybersecurity_20251001.html
+    xAI Artifact ID: xaifile_history_computers_cyber_20251001_v1
+    Version ID: v1
+
+    Parsing issues: None detected for provided input example.
+
+    Notes:
+    - Updated course-id to Cybersecurity (per user correction).
+    - Lesson metadata set to data-lesson-id="L1-HARDWARE-001".
+    - File naming follows: history_of_computers_and_tech_l1_hardware_cybersecurity_20251001.html
+  -->
+</body>
+</html>
