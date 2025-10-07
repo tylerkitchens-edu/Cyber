@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hardware basics - Lesson</title>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- Prism CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container" role="region" aria-labelledby="slide-title">
+    <header class="slide-header">
+      <h1 id="slide-title">Hardware basics</h1>
+      <h2>Lesson</h2>
+    </header>
+
+    <section aria-labelledby="objectives-heading">
+      <h3 id="objectives-heading">Learning Objectives</h3>
+      <ul>
+        <li>Identify Basic Hardware Components</li>
+        <li>Differentiate Between Input and Output Devices</li>
+        <li>Understand the Power-On Self Test</li>
+      </ul>
+    </section>
+
+    <div class="section" aria-labelledby="hardware-heading">
+      <h3 id="hardware-heading">Hardware</h3>
+
+      <p>What is computer hardware? :</p>
+
+      <div class="video-section" aria-labelledby="video-heading">
+        <iframe class="video-embed" src="https://www.youtube.com/embed/_2MB8F9JSa8?start=14" title="What is computer hardware?" frameborder="0" allowfullscreen></iframe>
+        <p style="text-align:center;margin-top:12px;">
+          <a class="btn-primary" href="https://www.youtube.com/watch?v=_2MB8F9JSa8&t=14s" target="_blank" rel="noopener">Open in Browser</a>
+        </p>
+      </div>
+
+      <p>Computer hardware refers to the physical components of a computer system that can be seen and touched, such as the central processing unit (CPU), random access memory (RAM), hard disk drive (HDD), keyboard, mouse, and monitor. These components work together to enable a computer to perform various tasks.</p>
+
+      <div class="section" aria-labelledby="important-hardware-heading">
+        <h4 id="important-hardware-heading">Some Important Hardware</h4>
+        <ul>
+            <li><strong>Power Supply:</strong> Another responsibility of the motherboard is to ensure all all the components get the right amount of electricity. This electricity comes to the computer through a power supply unit. Power supplies take AC power from a wall outlet and covert it into DC power.</li>
+            <li><strong>Network Interface Card(NIC):</strong> Today, most computers need to connect to the internet. That's the job of the Network Interface Card, or NIC. Some motherboards have a NIC built in, while others need one to be added on. Some NIC's are for wired, some wireless, and some for both.</li>
+            <li><strong>Graphics Processing Unit(GPU):</strong> The CPU is the main processor in a computer, but computers require additional processing power for creating images and graphics. This is supplied by the Graphical Processing Unit, or GPU. Most Computers today handle graphics processing through the CPU and RAM, this is called integrated graphics (or onboard graphics). But computers that are used for gaming, video editing, 3D modeling and animation will need a GPU that's dedicated to graphics processing. The best graphics card will be expensive because they also contain their own specialized ram, processors and cooling systems.</li>
+            <li><strong>Cooling Systems:</strong> One of the problems of high speed computing is that it produces a lot of heat. a typical desktop CPU can get hot enough to boil water. This much heat can damage internal components. In a typical desktop system cooling is done via Heatsinks and fans, in higher end systems water cooling can be used as well.</li>
+        </ul>
+        <p><strong>Internal Computing Components</strong></p>
+        <ul>
+            <li><strong>CPU:</strong> The most important part of any modern computer system is the central processing unit, or CPU. Just like the brain controls the body, the CPU controls the other parts of the computer by getting information from them, then telling them what to do. After receiving raw input data from the user, the CPU applies the data to a list of instructions, called a computer program. Then the CPU executes each line of the computer program in order, turning the data from the user into information. This is called processing. </li>
+            <li><strong>RAM:</strong> The CPU is great at performing calculations, but it can only deal with one line of code at a time - it can't keep track of the whole program at once. Instead, the computer stores this info in RAM, or Random-Access Memory. When you run a program, the computer loads the instructions in RAM. Then, the CPU takes the first line of instructions from RAM, Executes its and writes the results back to RAM to use later. RAM is extremely fast, but it's also volatile. If you turn off the computer, RAM will forget everything it was holding. For this reason, RAM is sometimes called "short term memory" - it's only concerned with whatever the computer is using right now. </li>
+            <li><strong>Motherboard:</strong> The CPU and RAM are connected by a large flat component called the motherboard. The Motherboard is like the spine in your body, it connects all the other parts to each other and sends electrical signals between them. An important part of the motherboard is a chip that contains the BIOS, or Basic Input Output System (or UEFI, Unified Extensible Firmware Interface). When you start a computer, the BIOS makes sure all necessary parts are plugged in and working properly, then it tells the Operating System to load.</li>
+        </ul>
+      </div>
+
+      <div class="section" aria-labelledby="buses-heading">
+        <h4 id="buses-heading">Buses</h4>
+        <p>In addition to the internal computing components listed above, computer systems also use buses to transfer data between components. A bus is a communication system that connects various components of a computer and facilitates the transfer of data between them.</p>
+
+        <p>There are a variety of different types of buses used in computer systems, each with different characteristics and uses. Some of the most common types of buses include:</p>
+        <ul>
+          <li><strong>System bus:</strong> Also known as the front-side bus, this bus connects the CPU to main memory and other components, such as the video card and hard disk drive.</li>
+          <li><strong>Expansion bus:</strong> This bus provides a way to add additional components to a computer system, such as a video card or network card. Common expansion buses include the Peripheral Component Interconnect (PCI) and the Accelerated Graphics Port (AGP).</li>
+          <li><strong>Backplane bus:</strong> This bus is used in large computer systems, such as servers, to connect multiple components and provide a high-speed data transfer path.</li>
+          <li><strong>Internal bus:</strong> This bus is used to connect components that are located within a single device, such as a hard disk drive.</li>
+        </ul>
+
+        <p>Buses are an important part of computer systems, as they enable different components to communicate with one another and work together to perform various tasks.</p>
+      </div>
+
+      <div class="section" aria-labelledby="types-heading">
+        <h4 id="types-heading">Computer Hardware Types</h4>
+        <p>All of these different components can be categorized into four main types of computer hardware: (Note: these are also the four functions that represent how data moves through your system, just in a slightly different order.)</p>
+
+        <ol>
+          <li>
+            <strong>Input devices:</strong> These are used to input data and commands into a computer system. Examples include keyboards, mice, scanners, and cameras.
+          </li>
+
+          <li>
+            <strong>Output devices:</strong> These are used to display or output data from a computer system. Examples include monitors, printers, and speakers.
+          </li>
+
+          <li>
+            <strong>Processing devices:</strong> These are used to process data and perform calculations. The CPU and RAM are examples of processing devices.
+          </li>
+
+          <li>
+            <strong>Storage devices:</strong> These are used to store data and programs. Examples include hard disk drives, solid-state drives, and USB flash drives.
+          </li>
+        </ol>
+
+        <p>Peripheral devices and input/output (I/O) devices are often used interchangeably, but they are not exactly the same thing. Peripheral devices are a broad category that includes any device that can be connected to a computer system, such as printers, scanners, and cameras. I/O devices, on the other hand, specifically refer to devices that are used for input and output operations, such as keyboards, mice, and monitors. While all I/O devices are considered peripheral devices, not all peripheral devices are I/O devices.</p>
+        <h2>Next, Complete CompTIA A+ Lesson 2</h2>
+        <p>If the embed doesnt work, use the button instead.</p>
+      <iframe
+                    id="lessonFrame"
+                    class="video-embed"
+                    src="https://platform.comptia.org/v6_0_695/index.html/productviewer/1230/1.0/00000000-0000-0000-0000-000000000000/outline?campus=5dffe00c-9ca1-4777-9449-ada402f8844f"
+                    title="Lesson 2"
+                    frameborder="0"
+                    allowfullscreen
+                    aria-label="Lesson 2"></iframe>
+                <button
+                    onclick="window.open(document.getElementById('lessonFrame').src, '_blank')">
+                    Open in Browser
+                </button>
+      </div>
+
+      <div class="section" aria-labelledby="post-heading">
+        <h4 id="post-heading">Power-On Self Test</h4>
+        <p>The POST (Power-On Self-Test) is a diagnostic testing sequence that a computer performs when first powered on.</p>
+        <p>When you press the power button, before loading any operating system, your computer's BIOS/UEFI firmware initiates POST to check that essential system components are present and functioning correctly. The sequence typically includes:</p>
+        <ul>
+            <li>Checking the CPU and clock<ul>The CPU performs a simple self-test and verification of its registers</ul><ul>The system clock is checked to ensure it's running at the correct frequency</ul></li>
+            <li>Verifying system memory(RAM)<ul>POST writes a test pattern to every memory address, It then reads back these patterns to verify data integrity</ul></li>
+            <li>Initializing core motherboard components<ul>The chipset and bus controllers are initialized</ul><ul>Basic voltage and power readings are verified</ul></li>
+            <li>Detecting and initializing storage devices<ul>POST identifies all storage devices (HDDs, SSDs, optical drives)</ul><ul>The BIOS/UEFI queries each device through the storage controllers</ul><ul>Boot device order is determined based on BIOS settings</ul></li>
+            <li>Testing basic input/output systems (keyboard, display)<ul>Basic keyboard controller initialization occurs</ul><ul>Video memory is tested and basic display output is verified</ul><ul>USB controllers are initialized </ul></li>
+        </ul>
+        <p>If POST encounters any critical errors, it usually communicates through a series of beep codes or error messages since the display may not be initialized yet. For example, a series of long beeps might indicate a RAM failure.</p>
+        <p>Once POST completes successfully, the system proceeds to boot the operating system. If POST fails, the computer won't boot at all - this helps prevent damage and alerts users to hardware problems.</p>
+    </div>
+
+      <div class="section" aria-labelledby="computer-types-heading">
+        <h4 id="computer-types-heading">Computer Types</h4>
+        <ul>
+          <li><strong>Desktops</strong>: Often referred to as workstations or PCs, desktops are computer systems small enough to fit on, under, or near a desk. They are widely used for business, industry, and home use. Desktop systems are equipped with peripheral devices such as a monitor, keyboard, mouse, and speakers. They have several advantages including modularity, ease of repair and upgrade, the power to run CPU-intensive tasks, and storage capacity to handle larger amounts of data than other devices. However, they are not mobile and require continuous access to an A/C power outlet.</li>
+          <li><strong>All-in-one devices</strong>: These types of desktop computers contain every component except the keyboard and mouse in the same case as the monitor. They require less space than a desktop and are easy to move to a new location. However, they are harder and more expensive to repair, and in most cases, you are not able to expand the memory or disk space.</li>
+          <li><strong>Notebooks and laptops</strong>: Also known as subnotebooks, these computers have all components built into one case. They can run the same productivity applications as desktop systems, are smaller, weigh less, use less power than desktop systems, and include batteries that allow them to run without external power for a period of time. They are mobile and often include built-in wireless networking. However, they are more difficult to upgrade or repair, usually more expensive than comparable desktop systems, and typically have less computing power than comparable desktops.</li>
+          <li><strong>Hybrid laptop devices (2-in-1)</strong>: These computers cater to the needs of both tablet and laptop users. They provide a touchscreen and other tablet-style conveniences but also provide an operating system and keyboard.</li>
+          <li><strong>Gaming consoles</strong>: These are computer systems specifically built to be operated by a gaming pad instead of a keyboard and mouse. They include major computer components, such as CPU, GPU, RAM, an operating system, disk storage, etc. These components are designed to work best with games and the high graphics capabilities required by these games.</li>
+          <li><strong>Network Client</strong>: This is a device that can connect to a network. All the above devices can be network clients.</li>
+          <li><strong>Mobile Devices</strong>: These are small computing devices, such as tablets and smartphones. They are much more mobile than any other type of computing device and include a variety of integrated devices, such as cameras, microphones, and wireless networking. However, they are difficult to repair and nearly impossible to upgrade.</li>
+          <li><strong>Servers</strong>: These are computers whose purpose is to provide shared disk storage or to perform a special service for a large number of people, such as web processing, email, or database services. Servers are widely used in business and typically have more memory, disk space, and processing power than a desktop computer.</li>
+        </ul>
+      </div>
+  
+    </div>
+
+    <footer class="slide-footer">
+      <p>Resources: (as provided in input)</p>
+    </footer>
+  </div>
+
+  <!-- Prism JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson entry script (Level 1, Section HARDWARE, Lesson 003) -->
+  <script
+    src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-003"
+    data-lesson-title="Hardware basics"
+    data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback script (no visible button included) -->
+  <script
+    src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-003"
+    data-lesson-title="Hardware basics"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+
+  <!-- SUMMARY REPORT
+    Generated slide: /slides/hardware_basics_l1_hardware_cybersecurity_20251002.html
+    xAI Artifact ID: xaifile_hardware_basics_20251002_v1
+    Version ID: v1
+
+    Parsing issues: None detected. Content preserved exactly as provided by the user.
+    Length estimate: ~15-20 minutes (no split recommended).
+  -->
+</body>
+</html>

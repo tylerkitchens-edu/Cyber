@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital data - Lesson</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+
+<body>
+  <div class="slide-container" role="region" aria-labelledby="slide-title">
+    <header class="slide-header">
+      <h1 id="slide-title">Digital Data</h1>
+      <h2>Lesson</h2>
+    </header>
+
+    <section aria-labelledby="objectives-heading">
+      <h3 id="objectives-heading">Learning Objectives</h3>
+      <ul>
+        <li>Explain the need and use case for each numbering system</li>
+        <li>Students will be able to describe the key stages of the digital data lifecycle (collection, storage, processing, analysis, and disposal) and explain the purpose of each stage in a short written response.</li>
+        <li>Explain the role of digital data types in storing hardware settings and boot configuration</li>
+      </ul>
+    </section>
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    h1, h2, h3 { color: #2c3e50; }
+    table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+    .example { background: #eef; padding: 10px; margin: 15px 0; border-left: 4px solid #66f; }
+  </style>
+</head>
+
+  <h2>Digital Data Terms and Definitions</h2>
+  <table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td>Bit</td><td>The smallest unit of digital information. Each individual one and zero in a binary sequence is a bit.</td></tr>
+    <tr><td>Byte</td><td>Eight bits together form a byte. The value of a single byte can range from 0 (eight 0s) to 255 (eight 1s). (4 bytes is called a nibble)</td></tr>
+    <tr><td>Kilobyte (KB)</td><td>One kilobyte is equal to 1,000 bytes.</td></tr>
+    <tr><td>Megabyte (MB)</td><td>One megabyte is one million bytes of information. Therefore, 1 megabyte equals 1,000 kilobytes.</td></tr>
+    <tr><td>Gigabyte (GB)</td><td>One gigabyte is one billion bytes. Therefore, 1 gigabyte equals 1,000 megabytes.</td></tr>
+    <tr><td>Terabyte (TB)</td><td>One terabyte is equal to 1,000 gigabytes.</td></tr>
+    <tr><td>Digital data</td><td>A physical signal, such as text, numbers, graphics, or sound, interpreted by converting it into binary numbers.</td></tr>
+    <tr><td>Encoding integers</td><td>Integers can have a positive or negative value. Computers encode 32 bit by using the first bit for the sign, one for negative and zero for positive. Then, the remaining 31 bits are used to encode the number itself, giving a range from about negative 2 billion to positive 2 billion.</td></tr>
+    <tr><td>Encoding Text</td><td>Computers represent text by using 1s and 0s as stand-ins for physical signals, such as magnetic or electrical charge. The computer can encode text by assigning a unique binary code to each character.</td></tr>
+    <tr><td>Processing Speed</td><td>In 64-bit processors, computers can receive or send eight bytes of data at once. Each time the processor writes data to memory or reads data from memory is called a cycle. The base unit of measure is hertz (Hz). One hertz means one cycle per second.<br>
+      1 megahertz (MHz) = 1 million Hz (Often seen on an older PC bus interfaces.)<br>
+      1 gigahertz (GHz) = 1 billion Hz (Often used with fiber optic networks. Newer computer CPUs run at gigahertz speeds.)</td></tr>
+    <tr><td>Storage space</td><td>Data storage usually refers to the number of bytes. Since bits and bytes are so small and can't store much information, we use the metric system to describe them in groups.</td></tr>
+    <tr><td>Throughput</td><td>Throughput, or data transmission from one computer to another, usually refers to the number of individual bits that can be transmitted in one second. For example, a gigabit internet connection can send a billion ones and zeroes every second. Throughput is also associated with PC bus speeds, or in other words, how quickly the system bus can move data from one computer component to the other.</td></tr>
+  </table>
+
+  <h2>Numbering Systems</h2>
+  <p>When we count things, we use ten digits, zero through nine. This system of ten digits is called the decimal system. However, there are two other systems used to express numbers that are used by computers: binary and hexadecimal. Don't worry if these number systems are a little overwhelming. The most important thing is to know that binary represents physical signals inside the computer and hex is an easy way for humans to represent binary numbers.</p>
+
+  <h3>The Decimal System</h3>
+  <p>When you count in decimal, you start at zero, then go through each digit all the way to nine. Once you get to nine, you put a one in front of the next zero to get the number ten. This pattern continues for the tens place, incrementing the number in front of the zero to get 10, 20, 30, etc.</p>
+  <p>Once you get to nine tens and nine ones, you change them both to zero and add one to get a hundred. The decimal number 206 is made of two 100s, zero 10s, and six 1s. The ones place can be expressed as ten to the zero power. Tens are ten to the first power, and hundreds are ten to the second.</p>
+  <img src="decimal.png">
+
+  <h3>The Binary System</h3>
+  <p>The binary number system is a base 2 system and works in the same basic way as the decimal numbering system but uses only the two values of 0 and 1. This works well since computers use electronic signals to represent data: a 1 indicates on and a 0 indicates off. Every binary number contains these two digits (0 and 1), regardless of how small or large the number is.</p>
+  <p>The difference between decimal and binary is the value of each place holder or position. As you just learned, in decimal you have the 1's position, then the 10's position, the 100's positions, etc.</p>
+  <p>To understand what a binary number is in decimal, you use the same principal, but each position has a different value. In binary, the decimal equivalent for the first position is 1. The next position is 2, and the next position is 4, followed by 8, and so on. Each subsequent position doubles in decimal value. This happens because binary uses a base 2 system.</p>
+  <p>This is easier to see if you use a table. Since computer data is often represented in 8-bit increments, or 1 byte, we'll use a table with eight place holders.</p>
+  <img src="binary.png">
+
+  <h3>The Binary System (Continued)</h3>
+  <p>To count in binary, you start by placing a 1 in the first position which equals 1 in decimal. Since 1 is the highest number in binary, if you want to move to a decimal 2, you put a 1 in the second position and replace the first position with a zero, just as you do in decimal counting.</p>
+  <p>This same principal continues until you have reached the value of 255, the total of all the 1's in each of the eight positions.</p>
+  <p>To go to the next value of three, you put a 1 in the first position, which leaves you with a binary value of 11 or a 3 in decimal. The reason the value is 3, and not eleven, is because to convert a binary number to a decimal number, you add the decimal value of all the positions that contain a binary 1. So, 2 + 1 = 3.</p>
+
+  <h3>Binary Conversions</h3>
+  <p>As a last example, let's convert the binary number of 11001110 to a decimal number. As you can see in the following table, to do the conversion, all you need to do is add the decimal value for each binary position containing a 1 to get your answer. So, 128 + 64 + 8 + 4 + 2 = 206.</p>
+
+  <div class="video-section" aria-labelledby="video-heading">
+  <h4>This video is a step by step guide on how to convert binary code into a decimal (denary) number.</h4>
+          <a class="btn-primary" href="https://www.youtube.com/watch?v=Aw6wd_WE-n8" target="_blank" rel="noopener">Open in Browser</a>
+      </div>
+
+  <h3>Hexadecimal</h3>
+  <p>The hexadecimal system is used, in part, because it translates well to binary. Since binary numbers can get very large, using a hex number takes fewer digits. For example, 1111 in binary - four digits - can be reduced to just one hex digit - F.</p>
+  <p>Since there are only 16 options (0-15) for each place holder or position, to count higher than 15 (or F in hex), you replace the first digit of F with a 0 and then in the second position, add a 1, which leaves you with the hex value of 10. This means that 10 in hex is equal to 16 in decimal.</p>
+  <p>You continue to count in hex as follows (hex to decimal): 11=17, 12=18, 13=19, 14=20, 15=21, up to 19=25. To go to 26 in decimal, you use A-F, so you replace the hex 9 with A or 1A=26, 1B=27, up to 1F=31. Since you have reached the highest value in the first position again, for the next number, you change the first position to a 0 and increment the second position by one. Therefore, the hex value of 20 equals 32 in decimal. This process continues for as high as you want to count.</p>
+
+  <h3>Hexadecimal Numbering System</h3>
+  <table>
+    <tr><th>Decimal</th><th>Binary</th><th>Hexadecimal</th></tr>
+    <tr><td>0</td><td>0000</td><td>0</td></tr>
+    <tr><td>1</td><td>0001</td><td>1</td></tr>
+    <tr><td>2</td><td>0010</td><td>2</td></tr>
+    <tr><td>3</td><td>0011</td><td>3</td></tr>
+    <tr><td>4</td><td>0100</td><td>4</td></tr>
+    <tr><td>5</td><td>0101</td><td>5</td></tr>
+    <tr><td>6</td><td>0110</td><td>6</td></tr>
+    <tr><td>7</td><td>0111</td><td>7</td></tr>
+    <tr><td>8</td><td>1000</td><td>8</td></tr>
+    <tr><td>9</td><td>1001</td><td>9</td></tr>
+    <tr><td>10</td><td>1010</td><td>A</td></tr>
+    <tr><td>11</td><td>1011</td><td>B</td></tr>
+    <tr><td>12</td><td>1100</td><td>C</td></tr>
+    <tr><td>13</td><td>1101</td><td>D</td></tr>
+    <tr><td>14</td><td>1110</td><td>E</td></tr>
+    <tr><td>15</td><td>1111</td><td>F</td></tr>
+  </table>
+
+  <h3>Hexadecimal Conversions</h3>
+  <p><strong>HEX TO DECIMAL</strong><br>
+  The conversion of binary to hex uses the same process of converting binary to decimal but you work with only four bits at a time. Once you have the decimal value, you convert that decimal value to a hex value. The reason you work with only four bits is because the highest value of four bits in binary is equal to F in hex (1111=F). For example, look at a binary value of 1101. As you can see in the following table, the decimal value of this binary number is 13, but we know that in hex, the decimal value of 13 is D.</p>
+    <img src="h2d.png">
+  <div class="video-section" aria-labelledby="video-heading">
+  <h4>This video is a step by step guide on how to convert hexadecimal code into a decimal (denary) number.</h4>
+          <a class="btn-primary" href="https://www.youtube.com/watch?v=CnvFy75ks_A" target="_blank" rel="noopener">Open in Browser</a>
+      </div>
+  <h3>Hexadecimal Conversions (Continued)</h3>
+  <p><strong>HEX TO BINARY</strong><br>
+  In the following example, you see that we took the really long binary number of 1101001010100013 and broke it up into four-bit chunks: 1101 - 0010 - 1010 - 0011. After converting each chunk to a decimal value, we then converted those numbers to hex. Since 2 and 3 are the same in both decimal and hex, no conversion to hex was required.</p>
+    <img src="h2b.png">
+  <div class="video-section" aria-labelledby="video-heading">
+  <h4>This video is a step by step guide on how to convert hexadecimal code into a binary number.</h4>
+          <a class="btn-primary" href="https://www.youtube.com/watch?v=QJmSps4iewQ" target="_blank" rel="noopener">Open in Browser</a>
+  </div>
+  <h2>Next, Complete CompTIA A+ Lessons 5 and 6</h2>
+        <p>If the embed doesnt work, use the button instead.</p>
+      <iframe
+                    id="lessonFrame"
+                    class="video-embed"
+                    src="https://platform.comptia.org/v6_0_695/index.html/productviewer/1230/1.0/00000000-0000-0000-0000-000000000000/outline?campus=5dffe00c-9ca1-4777-9449-ada402f8844f"
+                    title="Lesson 5-6"
+                    frameborder="0"
+                    allowfullscreen
+                    aria-label="Lesson 5-6"></iframe>
+                <button
+                    onclick="window.open(document.getElementById('lessonFrame').src, '_blank')">
+                    Open in Browser
+                </button>
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <script
+    src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-006"
+    data-lesson-title="Digital Data"
+    data-course-id="Cybersecurity"></script>
+
+  <script
+    src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-006"
+    data-lesson-title="Digital Data"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+
+</body>
+</html>
+

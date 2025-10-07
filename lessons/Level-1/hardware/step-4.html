@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Storage types - Lesson</title>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- Prism CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container" role="region" aria-labelledby="slide-title">
+    <header class="slide-header">
+      <h1 id="slide-title">Storage types</h1>
+      <h2>Lesson</h2>
+    </header>
+
+    <section aria-labelledby="objectives-heading">
+      <h3 id="objectives-heading">Learning Objectives</h3>
+      <ul>
+        <li>Compare and contrast Hard Disk Drives (HDDs) and Solid-State Drives (SSDs) in terms of technology, speed, durability, and cost</li>
+        <li>Define optical storage and identify common optical storage devices, such as CD-ROMs, DVDs, and Blu-ray discs.</li>
+        <li>Explore the concept of external storage devices, including USB drives, external hard drives, and network-attached storage (NAS).</li>
+      </ul>
+    </section>
+
+    <div class="section" aria-labelledby="storage-heading">
+      <h3 id="storage-heading">Storage Types</h3>
+      <p>A processor uses random access memory (RAM) to store information about a program it's currently running. RAM is extremely fast, and the processor can read from and write to it billions of times each second. However, RAM is volatile; if the system shuts off, RAM loses everything it had stored in memory. So, we have Mass storage devices to store important data for persistent use.</p>
+
+      <p>This lesson covers the topic of common Mass storage devices.</p>
+    </div>
+
+    <div class="section" aria-labelledby="common-storage-heading">
+      <h3 id="common-storage-heading">Common Storage Devices</h3>
+
+      <p>To store information when the computer is turned off (called persistent storage), computers must use long-term storage. Otherwise, data would be lost whenever the system shuts down. There are several different types of long-term storage devices that are commonly implemented in most computer systems.</p>
+
+      <div style="margin-top:12px;">
+      </div>
+
+      <ul>
+        <li>SCSI - A SCSI (scuzzy) controller was one of the first disk controllers. It was developed in the 1970s. It has a 50-pin flat ribbon connector. SCSI controllers are now being phased out.</li>
+        <li>IDE/EIDE/PATA - Controllers based on the IBM PC industry standard architecture (ISA) 16-bit bus standard.</li>
+        <li>SATA - SATA supports disk hot-swapping. This means the drive can be changed while the computer is powered on. SATA uses better cables and provides faster speeds than SCSI and IDE/EIDE/PATA.</li>
+        <li>M.2 - M.2 is a compact form factor for solid-state storage devices that has become the standard for modern PCs and laptops. Unlike traditional 2.5-inch SATA drives, M.2 drives are small rectangular cards that plug directly into the motherboard, saving space and eliminating cable clutter. They come in various lengths (commonly 2280, meaning 22mm wide by 80mm long) and can use either the SATA interface or the much faster NVMe protocol over PCIe lanes. NVMe M.2 drives offer significantly faster read/write speeds—often exceeding 5,000 MB/s or even 7,000 MB/s with PCIe 4.0 and 5.0—compared to SATA's 550 MB/s limit.</li>
+    </ul>
+
+      <p>SATA is (or was) the most common controller used in desktop and laptop computers. There are usually four SATA ports on most motherboards. Nowadays modern systems are moving towards M.2 similarly to how UEFI is replacing BIOS</p>
+
+      <div style="margin-top:12px;">
+      </div>
+
+      <div style="margin-top:12px;">
+      </div>
+
+      <div style="margin-top:12px;">
+      </div>
+
+      <p>A typical desktop computer system has several storage devices attached to it. For example, it may have a solid-state drive (SSD) for the operating system and key programs, a hard disk drive (HDD) for file storage, an optical drive for CDs and DVDs, and removable USB storage devices.</p>
+    </div>
+
+    <div class="section" aria-labelledby="drives-heading">
+      <h3 id="drives-heading">Drives</h3>
+
+      <p>Typically, each storage device on the computer is called a drive. A drive is the top-level folder, or directory, of a file system. Each drive is assigned a letter by the computer. The one that contains the operating system is typically called the C drive (C:).</p>
+
+      <p><strong>What happened to the A and B drives?</strong>In the early days of desktop computers, the A and B drives were typically used for 3/5-inch and 5-inch floppy disks, respectively. Even though floppy disks have been surpassed by better technology, the tradition of calling the principal hard drive the C drive is still with us.</p>
+    </div>
+
+    <div class="section" aria-labelledby="partitioning-heading">
+      <h3 id="partitioning-heading">Partitioning</h3>
+
+      <p>Most operating systems in the 1990s could only support drives of a certain size. For example, Windows 95 only allowed a maximum drive size of 32GB. This was a problem if someone wanted to use a hard drive with more capacity than this. The solution to this problem was partitioning, or dividing a single physical disk into multiple logical drives called volumes. Typically, one of these volumes would be the C drive and contain the operating system, and the others would be assigned other drive letters.</p>
+
+      <p>Today's operating systems can support enormous drive sizes. Because of this, partitioning isn't as common as it used to be. However, you still may want to partition a disk if you want to:</p>
+
+      <ul>
+        <li>Dual boot your computer with two operating systems, such as Windows and Linux</li>
+        <li>Hide sensitive files on a partition without an assigned drive letter</li>
+        <li>Back up files that may be lost if the operating system becomes corrupted</li>
+        <li>Save an image of the operating system on the same disk as the operating system itself</li>
+      </ul>
+
+      <p>Each volume you create on a disk consumes some of the storage space. In other words, if you create three volumes on a 500GB HDD, you may be left with only 400 GB of available storage space.</p>
+    </div>
+    
+    <h2>Next, Complete CompTIA A+ Lesson 3</h2>
+        <p>If the embed doesnt work, use the button instead.</p>
+      <iframe
+                    id="lessonFrame"
+                    class="video-embed"
+                    src="https://platform.comptia.org/v6_0_695/index.html/productviewer/1230/1.0/00000000-0000-0000-0000-000000000000/outline?campus=5dffe00c-9ca1-4777-9449-ada402f8844f"
+                    title="Lesson 3"
+                    frameborder="0"
+                    allowfullscreen
+                    aria-label="Lesson 3"></iframe>
+                <button
+                    onclick="window.open(document.getElementById('lessonFrame').src, '_blank')">
+                    Open in Browser
+                </button>
+
+    <footer class="slide-footer">
+      <p>Resources: (as provided in input)</p>
+    </footer>
+  </div>
+
+  <!-- Prism JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson entry script (Level 1, Section HARDWARE, Lesson 004) -->
+  <script
+    src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-004"
+    data-lesson-title="Storage types"
+    data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback script (no visible button included) -->
+  <script
+    src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-004"
+    data-lesson-title="Storage types"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+
+  <!-- SUMMARY REPORT -->
+  <!--
+    Generated slide: /slides/storage_types_l1_hardware_cybersecurity_20251002.html
+    xAI Artifact ID: xaifile_storage_types_20251002_v1
+    Version ID: v1
+
+    Parsing issues: None detected. Content preserved exactly as provided by the user.
+    Length estimate: ~15 minutes.
+  -->
+</body>
+</html>

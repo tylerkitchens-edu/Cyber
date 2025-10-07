@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boot Process - Lesson</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container" role="region" aria-labelledby="slide-title">
+    <header class="slide-header">
+      <h1 id="slide-title">Boot Process</h1>
+      <h2>Lesson</h2>
+    </header>
+
+    <section aria-labelledby="objectives-heading">
+      <h3 id="objectives-heading">Learning Objectives</h3>
+      <ul>
+        <li>Understand the sequence of events during the boot process, from power-on to loading the operating system</li>
+        <li>Differentiate between BIOS and UEFI, and understand their roles in system initialization</li>
+        <li>Explain the role of CMOS in storing hardware settings and boot configuration</li>
+      </ul>
+    </section>
+
+    <div class="section" aria-labelledby="boot-process-heading">
+      <h3 id="boot-process-heading">Boot Process / Digital Data</h3>
+      <p>Every computer follows a structured process when starting up, known as the boot process. In this section, we will explore how a system initializes hardware, loads firmware, and eventually boots into an operating system. Additionally, we will examine how digital data is processed, stored, and transferred within a computer system. Understanding these concepts helps in troubleshooting boot issues and understanding binary data handling.</p>
+
+      <ol>
+        <li><strong>Step 1: Activate BIOS</strong> - Electrical power activates the Basic Input/Output System (BIOS).</li>
+        <li><strong>Step 2: Check CMOS</strong> - The BIOS reads the CMOS chip for system settings and instructions for hardware initialization.</li>
+        <li><strong>Step 3: Initialize Hardware</strong> - The BIOS wakes up and configures hardware devices such as fans, memory, hard drives, and processors.</li>
+        <li><strong>Step 4: POST</strong> - BIOS performs a Power-On Self-Test (POST) to verify that all hardware is functioning properly.</li>
+        <li><strong>Step 5: Find an OS</strong> - BIOS searches for a bootable device according to the boot order stored in the CMOS.</li>
+        <li><strong>Step 6: Load OS into RAM</strong> - BIOS loads the operating system into RAM, and the processor begins executing OS instructions. BIOS then becomes dormant.</li>
+        <img src="boot.png">
+      </ol>
+    </div>
+
+    <div class="section" aria-labelledby="bios-uefi-heading">
+      <h3 id="bios-uefi-heading">BIOS & UEFI</h3>
+      <p>Accessing BIOS usually requires pressing a key (F1, F2, Del, etc.) during boot. Within BIOS settings, you can adjust CPU clock, memory timings, and boot order.</p>
+      <p><strong>BIOS:</strong> Non-volatile firmware stored on a memory chip on the motherboard. Runs first and loads the OS. Settings are retained via CMOS.</p>
+      <p><strong>UEFI:</strong> Modern graphical boot tool with advantages including faster booting, support for large drives, enhanced security, and EFI file-based startup. Provides an easier GUI for configuration.</p>
+      <p><strong>CMOS:</strong> A small RAM chip powered by a battery that stores BIOS settings such as system date, time, and hardware configuration.</p>
+      <p>BIOS is software; CMOS is hardware. BIOS uses CMOS to save critical system information, even when power is disconnected.</p>
+    </div>
+    
+    <h2>Next, Complete CompTIA A+ Lesson 4</h2>
+        <p>If the embed doesnt work, use the button instead.</p>
+      <iframe
+                    id="lessonFrame"
+                    class="video-embed"
+                    src="https://platform.comptia.org/v6_0_695/index.html/productviewer/1230/1.0/00000000-0000-0000-0000-000000000000/outline?campus=5dffe00c-9ca1-4777-9449-ada402f8844f"
+                    title="Lesson 4"
+                    frameborder="0"
+                    allowfullscreen
+                    aria-label="Lesson 4"></iframe>
+                <button
+                    onclick="window.open(document.getElementById('lessonFrame').src, '_blank')">
+                    Open in Browser
+                </button>
+
+    <footer class="slide-footer">
+      <p>Resources: (as provided in input)</p>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <script
+    src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-005"
+    data-lesson-title="Boot Process"
+    data-course-id="Cybersecurity"></script>
+
+  <script
+    src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-HARDWARE-005"
+    data-lesson-title="Boot Process"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+
+  <!-- SUMMARY REPORT -->
+  <!--
+    Generated slide: /slides/boot_process_l1_hardware_cybersecurity_20251002.html
+    xAI Artifact ID: xaifile_boot_process_20251002_v1
+    Version ID: v1
+
+    Parsing issues: None detected.
+  -->
+</body>
+</html>

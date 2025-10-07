@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Computing - Lesson</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+
+<body>
+  <div class="slide-container" role="region" aria-labelledby="slide-title">
+    <header class="slide-header">
+      <h1 id="slide-title">Cloud Computing</h1>
+      <h2>Lesson</h2>
+    </header>
+
+    <section aria-labelledby="objectives-heading">
+      <h3 id="objectives-heading">Learning Objectives</h3>
+      <ul>
+        <li>Define the role of a hypervisor in virtualization.</li>
+        <li>Differentiate between cloud deployment models.</li>
+        <li>Summarize client-side virtualization.</li>
+        <li>Differentiate between cloud service types.</li>
+        <li>Categorize the many types of SaaS applications.</li>
+      </ul>
+    </section>
+    <h2>First, Complete CompTIA A+ Lesson 7</h2>
+        <p>If the embed doesnt work, use the button instead.</p>
+      <iframe
+                    id="lessonFrame"
+                    class="video-embed"
+                    src="https://platform.comptia.org/v6_0_695/index.html/productviewer/1230/1.0/00000000-0000-0000-0000-000000000000/outline?campus=5dffe00c-9ca1-4777-9449-ada402f8844f"
+                    title="Lesson 7"
+                    frameborder="0"
+                    allowfullscreen
+                    aria-label="Lesson 7"></iframe>
+                <button
+                    onclick="window.open(document.getElementById('lessonFrame').src, '_blank')">
+                    Open in Browser
+                </button>
+    <section>
+      <h3>Virtualization Solutions</h3>
+      <p>Welcome to our lesson on cloud computing and virtualization! These technologies have revolutionized how businesses and individuals use computing resources, making powerful IT infrastructure more accessible and cost-effective than ever before.</p>
+    </section>
+
+    <section>
+      <h3>Virtualization</h3>
+      <p>Virtualization is the process of running a virtual instance of a computer system on its own partition. It creates a software-based version of something such as an application, server, network, or storage. For example, this is often used to run multiple operating systems on a single computer at the same time, such as running a version of Windows and a version of macOS on the same system. Using virtualization can help reduce technology expenses and create smoother operating processes.</p>
+    </section>
+
+    <section>
+      <h3>Virtual Machines</h3>
+      <p>To understand what a virtual machine is, you have to consider the traditional alternative—the physical machine. Usually, a single computer physically occupies space on a desk and runs a single operating system. In contrast, a virtual machine is just a file (also known as an image) that acts like a computer but in reality only exists virtually. In this way, it's like having one computer inside of another. A single computer can run a variety of virtual machines to greatly enhance what it's typically able to do. These virtual machines give the user the same experience as if they were running the program on a dedicated computer.</p>
+      <p>Virtual machines don't require any special hardware, but each machine you install does create a drain on your system's available resources. You're limited only by how much the host computer can handle. Multiple virtual machines can run on the same computer, but it's important to make sure you have enough resources on the host computer to support them.</p>
+      <p>All the virtual machines on your computer will access the same physical hardware in order to run.</p>
+      <p>Some things to consider when creating virtual machines are the amount of storage space on the computer, the amount of RAM available, the quality of the video card, and the quality of the processor.</p>
+    </section>
+
+    <section>
+      <h3>Hypervisors</h3>
+      <p>Hypervisors, also known as virtual machine managers, are the software that creates and manages virtual machines. There are two main types of hypervisors:</p>
+      <ol>
+        <li><strong>Type 1 hypervisors</strong>, also known as bare-metal hypervisors, run directly on the host's hardware. They have direct access to the computer's resources and can run multiple operating systems simultaneously. Examples of Type 1 hypervisors include VMware ESXi, Microsoft Hyper-V, and Citrix Hypervisor.</li>
+        <li><strong>Type 2 hypervisors</strong>, also known as hosted hypervisors, run on top of an existing operating system. They are typically used on desktop computers and are less powerful than Type 1 hypervisors. Examples of Type 2 hypervisors include Oracle VirtualBox, VMware Workstation, and Parallels Desktop.</li>
+      </ol>
+      <img src="hypervisor.png">
+      <p>Type 1 hypervisors are generally preferred in enterprise environments because they are more powerful and efficient than Type 2 hypervisors. However, Type 2 hypervisors are more user-friendly and can be used on a wider range of hardware.</p>
+    </section>
+
+    <section>
+      <h3>Cloud Computing</h3>
+      <p>Cloud computing has been a revolutionary shift in the way that individuals and companies operate. Instead of storing everything locally on each individual machine, cloud computing allows you to do much of your work and storage over the internet. Things that are stored and shared in this way are said to be in the cloud.</p>
+    </section>
+
+    <section>
+      <h3>Cloud Deployment Models</h3>
+      <ul>
+        <li><strong>Public Cloud:</strong> This is a cloud infrastructure that is available to the general public. The cloud service provider is responsible for managing and maintaining the infrastructure.</li>
+        <li><strong>Private Cloud:</strong> This is a cloud infrastructure that is dedicated to a single organization. The organization has complete control over the infrastructure and is responsible for managing and maintaining it.</li>
+        <li><strong>Hybrid Cloud:</strong> This is a combination of public and private cloud infrastructures. The organization can use the public cloud for non-sensitive workloads and the private cloud for sensitive workloads that require enhanced security and compliance.</li>
+        <li><strong>Community Cloud:</strong> This is a cloud computing model that involves sharing computing resources among organizations with common interests, such as a particular industry or geographical location.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Cloud Service Types</h3>
+      <ul>
+        <li><strong>Infrastructure as a Service (IaaS):</strong> This provides users with virtual machines, storage, and network resources. Users can install and configure their own operating systems, applications, and software.</li>
+        <li><strong>Platform as a Service (PaaS):</strong> This provides users with a platform for developing, running, and managing applications. Users do not have to worry about managing the underlying hardware and operating system.</li>
+        <li><strong>Software as a Service (SaaS):</strong> This provides users with access to software applications over the internet. Users do not have to install or maintain the software on their own devices.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Key Benefits of Cloud Computing</h3>
+      <ul>
+        <li><strong>Lower Costs:</strong> With cloud computing, you pay only for the services you need as long as you need them.</li>
+        <li><strong>Easier Collaboration:</strong> With cloud computing, it's simple for people to work together even when they're not geographically close.</li>
+        <li><strong>Data Backup:</strong> If files are kept in the cloud, it's easier to make sure that you don't lose them. Even if your individual machine crashes, files can be restored from a cloud location.</li>
+        <li><strong>Data Security:</strong> Cloud computing has many technologies that help protect your data so that only authorized individuals can access it.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>The SaaS Model</h3>
+      <p>In a typical SaaS model, the software is hosted on a central server and users are charged a monthly fee to gain access to it. Under this model, the end user doesn't need a license because everything is hosted in the cloud. The end user also doesn't need any particular kind of hardware to host the software as it's taken care of by the host company.</p>
+      <p>Many companies like this business model because it creates a steady stream of monthly revenue. Since the customer is only renting the software, access can be revoked if the customer stops paying. This is in contrast to traditional software, which is purchased for a one-time fee.</p>
+    </section>
+
+    <section>
+      <h3>Categories of SaaS Applications</h3>
+      <ul>
+        <li>CRM management software such as Salesforce.</li>
+        <li>Office tools such as Microsoft Office 365 (Word, Excel, and PowerPoint).</li>
+        <li>Online storage solutions such as Dropbox, Google Drive, and Microsoft OneDrive.</li>
+        <li>Customer service software such as Zendesk.</li>
+        <li>Electronic signature and document management software such as DocuSign.</li>
+        <li>Real-time messaging solutions such as Slack.</li>
+        <li>Virtual meeting solutions such as GoToMeeting and Zoom.</li>
+        <li>HR tools such as Workday.</li>
+        <li>Course management tools such as Blackboard.</li>
+        <li>Survey creation tools such as Qualtrics.</li>
+        <li>Email services such as Gmail, HubSpot, and Sendinblue.</li>
+      </ul>
+    </section>
+
+    <h2>Next, Complete CompTIA A+ Lesson 8</h2>
+        <p>If the embed doesnt work, use the button instead.</p>
+      <iframe
+                    id="lessonFrame"
+                    class="video-embed"
+                    src="https://platform.comptia.org/v6_0_695/index.html/productviewer/1230/1.0/00000000-0000-0000-0000-000000000000/outline?campus=5dffe00c-9ca1-4777-9449-ada402f8844f"
+                    title="Lesson 8"
+                    frameborder="0"
+                    allowfullscreen
+                    aria-label="Lesson 8"></iframe>
+                <button
+                    onclick="window.open(document.getElementById('lessonFrame').src, '_blank')">
+                    Open in Browser
+                </button>
+
+  </div>
+
+  <!-- Prism.js for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- V School Netlify Reporting Scripts -->
+  <script
+    src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-CLOUD-001"
+    data-lesson-title="Cloud Computing"
+    data-course-id="Cybersecurity">
+  </script>
+
+  <script
+    src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-CLOUD-001"
+    data-lesson-title="Cloud Computing"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>
