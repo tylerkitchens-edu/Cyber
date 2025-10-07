@@ -57,7 +57,7 @@
       <div class="section" aria-labelledby="buses-heading">
         <h4 id="buses-heading">Buses</h4>
         <p>In addition to the internal computing components listed above, computer systems also use buses to transfer data between components. A bus is a communication system that connects various components of a computer and facilitates the transfer of data between them.</p>
-
+        <img src="bus1.png">
         <p>There are a variety of different types of buses used in computer systems, each with different characteristics and uses. Some of the most common types of buses include:</p>
         <ul>
           <li><strong>System bus:</strong> Also known as the front-side bus, this bus connects the CPU to main memory and other components, such as the video card and hard disk drive.</li>
@@ -65,9 +65,43 @@
           <li><strong>Backplane bus:</strong> This bus is used in large computer systems, such as servers, to connect multiple components and provide a high-speed data transfer path.</li>
           <li><strong>Internal bus:</strong> This bus is used to connect components that are located within a single device, such as a hard disk drive.</li>
         </ul>
-
+        <img src="bus2.png">
         <p>Buses are an important part of computer systems, as they enable different components to communicate with one another and work together to perform various tasks.</p>
       </div>
+
+    <div class="section">
+      <h3>Computer Buses</h3>
+      <p>In computers, the bus is responsible for transferring the following:</p>
+      <ul>
+        <li><strong>Power:</strong> Each component requires electricity; the bus provides this power.</li>
+        <li><strong>Data:</strong> The data is the information that is transferred between the components in the computer.</li>
+        <li><strong>Memory Location:</strong> Memory temporarily stores the data while it's needed for processing. The bus keeps track of the address or location where the data is stored in the memory.</li>
+        <li><strong>Clock Timing:</strong> A computer has a clock mechanism, often performed by the CPU, which synchronizes how all the components work together over the bus.</li>
+      </ul>
+      <img src="pci.png">
+    </div>
+
+    <div class="section">
+      <p>Throughout the years, the architecture of the expansion bus has changed. Since the architecture of the bus is dependent on the motherboard and CPU, it’s important to know the types of bus systems that have been and are being used:</p>
+
+      <h4>PCI</h4>
+      <p>The PCI (Peripheral Component Interconnect) bus is a standard hardware interface used in computers to connect peripheral devices—like network cards, sound cards, or graphics cards—to the CPU and memory. It acts as a shared communication pathway, allowing devices to send and receive data efficiently</p>
+      
+      <h4>PCIe</h4>
+      <p> PCI Express, or PCIe, is a next-generation I/O bus architecture. Rather than a shared bus, each PCIe slot links to a switch which prioritizes and routes data through a point-to-point dedicated connection and provides a serial full-duplex method of transmission. PCIe is backwards compatible and allows legacy PCI technology to run in the same system. PCIe buses are most commonly used for video cards in modern computer systems, although nearly any device can be designed for a PCIe slot.</p>
+      <p>Basic PCIe provides one lane for transmission (x1), at a transfer rate of 250 MBps. It can also provide multiple transmission lanes (x2, x4, x8, x16, x32). Newer versions of PCIe can transfer data at an even higher rate per lane:</p>
+      <ul>
+        <li>Version 1: 250 MBps</li>
+        <li>Version 2: 500 MBps</li>
+        <li>Version 3: 1 GBps</li>
+        <li>Version 4: 2 GBps</li>
+      </ul>
+
+      <h4>PCI with AGP</h4>
+      <p>AGP is similar to PCI but designed specifically for graphics support. Motherboards that provide AGP support have a single AGP slot. AGP is commonly used for video cards in modern computer systems but has been replaced by PCIe.</p>
+    </div>
+
+  </div>
 
       <div class="section" aria-labelledby="types-heading">
         <h4 id="types-heading">Computer Hardware Types</h4>
