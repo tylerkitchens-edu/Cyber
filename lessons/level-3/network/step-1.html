@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Introduction to Networking</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Introduction to Networking</h1>
+      <h2>Level 3: Networking</h2>
+    </div>
+
+    <div class="section">
+      <h3>Overview</h3>
+      <p>Networking is the practice of connecting computers and other devices to share resources, communicate, and exchange data. It forms the foundation of modern communication, enabling everything from internet access to business operations.</p>
+    </div>
+
+    <div class="section">
+      <h3>Objectives</h3>
+      <ul>
+        <li>Understand Network Fundamentals – Learn the basics of how networks operate.</li>
+        <li>Identify Network Types & Components – Explore LAN, WAN, routers, switches, and more.</li>
+        <li>Configure Basic Networking – Set up IP addressing, subnetting, and protocols.</li>
+        <li>Troubleshoot Network Issues – Diagnose and fix common connectivity problems.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Network Topologies</h3>
+      <p>Topology describes how devices are connected and how messages flow from device to device. There are two different types of topologies. The physical topology describes the layout of the network or how devices are connected. The logical topology describes how devices communicate with each other or how data is transmitted on the network.</p>
+      <ol>
+        <li><strong>Bus Topology:</strong> All devices share a single communication line or cable. A broken cable anywhere on the bus breaks the termination and prevents communications between all devices.</li>
+        <li><strong>Ring Topology:</strong> Connects neighboring nodes until they form a ring. Signals travel in one direction around the ring.</li>
+        <li><strong>Star Topology:</strong> Devices connect to a single central hub or switch. Most commonly used in a LAN.</li>
+        <li><strong>Mesh Topology:</strong> Each device is interconnected with multiple other devices for high redundancy. There are 2 types of mesh topology: Full and Partial.</li>
+        <li><strong>Hybrid Topology:</strong> Combines two or more topologies to help with scalability.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Important Network Devices</h3>
+      <p>Note: This is by no means a fully comprehensive list of all networking devices.</p>
+      <ul>
+        <li><strong>Router:</strong> A router is a device that connects two or more network segments or subnets.</li>
+        <li><strong>Switch:</strong> A switch lets you connect multiple devices to the same network segment. Each port is numbered; the number next to an arrow that points up corresponds to the port on the top row.</li>
+        <li><strong>Patch Panels:</strong> A patch panel provides an easy way to connect devices and accommodate different types of cabling, such as Ethernet (twisted-pair) and fiber optic cables.</li>
+        <li><strong>Uninterruptible Power Supply (UPS):</strong> A UPS is a device that constantly provides battery power to a computer while the batteries are recharged by the wall outlet. It typically provides several locations to plug in devices.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Routers vs. Switches vs. Access Points – And More</h3>
+      <p><em>Courtesy of "Techquickie" AKA "LinusTech"</em></p>
+      <iframe class="video-embed" src="https://www.youtube.com/embed/Vc16CCAAz7Q" frameborder="0" allowfullscreen></iframe>
+
+      <p><em>What is a SWITCH? // FREE CCNA // Day 1</em><br><em>Courtesy of "Network Chuck"</em></p>
+      <iframe class="video-embed" src="https://www.youtube.com/embed/9eH16Fxeb9o" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 3: Networking</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-001"
+    data-lesson-title="Introduction to Networking"
+    data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-001"
+    data-lesson-title="Introduction to Networking"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+</body>
+</html>
