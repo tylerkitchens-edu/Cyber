@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wireless Networking</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Wireless Networking</h1>
+      <h2>Level 3: Networking</h2>
+    </div>
+
+    <div class="section">
+      <h3>Wireless Networking Basics</h3>
+      <p>Wireless networking has transformed how devices connect and communicate, eliminating the need for physical cabling and providing flexibility for users and organizations alike. From laptops and smartphones to IoT devices, wireless networks support a wide range of technologies such as <strong>Wi-Fi</strong>, <strong>Bluetooth</strong>, <strong>cellular (LTE/5G)</strong>, and <strong>NFC</strong>. Each of these technologies uses radio frequency (RF) signals to transmit data through the air.</p>
+
+      <p>Most wireless networks operate on <strong>2.4 GHz</strong> or <strong>5 GHz</strong> frequency bands. The 2.4 GHz band provides greater range but is more prone to interference (from microwaves, cordless phones, etc.), while 5 GHz offers faster speeds and less congestion but a shorter range. Modern networks are increasingly adopting <strong>6 GHz Wi-Fi 6E</strong> for improved bandwidth and reduced interference.</p>
+
+      <p>Understanding wireless performance involves analyzing factors such as <strong>signal strength (RSSI)</strong>, <strong>signal-to-noise ratio (SNR)</strong>, and <strong>channel overlap</strong>. These determine the reliability and speed of data transmission. Technicians often use tools like Wi-Fi analyzers to optimize access point placement and minimize interference.</p>
+
+      <h4>Wireless Security</h4>
+      <p>Because wireless transmissions travel through open air, they are inherently more vulnerable to eavesdropping and unauthorized access than wired networks. Implementing robust encryption and authentication standards is critical. Modern networks should use <strong>WPA3</strong> (Wi-Fi Protected Access 3) for the highest level of security. Avoid outdated protocols like WEP and WPA2-PSK, which are easily compromised.</p>
+      <p>Other best practices include disabling SSID broadcasting for private networks, using MAC address filtering, and segmenting guest traffic onto separate VLANs to prevent internal network exposure.</p>
+    </div>
+
+    <div class="section">
+      <h3>Introduction to VLANs and VPNs</h3>
+      <p><strong>Virtual Local Area Networks (VLANs)</strong> and <strong>Virtual Private Networks (VPNs)</strong> are technologies designed to enhance network efficiency, control, and security.</p>
+
+      <h4>VLANs</h4>
+      <p>A VLAN allows administrators to logically segment a single physical network into multiple virtual networks. For example, a company can separate HR, Finance, and IT traffic, even if they share the same physical switches. This segmentation reduces broadcast domains, enhances performance, and isolates sensitive data to improve security. VLANs are configured on managed switches using IEEE 802.1Q tagging standards.</p>
+
+      <h4>VPNs</h4>
+      <p>VPNs extend private networks securely across public infrastructure, such as the internet. They use encryption protocols (like <strong>IPsec</strong> or <strong>SSL/TLS</strong>) to ensure data confidentiality and integrity during transmission. VPNs are essential for remote workers who need secure access to internal company systems from outside locations. Common types include <strong>site-to-site VPNs</strong> for linking branch offices and <strong>remote-access VPNs</strong> for individual users.</p>
+
+      <p>Together, VLANs and VPNs give organizations the flexibility to maintain security and scalability across diverse network environments.</p>
+    </div>
+
+    <div class="section">
+      <h3>Network Security Essentials</h3>
+      <h4>Importance of Network Security</h4>
+      <p>As networks expand and connect more devices, the risk of unauthorized access, data breaches, and malware infections increases. Network security aims to protect data in transit and ensure the integrity and availability of critical systems. Security starts with layered defenses—often referred to as <strong>defense-in-depth</strong>—combining multiple technologies and best practices to create redundancy in protection.</p>
+
+      <h4>Key Security Measures</h4>
+      <ul>
+        <li><strong>Firewalls:</strong> Monitor and control incoming and outgoing traffic based on predefined security rules.</li>
+        <li><strong>Intrusion Detection and Prevention Systems (IDS/IPS):</strong> Detect suspicious network activity and block potential attacks.</li>
+        <li><strong>Encryption:</strong> Protects sensitive information as it moves across networks (e.g., HTTPS, IPsec).</li>
+        <li><strong>Multi-Factor Authentication (MFA):</strong> Requires multiple verification factors for secure access beyond just passwords.</li>
+        <li><strong>Security Audits:</strong> Regular evaluations that ensure compliance with organizational policies and industry standards.</li>
+      </ul>
+
+      <h4>Emerging Threats</h4>
+      <p>Modern organizations face evolving threats like <strong>ransomware</strong>, <strong>phishing</strong>, <strong>zero-day exploits</strong>, and <strong>social engineering attacks</strong>. Security awareness training is one of the most effective countermeasures—educating employees to identify suspicious links, attachments, and login attempts helps prevent incidents before they escalate.</p>
+    </div>
+
+    <div class="section">
+      <h3>Common Network Ports</h3>
+      <p>Network ports are logical endpoints used by applications to identify specific processes or network services. They operate at the <strong>Transport Layer</strong> (Layer 4) of the OSI model, working primarily through <strong>TCP</strong> or <strong>UDP</strong> protocols. Understanding common ports helps in configuring firewalls, diagnosing connectivity issues, and recognizing potential threats.</p>
+
+      <ul>
+        <li><strong>Port 80 / 443:</strong> Used for HTTP and HTTPS web traffic. HTTPS (443) provides encryption for secure browsing.</li>
+        <li><strong>Port 53:</strong> Domain Name System (DNS) — translates human-readable domain names into IP addresses.</li>
+        <li><strong>Port 123:</strong> Network Time Protocol (NTP) — synchronizes system clocks across devices to maintain authentication and logging accuracy.</li>
+        <li><strong>Ports 67 (TCP) / 68 (UDP):</strong> Dynamic Host Configuration Protocol (DHCP) — automates IP address assignment between clients and servers.</li>
+        <li><strong>Port 3389:</strong> Remote Desktop Protocol (RDP) — enables remote control of Windows computers and servers.</li>
+      </ul>
+
+      <p>Technicians and administrators should memorize these and other key ports, as they’re commonly encountered during troubleshooting, configuration, and security assessments.</p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 3: Networking</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-003"
+    data-lesson-title="Wireless Networking"
+    data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-003"
+    data-lesson-title="Wireless Networking"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+</body>
+</html>
