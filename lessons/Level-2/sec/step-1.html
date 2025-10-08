@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fundamentals</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Fundamentals</h1>
+      <h2>Lesson</h2>
+    </div>
+
+    <h3>Learning Objectives</h3>
+    <ul>
+      <li>Understand the CIA Triad (Confidentiality, Integrity, Availability)</li>
+      <li>Identify common attack types: Dictionary, Brute Force, Traffic-Interruption, MITM, Keylogger, Social Engineering</li>
+      <li>Understand regulated data types and security standards</li>
+      <li>Recognize important laws and regulations (FERPA, CCPA, GDPR, HIPAA)</li>
+    </ul>
+
+    <div class="section">
+      <h3>The CIA Triad</h3>
+      <p>The CIA triad is a widely recognized model for information security that stands for Confidentiality, Integrity, and Availability. This model represents three fundamental principles that are essential for ensuring the security of sensitive information and information systems. This concept is significantly more in depth than it may appear at first glance but for now just understand the broad concept itself. All 3 areas of the Triad are dependent upon one another. In some instances the Acronym may be moved around to put an emphasis on a specific area.</p>
+
+      <h4>Confidentiality</h4>
+      <p>Refers to the protection of information from unauthorized disclosure. It is important to ensure that sensitive data is accessible only to authorized individuals or entities. Confidentiality is maintained through the use of various security mechanisms such as access controls, encryption, and secure communication protocols.</p>
+
+      <h4>Integrity</h4>
+      <p>Refers to the assurance that information is accurate, complete, and trustworthy. Maintaining data integrity is important to ensure that information is not corrupted or altered in an unauthorized manner. Data integrity can be compromised by various forms of data tampering, including viruses, malware, and human error.</p>
+
+      <h4>Availability</h4>
+      <p>Refers to the accessibility of information and systems to authorized users when they need it. It is essential that systems and data are available to authorized users at all times. Ensuring availability involves taking measures to prevent downtime, disruptions, and outages caused by hardware or software failures, natural disasters, or malicious attacks.</p>
+    </div>
+
+    <div class="section">
+      <h3>Dictionary Attacks</h3>
+      <p>These attacks take advantage of people who use short, common words or combinations of these words as their passwords. It's called a dictionary attack because some hackers can literally try every word in the dictionary! This is quite a long list as there are over one million words in the English language and over 3 million combinations of six letters.</p>
+      <p>To initiate the attack, the hacker tries a long list of common words, together with numbers before or after them like people often use. They sometimes use company usernames so that they can try passwords based on peoples' names. This type of attack only works when a site or program doesn't lock users out after a certain number of invalid attempts.</p>
+      <p>Sometimes, a dictionary attack is used to uncover the decryption key so that encrypted data can be decrypted and stolen in a traffic-interruption attack.</p>
+      <p>The following diagram shows how a dictionary attack works:
+        <img src="dictionary.png">
+      </p>
+    </div>
+
+    <div class="section">
+      <h3>Brute Force Attacks</h3>
+      <p>A brute force attack is where an attacker tries to use every possible combination of letters and numbers until they find a password. For example, they may try aaaaaaa, then aaaaaab, then aaaaaac, and so on. This is a bit like a huge army attacking a fort. The defenses might be able to keep out most attackers, but the sheer numbers will eventually overwhelm them. Hackers need an incredibly large number of attempts because of the astronomical numbers involved. For example, in an 8-character alphanumeric password that allows both uppercase and lowercase letters, there are over 200 trillion possible combinations! It's easy to see why these kinds of attacks require a great deal of computing power.</p>
+      <p>The following diagram shows how a brute force attack works: <img src="brute.png"></p>
+      <p>A traffic-interruption attack uses software to interrupt network traffic and intercept passwords as they're passed between computers. This is easier to steal if the information isn't encrypted.</p>
+      <p>During a man-in-the-middle (MITM) attack, a hacker impersonates a website or app to convince someone to input their password, which they then steal.</p>
+      <p>During a keylogger attack, a hacker manages to install software on another person's computer to record that person's keystrokes. The next time someone enters their password, the hacker will have a record of which keys they pressed.</p>
+    </div>
+
+    <div class="section">
+      <h3>Social Engineering Attacks</h3>
+      <p>Social engineering attacks are another kind of digital attack that can be used to steal information from a user. Hackers send fake emails, messages, or texts pretending to be someone else, often from a reputable company such as Amazon or Microsoft. They use these to trick people into giving them their personal information. In a phishing message, there might be signs that something is off, like a logo that doesn't look quite right or an email address that's misspelled (such as Guggle instead of Google).</p>
+      <p>It's a good idea to avoid clicking on any email links that come from senders you don't know. When in doubt, call the company's customer service line and ask if they were actually trying to contact you. Reputable companies almost never ask for personal information in an email.</p>
+    </div>
+
+    <div class="section">
+      <h3>Regulated Data</h3>
+      <ul>
+        <li>Financial Information</li>
+        <li>Personal Information</li>
+        <li>Healthcare Information</li>
+      </ul>
+      <p>The Payment Card Industry Data Security Standards (PCI DSS) were developed to protect payment card data. PCI DSS defines 12 requirements under six goals that an organization must adhere to. The following table describes these goals and requirements.</p>
+
+      <table class="rubric-table">
+        <thead>
+          <tr>
+            <th>PCI DSS Goal</th>
+            <th>PCI DSS Requirements</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Build and maintain a secure network</td>
+            <td>Install and maintain a firewall configuration to protect cardholder data. Do not use vendor-supplied defaults for system passwords and other security parameters.</td>
+          </tr>
+          <tr>
+            <td>Protect cardholder data</td>
+            <td>Protect stored cardholder data. Encrypt transmission of cardholder data across open, public networks.</td>
+          </tr>
+          <tr>
+            <td>Maintain a vulnerability management program</td>
+            <td>Use and regularly update antivirus software or programs. Develop and maintain secure systems and applications.</td>
+          </tr>
+          <tr>
+            <td>Implement strong access control measures</td>
+            <td>Restrict access to cardholder data by business need to know. Assign a unique ID to each person with computer access. Restrict physical access to cardholder data.</td>
+          </tr>
+          <tr>
+            <td>Regularly monitor and test networks</td>
+            <td>Track and monitor all access to network resources and cardholder data. Regularly test security systems and processes.</td>
+          </tr>
+          <tr>
+            <td>Maintain an information security policy</td>
+            <td>An organization is required to maintain a policy that addresses information security for all personnel.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Personally Identifiable Information (PII) refers to any data that can be used to identify an individual, such as names, social security numbers, addresses, phone numbers, or email addresses.</p>
+      <p>An individual's healthcare information is some of the most sensitive data an individual has. It must be kept secure at all times. The Health Insurance Portability and Accountability Act (HIPAA) is the primary law defining how this data should be kept secure. All healthcare providers must take HIPAA seriously and abide by all regulations.</p>
+      <p>HIPAA contains two parts that IT professionals need to be aware of. Violations will lead to large fines.</p>
+      <ul>
+        <li>HIPAA Privacy Rule defines how to secure health data regardless of the format.</li>
+        <li>HIPAA Security Rule defines how to secure health data that is stored electronically.</li>
+      </ul>
+      
+      <table class="rubric-table">
+        <thead>
+          <tr>
+            <th>Law/Regulation</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Family Educational Rights and Privacy Act (FERPA)</td>
+            <td>All educational institutions must keep detailed student records. The sensitive information kept in these files must be kept secure. FERPA provides institutions with procedures to secure this information including defining: How to store the information. Who the information can be shared with. How long the data must be retained.</td>
+          </tr>
+          <tr>
+            <td>California Consumer Privacy Act (CCPA)</td>
+            <td>The CCPA was enacted in 2018 and took effect in 2020. The CCPA allows California citizens to have control over their personal information that businesses collect. Key components of the CCPA include: The right to know the information that a business collects about an individual. The right to delete collected personal information. The right to opt-out of the sale of an individual's personal information.</td>
+          </tr>
+          <tr>
+            <td>General Data Protection Regulation (GDPR)</td>
+            <td>The GDPR applies to citizens in the European Union and provides many of the same rights as the CCPA. Like the CCPA, many organizations that operate in both the EU and other countries provide these rights to all users regardless of location.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | CyberSec Basics</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L2-CYBERSEC-001"
+    data-lesson-title="Fundamentals"
+    data-course-id="Cybersecurity">
+  </script>
+
+  <!-- Feedback Script (hidden) -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L2-CYBERSEC-001"
+    data-lesson-title="Fundamentals"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>
