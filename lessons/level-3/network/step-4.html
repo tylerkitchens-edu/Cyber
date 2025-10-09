@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TCP | Subnetting</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <div class="slide-container" role="main" aria-labelledby="heading-tcp-subnet">
+    <div class="slide-header">
+      <h1 id="heading-tcp-subnet">TCP | Subnetting</h1>
+      <h2>Level 3: Networking</h2>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="objectives-tcp-subnet">
+      <h3 id="objectives-tcp-subnet">Learning Objectives</h3>
+      <ul>
+        <li>Explain the purpose and structure of the TCP/IP model and how its layers interact to enable data transmission.</li>
+        <li>Differentiate the four layers of the TCP/IP model and identify key protocols and responsibilities at each layer.</li>
+        <li>Describe IP addressing fundamentals and how IP addresses identify networks and hosts.</li>
+        <li>Explain subnetting concepts, including subnet masks, CIDR notation, and the reasons for subnetting.</li>
+        <li>Perform basic subnet calculations to determine network, broadcast, and usable host ranges.</li>
+        <li>Understand the benefits of subnetting for security, performance, and address management.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="intro-tcp-subnet">
+      <h3 id="intro-tcp-subnet">Exploring TCP/IP</h3>
+      <p>The <strong>TCP/IP model</strong> (Transmission Control Protocol/Internet Protocol) is the de facto architecture for networking and internet communications. It organizes the network stack into four functional layers. Unlike the OSI model's seven layers, TCP/IP groups related responsibilities so that practical protocol suites like TCP and UDP can operate efficiently across the internet.</p>
+
+      <h4>TCP/IP Layers (bottom → top)</h4>
+      <img src="tcp.png">
+      <ol>
+        <li><strong>Network Access (Link) Layer</strong><br />
+            Handles the physical transmission of data across a medium (copper, fiber, wireless). Responsible for hardware addressing (MAC addresses), framing, and interacting with the NIC and drivers. This layer maps to OSI Physical + Data Link in practice.</li>
+
+        <li><strong>Internet Layer</strong><br />
+            Manages logical addressing and routing between networks. The Internet Protocol (IPv4/IPv6) operates here and is responsible for packet addressing, fragmentation, and hop-by-hop routing decisions.</li>
+
+        <li><strong>Transport Layer</strong><br />
+            Provides end-to-end communication and process-to-process delivery. Two main protocols are used:
+            <ul>
+              <li><strong>TCP (Transmission Control Protocol):</strong> connection-oriented, reliable, ensures ordered delivery and retransmission of lost segments.</li>
+              <li><strong>UDP (User Datagram Protocol):</strong> connectionless, low-overhead, suitable for real-time applications where speed is preferred over guaranteed delivery.</li>
+            </ul>
+            This layer also uses port numbers to identify services (e.g., 80, 443, 53, 3389).</li>
+
+        <li><strong>Application Layer</strong><br />
+            The top layer where user-facing services and applications operate (HTTP, DNS, SMTP, FTP, etc.). It represents the protocols that end-users and applications interact with directly.</li>
+      </ol>
+      <img src="tcp-osi.png">
+
+      <p><em>Tip:</em> When troubleshooting, map observed behavior to the TCP/IP layer that most directly handles the failing functionality — e.g., a routing problem is likely at the Internet layer, while an application timeout may be Transport or Application layer related.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="subnetting-tcp-subnet">
+      <h3 id="subnetting-tcp-subnet">Subnetting</h3>
+      <p><strong>Subnetting</strong> is the process of dividing a larger IP network into smaller logical networks (subnets). Each subnet has its own network address and range of host addresses. Subnetting helps conserve IP address space, reduce broadcast domains, improve performance, and create logical security boundaries.</p>
+
+      <h4>Key Concepts</h4>
+      <ul>
+        <li><strong>IP Addressing:</strong> An IP address identifies a device on a network. IPv4 addresses are commonly expressed in dotted-decimal (e.g., 192.168.10.0) and are composed of network and host portions determined by the subnet mask.</li>
+        <li><strong>Subnet Masks:</strong> A subnet mask (e.g., 255.255.255.0) separates the network ID from the host ID. In binary, consecutive ones indicate network bits; zeros indicate host bits.</li>
+        <li><strong>CIDR Notation:</strong> Classless Inter-Domain Routing notation (e.g., 192.168.10.0/24) denotes the address and the prefix length (number of network bits). CIDR enables flexible allocation of address blocks.</li>
+        <li><strong>Subnetting Types:</strong> Classful (historical), Classless (CIDR), Fixed Length Subnet Masking (FLSM), and Variable Length Subnet Masking (VLSM). VLSM allows different subnet sizes within the same network block and is widely used for efficient addressing.</li>
+      </ul>
+
+      <h4>Why Subnet?</h4>
+      <ul>
+        <li>Limits broadcast domains to smaller groups, improving network efficiency.</li>
+        <li>Allows logical separation of departments or services for security policies (e.g., VLANs).</li>
+        <li>Provides better route summarization and scalable IP management.</li>
+      </ul>
+      <img src="subnet.png">
+
+      <h4>Basic Subnet Calculation (conceptual walkthrough)</h4>
+      <p>To calculate subnets you need three items: the base network address, the subnet mask (or prefix), and the desired number of subnets or hosts per subnet.</p>
+      <p>Example (conceptual): Given a /24 network (e.g., 192.168.1.0/24) you can create subnets by borrowing host bits:</p>
+      <ul>
+        <li>/25 (255.255.255.128) → two subnets: 192.168.1.0/25 and 192.168.1.128/25. Each subnet supports 126 usable hosts.</li>
+        <li>/26 (255.255.255.192) → four subnets: 192.168.1.0/26, .64/26, .128/26, .192/26. Each supports 62 usable hosts.</li>
+      </ul>
+      <p>Network address = the first address in the subnet (all host bits = 0). Broadcast address = the last address in the subnet (all host bits = 1). Usable host range = addresses between network and broadcast.</p>
+
+      <h4>CIDR & Route Summarization</h4>
+      <p>CIDR allows aggregation of contiguous subnets into a single route entry, reducing the size of routing tables. For example, four /26 subnets can be summarized as a single /24 in some scenarios (when contiguous and aligned).</p>
+
+      <h4>Practical Subnetting Tips</h4>
+      <ul>
+        <li>Plan subnets around function and growth: leave space for expansion.</li>
+        <li>Use VLSM where address efficiency matters (different subnets for different host counts).</li>
+        <li>Document subnets clearly: network address, mask/prefix, broadcast, and usable ranges.</li>
+        <li>Test with a subnet calculator while learning, then practice binary-bit math to deepen understanding.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="troubleshoot-tcp-subnet">
+      <h3 id="troubleshoot-tcp-subnet">Troubleshooting & Practical Examples</h3>
+      <p>When diagnosing IP addressing and connectivity issues, use a methodical approach:</p>
+      <ol>
+        <li>Verify physical/link connectivity (cables, switches, wireless association).</li>
+        <li>Confirm IP configuration (address, mask, gateway) with <code>ipconfig</code> or <code>ifconfig</code>.</li>
+        <li>Use <code>ping</code> to check reachability: local interface, default gateway, remote host.</li>
+        <li>Trace route (traceroute/tracert) to see hop-by-hop routing and locate failures.</li>
+        <li>Check ARP tables and MAC addresses for linking IP → MAC mappings on local networks.</li>
+        <li>Review routing tables on routers for proper network advertisement and summarization.</li>
+      </ol>
+      <p>Mapping symptoms to the TCP/IP layer helps isolate problems quickly: link issues at Network Access, routing at Internet layer, session/port problems at Transport, and application faults at Application layer.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="summary-tcp-subnet">
+      <h3 id="summary-tcp-subnet">Summary</h3>
+      <ul>
+        <li>The TCP/IP model provides a practical, four-layer framework used across the internet.</li>
+        <li>Subnetting logically divides networks, improving performance, security, and IP utilization.</li>
+        <li>CIDR and VLSM enable flexible address allocation and efficient routing.</li>
+        <li>Basic subnet calculations and systematic troubleshooting are essential skills for network technicians.</li>
+      </ul>
+    </div>
+
+    <div class="slide-footer" role="contentinfo">
+      <p>Cybersecurity Curriculum | TCP/IP Addressing</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-004"
+    data-lesson-title="TCP | Subnetting"
+    data-course-id="Cybersecurity">
+  </script>
+
+  <!-- Feedback Script (hidden) -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-004"
+    data-lesson-title="TCP | Subnetting"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>
