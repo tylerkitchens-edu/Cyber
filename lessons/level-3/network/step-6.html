@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cloud Deployment Models and Methods</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <div class="slide-container" role="main" aria-labelledby="heading-cloud-deployment">
+    <div class="slide-header">
+      <h1 id="heading-cloud-deployment">Cloud Deployment Models and Methods</h1>
+      <h2>Level 3: Networking</h2>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="objectives-cloud-deployment">
+      <h3 id="objectives-cloud-deployment">Learning Objectives</h3>
+      <ul>
+        <li>Compare and contrast cloud deployment models including public, private, community, and hybrid clouds.</li>
+        <li>Explain the advantages and limitations of each deployment model.</li>
+        <li>Identify scenarios for optimal deployment model selection.</li>
+        <li>Understand emerging trends in networking that integrate with cloud computing.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="public-cloud">
+      <h3 id="public-cloud">Public Cloud Model</h3>
+      <p>The public cloud is offered by third-party cloud service providers (CSPs) and shared among multiple tenants. Common services include pay-as-you-go pricing, subscription-based models, and freemium tiers. Public cloud advantages include rapid deployment, broad scalability, and access to a wide range of services and tools. Risks may include performance variability and shared security considerations.</p>
+      <p>Multicloud architectures allow organizations to utilize multiple public cloud providers simultaneously, improving redundancy, optimizing performance, and avoiding vendor lock-in.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="private-cloud">
+      <h3 id="private-cloud">Private Cloud Model</h3>
+      <p>The private cloud serves a single organization and can be hosted on-premises or remotely by a third-party provider. It provides enhanced security, greater control over resources, and allows for custom configurations to meet specific organizational requirements.</p>
+      <ul>
+        <li><strong>Enhanced Security:</strong> Dedicated infrastructure reduces exposure to external threats.</li>
+        <li><strong>Greater Control:</strong> Organizations manage policies, configurations, and compliance directly.</li>
+        <li><strong>Customizable Resources:</strong> Tailored to specific workloads and operational needs.</li>
+        <li><strong>Compliance:</strong> Supports adherence to regulatory standards.</li>
+        <li><strong>Cost Considerations:</strong> Typically higher costs due to dedicated infrastructure and management.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="community-cloud">
+      <h3 id="community-cloud">Community Cloud Model</h3>
+      <p>Community clouds are shared environments designed for organizations with common objectives, policies, or security requirements. These clouds enable collaboration while distributing costs and infrastructure across multiple organizations. Community clouds provide a secure, compliant environment suitable for groups with aligned needs, such as healthcare organizations, universities, or government agencies.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="hybrid-cloud">
+      <h3 id="hybrid-cloud">Hybrid Cloud Model</h3>
+      <p>Hybrid clouds combine multiple deployment types, offering flexibility, scalability, and redundancy. Organizations can run critical workloads on private clouds while leveraging public clouds for less sensitive tasks. Key advantages include:</p>
+      <ul>
+        <li><strong>Resource Optimization:</strong> Allocate workloads to the most appropriate cloud type for performance and security.</li>
+        <li><strong>Enhanced Flexibility:</strong> Seamlessly move applications and data between private and public environments.</li>
+        <li><strong>Cost Efficiency:</strong> Pay for public cloud resources only when needed.</li>
+        <li><strong>Improved Disaster Recovery:</strong> Increase redundancy and resilience by distributing resources across environments.</li>
+        <li><strong>Greater Security Options:</strong> Customize security based on data sensitivity and compliance requirements.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="intro-comparison">
+      <h3 id="intro-comparison">Comparing Cloud Deployment Models</h3>
+      <p>Cloud deployment models define how computing resources are made available to users and how organizations can access them. Each model provides distinct benefits and trade-offs:</p>
+      <ul>
+        <li><strong>Public vs. Private Clouds:</strong> Public clouds share resources among multiple organizations over the internet, offering cost-efficiency and scalability. Private clouds provide dedicated resources, increasing security and control over infrastructure.</li>
+        <li><strong>Community vs. Hybrid Clouds:</strong> Community clouds cater to a group of organizations with shared goals or regulations. Hybrid clouds combine multiple cloud types to balance performance, cost, and control while maintaining security of sensitive data.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="emerging-trends">
+      <h3 id="emerging-trends">Emerging Trends in Networking</h3>
+      <ul>
+        <li><strong>IoT Integration:</strong> Incorporating IoT devices into networks supports smart automation, real-time data collection, and advanced analytics, requiring robust security and monitoring strategies.</li>
+        <li><strong>5G and Beyond:</strong> 5G technology provides faster speeds, lower latency, and higher device density, enabling advanced applications such as AR/VR, autonomous vehicles, and enhanced mobile broadband.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="networking-tools">
+      <h3 id="networking-tools">Practical Networking Tools and Software</h3>
+      <p>Effective network management and troubleshooting require specialized tools. Key software includes:</p>
+      <ul>
+        <li><strong>Wireshark:</strong> Captures and analyzes network packets for diagnostics and troubleshooting.</li>
+        <li><strong>Snort:</strong> Real-time intrusion detection and prevention system (IDS/IPS) for identifying malicious network activity.</li>
+        <li><strong>Nmap:</strong> Network discovery and port scanning tool for identifying active devices and services.</li>
+        <li><strong>Zeek:</strong> Advanced network security monitoring platform providing deep packet inspection and custom analysis scripts.</li>
+        <li><strong>NetSpot:</strong> Wi-Fi analyzer to assess and optimize wireless network performance and coverage.</li>
+      </ul>
+    </div>
+
+    <div class="slide-footer" role="contentinfo">
+      <p>Cybersecurity Curriculum | Cloud Deployment Models</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-006"
+    data-lesson-title="Cloud Deployment Models and Methods"
+    data-course-id="Cybersecurity">
+  </script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-006"
+    data-lesson-title="Cloud Deployment Models and Methods"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>
