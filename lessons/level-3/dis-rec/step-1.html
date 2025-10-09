@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Disaster Recovery</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Disaster Recovery</h1>
+      <h2>Level 3: Networking & Operational Resilience</h2>
+    </div>
+
+    <div class="section">
+      <h3>Basics of Disaster Recovery Planning</h3>
+      <p>Disaster recovery (DR) planning is a vital part of maintaining business continuity and organizational resilience. It focuses on restoring critical systems, data, and operations after disruptive events such as natural disasters, hardware failures, ransomware attacks, or human error.</p>
+
+      <p>The goal of disaster recovery planning is not just to respond to an event, but to <strong>minimize downtime, prevent data loss, and ensure continuity of service</strong>. A comprehensive DR plan provides organizations with a clear roadmap to recover quickly and efficiently under pressure.</p>
+
+      <h4>Key Components of a Disaster Recovery Plan</h4>
+      <ul>
+        <li><strong>Risk Assessment:</strong> Identify potential threats such as fires, floods, power outages, or cyberattacks. Understanding what could go wrong helps prioritize protective measures and response plans.</li>
+        <li><strong>Business Impact Analysis (BIA):</strong> Evaluate how disruptions affect business operations, finances, and reputation. This determines which systems and processes are most critical and require the fastest recovery times.</li>
+        <li><strong>Recovery Strategy:</strong> Develop step-by-step procedures for restoring hardware, software, data, and connectivity. These include identifying backup data locations, failover systems, and communication plans.</li>
+        <li><strong>Testing & Maintenance:</strong> Regularly test and update the DR plan to ensure its effectiveness as technology and business needs evolve. This may involve simulated disaster exercises, or “tabletop” recovery drills.</li>
+      </ul>
+
+      <p>A well-structured DR plan ensures that employees know their roles, communication channels remain clear, and systems are prioritized for recovery in the right order. This preparation helps organizations recover faster and with fewer losses.</p>
+    </div>
+
+    <div class="section">
+      <h3>High Availability</h3>
+      <p>One of the hallmarks of a resilient IT environment is <strong>high availability (HA)</strong>—the ability of systems to remain operational for as much time as possible with minimal downtime. Availability is typically expressed as a percentage of uptime over a defined period, often one year.</p>
+
+      <p><strong>Availability</strong> and <strong>downtime</strong> are inversely related: when availability increases, downtime decreases. For instance, an availability rate of <strong>99.9%</strong> (known as “three nines”) allows for roughly 8.7 hours of downtime per year, whereas <strong>99.999%</strong> (“five nines”) reduces downtime to about five minutes annually.</p>
+        <img src="chart.png">
+      <h4>Measuring and Implementing High Availability</h4>
+      <ul>
+        <li><strong>Maximum Tolerable Downtime (MTD):</strong> The longest period that a business process or system can be unavailable before causing significant damage to operations. MTD defines the upper limit for recovery efforts.</li>
+        <li><strong>Agreed Service Time:</strong> The total amount of time the system is expected to be operational, minus planned maintenance intervals.</li>
+      </ul>
+
+      <p>High availability is often achieved through technologies like <strong>redundancy</strong> (duplicate components), <strong>load balancing</strong>, <strong>failover clustering</strong>, and <strong>geographically distributed data centers</strong>. Systems that must operate continuously—such as hospital networks or banking systems—typically target 24x7x365 availability.</p>
+
+      <h4>Continuous Availability</h4>
+      <p>Some environments require near-zero downtime, known as <strong>continuous availability</strong>. In these cases, systems are designed to function without interruption, even during maintenance or unexpected hardware failures. Continuous availability is crucial when lives or safety depend on system reliability.</p>
+
+      <p>Examples include:</p>
+      <ul>
+        <li>Medical networks supporting life-sustaining equipment.</li>
+        <li>Air traffic control systems.</li>
+        <li>Satellite communication systems.</li>
+        <li>Autonomous vehicle networks and smart city infrastructure (e.g., emergency dispatch and smart traffic signals).</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Recovery Metrics</h3>
+      <p>Recovery metrics define measurable goals for how quickly and completely systems should recover after a disaster. They are central to any disaster recovery or business continuity plan, ensuring expectations are realistic and aligned with organizational priorities.</p>
+
+      <ul>
+        <li><strong>Maximum Tolerable Downtime (MTD):</strong> Represents the total amount of time a business process or system can remain offline before significant harm occurs. MTD sets the ultimate boundary for recovery efforts.</li>
+
+        <li><strong>Recovery Time Objective (RTO):</strong> Defines how quickly a specific system or application must be restored after a disruption. RTO helps guide decisions about what type of backups or failover systems are needed. For instance, an RTO of four hours means the system must be operational again within that timeframe.</li>
+
+        <li><strong>Recovery Point Objective (RPO):</strong> Refers to the maximum acceptable amount of data loss measured in time. For example, an RPO of 12 hours means backups must occur frequently enough that no more than 12 hours of data are lost during a disaster.</li>
+
+        <li><strong>Work Recovery Time (WRT):</strong> The time required after system restoration to reintegrate data, test functionality, and validate system performance. The total time to resume operations must meet the formula: <strong>RTO + WRT ≤ MTD</strong>.</li>
+      </ul>
+      <img src="MTD.png">
+      <p>Together, these metrics provide measurable targets for DR planning. By balancing RTO and RPO values with business requirements, organizations can select appropriate technologies—such as replication, snapshots, or cloud-based backups—to meet their recovery goals.</p>
+    </div>
+
+    <div class="section">
+      <h3>Key Takeaways</h3>
+      <ul>
+        <li>Disaster Recovery is a core component of business continuity, ensuring minimal disruption and data loss during crises.</li>
+        <li>High availability focuses on keeping systems online as much as possible, often through redundancy and failover systems.</li>
+        <li>Metrics like RTO, RPO, WRT, and MTD help quantify recovery expectations and guide backup strategies.</li>
+        <li>Regular testing, documentation, and staff training are just as important as technology in maintaining resilience.</li>
+      </ul>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 3: Networking & Disaster Recovery</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-OPS-004"
+    data-lesson-title="Disaster Recovery"
+    data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-OPS-004"
+    data-lesson-title="Disaster Recovery"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+</body>
+</html>
