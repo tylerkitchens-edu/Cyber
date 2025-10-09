@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cloud Computing</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <div class="slide-container" role="main" aria-labelledby="heading-cloud-computing">
+    <div class="slide-header">
+      <h1 id="heading-cloud-computing">Cloud Computing</h1>
+      <h2>Level 3: Networking</h2>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="objectives-cloud">
+      <h3 id="objectives-cloud">Learning Objectives</h3>
+      <ul>
+        <li>Define the importance of elasticity and scalability in cloud computing environments.</li>
+        <li>Compare and contrast different cloud deployment models.</li>
+        <li>Select the most appropriate cloud deployment model for a given scenario.</li>
+        <li>Identify emerging trends in cloud computing and cloud architecture technologies.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="intro-cloud">
+      <h3 id="intro-cloud">Introduction to Cloud Computing</h3>
+      <p><strong>Cloud computing</strong> has transformed how organizations store, process, and manage data. Rather than maintaining expensive on-premises hardware, cloud computing leverages remote servers accessed over the internet to deliver computing resources, storage, and applications on demand. This model enables scalability, cost-efficiency, and accessibility from virtually anywhere.</p>
+
+      <p>Modern cloud computing operates on several foundational concepts: <strong>virtualization, resource pooling, and on-demand self-service</strong>. Cloud providers offer computing power, storage, and networking as flexible services, enabling organizations to scale operations up or down in real time. Whether hosting web applications, managing databases, or supporting large-scale analytics, the cloud provides unparalleled agility and reliability.</p>
+
+      <p>By integrating cloud services such as <strong>Infrastructure as a Service (IaaS)</strong> and <strong>Software as a Service (SaaS)</strong>, organizations reduce infrastructure costs, streamline operations, and accelerate innovation. Additionally, cloud computing supports advanced technologies such as artificial intelligence, IoT, and big data analytics, making it a cornerstone of digital transformation strategies.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="elasticity-scalability">
+      <h3 id="elasticity-scalability">Elasticity and Scalability</h3>
+      <p><strong>Elasticity</strong> refers to the cloud’s ability to automatically adjust resources—such as CPU, memory, or storage—based on real-time demand. When workloads increase, additional resources are provisioned automatically, and when demand decreases, unused resources are released. This ensures optimal performance while preventing unnecessary costs.</p>
+
+      <p>For example, during an online sales event, a website may experience a sudden spike in traffic. Elastic cloud environments can automatically allocate additional servers to handle the increased load and scale back down once traffic returns to normal levels. This dynamic adjustment allows for both performance stability and cost control.</p>
+
+      <p><strong>Scalability</strong> focuses on the system’s ability to grow over time. It ensures that as user demand or business operations expand, the cloud environment can handle increased workloads without performance degradation. Scalability can be achieved in two main ways:</p>
+      <ul>
+        <li><strong>Vertical Scalability (Scaling Up):</strong> Adding more resources (e.g., CPU, RAM, or storage) to an existing server.</li>
+        <li><strong>Horizontal Scalability (Scaling Out):</strong> Adding more servers or nodes to distribute workload evenly across multiple systems.</li>
+      </ul>
+
+      <p>Both elasticity and scalability are critical to maintaining reliability and efficiency in cloud environments. Elasticity focuses on real-time adjustments, while scalability emphasizes long-term growth capacity.</p>
+
+      <h4>Benefits of Elasticity and Scalability</h4>
+      <ul>
+        <li><strong>Cost Efficiency:</strong> Pay only for resources in use, minimizing waste and optimizing spending.</li>
+        <li><strong>Flexibility:</strong> Adapt quickly to workload changes and operational demands.</li>
+        <li><strong>Performance Optimization:</strong> Maintain system responsiveness under variable conditions.</li>
+        <li><strong>Resource Management:</strong> Allocate resources intelligently to prevent overuse or underuse.</li>
+        <li><strong>Business Agility:</strong> Empower organizations to innovate and react swiftly to market changes.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="cloud-models">
+      <h3 id="cloud-models">Cloud Deployment Models</h3>
+      <p>Cloud deployment models define how cloud services are made available to users. Understanding these models helps organizations choose the best fit for their operational, security, and compliance requirements.</p>
+
+      <ul>
+        <li><strong>Public Cloud:</strong> Operated by third-party providers such as AWS, Microsoft Azure, or Google Cloud. Resources are shared among multiple organizations, offering scalability and cost savings. Ideal for startups and businesses that need flexibility and low maintenance.</li>
+
+        <li><strong>Private Cloud:</strong> Dedicated infrastructure for a single organization, providing greater control, customization, and security. Suitable for industries with strict compliance requirements, such as finance or healthcare.</li>
+
+        <li><strong>Hybrid Cloud:</strong> Combines public and private cloud environments, enabling data and application portability. This approach allows sensitive data to remain on-premises while leveraging the public cloud for scalable workloads.</li>
+
+        <li><strong>Multi-Cloud:</strong> Involves using multiple public cloud providers simultaneously to reduce dependency on a single vendor, increase resilience, and optimize performance across regions or services.</li>
+      </ul>
+
+      <p>Choosing the right model depends on factors such as security needs, budget, workload sensitivity, and scalability goals. Hybrid and multi-cloud solutions are increasingly popular for organizations seeking flexibility and redundancy.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="cloud-services">
+      <h3 id="cloud-services">Cloud Service Models</h3>
+      <p>Beyond deployment models, cloud computing is categorized into three main service models that define the level of control and responsibility shared between providers and customers:</p>
+      <ul>
+        <li><strong>Infrastructure as a Service (IaaS):</strong> Provides virtualized computing resources such as servers, storage, and networking. Users manage their operating systems and applications. Examples: AWS EC2, Google Compute Engine.</li>
+
+        <li><strong>Platform as a Service (PaaS):</strong> Offers a platform for developers to build, deploy, and manage applications without managing underlying infrastructure. Examples: Google App Engine, Microsoft Azure App Service.</li>
+
+        <li><strong>Software as a Service (SaaS):</strong> Delivers ready-to-use applications over the internet. Users access software through a web browser without installation or maintenance. Examples: Microsoft 365, Salesforce, Google Workspace.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="emerging-trends">
+      <h3 id="emerging-trends">Emerging Trends in Cloud Computing</h3>
+      <ul>
+        <li><strong>Serverless Computing:</strong> Executes code in response to events without managing servers directly, enhancing efficiency and reducing operational overhead.</li>
+        <li><strong>Edge Computing:</strong> Brings computation closer to data sources (IoT devices), minimizing latency and bandwidth use.</li>
+        <li><strong>AI and Machine Learning Integration:</strong> Cloud platforms increasingly embed AI-driven services for analytics, automation, and predictive insights.</li>
+        <li><strong>Containerization and Orchestration:</strong> Technologies like Docker and Kubernetes enable consistent deployment, scaling, and management of applications across environments.</li>
+        <li><strong>Zero-Trust Security:</strong> Cloud security strategies now emphasize continuous verification and least-privilege access to protect distributed assets.</li>
+      </ul>
+    </div>
+
+    <div class="slide-footer" role="contentinfo">
+      <p>Cybersecurity Curriculum | Cloud Computing</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-005"
+    data-lesson-title="Cloud Computing"
+    data-course-id="Cybersecurity">
+  </script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-005"
+    data-lesson-title="Cloud Computing"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>
