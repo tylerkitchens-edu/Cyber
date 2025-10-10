@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson: Security Architecture and Security Zones</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson: Security Architecture and Security Zones</h1>
+      <h2>Network Security</h2>
+    </div>
+
+    <div class="section">
+      <h2>Learning Objectives</h2>
+      <ul>
+        <li>Define network security and explain its importance in protecting sensitive data and resources.</li>
+        <li>Describe fundamental concepts of network architecture, including segmentation and redundancy strategies.</li>
+        <li>Identify and explain the purpose of security zones such as intranet, extranet, DMZ, honeynet, and ad hoc networks.</li>
+        <li>Understand and apply identity and access management principles, including authentication and role-based access control.</li>
+        <li>Implement essential security practices, including defense in depth, network monitoring, and regular security audits.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Network Security and Architecture</h3>
+      <p>
+        <strong>Network Security:</strong> Network security protects systems, data, and resources from unauthorized access, cyberattacks, and other threats. Common tools and practices include firewalls, intrusion detection/prevention systems (IDS/IPS), encryption protocols, and continuous monitoring.
+      </p>
+      <p>
+        <strong>Network Architecture:</strong> Well-designed network architecture ensures efficient data flow, resource availability, and minimal vulnerabilities. Implementing segmentation, redundancy, and layered security (defense in depth) improves resilience and reduces risk exposure.
+      </p>
+      <p>
+        <strong>Essential Security Practices:</strong>
+        <ul>
+          <li>Defense in Depth: Use multiple layers of security instead of relying on a single protective measure.</li>
+          <li>Regular Security Audits: Continuously monitor and test network security to identify weaknesses.</li>
+          <li>Access Control: Enforce authentication and authorization to restrict access to sensitive systems.</li>
+          <li>Network Monitoring: Track traffic and detect anomalies or suspicious activity.</li>
+        </ul>
+      </p>
+    </div>
+
+    <div class="section">
+      <h3>Security Zones</h3>
+      <p>
+        Security zones segment networks based on risk, access, or sensitivity of the resources they protect. They allow organizations to apply tailored security measures for each zone.
+      </p>
+      <h4>Security Zone Networks</h4>
+      <ul>
+        <li><strong>Honeynet:</strong> A controlled network environment designed to attract and analyze attacker activity without compromising production systems.</li>
+        <li><strong>Ad Hoc Network:</strong> A temporary, decentralized network that allows direct device-to-device communication without a traditional base station or router.</li>
+      </ul>
+    
+      <div class="container" role="main">
+    <header>
+    
+      <div>
+        <h1>Intranet · Extranet · DMZ — In-depth</h1>
+        <p class="lead">Definitions, architecture, security implications, examples, and best practices.</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- Intranet -->
+      <section class="card" aria-labelledby="intranet">
+        <h2 id="intranet">1. Intranet — Internal Private Network</h2>
+        <p class="section">
+          <strong>Definition:</strong> A private network accessible only to an organization's internal users (employees, internal systems). Used for internal communication, collaboration, and hosting sensitive or proprietary internal applications.
+        </p>
+
+        <h3>Purpose</h3>
+        <ul>
+          <li>Internal collaboration (wikis, HR portals, ticketing).</li>
+          <li>Host internal business applications (payroll, inventory).</li>
+          <li>Protect proprietary data and internal workflows.</li>
+        </ul>
+
+        <h3>Access & Security</h3>
+        <ul>
+          <li>Restricted to internal users — often accessible only via corporate LAN or VPN.</li>
+          <li>Authentication typically via Active Directory/LDAP and MFA.</li>
+          <li>Protected by segmentation, firewalls, and monitoring (SIEM).</li>
+        </ul>
+
+        <h3>Technologies</h3>
+        <p><span class="badge">Auth</span>Active Directory / LDAP, SSO</p>
+        <p><span class="badge">Network</span>Internal DNS, VLANs, VPN gateways</p>
+
+        <pre><code>// Example flow
+Employee → Corporate LAN → Intranet server (HR portal, wiki)</code></pre>
+      </section>
+
+      <!-- Extranet -->
+      <section class="card" aria-labelledby="extranet">
+        <h2 id="extranet">2. Extranet — Controlled External Access</h2>
+        <p class="section">
+          <strong>Definition:</strong> A controlled extension of the intranet that gives authorized external parties (partners, vendors, customers) limited and audited access to specific internal resources.
+        </p>
+
+        <h3>Purpose</h3>
+        <ul>
+          <li>Enable B2B data sharing and collaboration (partner portals, vendor dashboards).</li>
+          <li>Expose limited APIs or document shares to trusted third parties.</li>
+        </ul>
+
+        <h3>Access & Security</h3>
+        <ul>
+          <li>External access must be authenticated and authorized (SSO, MFA, client certs).</li>
+          <li>Often sits behind reverse proxies, WAFs, and gateway controls.</li>
+          <li>Strict logging, encryption, and least-privilege controls are mandatory.</li>
+        </ul>
+
+        <h3>Technologies</h3>
+        <p><span class="badge">Security</span>Web Application Firewall (WAF), Reverse proxy</p>
+        <p><span class="badge">Auth</span>SAML/OAuth, client certs, MFA, VPN</p>
+
+        <pre><code>// Example flow
+Partner → Secure Portal / VPN → Extranet server → Controlled access to specific internal resources</code></pre>
+      </section>
+
+      <!-- DMZ -->
+      <section class="card" aria-labelledby="dmz">
+        <h2 id="dmz">3. DMZ — Demilitarized Zone</h2>
+        <p class="section">
+          <strong>Definition:</strong> A segmented subnetwork between an organization's internal network and the internet. It hosts public-facing services (web, mail, DNS) and acts as a buffer to protect the internal network.
+        </p>
+
+        <h3>Purpose</h3>
+        <ul>
+          <li>Isolate public-facing services from the internal network.</li>
+          <li>Limit attack surface and contain breaches.</li>
+          <li>Control and inspect traffic crossing between internet and intranet.</li>
+        </ul>
+
+        <h3>Typical Topology</h3>
+        <pre><code>Internet
+  ↓
+[Firewall #1]
+  ↓
+   ┌──────────────┐
+   │   DMZ        │  → public web servers, mail relays, DNS
+   └──────────────┘
+  ↓
+[Firewall #2]
+  ↓
+Internal LAN (Intranet)</code></pre>
+
+        <h3>Security Controls</h3>
+        <ul>
+          <li>Two-firewall design or multi-interface firewall (policy separation).</li>
+          <li>Restrict DMZ → internal traffic to minimal, specific flows (e.g., app → DB port only).</li>
+          <li>Use IDS/IPS, strict ACLs, and logging for all DMZ hosts.</li>
+        </ul>
+      </section>
+
+      <!-- Comparison Table -->
+      <section class="card" aria-labelledby="comparison">
+        <h2 id="comparison">Comparison & Quick Reference</h2>
+
+        <table class="rubric-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Intranet</th>
+              <th>Extranet</th>
+              <th>DMZ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Primary users</td>
+              <td>Internal employees</td>
+              <td>Authorized external partners</td>
+              <td>Public or semi-public internet users</td>
+            </tr>
+            <tr>
+              <td>Accessibility</td>
+              <td>Private/internal only</td>
+              <td>Restricted external access</td>
+              <td>Public-facing but isolated</td>
+            </tr>
+            <tr>
+              <td>Network location</td>
+              <td>Inside internal LAN</td>
+              <td>Bridge into internal network</td>
+              <td>Between internal LAN and internet</td>
+            </tr>
+            <tr>
+              <td>Security focus</td>
+              <td>Protect internal data</td>
+              <td>Secure partner access</td>
+              <td>Isolate public services</td>
+            </tr>
+            <tr>
+              <td>Examples</td>
+              <td>HR portal, ticketing, knowledge base</td>
+              <td>Vendor portal, B2B APIs</td>
+              <td>Web servers, DNS, mail gateways</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Diagram -->
+      <section class="diagram" aria-labelledby="diagram">
+        <h2 id="diagram">Network Diagram (simplified)</h2>
+        <div class="diagram">
+          <div class="svg-wrap" role="img" aria-label="Network diagram showing Internet, firewall, DMZ, firewall, and internal network">
+            <!-- SVG: simple network topology -->
+            <svg viewBox="0 0 900 360" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0" stop-color="#5dd0b6"/>
+                  <stop offset="1" stop-color="#6ea8fe"/>
+                </linearGradient>
+                <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feDropShadow dx="0" dy="6" stdDeviation="14" flood-color="#000" flood-opacity="0.45"/>
+                </filter>
+              </defs>
+
+              <!-- Internet -->
+              <rect x="36" y="28" rx="10" ry="10" width="160" height="48" fill="#071829" stroke="rgba(255,255,255,0.04)"/>
+              <text x="116" y="60" text-anchor="middle" fill="#cfeef0" font-size="12" font-weight="700">Internet</text>
+
+              <!-- Firewall 1 -->
+              <g transform="translate(220,18)">
+                <rect x="0" y="0" width="36" height="96" rx="8" fill="#081827" stroke="rgba(255,255,255,0.03)"/>
+                <text x="18" y="52" fill="#e6f6f6" font-size="10" text-anchor="middle" font-weight="700" transform="rotate(90,18,52)">Firewall</text>
+              </g>
+
+              <!-- DMZ -->
+              <rect x="280" y="12" width="360" height="120" rx="10" fill="#072233" stroke="rgba(255,255,255,0.03)"/>
+              <text x="460" y="34" text-anchor="middle" fill="#dff5ef" font-size="13" font-weight="700">DMZ</text>
+              <text x="460" y="60" text-anchor="middle" fill="#97b8c7" font-size="12">(Web / Mail / DNS)</text>
+
+              <!-- Firewall 2 -->
+              <g transform="translate(660,18)">
+                <rect x="0" y="0" width="36" height="96" rx="8" fill="#081827" stroke="rgba(255,255,255,0.03)"/>
+                <text x="18" y="52" fill="#e6f6f6" font-size="10" text-anchor="middle" font-weight="700" transform="rotate(90,18,52)">Firewall</text>
+              </g>
+
+              <!-- Internal -->
+              <rect x="720" y="12" width="144" height="120" rx="10" fill="#05202b" stroke="rgba(255,255,255,0.03)"/>
+              <text x="792" y="34" text-anchor="middle" fill="#dff5ef" font-size="13" font-weight="700">Internal</text>
+              <text x="792" y="60" text-anchor="middle" fill="#97b8c7" font-size="12">Intranet (Apps, DBs)</text>
+
+              <!-- Arrows/lines -->
+              <line x1="196" y1="52" x2="220" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+              <line x1="256" y1="52" x2="280" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+              <line x1="640" y1="52" x2="660" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+              <line x1="696" y1="52" x2="720" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+
+              <!-- Labels for traffic -->
+              <text x="356" y="110" fill="#97b8c7" font-size="11">Public-facing traffic permitted →</text>
+              <text x="708" y="200" fill="#97b8c7" font-size="11" text-anchor="end">Strict, limited flows → Internal services</text>
+            </svg>
+          </div>
+        </div>
+
+        <div style="margin-top:10px;">
+          <strong>Notes:</strong>
+          <ul>
+            <li>Only allow necessary ports between zones (e.g., 443 to DMZ web, specific DB port from DMZ app to internal DB).</li>
+            <li>Log and inspect all DMZ traffic.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Best Practices -->
+      <section class="card" aria-labelledby="best">
+        <h2 id="best">Security Best Practices</h2>
+        <ul>
+          <li><strong>Network segmentation:</strong> Use VLANs & firewalls to isolate zones.</li>
+          <li><strong>Zero trust:</strong> Authenticate and authorize each request, even internal ones.</li>
+          <li><strong>Least privilege:</strong> Only open required ports and services between zones.</li>
+          <li><strong>Monitoring:</strong> Centralized logging + SIEM for DMZ and extranet access.</li>
+          <li><strong>Encryption:</strong> TLS for all external or partner-facing channels.</li>
+          <li><strong>Patch & harden:</strong> Keep DMZ hosts patched and minimize attack surface (disable unused services).</li>
+        </ul>
+
+        <h3>Quick README snippet</h3>
+        <pre><code># Example firewall rule set (conceptual)
+# Allow inbound 443 → DMZ web server
+ALLOW from ANY to DMZ:webport(443)
+
+# Allow DMZ web server to access internal DB only on port 5432
+ALLOW from DMZ:webserver to INTERNAL:dbhost(5432)
+
+# Block direct internet → internal LAN
+DENY from ANY to INTERNAL</code></pre>
+      </section>
+
+    </div>
+
+    <div class="section">
+      <h3>Identity and Access Management</h3>
+      <p>
+        <strong>Identity Management:</strong> Processes that identify users, devices, or systems, and manage their credentials to ensure secure access. Proper identity management prevents unauthorized users from accessing sensitive resources.
+      </p>
+      <p>
+        <strong>Access Control:</strong> Enforces permissions and restrictions using techniques such as role-based access control (RBAC). By granting access only to authorized users, organizations reduce the risk of internal and external security breaches.
+      </p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Network Security</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js" data-api="https://vschool-reports.netlify.app" data-lesson-id="L6-NETSEC-001" data-lesson-title="Security Architecture and Security Zones" data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js" data-api="https://vschool-reports.netlify.app" data-lesson-id="L6-NETSEC-001" data-lesson-title="Security Architecture and Security Zones" data-course-id="Cybersecurity" data-button-selector="#myFeedbackBtn"></script>
+</body>
+</html>

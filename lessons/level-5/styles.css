@@ -225,6 +225,13 @@ img {
   th {
     background-color: #f2f2f2; /* Optional: light grey header background */
   }
+ }
+    .diagram{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+    }
 
 
-}
