@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 2: Public Key Infrastructure</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson 2: Public Key Infrastructure</h1>
+      <h2>Level 5: Cybersecurity Landscape</h2>
+    </div>
+
+    <div class="section">
+      <h2>Lesson Overview</h2>
+      <p>This lesson introduces Public Key Infrastructure (PKI), explaining its role in secure digital communication. Students will learn about asymmetric encryption, certificate authorities, certificate chaining, and the certificate signing process. This knowledge is essential for managing secure connections, verifying identities, and understanding how encrypted communications are validated on the Internet.</p>
+    </div>
+
+    <div class="section">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Explain the purpose and function of Public Key Infrastructure (PKI).</li>
+        <li>Describe the roles of root, intermediate, and issuing certificate authorities.</li>
+        <li>Understand the certificate signing request (CSR) process and the required information.</li>
+        <li>Identify the role of Registration Authorities (RAs) in certificate validation.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Asymmetric Encryption & PKI</h3>
+      <p>PKI provides a framework for creating, managing, distributing, and revoking digital certificates, which rely on asymmetric encryption. Asymmetric encryption uses a public/private key pair to encrypt and decrypt data, ensuring secure communications. Public keys are distributed via certificates issued by Certificate Authorities (CAs), while private keys remain securely with the owner.</p>
+    </div>
+
+    <div class="section">
+      <h3>Certificate Authorities (CAs)</h3>
+      <img src="pki.png">
+      <p>Certificate authorities are trusted organizations responsible for issuing and validating public certificates. They are typically arranged in a hierarchy to increase security, known as certificate chaining:</p>
+      <ul>
+        <li><strong>Root CA:</strong> The first CA created, holding a self-signed certificate used to validate subordinate CAs.</li>
+        <li><strong>Intermediate CA:</strong> Also called subordinate CAs, they validate issuing CAs and add an additional security layer.</li>
+        <li><strong>Issuing CA:</strong> The CA that validates requests and distributes certificates to end users or organizations.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Certificate Signing Request (CSR) Process</h3>
+      <p>To obtain a certificate, an organization submits a CSR to a certificate authority. A CSR contains key information about the organization and the public key to be certified.</p>
+
+      <table class="rubric-table">
+        <thead>
+          <tr>
+            <th>CSR Information</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Common Name</td>
+            <td>The fully qualified domain name (FQDN) of the website. Example: www.testout.com</td>
+          </tr>
+          <tr>
+            <td>Subject Alternative Name (SAN)</td>
+            <td>Optional field covering multiple host names in one certificate. Example: site1.testout.com, site2.testout.com</td>
+          </tr>
+          <tr>
+            <td>Organization</td>
+            <td>The full legal name of the organization, including suffixes. Example: TestOut Corporation</td>
+          </tr>
+          <tr>
+            <td>Organizational Unit</td>
+            <td>The division handling the certificate. Example: IT Department</td>
+          </tr>
+          <tr>
+            <td>City/Locality</td>
+            <td>The city where the organization is located. Example: Pleasant Grove</td>
+          </tr>
+          <tr>
+            <td>State/County/Region</td>
+            <td>The full name of the state or region, not abbreviated. Example: Utah</td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td>Two-letter country code. Example: US</td>
+          </tr>
+          <tr>
+            <td>Email Address</td>
+            <td>Contact email for the person managing the certificate. Example: sysadmin@testout.com</td>
+          </tr>
+          <tr>
+            <td>Public Key</td>
+            <td>The public key generated as part of the key pair included in the CSR.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>After submission, the CA validates the information and issues the certificate. Sometimes, a third-party <strong>Registration Authority (RA)</strong> assists in validation. RAs are authorized by a root CA to perform validation for specific purposes only.</p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 5: Cybersecurity Landscape</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <script src="https://vschool-reports.netlify.app/ltp.js" 
+    data-api="https://vschool-reports.netlify.app" 
+    data-lesson-id="L5-CS-002" 
+    data-lesson-title="Public Key Infrastructure" 
+    data-course-id="Cybersecurity Landscape">
+  </script>
+
+  <script src="https://vschool-reports.netlify.app/feedback.js" 
+    data-api="https://vschool-reports.netlify.app" 
+    data-lesson-id="L5-CS-002" 
+    data-lesson-title="Public Key Infrastructure" 
+    data-course-id="Cybersecurity Landscape" 
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>

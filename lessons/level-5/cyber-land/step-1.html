@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 1: Introduction to the Cybersecurity Landscape</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson 1: Introduction to the Cybersecurity Landscape</h1>
+      <h2>Level 5: Cybersecurity Landscape</h2>
+    </div>
+
+    <div class="section">
+      <h2>Lesson Overview</h2>
+      <p>This lesson introduces the foundational concepts of cybersecurity, focusing on security principles, cryptography, and identity management. Students will explore the CIA triad, encryption types, authentication vs. authorization, and the role of certification authorities (CAs) in securing digital communications. Understanding these fundamentals is critical for advancing in cybersecurity roles and certifications.</p>
+    </div>
+
+    <div class="section">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Identify the algorithms used in symmetrical and asymmetrical encryption.</li>
+        <li>Define the concepts of the CIA triad and identify the technologies supporting each element.</li>
+        <li>Describe the certification process for a Certificate Authority (CA).</li>
+        <li>Differentiate between Authentication and Authorization.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Understanding Security Fundamentals</h3>
+      <p>Security fundamentals form the backbone of cybersecurity practices. Key components include:</p>
+      <ul>
+        <li><strong>Confidentiality:</strong> Ensures data is only accessible to authorized users, preventing unauthorized access.</li>
+        <li><strong>Integrity:</strong> Maintains the accuracy and completeness of data and systems, protecting against unauthorized modification.</li>
+        <li><strong>Availability:</strong> Guarantees that information and resources are accessible to authorized users when needed.</li>
+        <p>These concepts are normally grouped together, known as the CIA triad. The CIA Triad is a foundational model in cybersecurity that represents the three core principles used to guide information security policies and practices. </p>
+        <li><strong>Authentication:</strong> Verifies the identity of users or devices before granting access.</li>
+        <li><strong>Authorization:</strong> Assigns permissions and rights to users based on roles or identity.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Cryptography Essentials</h3>
+      <p>Cryptography is the practice of encoding messages to protect data from unauthorized access. Encryption converts readable plaintext into unintelligible ciphertext, which can only be reversed by authorized parties. Algorithms, or ciphers, are the methods used to perform encryption and decryption.</p>
+
+      <h4>Symmetric Encryption</h4>
+      <img src="symm.png">
+      <p>Symmetric encryption uses the same key for both encryption and decryption. Algorithms like AES (Advanced Encryption Standard) are fast and efficient for encrypting large amounts of data, but key distribution can be challenging, as the key must remain secret between communicating parties.</p>
+
+      <h4>Asymmetric Encryption</h4>
+      <img src="asymm.png">
+      <p>Asymmetric encryption uses a pair of keys: a public key for encryption and a private key for decryption. Algorithms like RSA (Rivest–Shamir–Adleman) rely on mathematical problems such as integer factorization. Asymmetric encryption is slower but provides secure key exchange without sharing the private key.</p>
+
+      <h4>Cryptographic Algorithms</h4>
+      <p>Modern cryptography relies on tested algorithms for secure communication. These algorithms are the foundation for SSL/TLS, VPNs, digital signatures, and secure email systems.</p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 5: Cybersecurity Landscape</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <script src="https://vschool-reports.netlify.app/ltp.js" 
+    data-api="https://vschool-reports.netlify.app" 
+    data-lesson-id="L5-CS-001" 
+    data-lesson-title="Introduction to the Cybersecurity Landscape" 
+    data-course-id="Cybersecurity Landscape">
+  </script>
+
+  <script src="https://vschool-reports.netlify.app/feedback.js" 
+    data-api="https://vschool-reports.netlify.app" 
+    data-lesson-id="L5-CS-001" 
+    data-lesson-title="Introduction to the Cybersecurity Landscape" 
+    data-course-id="Cybersecurity Landscape" 
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>
