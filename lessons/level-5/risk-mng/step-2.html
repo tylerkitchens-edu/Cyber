@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 2: Business Continuity</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson 2: Business Continuity</h1>
+      <h2>Threats and Risk Management</h2>
+    </div>
+
+    <div class="section">
+      <h2>Learning Objectives</h2>
+      <ul>
+        <li>Define the purpose and components of a Business Continuity Plan (BCP).</li>
+        <li>Explain the importance of maintaining operations during disasters or reduced infrastructure capacity.</li>
+        <li>Identify and describe the key steps of incident response.</li>
+        <li>Understand how business continuity and incident response work together to minimize impact and downtime.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Business Continuity Plan (BCP)</h3>
+      <p>
+        A <strong>Business Continuity Plan</strong> is a documented strategy that outlines how an organization will continue its critical business functions during and after a disaster or disruption. The BCP focuses on maintaining operations when infrastructure, personnel, or resources are partially unavailable.
+      </p>
+      <p>
+       Some key components of a BCP include:
+      </p>
+      <img src="bcp.png">
+      <ul>
+        <li><strong>Business Impact Analysis (BIA):</strong> Identifying critical business functions and the impact of disruptions on these functions.</li>
+        <li><strong>Recovery Strategies:</strong> Methods for restoring critical processes and resources, such as redundant systems, alternative work locations, or cloud-based backups.</li>
+        <li><strong>Plan Development:</strong> Documenting procedures, roles, responsibilities, and communication protocols.</li>
+        <li><strong>Testing and Training:</strong> Regularly validating the plan through drills and updating it based on lessons learned.</li>
+      </ul>
+      <p>
+        Developing a BCP manual ensures organizations have a structured approach to monitor, track, and improve their continuity capabilities. (Keep in mind different companies will implement a BCP differently but they should be braodly similar in scope.)
+      </p>
+    </div>
+
+    <div class="section">
+      <h3>Incident Response Strategies</h3>
+      <p>
+        Incident response is the process of preparing for, detecting, containing, eradicating, and recovering from cybersecurity incidents or other disruptive events. A well-defined incident response plan complements the BCP by minimizing operational disruption and protecting organizational assets.
+      </p>
+      
+      <h4>Importance of Incident Response</h4>
+      <p>
+        Effective incident response reduces the duration and impact of incidents, ensures faster recovery, and helps prevent similar events in the future. Prompt and structured responses can safeguard sensitive data, maintain customer trust, and minimize financial losses.
+      </p>
+      
+      <h4>Key Steps in Incident Response</h4>
+      <ol>
+        <li><strong>Preparation:</strong> Establish policies, tools, roles, and communication plans to handle incidents effectively.</li>
+        <li><strong>Identification:</strong> Detect and recognize incidents quickly using monitoring tools, alerts, or reports.</li>
+        <li><strong>Containment:</strong> Limit the scope and impact of the incident to prevent further damage.</li>
+        <li><strong>Eradication:</strong> Remove the root cause of the incident, such as malware or unauthorized access.</li>
+        <li><strong>Recovery:</strong> Restore affected systems, applications, and data to normal operation.</li>
+        <li><strong>Lessons Learned:</strong> Analyze the incident to identify improvements, update policies, and prevent recurrence.</li>
+      </ol>
+      <p>
+        Integrating incident response with the BCP ensures that an organization can maintain essential services while addressing threats, resulting in greater operational resilience and minimized downtime.
+      </p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Threats and Risk Management</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js" data-api="https://vschool-reports.netlify.app" data-lesson-id="L5-BCP-002" data-lesson-title="Business Continuity" data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js" data-api="https://vschool-reports.netlify.app" data-lesson-id="L5-BCP-002" data-lesson-title="Business Continuity" data-course-id="Cybersecurity" data-button-selector="#myFeedbackBtn"></script>
+</body>
+</html>

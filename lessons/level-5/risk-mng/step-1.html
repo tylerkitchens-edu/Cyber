@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 15: Risk Management</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson 1: Risk Management</h1>
+      <h2>Cybersecurity Landscape</h2>
+    </div>
+
+    <div class="section">
+      <h2>Learning Objectives</h2>
+      <ul>
+        <li>Explain the fundamental principles of risk management in cybersecurity.</li>
+        <li>Identify and categorize risks as internal or external threats.</li>
+        <li>Perform quantitative and qualitative risk analyses.</li>
+        <li>Understand the NIST Risk Management Framework (RMF) and its application.</li>
+        <li>Recognize key NIST standards and documentation used in cybersecurity.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Risk Management Practices</h3>
+      <p>
+        Effective risk management begins with identifying, assessing, and mitigating potential threats that could affect organizational assets. Risks can be classified as <strong>internal</strong> (originating from within the organization, e.g., employee errors or system misconfigurations) or <strong>external</strong> (originating outside the organization, e.g., cyberattacks, natural disasters). 
+      </p>
+      <p>
+        Once risks are identified, organizations can apply appropriate mitigation strategies, including:
+      </p>
+      <ul>
+        <li><strong>Risk Avoidance:</strong> Eliminating actions or exposures that introduce risk.</li>
+        <li><strong>Risk Transference:</strong> Shifting the risk to a third party, such as through insurance or outsourcing.</li>
+        <li><strong>Risk Acceptance:</strong> Acknowledging the risk and choosing to accept it without additional action.</li>
+        <li><strong>Risk Reduction:</strong> Implementing controls to reduce the likelihood or impact of a risk.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Risk Analysis Methods</h3>
+      <p>Risk analysis allows organizations to quantify and qualify risks for informed decision-making. There are two main methods:</p>
+      
+      <h4>Quantitative Analysis</h4>
+      <p>
+        Quantitative analysis assigns real monetary values to potential damages and countermeasures. Key components include:
+      </p>
+      <ul>
+        <li><strong>Single Loss Expectancy (SLE):</strong> The expected monetary loss from a single occurrence of a threat. Example: a successful malware attack might cost $1,000 per incident.</li>
+        <li><strong>Exposure Factor (EF):</strong> The percentage of the asset value lost due to the threat. For example, a 50% loss to a $1,000 asset would be $500.</li>
+        <li><strong>Annualized Rate of Occurrence (ARO):</strong> How often a threat is expected to occur annually. Example: ARO = 2 means twice per year, ARO = 0.25 means once every four years.</li>
+        <li><strong>Annual Loss Expectancy (ALE):</strong> The expected annual loss calculated as SLE x ARO. Example: If SLE = $1,000 and ARO = 0.25, then ALE = $250.</li>
+      </ul>
+      
+      <h4>Qualitative Analysis</h4>
+      <p>
+        Qualitative analysis uses scenarios and subjective judgment rather than precise numeric values. This method focuses on risk ranking and prioritization. Techniques include:
+      </p>
+      <ul>
+        <li><strong>Scenario Analysis:</strong> Considering “what-if” scenarios to evaluate potential impact.</li>
+        <li><strong>Risk Matrices:</strong> Mapping risks based on likelihood and severity (e.g., high, medium, low).</li>
+        <li><strong>Expert Judgment:</strong> Leveraging the experience and insight of IT security professionals to assess risk probability and impact.</li>
+      </ul>
+      <p>Qualitative analysis is useful when precise data is unavailable or when assessing emerging threats that lack historical evidence.</p>
+    </div>
+
+    <div class="section">
+      <h3>NIST and the Risk Management Framework (RMF)</h3>
+      <p>
+        The <strong>National Institute of Standards and Technology (NIST)</strong> provides a comprehensive set of standards, guidelines, and best practices for managing cybersecurity risk in organizations. NIST publications help organizations secure IT systems, protect sensitive information, and comply with regulations.
+      </p>
+      <p>
+        The <strong>NIST Risk Management Framework (RMF)</strong> provides a structured process for managing security and privacy risk. The RMF includes seven key steps:
+      </p>
+      <img src="rmf.png">
+      <ol>
+        <li><strong>Prepare:</strong> Essential activities to prepare the organization to manage security and privacy risks.
+            <ul><strong>Purpose:</strong> Carry out essential activities to help prepare all levels of the organization to manage its security and privacy risks using the RMF <br/> <strong>Outcomes:</strong> 
+            <li>key risk management roles identified</li>
+            <li>organizational risk management strategy established, risk tolerance determined</li>
+            <li>organization-wide risk assessment</li>
+            <li>organization-wide strategy for continuous monitoring developed and implemented</li>
+            <li>common controls identified</li>
+            </ul>
+        </li>
+
+        <li><strong>Categorize:</strong> Categorize the system and information processed, stored, and transmitted based on an impact analysis.
+            <ul> <strong>Purpose:</strong> Inform organizational risk management processes and tasks by determining the adverse impact  with respect to the loss of confidentiality, integrity, and availability of systems and the information processed, stored, and transmitted by those systems <br/> <strong>Outcomes:</strong> 
+            <li>system characteristics documented</li>
+            <li>security categorization of the system and information completed</li>
+            <li>categorization decision reviewed/approved by authorizing official</li>
+            </ul>
+        </li>
+
+        <li><strong>Select:</strong> Select the set of NIST SP 800-53 controls to protect the system based on risk assessment(s).
+            <ul><strong>Purpose:</strong> Select, tailor, and document the controls necessary to protect the system and organization commensurate with risk <br/> <strong>Outcomes:</strong> 
+            <li>control baselines selected and tailored</li>
+            <li>controls designated as system-specific, hybrid, or common</li>
+            <li>controls allocated to specific system components</li>
+            <li>system-level continuous monitoring strategy developed</li>
+            <li>security and privacy plans that reflect the control selection, designation, and allocation are reviewed and approved</li>
+            </ul>
+        </li>
+
+        <li><strong>Implement:</strong> Implement the controls and document how controls are deployed. 
+            <ul><strong>Purpose:</strong> Implement the controls in the security and privacy plans for the system and organization <br/> <strong>Outcomes:</strong>
+            <li>controls specified in security and privacy plans implemented</li>
+            <li>security and privacy plans updated to reflect controls as implemented</li>
+            </ul>
+        </li>
+
+        <li><strong>Assess:</strong> Assess to determine if the controls are in place, operating as intended, and producing the desired results.
+            <ul><strong>Purpose:</strong>Determine if the controls are implemented correctly, operating as intended, and producing the desired outcome with respect to meeting the security and privacy requirements for the system and the organization. <br/> <strong>Outcomes:</strong>
+            <li>assessor/assessment team selected</li>
+            <li>security and privacy assessment plans developed</li>
+            <li>assessment plans are reviewed and approved</li>
+            <li>control assessments conducted in accordance with assessment plans</li>
+            <li>security and privacy assessment reports developed</li>
+            <li>remediation actions to address deficiencies in controls are taken</li>
+            <li>security and privacy plans are updated to reflect control implementation changes based on assessments and remediation actions</li>
+            <li>plan of action and milestones developed</li>
+            </ul>
+        </li>
+           
+
+        <li><strong>Authorize:</strong> Senior official makes a risk-based decision to authorize the system (to operate).
+            <ul><strong>Purpose:</strong> Provide  accountability by requiring a senior official to determine if the security and privacy risk based on the operation of a system or the use of common controls, is acceptable. <br/> <strong>Outcomes:</strong>
+            <li>authorization package (executive summary, system security and privacy plan, assessment report(s), plan of action and milestones)</li>
+            <li>risk determination rendered</li>
+            <li>risk responses provided</li>
+            <li>authorization for the system or common controls is approved or denied</li> 
+            </ul>
+        </li>
+
+        <li><strong>Monitor:</strong> Continuously monitor control implementation and risks to the system.
+            <ul><strong>Purpose:</strong> Maintain ongoing situational awareness about the security and privacy posture of the system and organization to support risk management decisions. <br/> <strong>Outcomes:</strong>
+            <li>system and environment of operation monitored in accordance with continuous monitoring strategy</li>
+            <li>ongoing assessments of control effectiveness conducted in accordance with continuous monitoring strategy</li>
+            <li>output of continuous monitoring activities analyzed and responded to</li>
+            <li>process in place to report security and privacy posture to management</li> 
+            <li>ongoing authorizations conducted using results of continuous monitoring activities</li>
+            </ul>
+        </li>
+      </ol>
+      <p>
+        NIST also provides standards and documentation such as:
+      </p>
+      <ul>
+        <li><strong>SP 800-53:</strong> Security and Privacy Controls for Federal Information Systems.</li>
+        <li><strong>SP 800-37:</strong> Guide for Applying the Risk Management Framework.</li>
+        <li><strong>SP 800-30:</strong> Guide for Conducting Risk Assessments.</li>
+        <li><strong>Cybersecurity Framework (CSF):</strong> Core guidelines for managing and reducing cybersecurity risk.</li>
+      </ul>
+      <p>Organizations use these standards to create repeatable, consistent processes for managing cybersecurity risk effectively.</p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Threats and Risk Management</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js" data-api="https://vschool-reports.netlify.app" data-lesson-id="L5-RISK-001" data-lesson-title="Risk Management" data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js" data-api="https://vschool-reports.netlify.app" data-lesson-id="L5-RISK-001" data-lesson-title="Risk Management" data-course-id="Cybersecurity" data-button-selector="#myFeedbackBtn"></script>
+</body>
+</html>
