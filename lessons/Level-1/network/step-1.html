@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 1: The Internet and Networking</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson 1: The Internet and Networking</h1>
+      <h2>Level 1 | Networking</h2>
+    </div>
+
+    <div class="section">
+      <h2>Learning Objectives</h2>
+      <ul>
+        <li>Understand what a computer network is and the components that make one up.</li>
+        <li>Identify and describe different types of computer networks, such as LAN, WAN, MAN, PAN, VPN, and SAN.</li>
+        <li>Distinguish between public and private networks and understand their roles in cybersecurity.</li>
+        <li>Define key networking concepts such as topology, IP addressing, subnetting, and bandwidth.</li>
+        <li>Explain the role of the IEEE 802 standards in networking and how they relate to Wi-Fi protocols.</li>
+        <li>Understand the evolution of wireless encryption standards including WEP, WPA, and WPA2.</li>
+        <li>Describe Bluetooth technology, its use cases, classes, versions, and how it differs from Wi-Fi.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Computer Networking Basics</h2>
+      <p><strong>What is a network?</strong> In computing, a network refers to a group of interconnected devices, such as computers, servers, routers, switches, and other hardware, that are able to communicate with each other and share resources. The purpose of a network is to enable the sharing of information, data, and resources between the devices connected to the network.</p>
+      <p>To create a network, four things are required:</p>
+
+      <ol>
+        <li><strong>Computers:</strong> Any computers themselves, including desktops, laptops, mobile devices, and servers.</li>
+        <li><strong>Network Media:</strong> The physical or wireless channels that allow data to be transmitted between devices on a network.</li>
+        <li><strong>Network Interfaces:</strong> Devices installed on each computer that can send and receive signals through the network media.</li>
+        <li><strong>Network Protocols:</strong> The rules and standards that govern how computers send and receive data on the network.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>Network Types</h2>
+      <p>There are several types of computer networks, classified by size, geographical area, and purpose:</p>
+
+      <ul>
+        <li><strong>LAN (Local Area Network):</strong> Covers a small area such as a building or campus. Connects devices for file sharing and communication.</li>
+        <li><strong>WAN (Wide Area Network):</strong> Spans large areas such as cities or countries, connecting multiple LANs — the Internet is the largest WAN.</li>
+        <li><strong>MAN (Metropolitan Area Network):</strong> Covers a city or town, often run by governments or large organizations for high-speed data transfer.</li>
+        <li><strong>PAN (Personal Area Network):</strong> Connects devices close to a person, such as phones, tablets, and laptops, often using Bluetooth or NFC.</li>
+        <li><strong>VPN (Virtual Private Network):</strong> Provides secure remote connections to a private network through encryption over the Internet.</li>
+        <li><strong>SAN (Storage Area Network):</strong> Connects storage devices to servers for centralized storage and data management.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Public vs Private Networks</h2>
+      <p>Networks can be either public or private. A <strong>private network</strong> is restricted to authorized users within the organization, providing internal file sharing and security. A <strong>public network</strong> is open for general access, such as the Internet, which interconnects millions of networks worldwide.</p>
+    </div>
+
+    <div class="rubric-table">
+      <h2>Other Networking Concepts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Network topology</td><td>The physical or logical layout of a network (bus, star, ring, mesh, or hybrid).</td></tr>
+          <tr><td>Network protocol</td><td>Rules and standards for communication (TCP/IP, HTTP, FTP, DNS).</td></tr>
+          <tr><td>IP Address</td><td>A unique identifier for each device on a network used for routing data.</td></tr>
+          <tr><td>Subnet</td><td>A smaller network within a larger network for efficiency and performance.</td></tr>
+          <tr><td>Networking devices</td><td>Hardware like hubs, switches, and routers that facilitate network communication.</td></tr>
+          <tr><td>Firewall</td><td>A device or software that filters traffic and protects networks from unauthorized access.</td></tr>
+          <tr><td>Bandwidth</td><td>The volume of data transferable over a network per second, measured in bps or Mbps.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rubric-table">
+      <h2>IEEE 802 Standards</h2>
+      <p>The Institute of Electrical and Electronics Engineers (IEEE) 802 standards define networking protocols for LANs and wireless networks. The 802.11 standard governs Wi-Fi technologies.</p>
+
+      <p>Wireless standards have evolved to improve speed, security, and reliability:</p>
+
+      <ul>
+        <li><strong>WEP (1997):</strong> Wired Equivalent Privacy — the first wireless encryption, now obsolete due to weaknesses.</li>
+        <li><strong>WPA (2003):</strong> Wi-Fi Protected Access — used RC4 and TKIP for stronger encryption.</li>
+        <li><strong>WPA2:</strong> Enhanced WPA using AES encryption, providing modern wireless security.</li>
+      </ul>
+
+      <p>Devices on a Wi-Fi network use a shared <strong>SSID (Service Set Identifier)</strong> as the network name.</p>
+    </div>
+
+    <div class="rubric-table">
+      <h2>802.11 Standards</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Standard</th>
+            <th>Maximum Transfer Rate</th>
+            <th>Band</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>802.11a</td><td>54 Mbps</td><td>5 GHz</td></tr>
+          <tr><td>802.11b</td><td>11 Mbps</td><td>2.4 GHz</td></tr>
+          <tr><td>802.11g</td><td>54 Mbps</td><td>2.4 GHz</td></tr>
+          <tr><td>802.11n</td><td>150 Mbps</td><td>5 GHz</td></tr>
+          <tr><td>802.11ac</td><td>1.7 Gbps</td><td>5 GHz</td></tr>
+        </tbody>
+      </table>
+
+      <h3>802.11 Standard Comparison</h3>
+      <ol>
+        <li>Most modern wireless networks use 802.11n or 802.11ac.</li>
+        <li>5 GHz frequencies have 24 non-overlapping channels, while 2.4 GHz has only 3.</li>
+        <li>5 GHz provides faster speeds but shorter range due to higher attenuation.</li>
+      </ol>
+    </div>
+
+    <div class="rubric-table">
+      <h2>Bluetooth Technology</h2>
+      <p>Bluetooth enables short-range wireless communication between devices using low-power radio signals, forming a <strong>Personal Area Network (PAN)</strong>. It supports up to eight connected devices and operates at 2.4 GHz, similar to Wi-Fi but optimized for low data transfer and energy efficiency.</p>
+
+      <h3>Bluetooth Classes</h3>
+      <table>
+        <thead>
+          <tr><th>Bluetooth Class</th><th>Operating Range</th><th>Maximum Power</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Class 1</td><td>100 meters (328 feet)</td><td>100 mW (20 dBm)</td></tr>
+          <tr><td>Class 2</td><td>10 meters (33 feet)</td><td>2.5 mW (4 dBm)</td></tr>
+          <tr><td>Class 3</td><td>1 meter (3 feet)</td><td>1 mW (0 dBm)</td></tr>
+          <tr><td>Class 4</td><td>0.5 meters (1.5 feet)</td><td>0.5 mW (-3 dBm)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Bluetooth Versions</h3>
+      <table>
+        <thead>
+          <tr><th>Version</th><th>Features / Improvements</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1.x</td><td>Up to 1 Mbps data rate.</td></tr>
+          <tr><td>2.x</td><td>Enhanced Data Rate (EDR) up to 3 Mbps.</td></tr>
+          <tr><td>3.x</td><td>High-speed mode with up to 24 Mbps.</td></tr>
+          <tr><td>4.x</td><td>Low Energy (LE) for reduced power use.</td></tr>
+          <tr><td>5.x</td><td>Up to 2 Mbps, extended range to 800 feet.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Bluetooth vs Wi-Fi</h3>
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Main Purpose</th><th>Range</th><th>Data/Speed</th><th>Security</th><th>Cost</th><th>Complexity</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Bluetooth</td><td>Device-to-device communication</td><td>Up to 33 feet</td><td>Low / Slow</td><td>Low</td><td>Low</td><td>Simple</td></tr>
+          <tr><td>Wi-Fi</td><td>Connect devices to the Internet</td><td>Up to 300 feet</td><td>High / Fast</td><td>High</td><td>Higher</td><td>Complex</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 1: Networking</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-NETWORKING-001"
+    data-lesson-title="The Internet and Networking"
+    data-course-id="Cybersecurity"></script>
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-NETWORKING-001"
+    data-lesson-title="The Internet and Networking"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+
+</body>
+</html>

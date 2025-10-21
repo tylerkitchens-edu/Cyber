@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson: What's the Internet?</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson: What's the Internet?</h1>
+      <h2>Level 1 - Networking</h2>
+    </div>
+
+    <div class="section">
+      <h3>Lesson Overview</h3>
+      <p>
+        The Internet is a vast, interconnected system of networks that enables global communication, data sharing, and digital services.
+        Understanding how the Internet works is critical to every cybersecurity professional, as nearly all attacks, defenses, and monitoring
+        strategies depend on the flow of information across this global infrastructure.
+      </p>
+      <p>
+        In this lesson, you’ll explore what the Internet is, how it was developed, and what technologies, hardware, and protocols make it possible.
+        You’ll also examine the relationship between IP addressing, Internet Service Providers (ISPs), and devices that form the foundation of digital communication.
+      </p>
+    </div>
+
+    <div class="section">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Define the Internet and describe its role as a decentralized global network.</li>
+        <li>Understand the historical origins of the Internet and the development of ARPANET.</li>
+        <li>Identify the major types of Internet services and access technologies.</li>
+        <li>Recognize key hardware devices that support Internet connectivity.</li>
+        <li>Explain the purpose of MAC and IP addresses and how they enable device communication.</li>
+        <li>Understand the OSI Model and its importance in modern network troubleshooting and cybersecurity analysis.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Watch: What is the Internet?</h3>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/Dxcc6ycZ73M"
+        title="What is the Internet?"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="section">
+      <h4>What is the Internet?</h4>
+      <p>
+        The internet is a global network of interconnected devices and networks that allows people to access and share information,
+        communicate with each other, and use a variety of online services and applications.
+        It is a massive collection of computer networks that are connected together to form a single, decentralized, and constantly evolving entity. The internet was originally developed in the 1960s by the United States Department of Defense's Advanced Research Projects Agency (ARPA)
+        as a way for researchers to share information and resources. This project, known as ARPANET, connected a small number of universities
+        and government institutions and established the foundation for packet-switching — a method of breaking data into small packets for efficient transmission.
+      </p>
+      <p>
+        Since then, it has grown exponentially and has become an essential part of modern life, with billions of people accessing the internet daily.
+        Everything from online banking and streaming to cloud storage and cybersecurity operations depend on its connectivity.
+      </p>
+
+      <p>
+        The internet uses a variety of technologies and protocols, such as Transmission Control Protocol/Internet Protocol (TCP/IP),
+        to allow devices to communicate with each other. These protocols ensure that data is delivered reliably between devices,
+        even across multiple networks owned by different providers. It supports a wide range of services, including email, instant messaging,
+        online gaming, social media, video conferencing, and file sharing.
+      </p>
+      <img src="TCP.gif">
+      <p>
+        One of the key features of the internet is its open and decentralized nature. This means that no single organization “owns” the Internet.
+        Instead, it relies on global cooperation between governments, businesses, and private entities to manage standards and maintain infrastructure.
+        However, this openness also introduces challenges like privacy, security, and censorship, which are central issues in cybersecurity today.
+      </p>
+
+      <h4>Internet Service Types</h4>
+      <p>
+        There are several ways individuals and organizations can connect to the Internet. Each type of service has unique advantages and limitations
+        depending on speed, cost, and geographical location.
+      </p>
+      <ul>
+        <li><strong>Dial-up / DSL:</strong> In the early days of the Internet, most homes used a dial-up connection.
+          To get internet, the computer would “call” the Internet Service Provider (ISP) through a phone line. DSL (Digital Subscriber Line)
+          improved on this by using higher frequency ranges, allowing simultaneous phone and Internet use.
+        </li>
+        <li><strong>Cable:</strong> Instead of phone lines, cable Internet uses television coaxial cables to transmit data.
+          Cable Internet generally offers faster speeds than DSL and remains a common residential option.
+        </li>
+        <li><strong>Fiber Optic:</strong> Fiber networks use glass strands to transmit data as light instead of electricity.
+          Because light is immune to electromagnetic interference, fiber connections provide high-speed, reliable access.
+          Fiber optics are becoming the gold standard for modern Internet infrastructure.
+        </li>
+        <li><strong>Satellite:</strong> By aligning a satellite dish to an orbital satellite, users can connect to the Internet from nearly anywhere.
+          However, this connection has higher latency, making it slower for real-time activities like gaming or video conferencing.
+        </li>
+        <li><strong>Cellular:</strong> Mobile phones and tablets connect to the Internet via cellular towers using radio waves.
+          With 4G and 5G networks, cellular Internet has become fast enough to rival broadband in many areas.
+        </li>
+      </ul>
+
+      <p>
+        Even if you have a computer with a working network interface, you don't automatically have access to the Internet.
+        Just like a highway has on-ramps, the “Information Superhighway” uses Internet Service Providers (ISPs) as access points.
+        An ISP acts as a gateway between your local network and the broader Internet.
+      </p>
+
+      <h4>Important Internet Hardware</h4>
+      <p>
+        To make Internet access possible, several hardware components work together:
+      </p>
+      <ul>
+        <li><strong>Modem:</strong> Converts digital signals from a computer into analog signals for transmission over telephone or cable lines.</li>
+        <li><strong>Router:</strong> Directs data packets between networks, allowing multiple devices to share one Internet connection.</li>
+        <img src="rvm.png">
+        <li><strong>Switch:</strong> Connects multiple devices within a LAN and forwards data to the correct destination device.</li>
+        <img src="switch.png">
+        <li><strong>Network Interface Card (NIC):</strong> Provides a physical interface between a computer and a network. Each NIC has a unique MAC address.</li>
+        <li><strong>Wireless Access Point (WAP):</strong> Extends wired networks to support wireless devices like laptops and smartphones.</li>
+        <li><strong>Home Router:</strong> Common in small or home networks, combining the features of routers, switches, and WAPs into one unit.</li>
+      </ul>
+
+      <h4>Network Addressing</h4>
+      <p>
+        For a computer to send or receive information on a network, it must have a unique network address — similar to how a house has a mailing address.
+        Network addresses ensure that data reaches the correct destination without confusion.
+      </p>
+      <table class="rubric-table">
+        <tr><th>Type</th><th>Description</th></tr>
+        <tr>
+          <td><strong>Physical Address</strong></td>
+          <td>
+            Also known as a <strong>MAC address</strong>, this is a unique identifier assigned to a device’s network interface.
+            It’s embedded in the hardware and written in hexadecimal format (e.g., 00-09-5B-36-C2-93).
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Logical Address</strong></td>
+          <td>
+            Assigned via software (typically using IP). Logical addresses consist of a network segment and a host identifier.
+            These addresses can change and are managed through protocols such as DHCP.
+          </td>
+        </tr>
+      </table>
+
+      <h4>IP Addresses</h4>
+      <p>
+        IP addresses are numeric identifiers assigned to devices to facilitate communication across networks.
+        IPv4 uses 32 bits (e.g., 192.168.1.1), while IPv6 uses 128 bits (e.g., 2001:0db8:85a3::7334) to support more devices globally.
+      </p>
+      <ul>
+        <li><strong>Public IP:</strong> Globally unique and visible on the Internet.</li>
+        <li><strong>Private IP:</strong> Used internally within local networks.</li>
+        <li><strong>Static IP:</strong> Fixed and manually assigned.</li>
+        <li><strong>Dynamic IP:</strong> Automatically assigned via DHCP and changes periodically.</li>
+      </ul>
+
+      <h4>The OSI Model</h4>
+      <p>
+        The Open Systems Interconnection (OSI) Model is a framework that standardizes network communication into seven layers:
+        Physical, Data Link, Network, Transport, Session, Presentation, and Application.
+        While modern Internet communication follows the simpler TCP/IP model, OSI remains essential for understanding
+        how data travels from one device to another and for diagnosing network problems.
+      </p>
+      <p>
+        In cybersecurity, understanding which OSI layer an attack targets — whether it’s a DDoS flood at Layer 3 (Network)
+        or a web application exploit at Layer 7 (Application) — helps professionals build effective defensive strategies.
+      </p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 1 Networking</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- V School Reporting Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-NETWORKING-002"
+    data-lesson-title="What's the Internet?"
+    data-course-id="Cybersecurity"></script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L1-NETWORKING-002"
+    data-lesson-title="What's the Internet?"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn"></script>
+</body>
+</html>
