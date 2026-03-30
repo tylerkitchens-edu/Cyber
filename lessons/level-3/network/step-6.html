@@ -2,94 +2,147 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cloud Deployment Models and Methods</title>
+  <title>Network Services for Security Operations</title>
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
-  <div class="slide-container" role="main" aria-labelledby="heading-cloud-deployment">
+  <div class="slide-container" role="main" aria-labelledby="heading-net-services">
     <div class="slide-header">
-      <h1 id="heading-cloud-deployment">Cloud Deployment Models and Methods</h1>
+      <h1 id="heading-net-services">Network Services for Security Operations</h1>
       <h2>Level 3: Networking</h2>
     </div>
 
-    <div class="section" role="region" aria-labelledby="objectives-cloud-deployment">
-      <h3 id="objectives-cloud-deployment">Learning Objectives</h3>
+    <div class="section" role="region" aria-labelledby="objectives-services">
+      <h3 id="objectives-services">Learning Objectives</h3>
       <ul>
-        <li>Compare and contrast cloud deployment models including public, private, community, and hybrid clouds.</li>
-        <li>Explain the advantages and limitations of each deployment model.</li>
-        <li>Identify scenarios for optimal deployment model selection.</li>
-        <li>Understand emerging trends in networking that integrate with cloud computing.</li>
+        <li>Explain how DNS, DHCP, SNMP, SMTP, and syslog function in an enterprise network environment.</li>
+        <li>Describe how each network service generates logs and telemetry relevant to security monitoring.</li>
+        <li>Identify indicators of compromise (IoCs) and suspicious activity within DNS, DHCP, and email logs.</li>
+        <li>Explain the role of syslog in centralized log collection and SIEM integration.</li>
+        <li>Recognize how attackers abuse common network services to conduct reconnaissance, exfiltrate data, or maintain persistence.</li>
       </ul>
     </div>
 
-    <div class="section" role="region" aria-labelledby="public-cloud">
-      <h3 id="public-cloud">Public Cloud Model</h3>
-      <p>The public cloud is offered by third-party cloud service providers (CSPs) and shared among multiple tenants. Common services include pay-as-you-go pricing, subscription-based models, and freemium tiers. Public cloud advantages include rapid deployment, broad scalability, and access to a wide range of services and tools. Risks may include performance variability and shared security considerations.</p>
-      <p>Multicloud architectures allow organizations to utilize multiple public cloud providers simultaneously, improving redundancy, optimizing performance, and avoiding vendor lock-in.</p>
+    <div class="section" role="region" aria-labelledby="intro-services">
+      <h3 id="intro-services">Why Network Services Matter for Security</h3>
+      <p>In earlier coursework, you learned what services like DNS and DHCP <em>do</em> — DNS translates domain names to IP addresses, and DHCP automatically assigns IP addresses to devices. In this lesson, we shift focus from <em>what they are</em> to <em>how security analysts use them</em>.</p>
+      <p>Every network service generates data. That data — in the form of logs, queries, and traffic patterns — provides critical visibility into what's happening on a network. Security Operations Center (SOC) analysts and incident responders rely on these data sources daily to detect threats, investigate incidents, and validate that systems are functioning as expected.</p>
     </div>
 
-    <div class="section" role="region" aria-labelledby="private-cloud">
-      <h3 id="private-cloud">Private Cloud Model</h3>
-      <p>The private cloud serves a single organization and can be hosted on-premises or remotely by a third-party provider. It provides enhanced security, greater control over resources, and allows for custom configurations to meet specific organizational requirements.</p>
+    <div class="section" role="region" aria-labelledby="dns-security">
+      <h3 id="dns-security">DNS in Security Operations</h3>
+      <p>The <strong>Domain Name System (DNS)</strong> is one of the most valuable data sources for security monitoring. Nearly every network action — browsing a website, downloading malware, communicating with a command-and-control (C2) server — begins with a DNS query. Because of this, DNS logs provide a comprehensive record of what domains devices on your network are trying to reach.</p>
+
+      <h4>What DNS Logs Reveal</h4>
       <ul>
-        <li><strong>Enhanced Security:</strong> Dedicated infrastructure reduces exposure to external threats.</li>
-        <li><strong>Greater Control:</strong> Organizations manage policies, configurations, and compliance directly.</li>
-        <li><strong>Customizable Resources:</strong> Tailored to specific workloads and operational needs.</li>
-        <li><strong>Compliance:</strong> Supports adherence to regulatory standards.</li>
-        <li><strong>Cost Considerations:</strong> Typically higher costs due to dedicated infrastructure and management.</li>
+        <li><strong>Query records:</strong> Which internal device requested which domain name, and when.</li>
+        <li><strong>Response records:</strong> What IP address was returned, and whether the query was successful (NOERROR) or failed (NXDOMAIN — domain doesn't exist).</li>
+        <li><strong>Record types:</strong> The type of DNS record requested (A, AAAA, MX, TXT, CNAME, etc.). Unusual record type requests can indicate suspicious activity.</li>
+      </ul>
+
+      <h4>DNS-Based Threats</h4>
+      <ul>
+        <li><strong>DNS Tunneling:</strong> Attackers encode data within DNS queries and responses to exfiltrate information or communicate with C2 infrastructure. This works because DNS traffic is rarely blocked by firewalls. Indicators include unusually long subdomain strings, high query volume to a single domain, and TXT record queries to unfamiliar domains.</li>
+        <li><strong>Domain Generation Algorithms (DGAs):</strong> Malware uses algorithms to generate hundreds of random-looking domain names (e.g., xj7kq9m2.net) and queries them in sequence, looking for the one the attacker has registered. High volumes of NXDOMAIN responses from a single host can indicate DGA activity.</li>
+        <li><strong>DNS Spoofing / Cache Poisoning:</strong> An attacker injects forged DNS responses to redirect users to malicious sites. This can be detected by monitoring for unexpected changes in DNS resolution for known domains.</li>
+      </ul>
+
+      <h4>Key DNS Record Types for Analysts</h4>
+      <ul>
+        <li><strong>A / AAAA:</strong> Maps a domain to an IPv4 or IPv6 address. The most common query type.</li>
+        <li><strong>MX:</strong> Identifies the mail servers responsible for a domain. Used in email delivery.</li>
+        <li><strong>TXT:</strong> Stores arbitrary text data. Commonly used for SPF, DKIM, and DMARC email authentication records — but also abused for DNS tunneling.</li>
+        <li><strong>CNAME:</strong> An alias that points one domain name to another. Used for CDN configurations and load balancing.</li>
+        <li><strong>PTR:</strong> Reverse DNS — maps an IP address back to a domain name. Useful for verifying the identity of mail servers and investigating suspicious IPs.</li>
       </ul>
     </div>
 
-    <div class="section" role="region" aria-labelledby="community-cloud">
-      <h3 id="community-cloud">Community Cloud Model</h3>
-      <p>Community clouds are shared environments designed for organizations with common objectives, policies, or security requirements. These clouds enable collaboration while distributing costs and infrastructure across multiple organizations. Community clouds provide a secure, compliant environment suitable for groups with aligned needs, such as healthcare organizations, universities, or government agencies.</p>
-    </div>
+    <div class="section" role="region" aria-labelledby="dhcp-security">
+      <h3 id="dhcp-security">DHCP in Security Operations</h3>
+      <p>The <strong>Dynamic Host Configuration Protocol (DHCP)</strong> automates IP address assignment on a network. When a device connects, it sends a DHCP Discover broadcast, receives an Offer from the DHCP server, sends a Request to accept, and receives an Acknowledgment — the four-step process known as <strong>DORA</strong> (Discover, Offer, Request, Acknowledge).</p>
 
-    <div class="section" role="region" aria-labelledby="hybrid-cloud">
-      <h3 id="hybrid-cloud">Hybrid Cloud Model</h3>
-      <p>Hybrid clouds combine multiple deployment types, offering flexibility, scalability, and redundancy. Organizations can run critical workloads on private clouds while leveraging public clouds for less sensitive tasks. Key advantages include:</p>
+      <h4>What DHCP Logs Reveal</h4>
       <ul>
-        <li><strong>Resource Optimization:</strong> Allocate workloads to the most appropriate cloud type for performance and security.</li>
-        <li><strong>Enhanced Flexibility:</strong> Seamlessly move applications and data between private and public environments.</li>
-        <li><strong>Cost Efficiency:</strong> Pay for public cloud resources only when needed.</li>
-        <li><strong>Improved Disaster Recovery:</strong> Increase redundancy and resilience by distributing resources across environments.</li>
-        <li><strong>Greater Security Options:</strong> Customize security based on data sensitivity and compliance requirements.</li>
+        <li><strong>Lease records:</strong> Which IP address was assigned to which MAC address, and when. This is essential for correlating network activity to specific physical devices during investigations.</li>
+        <li><strong>Lease duration and renewals:</strong> How long a device has been connected and whether it's actively renewing its lease.</li>
+        <li><strong>Hostname information:</strong> Many DHCP clients send their hostname during the request, which can help identify the device type or owner.</li>
+      </ul>
+
+      <h4>DHCP-Based Threats</h4>
+      <ul>
+        <li><strong>Rogue DHCP Servers:</strong> An attacker sets up an unauthorized DHCP server on the network that hands out malicious configurations — such as pointing devices to a fake DNS server or a gateway controlled by the attacker. This enables man-in-the-middle attacks. Detection involves monitoring for DHCP Offer packets from unexpected source IP or MAC addresses.</li>
+        <li><strong>DHCP Starvation:</strong> An attacker floods the DHCP server with requests using spoofed MAC addresses, exhausting the available IP address pool and causing a denial of service for legitimate devices.</li>
+        <li><strong>MAC-to-IP Correlation:</strong> During incident response, DHCP logs are critical for answering the question: "Which physical device had IP address X.X.X.X at this specific time?" Without DHCP logs, attributing network activity to a specific device becomes extremely difficult.</li>
       </ul>
     </div>
 
-    <div class="section" role="region" aria-labelledby="intro-comparison">
-      <h3 id="intro-comparison">Comparing Cloud Deployment Models</h3>
-      <p>Cloud deployment models define how computing resources are made available to users and how organizations can access them. Each model provides distinct benefits and trade-offs:</p>
+    <div class="section" role="region" aria-labelledby="snmp-security">
+      <h3 id="snmp-security">SNMP: Network Monitoring</h3>
+      <p>The <strong>Simple Network Management Protocol (SNMP)</strong> is used to monitor and manage network devices — routers, switches, firewalls, servers, and printers. SNMP operates on a manager-agent model: a central <strong>SNMP manager</strong> (often part of a network monitoring platform) queries <strong>SNMP agents</strong> running on managed devices to collect performance data.</p>
+
+      <h4>Key SNMP Concepts</h4>
       <ul>
-        <li><strong>Public vs. Private Clouds:</strong> Public clouds share resources among multiple organizations over the internet, offering cost-efficiency and scalability. Private clouds provide dedicated resources, increasing security and control over infrastructure.</li>
-        <li><strong>Community vs. Hybrid Clouds:</strong> Community clouds cater to a group of organizations with shared goals or regulations. Hybrid clouds combine multiple cloud types to balance performance, cost, and control while maintaining security of sensitive data.</li>
+        <li><strong>OID (Object Identifier):</strong> A unique identifier for each piece of data an SNMP agent can report — such as CPU utilization, interface status, or bandwidth usage.</li>
+        <li><strong>MIB (Management Information Base):</strong> A structured database that defines what OIDs are available on a device. Think of it as a dictionary that translates OID numbers into human-readable descriptions.</li>
+        <li><strong>SNMP Traps:</strong> Unsolicited alerts sent from an agent to the manager when a predefined condition occurs — such as an interface going down, high CPU usage, or a failed login attempt. Traps are critical for real-time alerting.</li>
+        <li><strong>Community Strings:</strong> Essentially passwords used in SNMP v1 and v2c to authenticate requests. These are sent in <strong>plaintext</strong>, making older SNMP versions a security risk. <strong>SNMP v3</strong> adds encryption and proper authentication and should always be used in production environments.</li>
       </ul>
+
+      <h4>SNMP Security Concerns</h4>
+      <p>SNMP v1/v2c community strings (especially the common defaults "public" for read-only and "private" for read-write) are a well-known attack vector. An attacker who discovers the read-write community string can modify device configurations remotely. Always use SNMP v3 with authentication and encryption, and change default community strings immediately.</p>
     </div>
 
-    <div class="section" role="region" aria-labelledby="emerging-trends">
-      <h3 id="emerging-trends">Emerging Trends in Networking</h3>
+    <div class="section" role="region" aria-labelledby="smtp-security">
+      <h3 id="smtp-security">SMTP and Email Security</h3>
+      <p>The <strong>Simple Mail Transfer Protocol (SMTP)</strong> is responsible for sending email between mail servers. Understanding email flow is important for security because email remains the most common attack vector for phishing, malware delivery, and business email compromise (BEC).</p>
+
+      <h4>Email Authentication Records</h4>
+      <p>Three DNS-based mechanisms help organizations prevent email spoofing and validate sender identity:</p>
       <ul>
-        <li><strong>IoT Integration:</strong> Incorporating IoT devices into networks supports smart automation, real-time data collection, and advanced analytics, requiring robust security and monitoring strategies.</li>
-        <li><strong>5G and Beyond:</strong> 5G technology provides faster speeds, lower latency, and higher device density, enabling advanced applications such as AR/VR, autonomous vehicles, and enhanced mobile broadband.</li>
+        <li><strong>SPF (Sender Policy Framework):</strong> A DNS TXT record that specifies which mail servers are authorized to send email on behalf of a domain. Receiving servers check incoming mail against the SPF record to verify the sending server is legitimate.</li>
+        <li><strong>DKIM (DomainKeys Identified Mail):</strong> Adds a cryptographic signature to outgoing emails. The receiving server verifies the signature using a public key published in DNS, confirming the message hasn't been tampered with in transit.</li>
+        <li><strong>DMARC (Domain-based Message Authentication, Reporting, and Conformance):</strong> Builds on SPF and DKIM by defining a policy for how receiving servers should handle messages that fail authentication (quarantine, reject, or none). DMARC also provides reporting so domain owners can monitor abuse.</li>
       </ul>
+
+      <h4>Email Header Analysis</h4>
+      <p>When investigating suspicious emails, analysts examine the <strong>email headers</strong> — metadata that records the path the email took from sender to recipient, including originating IP addresses, mail server hostnames, authentication results (SPF pass/fail, DKIM verification), and timestamps. Headers are read from bottom to top, with the oldest entries at the bottom.</p>
     </div>
 
-    <div class="section" role="region" aria-labelledby="networking-tools">
-      <h3 id="networking-tools">Practical Networking Tools and Software</h3>
-      <p>Effective network management and troubleshooting require specialized tools. Key software includes:</p>
+    <div class="section" role="region" aria-labelledby="syslog-section">
+      <h3 id="syslog-section">Syslog: Centralized Logging</h3>
+      <p><strong>Syslog</strong> is a standard protocol (UDP port 514, or TCP/TLS port 6514 for encrypted transport) used to send log messages from network devices, servers, and applications to a centralized log collector or SIEM platform. Centralized logging is foundational to security operations — without it, analysts would need to log into each device individually to review events.</p>
+
+      <h4>Syslog Severity Levels</h4>
+      <p>Syslog messages are classified by severity on a scale from 0 (most critical) to 7 (least critical):</p>
       <ul>
-        <li><strong>Wireshark:</strong> Captures and analyzes network packets for diagnostics and troubleshooting.</li>
-        <li><strong>Snort:</strong> Real-time intrusion detection and prevention system (IDS/IPS) for identifying malicious network activity.</li>
-        <li><strong>Nmap:</strong> Network discovery and port scanning tool for identifying active devices and services.</li>
-        <li><strong>Zeek:</strong> Advanced network security monitoring platform providing deep packet inspection and custom analysis scripts.</li>
-        <li><strong>NetSpot:</strong> Wi-Fi analyzer to assess and optimize wireless network performance and coverage.</li>
+        <li><strong>0 — Emergency:</strong> System is unusable.</li>
+        <li><strong>1 — Alert:</strong> Immediate action required.</li>
+        <li><strong>2 — Critical:</strong> Critical conditions (e.g., hardware failure).</li>
+        <li><strong>3 — Error:</strong> Error conditions.</li>
+        <li><strong>4 — Warning:</strong> Warning conditions that may require attention.</li>
+        <li><strong>5 — Notice:</strong> Normal but significant conditions.</li>
+        <li><strong>6 — Informational:</strong> General operational messages.</li>
+        <li><strong>7 — Debug:</strong> Detailed diagnostic information used during troubleshooting.</li>
+      </ul>
+      <p>In a SIEM environment, syslog feeds from firewalls, routers, switches, and servers are aggregated, normalized, and correlated to detect patterns that no single log source would reveal on its own. For example, a firewall deny log combined with a DNS query to a known-malicious domain from the same source IP creates a high-confidence alert.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="summary-services">
+      <h3 id="summary-services">Summary</h3>
+      <ul>
+        <li>DNS logs are among the most valuable data sources for threat detection — monitor for tunneling, DGA activity, and cache poisoning.</li>
+        <li>DHCP logs provide critical MAC-to-IP correlation needed during incident investigations.</li>
+        <li>SNMP enables network monitoring through traps and polling — always use v3 with encryption in production.</li>
+        <li>Email security relies on SPF, DKIM, and DMARC to prevent spoofing. Header analysis is a core investigation skill.</li>
+        <li>Syslog centralizes logs from across the network into a SIEM for correlation and alerting.</li>
+        <li>Every network service is both a source of security telemetry and a potential attack surface — understanding both sides is essential.</li>
       </ul>
     </div>
 
     <div class="slide-footer" role="contentinfo">
-      <p>Cybersecurity Curriculum | Cloud Deployment Models</p>
+      <p>Cybersecurity Curriculum | Level 3: Network Services for Security Operations</p>
     </div>
   </div>
 
@@ -103,7 +156,7 @@
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L3-NET-006"
-    data-lesson-title="Cloud Deployment Models and Methods"
+    data-lesson-title="Network Services for Security Operations"
     data-course-id="Cybersecurity">
   </script>
 
@@ -111,7 +164,7 @@
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L3-NET-006"
-    data-lesson-title="Cloud Deployment Models and Methods"
+    data-lesson-title="Network Services for Security Operations"
     data-course-id="Cybersecurity"
     data-button-selector="#myFeedbackBtn">
   </script>

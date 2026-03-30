@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Network Security Architecture</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <div class="slide-container" role="main" aria-labelledby="heading-net-sec-arch">
+    <div class="slide-header">
+      <h1 id="heading-net-sec-arch">Network Security Architecture</h1>
+      <h2>Level 3: Networking</h2>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="objectives-netsec">
+      <h3 id="objectives-netsec">Learning Objectives</h3>
+      <ul>
+        <li>Explain the concept of defense-in-depth and how layered security controls protect enterprise networks.</li>
+        <li>Describe the purpose and function of Access Control Lists (ACLs) in controlling network traffic.</li>
+        <li>Differentiate between stateless and stateful firewall inspection and identify appropriate use cases for each.</li>
+        <li>Explain the architecture and purpose of a DMZ (demilitarized zone) and screened subnet designs.</li>
+        <li>Describe network security zones and how segmentation enforces the principle of least privilege at the network level.</li>
+        <li>Explain the role and placement of IDS and IPS within a network architecture.</li>
+        <li>Identify how zero-trust architecture differs from traditional perimeter-based security models.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="defense-depth">
+      <h3 id="defense-depth">Defense-in-Depth</h3>
+      <p>In an earlier lesson, you were introduced to the concept of <strong>defense-in-depth</strong> — the idea that no single security control is sufficient, so organizations layer multiple controls to create redundancy. In this lesson, we examine how that principle is implemented at the <strong>network architecture</strong> level.</p>
+      <p>Defense-in-depth in network security means that even if an attacker bypasses one control (say, they get past the firewall through a phishing attack), additional controls — network segmentation, internal firewalls, IDS/IPS, endpoint protection, and access controls — still stand between the attacker and critical assets. The goal is to slow down, detect, and contain attackers at every stage of an intrusion.</p>
+
+      <h4>Layered Controls in Practice</h4>
+      <ul>
+        <li><strong>Perimeter controls:</strong> External firewalls, border routers with ACLs, DDoS protection, email gateways.</li>
+        <li><strong>Network controls:</strong> Internal firewalls, VLANs, network segmentation, IDS/IPS sensors.</li>
+        <li><strong>Host controls:</strong> Endpoint detection and response (EDR), host-based firewalls, application whitelisting.</li>
+        <li><strong>Application controls:</strong> Web application firewalls (WAF), input validation, authentication mechanisms.</li>
+        <li><strong>Data controls:</strong> Encryption at rest and in transit, data loss prevention (DLP), access logging.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="acls-section">
+      <h3 id="acls-section">Access Control Lists (ACLs)</h3>
+      <p>An <strong>Access Control List (ACL)</strong> is a set of rules applied to a router or firewall interface that determines which traffic is permitted or denied based on criteria such as source IP, destination IP, protocol, and port number. ACLs are one of the most fundamental network security controls.</p>
+
+      <h4>How ACLs Work</h4>
+      <p>ACLs are processed <strong>top-down</strong> — the device evaluates each rule in order, and the first rule that matches the traffic determines the action (permit or deny). If no rule matches, most devices apply an <strong>implicit deny</strong> at the end, blocking all traffic that wasn't explicitly permitted.</p>
+      <p>This top-down processing means rule order matters significantly. A broadly permissive rule placed before a specific deny rule will override it. ACL design requires careful planning to avoid unintended access.</p>
+
+      <h4>ACL Types</h4>
+      <ul>
+        <li><strong>Standard ACLs:</strong> Filter traffic based on <em>source IP address only</em>. Simple but limited in granularity. Typically placed close to the destination to avoid accidentally blocking legitimate traffic.</li>
+        <li><strong>Extended ACLs:</strong> Filter based on source IP, destination IP, protocol (TCP, UDP, ICMP), and port numbers. Much more granular. Typically placed close to the source of the traffic to block unwanted traffic as early as possible.</li>
+      </ul>
+
+      <h4>ACL Example (Conceptual)</h4>
+      <p>Consider a rule set designed to protect a web server subnet (10.0.1.0/24):</p>
+      <ul>
+        <li>PERMIT TCP from ANY to 10.0.1.0/24 on port 443 (allow HTTPS traffic)</li>
+        <li>PERMIT TCP from 10.0.2.0/24 to 10.0.1.0/24 on port 22 (allow SSH from admin subnet only)</li>
+        <li>DENY IP from ANY to 10.0.1.0/24 (block everything else — explicit deny)</li>
+      </ul>
+      <p>This ACL allows the public to reach web services over HTTPS, permits administrators to SSH into servers from a specific subnet, and blocks all other access. This is the principle of <strong>least privilege</strong> applied at the network level.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="firewalls-section">
+      <h3 id="firewalls-section">Firewalls: Stateless vs. Stateful</h3>
+      <p>A <strong>firewall</strong> is a network security device that monitors and controls incoming and outgoing traffic based on predetermined security rules. While you've encountered firewalls in earlier lessons, understanding the difference between stateless and stateful inspection is critical for security architecture.</p>
+
+      <h4>Stateless (Packet Filtering) Firewalls</h4>
+      <p>A stateless firewall examines each packet individually and makes a permit/deny decision based solely on the packet's header information (source/destination IP, port, protocol). It has <strong>no awareness of connection state</strong> — it doesn't know whether a packet is part of an established session or a new request. Stateless firewalls are fast but can be bypassed by attackers who craft packets that appear to be part of legitimate connections.</p>
+
+      <h4>Stateful Inspection Firewalls</h4>
+      <p>A stateful firewall tracks the <strong>state of active connections</strong> in a state table. When an internal device initiates a connection to an external server, the firewall records the session details. Return traffic from the external server is automatically permitted if it matches an existing session in the state table. Unsolicited inbound traffic that doesn't match any known session is blocked.</p>
+      <p>Stateful firewalls are the standard for modern enterprise networks because they provide significantly better security than stateless filtering while maintaining reasonable performance.</p>
+
+      <h4>Next-Generation Firewalls (NGFW)</h4>
+      <p>NGFWs extend stateful inspection with additional capabilities such as <strong>deep packet inspection (DPI)</strong>, <strong>application-layer awareness</strong> (identifying applications regardless of port), <strong>integrated IPS</strong>, <strong>TLS/SSL inspection</strong>, and <strong>threat intelligence feeds</strong>. NGFWs can make security decisions based on the actual content and application, not just IP addresses and ports.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="dmz-section">
+      <h3 id="dmz-section">DMZ and Security Zones</h3>
+      <p>A <strong>DMZ (Demilitarized Zone)</strong> is a network segment that sits between the internal (trusted) network and the external (untrusted) Internet. The DMZ hosts services that need to be accessible from the Internet — such as web servers, email gateways, and DNS servers — while isolating them from the internal network. If a DMZ server is compromised, the attacker is contained in the DMZ and cannot directly access internal resources.</p>
+
+      <h4>DMZ Architecture</h4>
+      <p>A common DMZ design uses two firewalls (or a single firewall with three interfaces):</p>
+      <ul>
+        <li><strong>External firewall:</strong> Sits between the Internet and the DMZ. Permits specific inbound traffic (e.g., HTTPS on port 443) to DMZ servers and blocks everything else.</li>
+        <li><strong>Internal firewall:</strong> Sits between the DMZ and the internal network. Strictly controls what DMZ servers can access internally — typically very limited or no access. This prevents a compromised DMZ server from pivoting into the internal network.</li>
+      </ul>
+
+      <h4>Network Security Zones</h4>
+      <p>Beyond the basic DMZ model, enterprise networks are divided into multiple <strong>security zones</strong> based on trust levels and data sensitivity:</p>
+      <ul>
+        <li><strong>External / Untrusted Zone:</strong> The public Internet. All traffic from this zone is treated as potentially hostile.</li>
+        <li><strong>DMZ / Screened Subnet:</strong> Semi-trusted zone for public-facing services.</li>
+        <li><strong>Internal / Trusted Zone:</strong> The corporate network where employees and workstations operate.</li>
+        <li><strong>Restricted Zone:</strong> High-security segments containing sensitive data, such as database servers, financial systems, or HR records. Access is tightly controlled even from the internal zone.</li>
+        <li><strong>Management Zone:</strong> An isolated network segment for managing infrastructure devices (routers, switches, firewalls). Only accessible by network administrators from specific jump hosts or PAM (Privileged Access Management) systems.</li>
+      </ul>
+      <p>Traffic between zones is controlled by firewall rules that enforce the principle of least privilege — only the minimum necessary communication between zones is permitted.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="ids-ips-placement">
+      <h3 id="ids-ips-placement">IDS/IPS Placement and Architecture</h3>
+      <p>You've previously learned that <strong>Intrusion Detection Systems (IDS)</strong> monitor network traffic and alert on suspicious activity, while <strong>Intrusion Prevention Systems (IPS)</strong> can actively block detected threats. Where these systems are placed in the network architecture determines what they can see and protect.</p>
+
+      <h4>Common Placement Strategies</h4>
+      <ul>
+        <li><strong>Inline (IPS):</strong> Placed directly in the traffic path, typically between the firewall and the internal network. All traffic flows <em>through</em> the IPS, allowing it to block malicious packets in real time. The trade-off is that a failure or misconfiguration can disrupt traffic flow.</li>
+        <li><strong>Passive / Span Port (IDS):</strong> Receives a copy of network traffic via a mirror port (SPAN port) on a switch or via a network tap. The IDS analyzes the traffic copy and generates alerts but cannot block traffic directly. This is non-disruptive and useful for visibility without risk of false-positive-driven outages.</li>
+        <li><strong>At the perimeter:</strong> Monitors traffic entering and leaving the network. Good for detecting external threats but misses lateral movement within the internal network.</li>
+        <li><strong>At internal segment boundaries:</strong> Monitors traffic between security zones or VLANs. Essential for detecting lateral movement after an initial compromise — attackers who have gained a foothold on one segment and are attempting to reach others.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="zero-trust">
+      <h3 id="zero-trust">Zero-Trust Architecture</h3>
+      <p>Traditional network security follows a <strong>perimeter-based model</strong>: build a strong wall around the network, and trust everything inside it. The problem is that once an attacker breaches the perimeter (through phishing, stolen credentials, or a compromised VPN), they often have unrestricted access to move laterally across the internal network.</p>
+      <p><strong>Zero-trust architecture</strong> operates on the principle of <strong>"never trust, always verify."</strong> Every access request — whether from inside or outside the network — must be authenticated, authorized, and continuously validated. Key principles include:</p>
+      <ul>
+        <li><strong>Verify explicitly:</strong> Always authenticate and authorize based on all available data points — user identity, device health, location, behavior patterns.</li>
+        <li><strong>Least privilege access:</strong> Grant users and devices the minimum access needed to perform their function, and nothing more.</li>
+        <li><strong>Assume breach:</strong> Design the network as if an attacker is already inside. Segment aggressively, monitor continuously, and minimize the blast radius of any single compromise.</li>
+      </ul>
+      <p>Zero-trust doesn't mean eliminating firewalls or perimeter controls — it means supplementing them with internal controls so that the network doesn't collapse if the perimeter is breached. This model is increasingly important as remote work, cloud services, and BYOD blur the traditional network boundary.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="summary-netsec">
+      <h3 id="summary-netsec">Summary</h3>
+      <ul>
+        <li>Defense-in-depth layers multiple security controls so that no single point of failure compromises the entire network.</li>
+        <li>ACLs control traffic flow based on source, destination, protocol, and port — processed top-down with an implicit deny.</li>
+        <li>Stateful firewalls track connection state for stronger security; NGFWs add application awareness and deep packet inspection.</li>
+        <li>DMZs isolate public-facing services from internal networks. Enterprise networks use multiple security zones with varying trust levels.</li>
+        <li>IDS/IPS placement determines visibility and protection capability — inline for prevention, passive for detection.</li>
+        <li>Zero-trust architecture assumes breach and requires continuous verification, replacing implicit trust with explicit validation at every layer.</li>
+      </ul>
+    </div>
+
+    <div class="slide-footer" role="contentinfo">
+      <p>Cybersecurity Curriculum | Level 3: Network Security Architecture</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-007"
+    data-lesson-title="Network Security Architecture"
+    data-course-id="Cybersecurity">
+  </script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-007"
+    data-lesson-title="Network Security Architecture"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>

@@ -2,104 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cloud Computing</title>
+  <title>Routing Fundamentals &amp; NAT</title>
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
-  <div class="slide-container" role="main" aria-labelledby="heading-cloud-computing">
+  <div class="slide-container" role="main" aria-labelledby="heading-routing-nat">
     <div class="slide-header">
-      <h1 id="heading-cloud-computing">Cloud Computing</h1>
+      <h1 id="heading-routing-nat">Routing Fundamentals &amp; NAT</h1>
       <h2>Level 3: Networking</h2>
     </div>
 
-    <div class="section" role="region" aria-labelledby="objectives-cloud">
-      <h3 id="objectives-cloud">Learning Objectives</h3>
+    <div class="section" role="region" aria-labelledby="objectives-routing">
+      <h3 id="objectives-routing">Learning Objectives</h3>
       <ul>
-        <li>Define the importance of elasticity and scalability in cloud computing environments.</li>
-        <li>Compare and contrast different cloud deployment models.</li>
-        <li>Select the most appropriate cloud deployment model for a given scenario.</li>
-        <li>Identify emerging trends in cloud computing and cloud architecture technologies.</li>
+        <li>Explain how routers make forwarding decisions using routing tables.</li>
+        <li>Differentiate between static and dynamic routing and identify when each is appropriate.</li>
+        <li>Describe common dynamic routing protocols and their use cases in enterprise environments.</li>
+        <li>Explain the purpose of default gateways and their role in inter-network communication.</li>
+        <li>Describe Network Address Translation (NAT) and Port Address Translation (PAT) and explain why they are essential to modern networking.</li>
+        <li>Use traceroute to analyze the path packets take across a network and identify potential points of failure.</li>
       </ul>
     </div>
 
-    <div class="section" role="region" aria-labelledby="intro-cloud">
-      <h3 id="intro-cloud">Introduction to Cloud Computing</h3>
-      <p><strong>Cloud computing</strong> has transformed how organizations store, process, and manage data. Rather than maintaining expensive on-premises hardware, cloud computing leverages remote servers accessed over the internet to deliver computing resources, storage, and applications on demand. This model enables scalability, cost-efficiency, and accessibility from virtually anywhere.</p>
+    <div class="section" role="region" aria-labelledby="intro-routing">
+      <h3 id="intro-routing">How Routing Works</h3>
+      <p>In earlier lessons, you learned that routers connect different networks together. But how does a router actually decide <em>where</em> to send a packet? The answer lies in the <strong>routing table</strong> — a data structure stored in the router's memory that maps destination networks to the next hop or outgoing interface the packet should be forwarded through.</p>
 
-      <p>Modern cloud computing operates on several foundational concepts: <strong>virtualization, resource pooling, and on-demand self-service</strong>. Cloud providers offer computing power, storage, and networking as flexible services, enabling organizations to scale operations up or down in real time. Whether hosting web applications, managing databases, or supporting large-scale analytics, the cloud provides unparalleled agility and reliability.</p>
+      <p>When a packet arrives at a router, the router examines the destination IP address in the packet header. It then compares that address against entries in its routing table using a process called <strong>longest prefix match</strong> — the most specific route that matches the destination wins. If no specific match is found, the router falls back to a <strong>default route</strong> (0.0.0.0/0), which typically points toward the Internet or a core router.</p>
 
-      <p>By integrating cloud services such as <strong>Infrastructure as a Service (IaaS)</strong> and <strong>Software as a Service (SaaS)</strong>, organizations reduce infrastructure costs, streamline operations, and accelerate innovation. Additionally, cloud computing supports advanced technologies such as artificial intelligence, IoT, and big data analytics, making it a cornerstone of digital transformation strategies.</p>
-    </div>
+      <h4>The Default Gateway</h4>
+      <p>Every device on a network that needs to communicate outside its local subnet must have a <strong>default gateway</strong> configured. The default gateway is simply the IP address of the router interface on the local network. When a device wants to send data to an IP address that isn't on its own subnet, it forwards the packet to the default gateway, which then routes it toward the destination.</p>
+      <p>For example, if your computer has the IP address 192.168.1.50/24 and needs to reach 10.0.0.25, it recognizes that 10.0.0.25 is not on the 192.168.1.0/24 network. It sends the packet to its default gateway (e.g., 192.168.1.1), and the router handles it from there.</p>
 
-    <div class="section" role="region" aria-labelledby="elasticity-scalability">
-      <h3 id="elasticity-scalability">Elasticity and Scalability</h3>
-      <p><strong>Elasticity</strong> refers to the cloud’s ability to automatically adjust resources—such as CPU, memory, or storage—based on real-time demand. When workloads increase, additional resources are provisioned automatically, and when demand decreases, unused resources are released. This ensures optimal performance while preventing unnecessary costs.</p>
-
-      <p>For example, during an online sales event, a website may experience a sudden spike in traffic. Elastic cloud environments can automatically allocate additional servers to handle the increased load and scale back down once traffic returns to normal levels. This dynamic adjustment allows for both performance stability and cost control.</p>
-
-      <p><strong>Scalability</strong> focuses on the system’s ability to grow over time. It ensures that as user demand or business operations expand, the cloud environment can handle increased workloads without performance degradation. Scalability can be achieved in two main ways:</p>
+      <h4>Routing Table Components</h4>
+      <p>A typical routing table entry includes:</p>
       <ul>
-        <li><strong>Vertical Scalability (Scaling Up):</strong> Adding more resources (e.g., CPU, RAM, or storage) to an existing server.</li>
-        <li><strong>Horizontal Scalability (Scaling Out):</strong> Adding more servers or nodes to distribute workload evenly across multiple systems.</li>
-      </ul>
-      <img src="scale.png">
-
-      <p>Both elasticity and scalability are critical to maintaining reliability and efficiency in cloud environments. Elasticity focuses on real-time adjustments, while scalability emphasizes long-term growth capacity.</p>
-
-      <h4>Benefits of Elasticity and Scalability</h4>
-      <ul>
-        <li><strong>Cost Efficiency:</strong> Pay only for resources in use, minimizing waste and optimizing spending.</li>
-        <li><strong>Flexibility:</strong> Adapt quickly to workload changes and operational demands.</li>
-        <li><strong>Performance Optimization:</strong> Maintain system responsiveness under variable conditions.</li>
-        <li><strong>Resource Management:</strong> Allocate resources intelligently to prevent overuse or underuse.</li>
-        <li><strong>Business Agility:</strong> Empower organizations to innovate and react swiftly to market changes.</li>
+        <li><strong>Destination Network:</strong> The network address and prefix length (e.g., 10.0.0.0/8).</li>
+        <li><strong>Next Hop:</strong> The IP address of the next router in the path toward the destination.</li>
+        <li><strong>Outgoing Interface:</strong> The physical or logical interface the packet should be sent out of.</li>
+        <li><strong>Metric / Cost:</strong> A value used to determine the "best" path when multiple routes exist to the same destination. Lower metrics are preferred.</li>
+        <li><strong>Route Source:</strong> How the route was learned — directly connected, statically configured, or dynamically discovered.</li>
       </ul>
     </div>
 
-    <div class="section" role="region" aria-labelledby="cloud-models">
-      <h3 id="cloud-models">Cloud Deployment Models</h3>
-      <p>Cloud deployment models define how cloud services are made available to users. Understanding these models helps organizations choose the best fit for their operational, security, and compliance requirements.</p>
+    <div class="section" role="region" aria-labelledby="static-dynamic">
+      <h3 id="static-dynamic">Static vs. Dynamic Routing</h3>
+      <p>Routes can be added to a routing table in two fundamental ways: manually (static) or automatically (dynamic).</p>
 
+      <h4>Static Routing</h4>
+      <p>A <strong>static route</strong> is manually configured by a network administrator. The administrator explicitly tells the router: "To reach network X, forward packets to next-hop Y." Static routes are simple, predictable, and require no additional protocol overhead. They are ideal for small networks, stub networks (networks with only one exit path), or specific paths that should never change.</p>
+      <p>The downside is scalability and resilience. If a link goes down, static routes don't automatically adjust — an administrator must manually update the configuration. In a large enterprise network with hundreds of subnets, maintaining static routes becomes impractical.</p>
+
+      <h4>Dynamic Routing</h4>
+      <p><strong>Dynamic routing</strong> uses routing protocols that allow routers to automatically discover networks, share route information with neighboring routers, and adapt to topology changes. If a link fails, dynamic routing protocols detect the change and recalculate the best available path — often within seconds.</p>
+
+      <h4>Common Dynamic Routing Protocols</h4>
+      <p>You don't need to configure these protocols at this stage, but understanding what they do and where they're used is important for security analysis. When reviewing network logs or SIEM alerts, you may encounter references to these protocols.</p>
       <ul>
-        <li><strong>Public Cloud:</strong> Operated by third-party providers such as AWS, Microsoft Azure, or Google Cloud. Resources are shared among multiple organizations, offering scalability and cost savings. Ideal for startups and businesses that need flexibility and low maintenance.</li>
-
-        <li><strong>Private Cloud:</strong> Dedicated infrastructure for a single organization, providing greater control, customization, and security. Suitable for industries with strict compliance requirements, such as finance or healthcare.</li>
-
-        <li><strong>Hybrid Cloud:</strong> Combines public and private cloud environments, enabling data and application portability. This approach allows sensitive data to remain on-premises while leveraging the public cloud for scalable workloads.</li>
-
-        <li><strong>Multi-Cloud:</strong> Involves using multiple public cloud providers simultaneously to reduce dependency on a single vendor, increase resilience, and optimize performance across regions or services.</li>
+        <li><strong>RIP (Routing Information Protocol):</strong> One of the oldest routing protocols. Uses hop count as its metric (maximum of 15 hops). Simple but limited in scale. Rarely used in modern enterprise networks but still appears in legacy environments.</li>
+        <li><strong>OSPF (Open Shortest Path First):</strong> A link-state protocol widely used in enterprise networks. Routers build a complete map of the network topology and calculate the shortest path using Dijkstra's algorithm. OSPF converges quickly after topology changes and scales well with proper area design.</li>
+        <li><strong>BGP (Border Gateway Protocol):</strong> The protocol that runs the Internet. BGP is used between autonomous systems (large networks operated by ISPs, enterprises, or governments) to exchange routing information. Understanding BGP at a conceptual level helps explain how Internet traffic flows — and how BGP hijacking attacks can redirect traffic maliciously.</li>
       </ul>
 
-      <p>Choosing the right model depends on factors such as security needs, budget, workload sensitivity, and scalability goals. Hybrid and multi-cloud solutions are increasingly popular for organizations seeking flexibility and redundancy.</p>
+      <h4>Why This Matters for Cybersecurity</h4>
+      <p>Routing protocols can be targeted by attackers. Route poisoning, BGP hijacking, and rogue DHCP/gateway attacks all exploit how devices make routing decisions. As a security analyst, understanding routing fundamentals helps you recognize when traffic is taking an unexpected path — a potential indicator of compromise.</p>
     </div>
 
-    <div class="section" role="region" aria-labelledby="cloud-services">
-      <h3 id="cloud-services">Cloud Service Models</h3>
-      <p>Beyond deployment models, cloud computing is categorized into three main service models that define the level of control and responsibility shared between providers and customers:</p>
+    <div class="section" role="region" aria-labelledby="nat-pat">
+      <h3 id="nat-pat">Network Address Translation (NAT)</h3>
+      <p><strong>Network Address Translation (NAT)</strong> is a process performed by routers and firewalls that modifies the source or destination IP address in packet headers as they pass through the device. NAT was originally developed to address IPv4 address exhaustion — there are only about 4.3 billion IPv4 addresses, far fewer than the number of devices connected to the Internet today.</p>
+
+      <h4>How NAT Works</h4>
+      <p>In a typical home or office network, devices use <strong>private IP addresses</strong> (e.g., 192.168.1.x, 10.0.0.x, 172.16.x.x) that are not routable on the public Internet. When a device sends traffic to the Internet, the router performing NAT replaces the private source IP with the router's <strong>public IP address</strong> before forwarding the packet. When the response comes back, the router translates the public address back to the original private address and delivers the packet to the correct internal device.</p>
+
+      <h4>Types of NAT</h4>
       <ul>
-        <li><strong>Infrastructure as a Service (IaaS):</strong> Provides virtualized computing resources such as servers, storage, and networking. Users manage their operating systems and applications. Examples: AWS EC2, Google Compute Engine.</li>
-
-        <li><strong>Platform as a Service (PaaS):</strong> Offers a platform for developers to build, deploy, and manage applications without managing underlying infrastructure. Examples: Google App Engine, Microsoft Azure App Service.</li>
-
-        <li><strong>Software as a Service (SaaS):</strong> Delivers ready-to-use applications over the internet. Users access software through a web browser without installation or maintenance. Examples: Microsoft 365, Salesforce, Google Workspace.</li>
+        <li><strong>Static NAT:</strong> Maps one private IP address to one public IP address permanently. Used when an internal server (e.g., a web server) needs to be consistently reachable from the Internet.</li>
+        <li><strong>Dynamic NAT:</strong> Maps private addresses to a pool of available public addresses on a first-come, first-served basis. Less common today due to the prevalence of PAT.</li>
+        <li><strong>PAT (Port Address Translation):</strong> Also called NAT overload. Maps <em>many</em> private IP addresses to a <em>single</em> public IP address by using unique port numbers to track each session. PAT is what most home routers and enterprise firewalls use. When you see your router's single public IP handling traffic from dozens of internal devices simultaneously, that's PAT in action.</li>
       </ul>
+
+      <h4>NAT and Security</h4>
+      <p>NAT provides a degree of obscurity by hiding internal IP addresses from external networks. However, NAT is <strong>not a security control</strong> — it was designed for address conservation, not protection. Attackers can still exploit services exposed through port forwarding, and NAT does nothing to prevent outbound malicious traffic from internal compromised hosts. Security should always be enforced through firewalls, ACLs, and proper segmentation — not relied upon through NAT alone.</p>
     </div>
 
-    <div class="section" role="region" aria-labelledby="emerging-trends">
-      <h3 id="emerging-trends">Emerging Trends in Cloud Computing</h3>
+    <div class="section" role="region" aria-labelledby="traceroute-section">
+      <h3 id="traceroute-section">Traceroute: Analyzing Network Paths</h3>
+      <p><strong>Traceroute</strong> (called <code>tracert</code> on Windows and <code>traceroute</code> on Linux/Mac) is a diagnostic tool that maps the path a packet takes from your device to a destination, showing every router (hop) along the way. It works by sending packets with incrementally increasing TTL (Time to Live) values — each router that processes the packet decrements the TTL by one, and when it reaches zero, the router sends back an ICMP "Time Exceeded" message, revealing its IP address.</p>
+
+      <h4>Reading Traceroute Output</h4>
+      <p>Each line in the traceroute output represents one hop. The output typically shows:</p>
       <ul>
-        <li><strong>Serverless Computing:</strong> Executes code in response to events without managing servers directly, enhancing efficiency and reducing operational overhead.</li>
-        <li><strong>Edge Computing:</strong> Brings computation closer to data sources (IoT devices), minimizing latency and bandwidth use.</li>
-        <li><strong>AI and Machine Learning Integration:</strong> Cloud platforms increasingly embed AI-driven services for analytics, automation, and predictive insights.</li>
-        <li><strong>Containerization and Orchestration:</strong> Technologies like Docker and Kubernetes enable consistent deployment, scaling, and management of applications across environments.</li>
-        <li><strong>Zero-Trust Security:</strong> Cloud security strategies now emphasize continuous verification and least-privilege access to protect distributed assets.</li>
+        <li><strong>Hop number:</strong> The sequential position in the path.</li>
+        <li><strong>Router IP address (or hostname):</strong> The identity of the device at that hop.</li>
+        <li><strong>Round-trip times:</strong> Usually three time measurements (in milliseconds) showing how long it took to receive the response from that hop.</li>
+      </ul>
+      <p>A sudden spike in latency at a specific hop may indicate congestion or a problem at that point in the network. Asterisks (* * *) in the output indicate that a hop did not respond — this could mean the router is configured to block ICMP traffic (common for security), not necessarily that there's a failure.</p>
+
+      <h4>Traceroute for Security Analysis</h4>
+      <p>Security analysts use traceroute to verify that traffic is taking expected paths, identify unexpected routing changes that could indicate a man-in-the-middle attack or BGP hijack, and troubleshoot connectivity issues to monitored assets. Comparing current traceroute output against a known baseline can quickly reveal anomalies.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="summary-routing">
+      <h3 id="summary-routing">Summary</h3>
+      <ul>
+        <li>Routers use routing tables to make forwarding decisions based on destination IP addresses.</li>
+        <li>Static routes are manually configured and best for simple or predictable paths. Dynamic routing protocols (RIP, OSPF, BGP) enable routers to adapt automatically to network changes.</li>
+        <li>NAT translates private IP addresses to public addresses, with PAT being the most common form used today.</li>
+        <li>NAT provides address conservation but is not a substitute for proper security controls.</li>
+        <li>Traceroute is a valuable diagnostic and security analysis tool for mapping network paths and detecting anomalies.</li>
       </ul>
     </div>
 
     <div class="slide-footer" role="contentinfo">
-      <p>Cybersecurity Curriculum | Cloud Computing</p>
+      <p>Cybersecurity Curriculum | Level 3: Routing Fundamentals &amp; NAT</p>
     </div>
   </div>
 
@@ -113,7 +131,7 @@
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L3-NET-005"
-    data-lesson-title="Cloud Computing"
+    data-lesson-title="Routing Fundamentals and NAT"
     data-course-id="Cybersecurity">
   </script>
 
@@ -121,7 +139,7 @@
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L3-NET-005"
-    data-lesson-title="Cloud Computing"
+    data-lesson-title="Routing Fundamentals and NAT"
     data-course-id="Cybersecurity"
     data-button-selector="#myFeedbackBtn">
   </script>

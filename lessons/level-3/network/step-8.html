@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Network Traffic Analysis &amp; Monitoring</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <div class="slide-container" role="main" aria-labelledby="heading-traffic-analysis">
+    <div class="slide-header">
+      <h1 id="heading-traffic-analysis">Network Traffic Analysis &amp; Monitoring</h1>
+      <h2>Level 3: Networking</h2>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="objectives-traffic">
+      <h3 id="objectives-traffic">Learning Objectives</h3>
+      <ul>
+        <li>Explain the purpose and methodology of packet capture and network traffic analysis.</li>
+        <li>Use Wireshark to capture, filter, and interpret network traffic at a foundational level.</li>
+        <li>Describe the differences between full packet capture, NetFlow/sFlow, and log-based monitoring.</li>
+        <li>Identify common network scanning tools (Nmap, Zeek, Snort) and describe their roles in security operations.</li>
+        <li>Recognize indicators of suspicious network activity through traffic pattern analysis.</li>
+        <li>Explain how network monitoring data feeds into SIEM platforms for correlation and alerting.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="intro-traffic">
+      <h3 id="intro-traffic">Why Traffic Analysis Matters</h3>
+      <p>Network traffic is the lifeblood of every organization — and it's also where attacks leave evidence. Malware beaconing to command-and-control servers, data exfiltration, lateral movement between compromised hosts, reconnaissance scanning — all of these generate detectable network traffic patterns.</p>
+      <p>As a cybersecurity analyst, your ability to capture, interpret, and act on network traffic data is one of the most valuable skills you can develop. This lesson introduces the tools and techniques you'll use to monitor networks and identify threats.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="packet-capture">
+      <h3 id="packet-capture">Packet Capture Fundamentals</h3>
+      <p>A <strong>packet capture (PCAP)</strong> is a recording of raw network traffic — every packet, with full header and payload data, saved to a file for analysis. Packet captures provide the most granular visibility available, allowing analysts to reconstruct sessions, examine payloads, and see exactly what was transmitted.</p>
+
+      <h4>How Packet Capture Works</h4>
+      <p>To capture traffic, you need to position your capture point where it can see the relevant packets:</p>
+      <ul>
+        <li><strong>Network TAP (Test Access Point):</strong> A physical device installed inline on a network link that copies all traffic passing through it to a monitoring port. TAPs are passive and do not introduce latency or risk of failure. They are the gold standard for full-fidelity packet capture.</li>
+        <li><strong>SPAN/Mirror Port:</strong> A switch feature that copies traffic from one or more ports (or VLANs) to a designated monitoring port. Easier to deploy than TAPs but may drop packets under heavy load since the switch prioritizes forwarding over mirroring.</li>
+        <li><strong>Host-Based Capture:</strong> Running a capture tool (like Wireshark or tcpdump) directly on a device. This captures only traffic to and from that specific host. Useful for targeted analysis but provides limited network-wide visibility.</li>
+      </ul>
+
+      <h4>When to Use Packet Capture</h4>
+      <p>Full packet capture is resource-intensive — storing every packet on a busy network generates enormous amounts of data. Analysts typically use full PCAP for targeted investigations: confirming an alert from a SIEM, reconstructing an attack timeline, analyzing malware communication patterns, or extracting transferred files. For continuous broad monitoring, flow data (discussed below) is more practical.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="wireshark-section">
+      <h3 id="wireshark-section">Wireshark: Practical Traffic Analysis</h3>
+      <p><strong>Wireshark</strong> is the most widely used network protocol analyzer. It captures live traffic and provides a graphical interface for inspecting packets at every layer of the network stack. You were briefly introduced to Wireshark in the A+ curriculum — this lesson expands on that foundation.</p>
+
+      <h4>Wireshark Interface Overview</h4>
+      <ul>
+        <li><strong>Packet List Pane (top):</strong> Displays a summary of each captured packet — time, source/destination IPs, protocol, and a brief info description.</li>
+        <li><strong>Packet Details Pane (middle):</strong> Shows the full protocol breakdown for the selected packet, organized by network layer. You can expand each layer to see header fields.</li>
+        <li><strong>Packet Bytes Pane (bottom):</strong> Displays the raw hex and ASCII representation of the packet data.</li>
+      </ul>
+
+      <h4>Essential Display Filters</h4>
+      <p>Wireshark captures can contain thousands or millions of packets. Display filters let you focus on what matters. Some essential filters:</p>
+      <ul>
+        <li><code>ip.addr == 192.168.1.50</code> — Show all traffic to or from a specific IP.</li>
+        <li><code>tcp.port == 443</code> — Show all HTTPS traffic.</li>
+        <li><code>dns</code> — Show only DNS queries and responses.</li>
+        <li><code>http.request.method == "POST"</code> — Show only HTTP POST requests (useful for finding form submissions or data uploads).</li>
+        <li><code>tcp.flags.syn == 1 && tcp.flags.ack == 0</code> — Show only TCP SYN packets (new connection attempts). A flood of these from one source could indicate a SYN scan or SYN flood attack.</li>
+        <li><code>frame contains "password"</code> — Search packet content for a specific string. Useful for finding cleartext credential transmission.</li>
+      </ul>
+
+      <h4>Following Streams</h4>
+      <p>One of Wireshark's most powerful features is the ability to <strong>follow a stream</strong> — right-click on any packet and select "Follow > TCP Stream" (or UDP/HTTP stream). This reconstructs the entire conversation between two endpoints in readable format, making it easy to see what data was exchanged. This is invaluable for analyzing C2 communications, data exfiltration, and suspicious file transfers.</p>
+
+      <h4>Identifying Suspicious Traffic in Wireshark</h4>
+      <p>Patterns to look for during analysis:</p>
+      <ul>
+        <li><strong>Beaconing:</strong> Regular, periodic connections from an internal host to an external IP — especially at consistent intervals (e.g., every 60 seconds). This pattern often indicates malware communicating with a C2 server.</li>
+        <li><strong>Port scanning:</strong> A single source IP sending SYN packets to many different ports on the same destination (vertical scan) or the same port across many destinations (horizontal scan).</li>
+        <li><strong>Unusual protocols or ports:</strong> SSH traffic on port 80, DNS traffic on non-standard ports, or encrypted traffic to unexpected destinations may indicate tunneling or evasion techniques.</li>
+        <li><strong>Large data transfers to external IPs:</strong> Significant outbound data volume to unfamiliar destinations could indicate exfiltration.</li>
+        <li><strong>Cleartext credentials:</strong> HTTP (not HTTPS), FTP, Telnet, and unencrypted SMTP can expose usernames and passwords in packet payloads.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="flow-data">
+      <h3 id="flow-data">NetFlow and sFlow: Traffic Metadata</h3>
+      <p>While full packet capture provides maximum detail, it's not practical to store every packet on large networks indefinitely. <strong>NetFlow</strong> (developed by Cisco) and <strong>sFlow</strong> (an industry standard) collect <strong>traffic metadata</strong> — summary information about network sessions without capturing the actual packet contents.</p>
+
+      <h4>What Flow Data Contains</h4>
+      <p>A flow record typically includes:</p>
+      <ul>
+        <li>Source and destination IP addresses</li>
+        <li>Source and destination port numbers</li>
+        <li>Protocol (TCP, UDP, ICMP)</li>
+        <li>Number of packets and bytes transferred</li>
+        <li>Start and end timestamps</li>
+        <li>TCP flags (SYN, ACK, FIN, RST)</li>
+      </ul>
+      <p>This metadata is far smaller than full PCAP data and can be stored for weeks or months, enabling long-term trend analysis and historical investigation. Flow data is excellent for answering questions like: "What external IPs did this host communicate with over the past 30 days?" or "Which internal host transferred the most data to the Internet last week?"</p>
+
+      <h4>Flow Data vs. PCAP: Complementary Tools</h4>
+      <p>Think of flow data as the phone bill (who called whom, when, and for how long) and packet capture as the recorded phone call (the actual content of the conversation). Security teams typically use flow data for broad monitoring and trend detection, then pivot to full packet capture for deep-dive investigation when an alert fires.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="security-tools">
+      <h3 id="security-tools">Network Security Monitoring Tools</h3>
+      <p>Beyond Wireshark, several specialized tools play critical roles in network security monitoring. Understanding what each tool does and where it fits in the security stack prepares you for the tooling you'll encounter in Security+ and CySA+ environments.</p>
+
+      <ul>
+        <li><strong>Nmap (Network Mapper):</strong> A network discovery and port scanning tool. Nmap identifies active hosts, open ports, running services, and operating system fingerprints on a network. Security teams use Nmap for asset discovery and vulnerability assessment. Attackers use it for reconnaissance — so understanding Nmap output helps you recognize scanning activity in your logs.</li>
+        <li><strong>Snort:</strong> An open-source network intrusion detection and prevention system (IDS/IPS). Snort analyzes network traffic in real time against a database of rules (signatures) that describe known attack patterns. When a match is found, Snort generates an alert or blocks the traffic. Writing and tuning Snort rules is a key SOC analyst skill.</li>
+        <li><strong>Zeek (formerly Bro):</strong> A network security monitoring platform that goes beyond signature matching. Zeek passively monitors traffic and generates detailed, structured logs describing network activity — connection logs, DNS queries, HTTP requests, file transfers, SSL/TLS certificate information, and more. Zeek's logs are highly valuable for threat hunting and forensic investigation because they provide rich context about network behavior.</li>
+        <li><strong>tcpdump:</strong> A command-line packet capture tool available on Linux and macOS. Less visual than Wireshark but extremely useful for quick captures on servers and headless systems. Analysts often use tcpdump to capture traffic remotely, then transfer the PCAP file to Wireshark for detailed analysis.</li>
+        <li><strong>NetSpot / Wi-Fi Analyzers:</strong> Tools for assessing wireless network performance, coverage, and interference. Useful for identifying rogue access points and verifying wireless security configurations.</li>
+      </ul>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="siem-integration">
+      <h3 id="siem-integration">Feeding Data into SIEM</h3>
+      <p>All of the data sources discussed in this lesson — packet captures, flow data, IDS alerts, Zeek logs — can be forwarded to a <strong>Security Information and Event Management (SIEM)</strong> platform. The SIEM aggregates data from across the network, normalizes it into a common format, and applies correlation rules to detect complex attack patterns that no single data source would reveal.</p>
+      <p>For example, a SIEM might correlate a Snort IDS alert (suspicious inbound traffic) with Zeek connection logs (showing the targeted host subsequently made outbound connections to an unfamiliar IP) and DNS logs (showing queries to a recently registered domain) to generate a high-confidence alert for potential compromise.</p>
+      <p>You will work extensively with SIEM platforms in the Security+ and CySA+ portions of this program. The network monitoring skills you're building now provide the data that makes SIEM analysis possible.</p>
+    </div>
+
+    <div class="section" role="region" aria-labelledby="summary-traffic">
+      <h3 id="summary-traffic">Summary</h3>
+      <ul>
+        <li>Packet capture (PCAP) provides full visibility into network traffic and is essential for incident investigation and forensic analysis.</li>
+        <li>Wireshark is the primary tool for interactive traffic analysis — learn its display filters and stream-following capabilities.</li>
+        <li>NetFlow/sFlow collect traffic metadata for long-term monitoring and trend analysis, complementing full packet capture.</li>
+        <li>Nmap discovers hosts and services; Snort detects known threats via signatures; Zeek generates rich behavioral logs for hunting and forensics.</li>
+        <li>Network monitoring data feeds into SIEM platforms for centralized correlation, alerting, and investigation — connecting the dots across multiple data sources.</li>
+      </ul>
+    </div>
+
+    <div class="slide-footer" role="contentinfo">
+      <p>Cybersecurity Curriculum | Level 3: Network Traffic Analysis &amp; Monitoring</p>
+    </div>
+  </div>
+
+  <!-- Prism.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <!-- Lesson Entry Script -->
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-008"
+    data-lesson-title="Network Traffic Analysis and Monitoring"
+    data-course-id="Cybersecurity">
+  </script>
+
+  <!-- Feedback Script -->
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L3-NET-008"
+    data-lesson-title="Network Traffic Analysis and Monitoring"
+    data-course-id="Cybersecurity"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>
