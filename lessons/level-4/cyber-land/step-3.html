@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 3: Security Zones and Identity Management</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson 3: Security Zones and Identity Management</h1>
+      <h2>Level 4: Cybersecurity Essentials</h2>
+    </div>
+
+    <div class="section">
+      <h2>Lesson Overview</h2>
+      <p>Building on the network security architecture foundations from Level 3 — where you learned about firewalls, ACLs, DMZ design, IDS/IPS placement, and defense-in-depth — this lesson focuses on how organizations define and manage security zones and control who gets access to what. You will explore the purpose and design of intranets, extranets, honeynets, and ad hoc networks, then dive deep into identity and access management (IAM), which is one of the most critical and frequently tested areas in cybersecurity.</p>
+    </div>
+
+    <div class="section">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Identify and explain the purpose of security zones including intranet, extranet, DMZ, honeynet, and ad hoc networks.</li>
+        <li>Compare security controls and access models across different zone types.</li>
+        <li>Explain identity and access management (IAM) principles including authentication, authorization, and accounting (AAA).</li>
+        <li>Differentiate between access control models: RBAC, ABAC, MAC, and DAC.</li>
+        <li>Describe multi-factor authentication (MFA) categories and implementation strategies.</li>
+        <li>Understand directory services, single sign-on (SSO), and privileged access management (PAM).</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Security Zones In-Depth</h3>
+      <p>In Level 3 you learned that security zones segment networks based on trust levels, with firewalls enforcing boundaries between them. Here we examine the specific zone types and their operational roles within an organization.</p>
+
+      <h4>Intranet — Internal Private Network</h4>
+      <p>A private network accessible only to an organization's internal users. Used for internal collaboration, hosting proprietary applications, and protecting sensitive workflows.</p>
+      <ul>
+        <li><strong>Access:</strong> Corporate LAN or VPN only. Authentication via Active Directory/LDAP with MFA.</li>
+        <li><strong>Security:</strong> Protected by segmentation, VLANs, firewalls, and SIEM monitoring.</li>
+        <li><strong>Examples:</strong> HR portals, internal wikis, ticketing systems, payroll applications.</li>
+      </ul>
+      <pre><code>// Example flow
+Employee → Corporate LAN / VPN → Intranet server (HR portal, wiki, ticketing)</code></pre>
+
+      <h4>Extranet — Controlled External Access</h4>
+      <p>A controlled extension of the intranet that gives authorized external parties (partners, vendors, customers) limited and audited access to specific internal resources.</p>
+      <ul>
+        <li><strong>Access:</strong> Authenticated and authorized via SSO, MFA, client certificates, or site-to-site VPN.</li>
+        <li><strong>Security:</strong> Sits behind reverse proxies and WAFs. Strict logging, encryption, and least-privilege controls are mandatory.</li>
+        <li><strong>Examples:</strong> Vendor dashboards, partner portals, B2B API endpoints.</li>
+      </ul>
+      <pre><code>// Example flow
+Partner → Secure Portal / VPN → Extranet server → Controlled access to specific internal resources</code></pre>
+
+      <h4>Honeynet</h4>
+      <p>A controlled network environment designed to attract and analyze attacker activity without compromising production systems. Honeynets contain multiple honeypots (decoy systems) that mimic real services. Security teams monitor attacker behavior, tools, and techniques to improve defenses and gather threat intelligence.</p>
+      <ul>
+        <li><strong>Purpose:</strong> Threat intelligence gathering, attacker technique analysis, early warning detection.</li>
+        <li><strong>Placement:</strong> Isolated from production networks with strict egress controls to prevent attackers from pivoting.</li>
+        <li><strong>Risk:</strong> Must be carefully managed — a compromised honeynet could become a launchpad if not properly contained.</li>
+      </ul>
+
+      <h4>Ad Hoc Networks</h4>
+      <p>Temporary, decentralized networks that allow direct device-to-device communication without a traditional access point or router. Common in field operations, emergency response, and IoT deployments.</p>
+      <ul>
+        <li><strong>Security concern:</strong> No centralized authentication or encryption by default. Vulnerable to eavesdropping, MitM attacks, and rogue nodes.</li>
+        <li><strong>Mitigation:</strong> Use encrypted protocols, device authentication, and limit ad hoc connections via group policy where possible.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Zone Architecture — Network Diagram</h3>
+      <div class="diagram">
+        <div class="svg-wrap" role="img" aria-label="Network diagram showing Internet, firewall, DMZ, firewall, and internal network with extranet bridge">
+          <svg viewBox="0 0 900 360" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#5dd0b6"/>
+                <stop offset="1" stop-color="#6ea8fe"/>
+              </linearGradient>
+              <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="6" stdDeviation="14" flood-color="#000" flood-opacity="0.45"/>
+              </filter>
+            </defs>
+            <rect x="36" y="28" rx="10" ry="10" width="160" height="48" fill="#071829" stroke="rgba(255,255,255,0.04)"/>
+            <text x="116" y="60" text-anchor="middle" fill="#cfeef0" font-size="12" font-weight="700">Internet</text>
+            <g transform="translate(220,18)">
+              <rect x="0" y="0" width="36" height="96" rx="8" fill="#081827" stroke="rgba(255,255,255,0.03)"/>
+              <text x="18" y="52" fill="#e6f6f6" font-size="10" text-anchor="middle" font-weight="700" transform="rotate(90,18,52)">Firewall</text>
+            </g>
+            <rect x="280" y="12" width="360" height="120" rx="10" fill="#072233" stroke="rgba(255,255,255,0.03)"/>
+            <text x="460" y="34" text-anchor="middle" fill="#dff5ef" font-size="13" font-weight="700">DMZ</text>
+            <text x="460" y="60" text-anchor="middle" fill="#97b8c7" font-size="12">(Web / Mail / DNS)</text>
+            <g transform="translate(660,18)">
+              <rect x="0" y="0" width="36" height="96" rx="8" fill="#081827" stroke="rgba(255,255,255,0.03)"/>
+              <text x="18" y="52" fill="#e6f6f6" font-size="10" text-anchor="middle" font-weight="700" transform="rotate(90,18,52)">Firewall</text>
+            </g>
+            <rect x="720" y="12" width="144" height="120" rx="10" fill="#05202b" stroke="rgba(255,255,255,0.03)"/>
+            <text x="792" y="34" text-anchor="middle" fill="#dff5ef" font-size="13" font-weight="700">Internal</text>
+            <text x="792" y="60" text-anchor="middle" fill="#97b8c7" font-size="12">Intranet (Apps, DBs)</text>
+            <line x1="196" y1="52" x2="220" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+            <line x1="256" y1="52" x2="280" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+            <line x1="640" y1="52" x2="660" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+            <line x1="696" y1="52" x2="720" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+            <text x="356" y="110" fill="#97b8c7" font-size="11">Public-facing traffic permitted →</text>
+            <text x="708" y="200" fill="#97b8c7" font-size="11" text-anchor="end">Strict, limited flows → Internal services</text>
+          </svg>
+        </div>
+      </div>
+
+      <h4>Zone Comparison</h4>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Feature</th><th>Intranet</th><th>Extranet</th><th>DMZ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Primary users</td><td>Internal employees</td><td>Authorized external partners</td><td>Public internet users</td></tr>
+          <tr><td>Accessibility</td><td>Private/internal only</td><td>Restricted external access</td><td>Public-facing but isolated</td></tr>
+          <tr><td>Network location</td><td>Inside internal LAN</td><td>Bridge into internal network</td><td>Between internal LAN and internet</td></tr>
+          <tr><td>Security focus</td><td>Protect internal data</td><td>Secure partner access</td><td>Isolate public services</td></tr>
+          <tr><td>Examples</td><td>HR portal, knowledge base</td><td>Vendor portal, B2B APIs</td><td>Web servers, DNS, mail gateways</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>Identity and Access Management (IAM)</h3>
+      <p>IAM is the discipline of ensuring the right individuals access the right resources at the right times for the right reasons. It encompasses the processes, policies, and technologies used to manage digital identities and control access across an organization. IAM is built on the AAA framework:</p>
+      <ul>
+        <li><strong>Authentication:</strong> Verifying that a user or device is who they claim to be (proving identity).</li>
+        <li><strong>Authorization:</strong> Determining what an authenticated user is allowed to do (enforcing permissions).</li>
+        <li><strong>Accounting:</strong> Logging and tracking user activities for audit, compliance, and forensic purposes.</li>
+      </ul>
+
+      <h4>Multi-Factor Authentication (MFA)</h4>
+      <p>MFA requires users to present two or more verification factors from different categories before granting access. The three standard factor categories are:</p>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Factor Category</th><th>Description</th><th>Examples</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Something you know</td><td>Knowledge-based credentials</td><td>Passwords, PINs, security questions</td></tr>
+          <tr><td>Something you have</td><td>Physical tokens or devices</td><td>Smart cards, hardware tokens (YubiKey), authenticator apps, SMS codes</td></tr>
+          <tr><td>Something you are</td><td>Biometric identifiers</td><td>Fingerprint, facial recognition, iris scan, voice recognition</td></tr>
+        </tbody>
+      </table>
+      <p>True MFA requires factors from <em>different</em> categories. A password plus a security question is two knowledge factors — not MFA. A password plus a hardware token (knowledge + possession) is genuine MFA.</p>
+
+      <h4>Access Control Models</h4>
+      <p>Access control models define how permissions are assigned and enforced across systems:</p>
+      <ul>
+        <li><strong>Role-Based Access Control (RBAC):</strong> Permissions are assigned to roles (e.g., "Network Admin," "Help Desk Technician"), and users are assigned to roles. This simplifies management in organizations with clearly defined job functions.</li>
+        <li><strong>Attribute-Based Access Control (ABAC):</strong> Access decisions are based on attributes of the user, the resource, and the environment (e.g., department, clearance level, time of day, device type). More flexible than RBAC but more complex to implement.</li>
+        <li><strong>Mandatory Access Control (MAC):</strong> Access is determined by classification labels (e.g., Top Secret, Secret, Confidential) assigned by a central authority. Users cannot change access permissions. Common in military and government environments.</li>
+        <li><strong>Discretionary Access Control (DAC):</strong> Resource owners control who has access to their resources. Common in Windows file permissions (owner grants read/write to others). Flexible but less secure since users can modify permissions.</li>
+      </ul>
+
+      <h4>Directory Services and SSO</h4>
+      <p><strong>Directory services</strong> (such as Microsoft Active Directory or LDAP) provide a centralized database of user accounts, groups, policies, and authentication credentials. They enable administrators to manage access across the entire organization from a single source of truth.</p>
+      <p><strong>Single Sign-On (SSO)</strong> allows users to authenticate once and gain access to multiple systems without re-entering credentials. SSO improves user experience and reduces password fatigue, but creates a single point of compromise — if the SSO credential is stolen, the attacker gains access to all connected systems. SSO is typically implemented using protocols like SAML, OAuth 2.0, or OpenID Connect.</p>
+
+      <h4>Privileged Access Management (PAM)</h4>
+      <p>PAM controls and monitors access for accounts with elevated privileges — administrator accounts, service accounts, root access, and domain admin credentials. PAM solutions typically include:</p>
+      <ul>
+        <li><strong>Credential vaulting:</strong> Storing privileged credentials in an encrypted vault rather than in plaintext or memory.</li>
+        <li><strong>Session recording:</strong> Logging all privileged sessions for audit and forensic review.</li>
+        <li><strong>Just-in-time access:</strong> Granting elevated privileges only when needed and automatically revoking them after a defined period.</li>
+        <li><strong>Least privilege enforcement:</strong> Ensuring privileged users only have the minimum permissions necessary for their specific task.</li>
+      </ul>
+
+      <h4>The Principle of Least Privilege</h4>
+      <p>Every user, process, and system should operate with the minimum level of access necessary to perform its function. This limits the blast radius of compromised accounts and reduces insider threat risk. Least privilege should be enforced at every layer: user accounts, service accounts, API keys, firewall rules, and database permissions.</p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L4-NETSEC-001"
+    data-lesson-title="Security Zones and Identity Management"
+    data-course-id="Cybersecurity Essentials">
+  </script>
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L4-NETSEC-001"
+    data-lesson-title="Security Zones and Identity Management"
+    data-course-id="Cybersecurity Essentials"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>

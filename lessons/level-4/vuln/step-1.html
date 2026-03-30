@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 7: Emerging Technologies and Secure Development</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson 7: Emerging Technologies and Secure Development</h1>
+      <h2>Level 4: Cybersecurity Essentials</h2>
+    </div>
+
+    <div class="section">
+      <h2>Lesson Overview</h2>
+      <p>Modern organizations face a dual challenge: developing software quickly while maintaining strong security posture, and adapting defenses to emerging technologies that create both new capabilities and new attack surfaces. This lesson covers secure software development practices, the DevSecOps approach to embedding security into CI/CD pipelines, operational security fundamentals, and the cybersecurity implications of AI, blockchain, quantum computing, and IoT.</p>
+    </div>
+
+    <div class="section">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Describe the secure software development lifecycle (SSDLC) and how it differs from traditional SDLC.</li>
+        <li>Identify common application vulnerabilities using the OWASP Top 10 as a reference framework.</li>
+        <li>Explain the purpose and differences between SAST, DAST, and SCA security testing tools.</li>
+        <li>Define DevSecOps and explain how security integrates into CI/CD pipelines.</li>
+        <li>Implement operational security measures including access controls, segmentation, monitoring, and auditing.</li>
+        <li>Analyze the security implications of emerging technologies including AI, blockchain, quantum computing, and IoT.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Secure Software Development Lifecycle (SSDLC)</h3>
+      <p>The Secure SDLC integrates security activities into every phase of software development, rather than treating security as a final gate before deployment. This "shift-left" approach catches vulnerabilities early when they are cheapest to fix.</p>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>SDLC Phase</th><th>Security Activity</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Requirements</td><td>Security requirements gathering</td><td>Define authentication requirements, data classification, compliance constraints</td></tr>
+          <tr><td>Design</td><td>Threat modeling</td><td>Use STRIDE or PASTA frameworks to identify threats in the architecture</td></tr>
+          <tr><td>Implementation</td><td>Secure coding practices</td><td>Input validation, parameterized queries, output encoding, least privilege</td></tr>
+          <tr><td>Testing</td><td>Security testing (SAST, DAST)</td><td>Automated scanning for vulnerabilities in code and running applications</td></tr>
+          <tr><td>Deployment</td><td>Configuration review</td><td>Hardened server configurations, secrets management, TLS enforcement</td></tr>
+          <tr><td>Maintenance</td><td>Patching and monitoring</td><td>Dependency updates, vulnerability scanning, log analysis</td></tr>
+        </tbody>
+      </table>
+
+      <h4>OWASP Top 10</h4>
+      <p>The <strong>Open Web Application Security Project (OWASP) Top 10</strong> is the industry-standard reference for the most critical web application security risks. Understanding these categories helps developers and security teams prioritize defenses:</p>
+      <ul>
+        <li><strong>Broken Access Control:</strong> Users acting outside their intended permissions (e.g., accessing another user's account data).</li>
+        <li><strong>Cryptographic Failures:</strong> Weak or missing encryption exposing sensitive data (e.g., storing passwords in plaintext).</li>
+        <li><strong>Injection:</strong> Untrusted input executed as code (e.g., SQL injection, command injection).</li>
+        <li><strong>Insecure Design:</strong> Architectural flaws that cannot be fixed by implementation — missing threat models or security design patterns.</li>
+        <li><strong>Security Misconfiguration:</strong> Default credentials, unnecessary services enabled, overly permissive cloud storage buckets.</li>
+        <li><strong>Vulnerable and Outdated Components:</strong> Using libraries or frameworks with known vulnerabilities (e.g., unpatched Log4j).</li>
+        <li><strong>Identification and Authentication Failures:</strong> Weak session management, credential stuffing, missing MFA.</li>
+        <li><strong>Software and Data Integrity Failures:</strong> Untrusted CI/CD pipelines, missing code signing, insecure deserialization.</li>
+        <li><strong>Security Logging and Monitoring Failures:</strong> Insufficient logging that prevents detection and forensic analysis of breaches.</li>
+        <li><strong>Server-Side Request Forgery (SSRF):</strong> Exploiting server functionality to make requests to unintended internal resources.</li>
+      </ul>
+
+      <h4>Security Testing Tools</h4>
+      <p>Automated security testing is essential for catching vulnerabilities at scale. Three key testing categories:</p>
+      <ul>
+        <li><strong>SAST (Static Application Security Testing):</strong> Analyzes source code or compiled binaries <em>without executing</em> the application. Catches issues like SQL injection patterns, hardcoded credentials, and buffer overflows early in development. Examples: SonarQube, Checkmarx, Semgrep.</li>
+        <li><strong>DAST (Dynamic Application Security Testing):</strong> Tests the <em>running application</em> by sending crafted requests and analyzing responses. Finds issues like XSS, authentication bypasses, and misconfigurations that only manifest at runtime. Examples: OWASP ZAP, Burp Suite, Nikto.</li>
+        <li><strong>SCA (Software Composition Analysis):</strong> Scans third-party libraries and dependencies for known vulnerabilities (CVEs). Critical because most modern applications are 70-90% open-source code. Examples: Snyk, Dependabot, Black Duck.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>DevSecOps</h3>
+      <p><strong>DevSecOps</strong> embeds security as a shared responsibility throughout the DevOps pipeline, rather than treating it as a separate phase or team. The goal is to deliver secure software at the speed of modern development without creating bottlenecks.</p>
+      <p>A typical DevSecOps pipeline integrates security checks at each stage:</p>
+      <pre><code>Developer commits code
+    → Pre-commit hooks (secrets scanning, linting)
+    → SAST scan (static code analysis)
+    → Build and package
+    → SCA scan (dependency vulnerability check)
+    → Deploy to staging
+    → DAST scan (dynamic testing against running app)
+    → Manual security review (for high-risk changes)
+    → Deploy to production
+    → Runtime monitoring (WAF, SIEM, anomaly detection)</code></pre>
+      <p>Key DevSecOps principles:</p>
+      <ul>
+        <li><strong>Automate security gates:</strong> Fail builds automatically when critical vulnerabilities are detected.</li>
+        <li><strong>Security as code:</strong> Define security policies, configurations, and compliance checks in version-controlled files.</li>
+        <li><strong>Fast feedback loops:</strong> Developers receive security findings in their IDE or pull request, not weeks later in a security report.</li>
+        <li><strong>Shared ownership:</strong> Security is everyone's responsibility — developers, operations, and security teams collaborate on remediation.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Operational Security</h3>
+      <p>Operational security (OPSEC) focuses on protecting critical organizational information by analyzing threats, vulnerabilities, and the processes that expose sensitive data. Effective measures include:</p>
+      <ul>
+        <li><strong>Access Controls:</strong> Restricting user privileges using the principle of least privilege and role-based access to limit exposure.</li>
+        <li><strong>Network Segmentation:</strong> Separating networks into zones to contain potential breaches and limit lateral movement.</li>
+        <li><strong>Continuous Monitoring:</strong> Detecting suspicious activity in real time using SIEM platforms, endpoint detection and response (EDR), and network monitoring tools.</li>
+        <li><strong>Employee Training:</strong> Ensuring staff are aware of security policies, phishing recognition, and proper data handling procedures.</li>
+        <li><strong>Regular Auditing:</strong> Evaluating security posture and regulatory compliance through internal audits, penetration testing, and third-party assessments.</li>
+        <li><strong>Change Management:</strong> Ensuring all system changes are documented, reviewed, and approved before implementation to prevent unauthorized modifications.</li>
+      </ul>
+      <p>Operational security should be proactive, aligned with organizational objectives, and updated continuously to mitigate new and evolving threats.</p>
+    </div>
+
+    <div class="section">
+      <h3>Emerging Technologies in Cybersecurity</h3>
+
+      <h4>Artificial Intelligence (AI) and Machine Learning</h4>
+      <p>AI enhances cybersecurity by analyzing massive datasets to identify anomalies, predict attack patterns, and automate threat response. However, AI also creates new attack vectors:</p>
+      <ul>
+        <li><strong>Defensive applications:</strong> Behavioral analytics to detect insider threats, automated malware classification, AI-powered SIEM correlation, phishing email detection.</li>
+        <li><strong>Offensive applications:</strong> AI-generated phishing emails that bypass filters, deepfake audio/video for social engineering, automated vulnerability discovery, adversarial attacks against ML models.</li>
+        <li><strong>Key concern:</strong> AI model poisoning — attackers can manipulate training data to cause models to produce incorrect results, potentially disabling automated defenses.</li>
+      </ul>
+
+      <h4>Blockchain</h4>
+      <p>Blockchain ensures data integrity through decentralized, immutable ledgers. Security applications include tamper-proof audit logs, secure identity verification, supply chain integrity tracking, and decentralized PKI. Limitations include scalability challenges, smart contract vulnerabilities, and the complexity of key management for end users.</p>
+
+      <h4>Quantum Computing</h4>
+      <p>Quantum computing poses a significant threat to current encryption methods. Algorithms like RSA and ECC — which protect virtually all internet communications — could be broken by sufficiently powerful quantum computers running Shor's algorithm.</p>
+      <ul>
+        <li><strong>The threat:</strong> "Harvest now, decrypt later" — adversaries collecting encrypted data today to decrypt it once quantum computers are available.</li>
+        <li><strong>The response:</strong> NIST has standardized post-quantum cryptographic algorithms (ML-KEM, ML-DSA, SLH-DSA) designed to resist quantum attacks. Organizations should begin planning migration to these quantum-resistant standards.</li>
+      </ul>
+
+      <h4>Internet of Things (IoT)</h4>
+      <p>IoT devices dramatically expand an organization's attack surface. Many IoT devices ship with default credentials, limited processing power for encryption, infrequent firmware updates, and no centralized management. Securing IoT requires network segmentation (isolating IoT devices on dedicated VLANs), enforcing credential changes, monitoring for anomalous traffic patterns, and maintaining firmware update processes.</p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L4-VULN-001"
+    data-lesson-title="Emerging Technologies and Secure Development"
+    data-course-id="Cybersecurity Essentials">
+  </script>
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L4-VULN-001"
+    data-lesson-title="Emerging Technologies and Secure Development"
+    data-course-id="Cybersecurity Essentials"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>

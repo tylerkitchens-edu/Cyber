@@ -91,7 +91,7 @@
   },
   {
     "lessonId": "L1-NETWORKING-003",
-    "title": "What's the Internet?",
+    "title": "What’s the Internet?",
     "section": "Networking",
     "level": 1,
     "order": 3,
@@ -197,7 +197,7 @@
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
-   {
+  {
     "lessonId": "L2-CYBERSEC-002",
     "title": "Fundamentals",
     "section": "Cybersec",
@@ -298,16 +298,16 @@
   },
   {
     "lessonId": "L3-NET-004",
-    "title": "TCP | Subnetting",
+    "title": "TCP/IP and Subnetting",
     "section": "Net",
     "level": 3,
     "order": 4,
-    "storyPoints": 15,
+    "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
   {
     "lessonId": "L3-NET-005",
-    "title": "Cloud Computing",
+    "title": "Routing Fundamentals and NAT",
     "section": "Net",
     "level": 3,
     "order": 5,
@@ -316,10 +316,46 @@
   },
   {
     "lessonId": "L3-NET-006",
-    "title": "Cloud Deployment Models and Methods",
+    "title": "Network Services for Security Operations",
     "section": "Net",
     "level": 3,
     "order": 6,
+    "storyPoints": 3,
+    "courseId": "Cybersecurity"
+  },
+  {
+    "lessonId": "L3-NET-007",
+    "title": "Network Security Architecture",
+    "section": "Net",
+    "level": 3,
+    "order": 7,
+    "storyPoints": 3,
+    "courseId": "Cybersecurity"
+  },
+  {
+    "lessonId": "L3-NET-008",
+    "title": "Network Traffic Analysis and Monitoring",
+    "section": "Net",
+    "level": 3,
+    "order": 8,
+    "storyPoints": 3,
+    "courseId": "Cybersecurity"
+  },
+  {
+    "lessonId": "L3-NET-009",
+    "title": "Cloud Computing",
+    "section": "Net",
+    "level": 3,
+    "order": 9,
+    "storyPoints": 5,
+    "courseId": "Cybersecurity"
+  },
+  {
+    "lessonId": "L3-NET-010",
+    "title": "Cloud Deployment Models",
+    "section": "Net",
+    "level": 3,
+    "order": 10,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
@@ -328,359 +364,368 @@
     "title": "Disaster Recovery",
     "section": "Ops",
     "level": 3,
-    "order": 4,
+    "order": 11,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
   {
-    "lessonId": "L4-COMPTIA-NETWORK-001",
-    "title": "Explaining Network Topology",
-    "section": "Comptia-Network",
+    "lessonId": "L4-CS-001",
+    "title": "Introduction to the Cybersecurity Landscape",
+    "section": "Cs",
     "level": 4,
     "order": 1,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
   {
-    "lessonId": "L4-COMPTIA-NETWORK-002",
-    "title": "Supporting Cabling and Physical Installations",
-    "section": "Comptia-Network",
+    "lessonId": "L4-CS-002",
+    "title": "Public Key Infrastructure",
+    "section": "Cs",
     "level": 4,
     "order": 2,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
   {
-    "lessonId": "L4-COMPTIA-NETWORK-003",
-    "title": "Configuring Interfaces and Switches",
-    "section": "Comptia-Network",
+    "lessonId": "L4-NETSEC-001",
+    "title": "Security Zones and Identity Management",
+    "section": "Netsec",
     "level": 4,
     "order": 3,
-    "storyPoints": 5,
+    "storyPoints": 10,
     "courseId": "Cybersecurity"
   },
   {
-    "lessonId": "L4-COMPTIA-NETWORK-004",
-    "title": "Configuring Network Addressing",
-    "section": "Comptia-Network",
+    "lessonId": "L4-THREAT-001",
+    "title": "Understanding Cybersecurity Threats",
+    "section": "Threat",
     "level": 4,
     "order": 4,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
   {
-    "lessonId": "L4-NET-005",
-    "title": "Configuring Routing and Advanced Switching",
-    "section": "Net",
+    "lessonId": "L4-RISK-001",
+    "title": "Risk Management",
+    "section": "Risk",
     "level": 4,
     "order": 5,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
   {
-    "lessonId": "L4-NET-006",
-    "title": "Implementing Network Services",
-    "section": "Net",
+    "lessonId": "L4-RISK-002",
+    "title": "Business Continuity and Incident Response",
+    "section": "Risk",
     "level": 4,
     "order": 6,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
-  {
-    "lessonId": "L4-NET-007",
-    "title": "Explaining Application Services",
-    "section": "Net",
-    "level": 4,
-    "order": 7,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "L4-NET-008",
-    "title": "Supporting Network Management",
-    "section": "Net",
+   {
+    "lessonId": "L4-VULN-001",
+    "title": "Emerging Technologies and Secure Development",
+    "section": "Vuln",
     "level": 4,
     "order": 8,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
-  },
+  }, 
   {
-    "lessonId": "L4-NET-009",
-    "title": "Explaining Network Security Concepts",
-    "section": "Net",
+    "lessonId": "L4-VULN-002",
+    "title": "Vulnerability Management",
+    "section": "Vuln",
     "level": 4,
-    "order": 9,
+    "order": 8,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "L4-NET-010",
-    "title": "Applying Network Security Features",
-    "section": "Net",
-    "level": 4,
-    "order": 10,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "L4-NET-011",
-    "title": "Supporting Network Security Design",
-    "section": "Net",
-    "level": 4,
-    "order": 11,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "L4-NET-012",
-    "title": "Configuring Wireless Networks",
-    "section": "Net",
-    "level": 4,
-    "order": 12,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "L4-NET-013",
-    "title": "Comparing Remote Access Methods",
-    "section": "Net",
-    "level": 4,
-    "order": 13,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "L4-NET-014",
-    "title": "Summarizing Cloud Concepts",
-    "section": "Net",
-    "level": 4,
-    "order": 14,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "L4-EXAM-001",
-    "title": "Practice and Cert Exams",
-    "section": "Exam",
-    "level": 4,
-    "order": 1,
-    "storyPoints": 25,
-    "courseId": "Cybersecurity"
-  },
-   {
-    "lessonId": "l4-CS-001",
-    "title": "Introduction to the Cybersecurity Essentials",
-    "section": "Cs",
-    "level": 5,
-    "order": 1,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "l4-CS-002",
-    "title": "Public Key Infrastructure",
-    "section": "Cs",
-    "level": 5,
-    "order": 2,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "l4-NETSEC-001",
-    "title": "Security Architecture and Security Zones",
-    "section": "Netsec",
-    "level": 5,
-    "order": 1,
-    "storyPoints": 10,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "l4-THREAT-001",
-    "title": "Understanding Cybersecurity Threats",
-    "section": "Threat",
-    "level": 5,
-    "order": 1,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "l4-RISK-001",
-    "title": "Risk Management",
-    "section": "Risk",
-    "level": 5,
-    "order": 1,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "l4-RISK-002",
-    "title": "Business Continuity",
-    "section": "Risk",
-    "level": 5,
-    "order": 2,
-    "storyPoints": 5,
-    "courseId": "Cybersecurity"
-  },
-  {
-    "lessonId": "l4-CYBER-EMERGING",
-    "title": "Emerging Technologies",
-    "section": "Cyber",
-    "level": 5,
-    "order": 1,
-    "storyPoints": 10,
     "courseId": "Cybersecurity"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-001",
     "title": "Summarize Fundamental Security Concepts",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 1,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-002",
     "title": "Compare Threat Types",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 2,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-003",
     "title": "Explain Cryptographic Solutions",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 3,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-004",
-    "title": "Implement Identity and Access Management",
+    "title": "Implement Identity and Account Management",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 4,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-005",
     "title": "Secure Enterprise Network Architecture",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 5,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-006",
     "title": "Secure Cloud Network Architecture",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 6,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-007",
     "title": "Explain Resiliency and Site Security Concepts",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 7,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-008",
     "title": "Explain Vulnerability Management",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 8,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-009",
     "title": "Evaluate Network Security Capabilities",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 9,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-010",
     "title": "Assess Endpoint Security Capabilities",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 10,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-011",
     "title": "Enhance Application Security Capabilities",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 11,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-012",
     "title": "Explain Incident Response and Monitoring Concepts",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 12,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-013",
     "title": "Analyze Indicators of Malicious Activity",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 13,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-014",
     "title": "Summarize Security Governance Concepts",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 14,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-015",
     "title": "Explain Risk Management Processes",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 15,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-COMPTIA-SEC-016",
     "title": "Summarize Data Protection and Compliance Concepts",
     "section": "Comptia-Sec",
-    "level": 6,
+    "level": 5,
     "order": 16,
     "storyPoints": 5,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA Security+"
   },
   {
     "lessonId": "L5-EXAM-001",
     "title": "Practice and Cert Exams",
     "section": "Exam",
+    "level": 5,
+    "order": 17,
+    "storyPoints": 25,
+    "courseId": "CompTIA Security+"
+  },
+  {
+    "lessonId": "L6-CYSA-001",
+    "title": "Understanding Vulnerability Response, Handling, and Management",
+    "section": "Comptia-CySA",
     "level": 6,
     "order": 1,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-002",
+    "title": "Exploring Threat Intelligence and Threat Hunting Concepts",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 2,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-003",
+    "title": "Explaining Important System and Network Architecture Concepts",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 3,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-004",
+    "title": "Understanding Process Improvement in Security Operations",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 4,
+    "storyPoints": 5,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-005",
+    "title": "Implementing Vulnerability Scanning Methods",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 5,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-006",
+    "title": "Performing Vulnerability Analysis",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 6,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-007",
+    "title": "Communicating Vulnerability Information",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 7,
+    "storyPoints": 5,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-008",
+    "title": "Explaining Incident Response Activities",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 8,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-009",
+    "title": "Demonstrating Incident Response Communication",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 9,
+    "storyPoints": 5,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-010",
+    "title": "Applying Tools to Identify Malicious Activity",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 10,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-011",
+    "title": "Analyzing Potentially Malicious Activity",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 11,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-012",
+    "title": "Understanding Application Vulnerability Assessment",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 12,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-013",
+    "title": "Exploring Scripting Tools and Analysis Concepts",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 13,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-CYSA-014",
+    "title": "Understanding Application Security and Attack Mitigation Best Practices",
+    "section": "Comptia-CySA",
+    "level": 6,
+    "order": 14,
+    "storyPoints": 7,
+    "courseId": "CompTIA CySA+"
+  },
+  {
+    "lessonId": "L6-EXAM-001",
+    "title": "Practice and Cert Exams",
+    "section": "Exam",
+    "level": 6,
+    "order": 15,
     "storyPoints": 25,
-    "courseId": "Cybersecurity"
+    "courseId": "CompTIA CySA+"
   }
 ]

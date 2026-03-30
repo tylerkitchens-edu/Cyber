@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 8: Vulnerability Management</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <h1>Lesson 8: Vulnerability Management</h1>
+      <h2>Level 4: Cybersecurity Essentials</h2>
+    </div>
+
+    <div class="section">
+      <h2>Lesson Overview</h2>
+      <p>Vulnerability management is the continuous process of identifying, classifying, prioritizing, remediating, and mitigating security weaknesses across an organization's systems and applications. In Lesson 4 you learned about the types of cybersecurity threats; this lesson focuses on the proactive side — finding and fixing the weaknesses those threats exploit before an attacker does. This is one of the most operationally important areas in cybersecurity and a core domain on both the Security+ and CySA+ exams.</p>
+    </div>
+
+    <div class="section">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Describe the vulnerability management lifecycle and its role in organizational security.</li>
+        <li>Explain CVE identifiers and CVSS scoring, and use them to prioritize remediation efforts.</li>
+        <li>Identify common vulnerability scanning tools and differentiate between credentialed and non-credentialed scans.</li>
+        <li>Understand patch management processes including testing, deployment, and rollback procedures.</li>
+        <li>Apply risk-based prioritization to vulnerability remediation decisions.</li>
+        <li>Describe compliance scanning and its relationship to regulatory frameworks.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>The Vulnerability Management Lifecycle</h3>
+      <p>Vulnerability management is not a one-time activity — it is a continuous cycle that adapts as new vulnerabilities are discovered and systems change. The lifecycle consists of five phases:</p>
+      <ol>
+        <li><strong>Discovery:</strong> Inventory all assets in the environment — servers, workstations, network devices, cloud instances, containers, IoT devices. You cannot protect what you do not know exists. Asset discovery tools and configuration management databases (CMDBs) support this phase.</li>
+        <li><strong>Assessment:</strong> Scan discovered assets for known vulnerabilities using automated scanning tools. Identify misconfigurations, missing patches, default credentials, and outdated software versions.</li>
+        <li><strong>Prioritization:</strong> Rank vulnerabilities based on severity (CVSS score), exploitability (is there a known exploit in the wild?), asset criticality (is this a database server with PII or an isolated test machine?), and business context.</li>
+        <li><strong>Remediation:</strong> Apply fixes through patching, configuration changes, compensating controls, or system isolation. Not all vulnerabilities can be patched immediately — sometimes compensating controls (such as WAF rules or network segmentation) reduce risk while a permanent fix is developed.</li>
+        <li><strong>Verification and Reporting:</strong> Re-scan to confirm remediation was successful. Generate reports for stakeholders, compliance auditors, and management. Track metrics like mean time to remediate (MTTR) and vulnerability aging.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>CVE and CVSS</h3>
+
+      <h4>Common Vulnerabilities and Exposures (CVE)</h4>
+      <p>CVE is a standardized naming system for publicly known cybersecurity vulnerabilities. Each vulnerability receives a unique identifier in the format <strong>CVE-YYYY-NNNNN</strong> (year and sequence number). The CVE system is maintained by MITRE Corporation and funded by the U.S. Department of Homeland Security. CVE entries provide a common language that allows security teams, vendors, and tools to reference the same vulnerability unambiguously.</p>
+      <pre><code>Example: CVE-2021-44228 (Log4Shell)
+  - Affected: Apache Log4j 2.x library
+  - Impact: Remote code execution via crafted log messages
+  - CVSS: 10.0 (Critical)
+  - Exploited in the wild within hours of disclosure</code></pre>
+
+      <h4>Common Vulnerability Scoring System (CVSS)</h4>
+      <p>CVSS provides a numerical score (0.0–10.0) that represents the severity of a vulnerability. The score is calculated from multiple metric groups:</p>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>CVSS Score Range</th><th>Severity Rating</th><th>Typical Response</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>9.0 – 10.0</td><td>Critical</td><td>Immediate patching or isolation. Emergency change window.</td></tr>
+          <tr><td>7.0 – 8.9</td><td>High</td><td>Patch within days. Implement compensating controls if patch not immediately available.</td></tr>
+          <tr><td>4.0 – 6.9</td><td>Medium</td><td>Patch within standard maintenance cycle (weeks).</td></tr>
+          <tr><td>0.1 – 3.9</td><td>Low</td><td>Patch at next scheduled maintenance. Accept risk if compensating controls exist.</td></tr>
+        </tbody>
+      </table>
+      <p>CVSS Base Score metrics include:</p>
+      <ul>
+        <li><strong>Attack Vector (AV):</strong> How the vulnerability is exploited — Network, Adjacent, Local, or Physical. Network-based attacks score highest because they can be exploited remotely.</li>
+        <li><strong>Attack Complexity (AC):</strong> Whether special conditions must exist for the attack to succeed. Low complexity = higher score.</li>
+        <li><strong>Privileges Required (PR):</strong> The level of access the attacker needs before exploitation. None = highest score.</li>
+        <li><strong>User Interaction (UI):</strong> Whether the attack requires action from a user (e.g., clicking a link). No interaction required = higher score.</li>
+        <li><strong>Impact (C/I/A):</strong> The effect on Confidentiality, Integrity, and Availability. High impact in all three = maximum score.</li>
+      </ul>
+      <p><strong>Important:</strong> CVSS alone is not sufficient for prioritization. A CVSS 10.0 vulnerability on an isolated test server with no sensitive data is lower priority than a CVSS 7.5 vulnerability on a production database with customer PII. Always combine CVSS with asset criticality and business context.</p>
+    </div>
+
+    <div class="section">
+      <h3>Vulnerability Scanning</h3>
+      <p>Vulnerability scanners automatically probe systems and applications for known weaknesses. They compare system configurations, software versions, and exposed services against databases of known vulnerabilities.</p>
+
+      <h4>Scan Types</h4>
+      <ul>
+        <li><strong>Non-credentialed (unauthenticated) scans:</strong> Scan targets from the outside without login credentials. Identifies externally visible vulnerabilities — open ports, exposed services, missing TLS, banner information. Simulates an external attacker's view but may miss internal vulnerabilities.</li>
+        <li><strong>Credentialed (authenticated) scans:</strong> Log into the target system to perform deeper analysis — checking installed software versions, registry settings, file permissions, and patch levels. Produces significantly more accurate and comprehensive results. Requires service accounts with appropriate read access.</li>
+        <li><strong>Agent-based scans:</strong> Lightweight agents installed on endpoints continuously report vulnerability status to a central console. Ideal for remote workers and cloud instances that may not be reachable by network-based scanners.</li>
+      </ul>
+
+      <h4>Common Vulnerability Scanning Tools</h4>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Tool</th><th>Type</th><th>Key Features</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nessus</td><td>Commercial</td><td>Industry-leading scanner with extensive plugin library. Supports credentialed scans, compliance checks, and configuration audits.</td></tr>
+          <tr><td>OpenVAS (Greenbone)</td><td>Open Source</td><td>Community-maintained scanner with regularly updated vulnerability feeds. Good for organizations with limited budgets.</td></tr>
+          <tr><td>Qualys</td><td>Cloud-based</td><td>SaaS vulnerability management platform. Agent-based and network scanning. Strong compliance and cloud asset coverage.</td></tr>
+          <tr><td>Nmap</td><td>Open Source</td><td>Network discovery and port scanning. Not a full vulnerability scanner, but essential for asset discovery and service enumeration. Often used alongside dedicated scanners.</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Scan Considerations</h4>
+      <ul>
+        <li><strong>Scheduling:</strong> Run scans during maintenance windows when possible — some scans can impact system performance or trigger IDS alerts.</li>
+        <li><strong>False positives:</strong> Scanners may report vulnerabilities that do not actually exist due to detection limitations. Always validate critical findings before allocating remediation effort.</li>
+        <li><strong>False negatives:</strong> Scanners may miss vulnerabilities, especially zero-days or custom application flaws. Scanning supplements but does not replace penetration testing and code review.</li>
+        <li><strong>Scope:</strong> Define scan scope clearly — which IP ranges, which cloud accounts, which application endpoints. Scanning systems you do not own or have authorization to scan is unauthorized access.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Patch Management</h3>
+      <p>Patch management is the process of acquiring, testing, and deploying software updates that fix vulnerabilities or improve functionality. It is the primary remediation mechanism for known vulnerabilities.</p>
+
+      <h4>Patch Management Process</h4>
+      <ol>
+        <li><strong>Inventory:</strong> Maintain an accurate inventory of all software, operating systems, and firmware in the environment.</li>
+        <li><strong>Monitoring:</strong> Subscribe to vendor security advisories, CVE feeds, and threat intelligence sources to stay informed about new patches.</li>
+        <li><strong>Testing:</strong> Deploy patches to a staging or test environment first. Verify that the patch does not break functionality, introduce compatibility issues, or degrade performance.</li>
+        <li><strong>Approval:</strong> Obtain change management approval based on risk assessment and testing results.</li>
+        <li><strong>Deployment:</strong> Roll out patches to production systems using automated deployment tools (WSUS, SCCM, Ansible, cloud-native patching services). Prioritize critical systems based on vulnerability severity.</li>
+        <li><strong>Verification:</strong> Confirm patches were applied successfully through rescanning, system checks, or agent reporting.</li>
+        <li><strong>Rollback Plan:</strong> Maintain the ability to reverse patches if they cause unexpected issues. Ensure backups are current before deploying critical patches.</li>
+      </ol>
+
+      <h4>When Patching Isn't Possible</h4>
+      <p>Sometimes patches are unavailable (zero-day), incompatible with legacy systems, or require extended testing. In these cases, apply <strong>compensating controls</strong>:</p>
+      <ul>
+        <li>Network segmentation to isolate the vulnerable system.</li>
+        <li>WAF or IPS rules to block known exploit patterns.</li>
+        <li>Disabling the vulnerable feature or service if it is not business-critical.</li>
+        <li>Enhanced monitoring and alerting on the affected system.</li>
+        <li>Virtual patching through security tools that mitigate the vulnerability without modifying the underlying software.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Compliance Scanning</h3>
+      <p>Compliance scanning evaluates systems against specific security standards and regulatory requirements. While vulnerability scanning looks for known weaknesses, compliance scanning checks whether configurations meet defined benchmarks:</p>
+      <ul>
+        <li><strong>CIS Benchmarks:</strong> Configuration standards for operating systems, cloud platforms, databases, and network devices published by the Center for Internet Security.</li>
+        <li><strong>NIST SP 800-53:</strong> Security controls required for federal systems (covered in Lesson 5).</li>
+        <li><strong>PCI DSS:</strong> Payment Card Industry requirements for organizations handling credit card data.</li>
+        <li><strong>HIPAA:</strong> Health Insurance Portability and Accountability Act requirements for protecting health information.</li>
+        <li><strong>STIG:</strong> Security Technical Implementation Guides published by DISA for DoD systems.</li>
+      </ul>
+      <p>Many vulnerability scanning tools (Nessus, Qualys) include compliance scanning modules that can check systems against these benchmarks automatically and generate audit-ready reports.</p>
+    </div>
+
+    <div class="slide-footer">
+      <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <script src="https://vschool-reports.netlify.app/ltp.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L4-VULN-002"
+    data-lesson-title="Vulnerability Management"
+    data-course-id="Cybersecurity Essentials">
+  </script>
+  <script src="https://vschool-reports.netlify.app/feedback.js"
+    data-api="https://vschool-reports.netlify.app"
+    data-lesson-id="L4-VULN-002"
+    data-lesson-title="Vulnerability Management"
+    data-course-id="Cybersecurity Essentials"
+    data-button-selector="#myFeedbackBtn">
+  </script>
+</body>
+</html>

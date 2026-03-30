@@ -206,4 +206,32 @@ img {
         padding: 8px;
         font-size: 0.9rem;
     }
-}
+    
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  table, th, td {
+    border: 1px solid #000; /* Adds black border to table, headers, and cells */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2; /* Optional: light grey header background */
+  }
+ }
+    .diagram{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+    }
+
+
