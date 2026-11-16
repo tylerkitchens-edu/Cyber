@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson: What's the Internet?</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    img { max-width: 100%; height: auto; }
+    .net-diagram { display: block; width: 100%; max-width: 560px; height: auto; margin: 12px auto; }
+    .net-diagram line { stroke: #4b5563; stroke-width: 2; }
+    .net-diagram rect.dev { fill: #ffffff; stroke: #4b5563; stroke-width: 1.5; }
+    .net-diagram rect.core { fill: #111827; }
+    .net-diagram text { font: 13px Arial, sans-serif; fill: #111827; text-anchor: middle; }
+    .net-diagram text.light { fill: #ffffff; }
+    .handshake { font-family: Consolas, monospace; background: #f4f4f4; padding: 10px 12px; border-radius: 6px; line-height: 1.8; }
+  </style>
 </head>
 
 <body>
@@ -16,160 +28,211 @@
 
     <div class="section">
       <h3>Lesson Overview</h3>
-      <p>
-        The Internet is a vast, interconnected system of networks that enables global communication, data sharing, and digital services.
-        Understanding how the Internet works is critical to every cybersecurity professional, as nearly all attacks, defenses, and monitoring
-        strategies depend on the flow of information across this global infrastructure.
-      </p>
-      <p>
-        In this lesson, you’ll explore what the Internet is, how it was developed, and what technologies, hardware, and protocols make it possible.
-        You’ll also examine the relationship between IP addressing, Internet Service Providers (ISPs), and devices that form the foundation of digital communication.
-      </p>
+      <p>The Internet is a worldwide network of networks. Nearly every attack, defense and monitoring tool in cybersecurity depends on how data moves across it, so this lesson covers how you get online, the hardware involved, how devices are addressed, and the OSI model that people use to describe and troubleshoot networks.</p>
     </div>
 
     <div class="section">
       <h3>Learning Objectives</h3>
       <ul>
-        <li>Define the Internet and describe its role as a decentralized global network.</li>
-        <li>Understand the historical origins of the Internet and the development of ARPANET.</li>
-        <li>Identify the major types of Internet services and access technologies.</li>
-        <li>Recognize key hardware devices that support Internet connectivity.</li>
-        <li>Explain the purpose of MAC and IP addresses and how they enable device communication.</li>
-        <li>Understand the OSI Model and its importance in modern network troubleshooting and cybersecurity analysis.</li>
+        <li>Describe the Internet, where it came from, and the main ways homes and businesses connect to it.</li>
+        <li>Explain what a modem, router, switch, network card and wireless access point each do.</li>
+        <li>Explain MAC and IP addresses, public and private IPv4 ranges, and what DHCP, DNS and the default gateway do.</li>
+        <li>Compare TCP and UDP, and recognize the most common port numbers.</li>
+        <li>Name the seven layers of the OSI model in order and place common devices and protocols on them.</li>
       </ul>
     </div>
 
     <div class="section">
-      <h3>Watch: What is the Internet?</h3>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/Dxcc6ycZ73M"
-        title="What is the Internet?"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
+      <h3>What is the Internet?</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/Dxcc6ycZ73M" title="What is the Internet? (Code.org)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Code.org, "What is the Internet?" (How the Internet Works series).</p>
+      <p>The Internet is a global network of interconnected networks that lets people share information, communicate and use online services. It began in the 1960s as <strong>ARPANET</strong>, a US Department of Defense research project that connected a few universities and introduced <strong>packet switching</strong>: breaking data into small packets that travel separately and are put back together at the destination.</p>
+      <p>Devices on the Internet communicate using the <strong>TCP/IP</strong> family of protocols, which lets data cross many networks owned by different companies. No single organization owns the Internet; it runs on agreed standards and cooperation between providers, which is also why privacy and security are constant challenges.</p>
     </div>
 
     <div class="section">
-      <h4>What is the Internet?</h4>
-      <p>
-        The internet is a global network of interconnected devices and networks that allows people to access and share information,
-        communicate with each other, and use a variety of online services and applications.
-        It is a massive collection of computer networks that are connected together to form a single, decentralized, and constantly evolving entity. The internet was originally developed in the 1960s by the United States Department of Defense's Advanced Research Projects Agency (ARPA)
-        as a way for researchers to share information and resources. This project, known as ARPANET, connected a small number of universities
-        and government institutions and established the foundation for packet-switching — a method of breaking data into small packets for efficient transmission.
-      </p>
-      <p>
-        Since then, it has grown exponentially and has become an essential part of modern life, with billions of people accessing the internet daily.
-        Everything from online banking and streaming to cloud storage and cybersecurity operations depend on its connectivity.
-      </p>
-
-      <p>
-        The internet uses a variety of technologies and protocols, such as Transmission Control Protocol/Internet Protocol (TCP/IP),
-        to allow devices to communicate with each other. These protocols ensure that data is delivered reliably between devices,
-        even across multiple networks owned by different providers. It supports a wide range of services, including email, instant messaging,
-        online gaming, social media, video conferencing, and file sharing.
-      </p>
-      <img src="TCP.gif">
-      <p>
-        One of the key features of the internet is its open and decentralized nature. This means that no single organization “owns” the Internet.
-        Instead, it relies on global cooperation between governments, businesses, and private entities to manage standards and maintain infrastructure.
-        However, this openness also introduces challenges like privacy, security, and censorship, which are central issues in cybersecurity today.
-      </p>
-
-      <h4>Internet Service Types</h4>
-      <p>
-        There are several ways individuals and organizations can connect to the Internet. Each type of service has unique advantages and limitations
-        depending on speed, cost, and geographical location.
-      </p>
+      <h3>Ways to Connect</h3>
+      <p>You reach the Internet through an <strong>Internet Service Provider (ISP)</strong>, which is your on-ramp to everyone else's networks. Common connection types:</p>
       <ul>
-        <li><strong>Dial-up / DSL:</strong> In the early days of the Internet, most homes used a dial-up connection.
-          To get internet, the computer would “call” the Internet Service Provider (ISP) through a phone line. DSL (Digital Subscriber Line)
-          improved on this by using higher frequency ranges, allowing simultaneous phone and Internet use.
-        </li>
-        <li><strong>Cable:</strong> Instead of phone lines, cable Internet uses television coaxial cables to transmit data.
-          Cable Internet generally offers faster speeds than DSL and remains a common residential option.
-        </li>
-        <li><strong>Fiber Optic:</strong> Fiber networks use glass strands to transmit data as light instead of electricity.
-          Because light is immune to electromagnetic interference, fiber connections provide high-speed, reliable access.
-          Fiber optics are becoming the gold standard for modern Internet infrastructure.
-        </li>
-        <li><strong>Satellite:</strong> By aligning a satellite dish to an orbital satellite, users can connect to the Internet from nearly anywhere.
-          However, this connection has higher latency, making it slower for real-time activities like gaming or video conferencing.
-        </li>
-        <li><strong>Cellular:</strong> Mobile phones and tablets connect to the Internet via cellular towers using radio waves.
-          With 4G and 5G networks, cellular Internet has become fast enough to rival broadband in many areas.
-        </li>
+        <li><strong>DSL:</strong> uses telephone lines. It replaced dial-up and lets you use the phone and the Internet at the same time. Speed drops with distance from the provider's equipment.</li>
+        <li><strong>Cable:</strong> uses the coaxial TV cable. Faster than DSL and very common in homes.</li>
+        <li><strong>Fibre:</strong> sends data as light through glass strands. The fastest and most reliable, and not affected by electrical interference.</li>
+        <li><strong>Satellite:</strong> works almost anywhere. Traditional satellites are far away, so delay (latency) is high; low-orbit services such as Starlink reduce it.</li>
+        <li><strong>Cellular:</strong> 4G and 5G mobile networks, also used for home Internet and phone hotspots.</li>
+        <li><strong>Fixed wireless:</strong> a radio link from an antenna on the building to a provider's tower, common in rural areas.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Important Internet Hardware</h3>
+      <ul>
+        <li><strong>Modem:</strong> connects your network to the ISP's line by turning your data into the signal that line carries (a DSL or cable signal). Fibre uses an <strong>ONT</strong> (optical network terminal) instead.</li>
+        <li><strong>Router:</strong> moves packets <em>between</em> networks, for example between your home network and the Internet, and lets many devices share one Internet connection.</li>
+        <li><strong>Switch:</strong> connects devices <em>within</em> one LAN and sends each frame only to the device it is meant for, using MAC addresses.</li>
+        <li><strong>Network interface card (NIC):</strong> the wired or wireless adapter that connects a device to a network. Every NIC has a MAC address.</li>
+        <li><strong>Wireless access point (WAP):</strong> lets wireless devices join a wired network.</li>
+        <li><strong>Home (SOHO) router:</strong> one box that combines a router, a switch, a wireless access point and a firewall, and sometimes the modem too.</li>
+      </ul>
+      <img src="rvm.png" alt="Modem or router? The modem connects your house to the Internet; the router connects your devices to the modem.">
+      <svg class="net-diagram" viewBox="0 0 560 230" role="img" aria-label="A small office network: the Internet connects to a modem, then a router, then a switch in the middle, with a PC, laptop, printer, server and a wireless access point each cabled to the switch.">
+        <line x1="60" y1="30" x2="170" y2="30"/><line x1="230" y1="30" x2="330" y2="30"/><line x1="360" y1="45" x2="280" y2="110"/>
+        <line x1="280" y1="125" x2="70" y2="200"/><line x1="280" y1="125" x2="175" y2="200"/><line x1="280" y1="125" x2="280" y2="200"/><line x1="280" y1="125" x2="385" y2="200"/><line x1="280" y1="125" x2="490" y2="200"/>
+        <rect class="dev" x="10" y="15" width="70" height="30" rx="15"/><text x="45" y="35">Internet</text>
+        <rect class="dev" x="160" y="15" width="70" height="30" rx="5"/><text x="195" y="35">Modem</text>
+        <rect class="dev" x="320" y="15" width="80" height="30" rx="5"/><text x="360" y="35">Router</text>
+        <rect class="core" x="235" y="105" width="90" height="30" rx="5"/><text class="light" x="280" y="125">Switch</text>
+        <rect class="dev" x="30" y="195" width="80" height="28" rx="5"/><text x="70" y="214">PC</text>
+        <rect class="dev" x="135" y="195" width="80" height="28" rx="5"/><text x="175" y="214">Laptop</text>
+        <rect class="dev" x="240" y="195" width="80" height="28" rx="5"/><text x="280" y="214">Printer</text>
+        <rect class="dev" x="345" y="195" width="80" height="28" rx="5"/><text x="385" y="214">Server</text>
+        <rect class="dev" x="440" y="195" width="100" height="28" rx="5"/><text x="490" y="214">Access point</text>
+      </svg>
+      <p>Inside the office, every device has its own cable to the switch (a star). The router connects that LAN to the modem and, through it, to the Internet.</p>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Which device decides how to send a packet from your home network out to a server on the Internet?</p>
+        <div class="check-options">
+          <button type="button">Switch</button>
+          <button type="button">Router</button>
+          <button type="button">Wireless access point</button>
+          <button type="button">Network interface card</button>
+        </div>
+        <p class="check-why">Routers move packets between different networks. Switches only deliver frames within one LAN.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Network Addressing</h3>
+      <p>Every device needs an address so data reaches the right place, the way a house needs a mailing address. There are two kinds:</p>
+      <ul>
+        <li><strong>MAC address (physical):</strong> burned into each network card by the maker, written in hex, for example <code>00-09-5B-36-C2-93</code>. Used to deliver data within the local network.</li>
+        <li><strong>IP address (logical):</strong> assigned by software and can change. Used to route data between networks.</li>
       </ul>
 
-      <p>
-        Even if you have a computer with a working network interface, you don't automatically have access to the Internet.
-        Just like a highway has on-ramps, the “Information Superhighway” uses Internet Service Providers (ISPs) as access points.
-        An ISP acts as a gateway between your local network and the broader Internet.
-      </p>
-
-      <h4>Important Internet Hardware</h4>
-      <p>
-        To make Internet access possible, several hardware components work together:
-      </p>
-      <ul>
-        <li><strong>Modem:</strong> Converts digital signals from a computer into analog signals for transmission over telephone or cable lines.</li>
-        <li><strong>Router:</strong> Directs data packets between networks, allowing multiple devices to share one Internet connection.</li>
-        <img src="rvm.png">
-        <li><strong>Switch:</strong> Connects multiple devices within a LAN and forwards data to the correct destination device.</li>
-        <img src="switch.png">
-        <li><strong>Network Interface Card (NIC):</strong> Provides a physical interface between a computer and a network. Each NIC has a unique MAC address.</li>
-        <li><strong>Wireless Access Point (WAP):</strong> Extends wired networks to support wireless devices like laptops and smartphones.</li>
-        <li><strong>Home Router:</strong> Common in small or home networks, combining the features of routers, switches, and WAPs into one unit.</li>
-      </ul>
-
-      <h4>Network Addressing</h4>
-      <p>
-        For a computer to send or receive information on a network, it must have a unique network address — similar to how a house has a mailing address.
-        Network addresses ensure that data reaches the correct destination without confusion.
-      </p>
-      <table class="rubric-table">
-        <tr><th>Type</th><th>Description</th></tr>
-        <tr>
-          <td><strong>Physical Address</strong></td>
-          <td>
-            Also known as a <strong>MAC address</strong>, this is a unique identifier assigned to a device’s network interface.
-            It’s embedded in the hardware and written in hexadecimal format (e.g., 00-09-5B-36-C2-93).
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Logical Address</strong></td>
-          <td>
-            Assigned via software (typically using IP). Logical addresses consist of a network segment and a host identifier.
-            These addresses can change and are managed through protocols such as DHCP.
-          </td>
-        </tr>
+      <h4>IPv4 and IPv6</h4>
+      <p><strong>IPv4</strong> addresses are 32 bits, written as four numbers from 0 to 255 (for example <code>192.168.1.20</code>). That allows about 4.3 billion addresses, which ran out. <strong>IPv6</strong> addresses are 128 bits, written in hex (for example <code>2001:db8::7334</code>), with enough addresses for every device imaginable.</p>
+      <table>
+        <thead><tr><th>Kind of address</th><th>Range or example</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td>Private</td><td><code>10.0.0.0</code> to <code>10.255.255.255</code><br><code>172.16.0.0</code> to <code>172.31.255.255</code><br><code>192.168.0.0</code> to <code>192.168.255.255</code></td><td>Used inside homes and offices. Not reachable from the Internet; the router shares one public address for all of them (NAT).</td></tr>
+          <tr><td>Public</td><td>Everything else (for example <code>8.8.8.8</code>)</td><td>Globally unique and reachable on the Internet. Given out by ISPs.</td></tr>
+          <tr><td>APIPA (self-assigned)</td><td><code>169.254.x.x</code></td><td>The device asked for an address and nobody answered. A sign that DHCP failed: check the cable, Wi-Fi or router.</td></tr>
+          <tr><td>Loopback</td><td><code>127.0.0.1</code> (IPv6 <code>::1</code>)</td><td>The device itself. Used to test the network software.</td></tr>
+        </tbody>
       </table>
 
-      <h4>IP Addresses</h4>
-      <p>
-        IP addresses are numeric identifiers assigned to devices to facilitate communication across networks.
-        IPv4 uses 32 bits (e.g., 192.168.1.1), while IPv6 uses 128 bits (e.g., 2001:0db8:85a3::7334) to support more devices globally.
-      </p>
+      <h4>The services that make addressing work</h4>
       <ul>
-        <li><strong>Public IP:</strong> Globally unique and visible on the Internet.</li>
-        <li><strong>Private IP:</strong> Used internally within local networks.</li>
-        <li><strong>Static IP:</strong> Fixed and manually assigned.</li>
-        <li><strong>Dynamic IP:</strong> Automatically assigned via DHCP and changes periodically.</li>
+        <li><strong>DHCP</strong> hands out IP settings automatically: an address, the subnet mask, the default gateway and DNS servers. Addresses from DHCP are <em>dynamic</em>; addresses typed in by hand are <em>static</em> (used for servers and printers that must not move).</li>
+        <li><strong>Subnet mask</strong> (for example <code>255.255.255.0</code>) tells a device which addresses are on its own network and which are elsewhere.</li>
+        <li><strong>Default gateway</strong> is the router's address: where a device sends anything meant for another network.</li>
+        <li><strong>DNS</strong> turns names into IP addresses, so <code>www.example.com</code> becomes an address your computer can reach. If names stop working but IP addresses still do, suspect DNS.</li>
       </ul>
 
-      <h4>The OSI Model</h4>
-      <p>
-        The Open Systems Interconnection (OSI) Model is a framework that standardizes network communication into seven layers:
-        Physical, Data Link, Network, Transport, Session, Presentation, and Application.
-        While modern Internet communication follows the simpler TCP/IP model, OSI remains essential for understanding
-        how data travels from one device to another and for diagnosing network problems.
-      </p>
-      <p>
-        In cybersecurity, understanding which OSI layer an attack targets — whether it’s a DDoS flood at Layer 3 (Network)
-        or a web application exploit at Layer 7 (Application) — helps professionals build effective defensive strategies.
-      </p>
+      <div class="check" data-answer="3">
+        <p class="check-q">A user says "the Internet is down". Their PC shows the IP address <code>169.254.37.12</code>. What is the most likely cause?</p>
+        <div class="check-options">
+          <button type="button">The website they want is offline</button>
+          <button type="button">DNS is not translating names</button>
+          <button type="button">Their IP address is public and blocked</button>
+          <button type="button">The PC could not get an address from DHCP</button>
+        </div>
+        <p class="check-why">169.254.x.x is a self-assigned (APIPA) address. The PC asked for an address and got no answer, so start with the cable, the Wi-Fi connection or the router.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>TCP, UDP and Ports</h3>
+      <p>Two protocols carry most traffic:</p>
+      <ul>
+        <li><strong>TCP</strong> is <em>connection-oriented</em> and reliable: it numbers packets, confirms they arrived, and resends lost ones. Used for web pages, email and file transfers. Every TCP connection starts with a three-way handshake:
+          <div class="handshake">Client &rarr; Server: SYN (let's talk)<br>Server &rarr; Client: SYN-ACK (OK, let's talk)<br>Client &rarr; Server: ACK (connected)</div>
+        </li>
+        <li><strong>UDP</strong> is <em>connectionless</em>: it just sends, with no confirmation. Faster, and fine when a lost packet doesn't matter much: video calls, streaming, online games, DNS lookups.</li>
+      </ul>
+      <p>A <strong>port number</strong> tells the receiving device which service the data is for. Common ones to know:</p>
+      <table>
+        <thead><tr><th>Port</th><th>Service</th><th>Port</th><th>Service</th></tr></thead>
+        <tbody>
+          <tr><td>20, 21</td><td>FTP (file transfer)</td><td>67, 68</td><td>DHCP</td></tr>
+          <tr><td>22</td><td>SSH (secure remote command line)</td><td>80</td><td>HTTP (web)</td></tr>
+          <tr><td>23</td><td>Telnet (unencrypted, avoid)</td><td>443</td><td>HTTPS (secure web)</td></tr>
+          <tr><td>25</td><td>SMTP (sending email)</td><td>445</td><td>SMB (Windows file sharing)</td></tr>
+          <tr><td>53</td><td>DNS</td><td>3389</td><td>RDP (Remote Desktop)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A video call can drop the odd packet without anyone noticing, but it must not lag. Which protocol suits it best?</p>
+        <div class="check-options">
+          <button type="button">UDP</button>
+          <button type="button">TCP</button>
+          <button type="button">SMTP</button>
+          <button type="button">FTP</button>
+        </div>
+        <p class="check-why">UDP skips confirmations and resends, so it is faster. Resending a late video frame would only add lag.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>The OSI Model</h3>
+      <p>The <strong>OSI (Open Systems Interconnection) model</strong> splits network communication into seven layers. Real networks use the simpler TCP/IP model, but everyone uses OSI layer numbers to describe where a device works or where a problem is ("that's a Layer 1 problem" means a cable or signal issue).</p>
+      <table>
+        <thead><tr><th>Layer</th><th>Name</th><th>What it does</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>7</td><td>Application</td><td>The services programs use</td><td>HTTP, HTTPS, DNS, SMTP, FTP</td></tr>
+          <tr><td>6</td><td>Presentation</td><td>Formatting, encryption and compression</td><td>TLS encryption, JPEG</td></tr>
+          <tr><td>5</td><td>Session</td><td>Starting, keeping and ending conversations</td><td>Session setup for remote calls</td></tr>
+          <tr><td>4</td><td>Transport</td><td>Splitting data into segments; reliable (TCP) or fast (UDP) delivery; port numbers</td><td>TCP, UDP</td></tr>
+          <tr><td>3</td><td>Network</td><td>IP addresses and routing between networks</td><td>IP, ICMP (ping), <strong>routers</strong></td></tr>
+          <tr><td>2</td><td>Data Link</td><td>MAC addresses and delivery within one network</td><td>Ethernet, Wi-Fi frames, <strong>switches</strong></td></tr>
+          <tr><td>1</td><td>Physical</td><td>The signal itself: cables, connectors, radio, light</td><td>Cables, fibre, hubs, radio</td></tr>
+        </tbody>
+      </table>
+      <p>A common way to remember the order from Layer 1 up: <strong>P</strong>lease <strong>D</strong>o <strong>N</strong>ot <strong>T</strong>hrow <strong>S</strong>ausage <strong>P</strong>izza <strong>A</strong>way.</p>
+
+      <div class="order-steps">
+        <p class="order-q">Practice: put the OSI layers in order, from Layer 1 (bottom) to Layer 7 (top). Use the arrows to move a layer, then check.</p>
+        <ol>
+          <li>Physical</li>
+          <li>Data Link</li>
+          <li>Network</li>
+          <li>Transport</li>
+          <li>Session</li>
+          <li>Presentation</li>
+          <li>Application</li>
+        </ol>
+      </div>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/AYgXr1dynKU" title="Understanding the OSI Model - CompTIA Network+ N10-009 - 1.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Understanding the OSI Model – CompTIA Network+ N10-009 – 1.1" (from his Network+ course; the OSI model is the same for A+).</p>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A switch forwards data using MAC addresses; a router forwards it using IP addresses. Which layers do they work at?</p>
+        <div class="check-options">
+          <button type="button">Switch Layer 1, router Layer 2</button>
+          <button type="button">Switch Layer 3, router Layer 4</button>
+          <button type="button">Switch Layer 2, router Layer 3</button>
+          <button type="button">Both at Layer 7</button>
+        </div>
+        <p class="check-why">MAC addresses belong to Layer 2 (Data Link); IP addresses and routing belong to Layer 3 (Network).</p>
+      </div>
+
+      <p>In security, the layer tells you where an attack lands and where to defend: a flood of traffic can hit Layers 3 and 4, while a website attack such as SQL injection targets Layer 7.</p>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Open <strong>Command Prompt</strong> and run <code>ipconfig /all</code>. For your active adapter, find the <strong>Physical Address</strong> (MAC), <strong>IPv4 Address</strong>, <strong>Subnet Mask</strong>, <strong>Default Gateway</strong>, <strong>DHCP Enabled</strong> and <strong>DNS Servers</strong>. Is your IPv4 address private? Which range?</li>
+        <li>Run <code>ping</code> followed by your default gateway's address (for example <code>ping 192.168.1.1</code>). Replies mean your PC can reach the router.</li>
+        <li>Run <code>nslookup www.example.com</code> to watch DNS turn a name into an IP address.</li>
+        <li>Optional: run <code>tracert www.example.com</code> to see each router your packets pass through on the way.</li>
+      </ol>
     </div>
 
     <div class="slide-footer">
@@ -177,20 +240,12 @@
     </div>
   </div>
 
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
-  <!-- V School Reporting Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L1-NETWORKING-003"
     data-lesson-title="What's the Internet?"
     data-course-id="Cybersecurity"></script>
 
-  <!-- Feedback Script -->
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L1-NETWORKING-003"

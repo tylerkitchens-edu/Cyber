@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 1: The Internet and Networking</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .topologies { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0; }
+    .topologies figure { margin: 0; border: 1px solid #d1d5db; border-radius: 8px; padding: 8px; background: #ffffff; text-align: center; }
+    .topologies svg { width: 100%; height: auto; max-width: 160px; }
+    .topologies figcaption { font-size: 0.9rem; margin-top: 4px; }
+    .topologies line, .topologies circle.ring { stroke: #4b5563; stroke-width: 2; fill: none; }
+    .topologies circle.node { fill: #2563eb; }
+    .topologies rect.hub { fill: #111827; }
+  </style>
 </head>
 <body>
 
@@ -17,152 +28,208 @@
     <div class="section">
       <h2>Learning Objectives</h2>
       <ul>
-        <li>Understand what a computer network is and the components that make one up.</li>
-        <li>Identify and describe different types of computer networks, such as LAN, WAN, MAN, PAN, VPN, and SAN.</li>
-        <li>Distinguish between public and private networks and understand their roles in cybersecurity.</li>
-        <li>Define key networking concepts such as topology, IP addressing, subnetting, and bandwidth.</li>
-        <li>Explain the role of the IEEE 802 standards in networking and how they relate to Wi-Fi protocols.</li>
-        <li>Understand the evolution of wireless encryption standards including WEP, WPA, and WPA2.</li>
-        <li>Describe Bluetooth technology, its use cases, classes, versions, and how it differs from Wi-Fi.</li>
+        <li>Explain what a computer network is and what it needs to work.</li>
+        <li>Identify network types (LAN, WAN, MAN, PAN, SAN, WLAN) and what a VPN does.</li>
+        <li>Recognize the common network topologies: star, bus, ring, mesh and hybrid.</li>
+        <li>Compare the 802.11 Wi-Fi standards by band and speed, from 802.11a to Wi-Fi 7.</li>
+        <li>Choose the right wireless security setting (WPA3, WPA2, Personal or Enterprise) and explain why WEP and WPS are risky.</li>
+        <li>Describe Bluetooth classes and versions, and when to use Bluetooth instead of Wi-Fi.</li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Computer Networking Basics</h2>
-      <p><strong>What is a network?</strong> In computing, a network refers to a group of interconnected devices, such as computers, servers, routers, switches, and other hardware, that are able to communicate with each other and share resources. The purpose of a network is to enable the sharing of information, data, and resources between the devices connected to the network.</p>
-      <p>To create a network, four things are required:</p>
-
+      <p><strong>What is a network?</strong> A network is a group of connected devices (computers, phones, servers, printers, routers, switches) that can communicate and share resources such as files, printers and an Internet connection.</p>
+      <p>Every network needs four things:</p>
       <ol>
-        <li><strong>Computers:</strong> Any computers themselves, including desktops, laptops, mobile devices, and servers.</li>
-        <li><strong>Network Media:</strong> The physical or wireless channels that allow data to be transmitted between devices on a network.</li>
-        <li><strong>Network Interfaces:</strong> Devices installed on each computer that can send and receive signals through the network media.</li>
-        <li><strong>Network Protocols:</strong> The rules and standards that govern how computers send and receive data on the network.</li>
+        <li><strong>Devices:</strong> the computers, phones, servers and other equipment that send and receive data.</li>
+        <li><strong>Network media:</strong> what carries the signal: copper cable, fibre optic cable, or radio waves (wireless).</li>
+        <li><strong>Network interfaces:</strong> the hardware in each device that connects it to the media, such as a wired network card (NIC) or a wireless adapter.</li>
+        <li><strong>Protocols:</strong> the agreed rules for how devices format, send and receive data, such as TCP/IP.</li>
       </ol>
     </div>
 
     <div class="section">
       <h2>Network Types</h2>
-      <p>There are several types of computer networks, classified by size, geographical area, and purpose:</p>
-
+      <p>Networks are usually named by how much area they cover:</p>
       <ul>
-        <li><strong>LAN (Local Area Network):</strong> Covers a small area such as a building or campus. Connects devices for file sharing and communication.</li>
-        <li><strong>WAN (Wide Area Network):</strong> Spans large areas such as cities or countries, connecting multiple LANs — the Internet is the largest WAN.</li>
-        <li><strong>MAN (Metropolitan Area Network):</strong> Covers a city or town, often run by governments or large organizations for high-speed data transfer.</li>
-        <li><strong>PAN (Personal Area Network):</strong> Connects devices close to a person, such as phones, tablets, and laptops, often using Bluetooth or NFC.</li>
-        <li><strong>VPN (Virtual Private Network):</strong> Provides secure remote connections to a private network through encryption over the Internet.</li>
-        <li><strong>SAN (Storage Area Network):</strong> Connects storage devices to servers for centralized storage and data management.</li>
+        <li><strong>PAN (Personal Area Network):</strong> devices around one person, such as a phone, earbuds and a smartwatch, usually over Bluetooth.</li>
+        <li><strong>LAN (Local Area Network):</strong> one home, office, building or campus. A <strong>WLAN</strong> is a wireless LAN (Wi-Fi).</li>
+        <li><strong>MAN (Metropolitan Area Network):</strong> covers a city or town, often run by a city, a utility or an Internet provider.</li>
+        <li><strong>WAN (Wide Area Network):</strong> connects LANs across cities or countries. The Internet is the largest WAN.</li>
+        <li><strong>SAN (Storage Area Network):</strong> a fast, separate network that connects servers to shared storage.</li>
       </ul>
+      <p>A <strong>VPN (Virtual Private Network)</strong> is not a size of network: it is an encrypted tunnel across the Internet that makes a remote device act as if it were on the private network, for example an employee working from home.</p>
+
+      <h3>Public vs Private Networks</h3>
+      <p>A <strong>private network</strong> is limited to authorized users, such as a company's internal network. A <strong>public network</strong> is open to anyone, such as the Internet or a coffee shop's Wi-Fi. On public Wi-Fi, assume others can see your traffic unless it is encrypted (HTTPS or a VPN).</p>
     </div>
 
     <div class="section">
-      <h2>Public vs Private Networks</h2>
-      <p>Networks can be either public or private. A <strong>private network</strong> is restricted to authorized users within the organization, providing internal file sharing and security. A <strong>public network</strong> is open for general access, such as the Internet, which interconnects millions of networks worldwide.</p>
-    </div>
-
-    <div class="rubric-table">
-      <h2>Other Networking Concepts</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Term</th>
-            <th>Definition</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Network topology</td><td>The physical or logical layout of a network (bus, star, ring, mesh, or hybrid).</td></tr>
-          <tr><td>Network protocol</td><td>Rules and standards for communication (TCP/IP, HTTP, FTP, DNS).</td></tr>
-          <tr><td>IP Address</td><td>A unique identifier for each device on a network used for routing data.</td></tr>
-          <tr><td>Subnet</td><td>A smaller network within a larger network for efficiency and performance.</td></tr>
-          <tr><td>Networking devices</td><td>Hardware like hubs, switches, and routers that facilitate network communication.</td></tr>
-          <tr><td>Firewall</td><td>A device or software that filters traffic and protects networks from unauthorized access.</td></tr>
-          <tr><td>Bandwidth</td><td>The volume of data transferable over a network per second, measured in bps or Mbps.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="rubric-table">
-      <h2>IEEE 802 Standards</h2>
-      <p>The Institute of Electrical and Electronics Engineers (IEEE) 802 standards define networking protocols for LANs and wireless networks. The 802.11 standard governs Wi-Fi technologies.</p>
-
-      <p>Wireless standards have evolved to improve speed, security, and reliability:</p>
-
+      <h2>Network Topologies</h2>
+      <p>A <strong>topology</strong> is the layout of how devices connect. The <em>physical</em> topology is how the cables or radios actually connect; the <em>logical</em> topology is how data flows.</p>
+      <div class="topologies" aria-label="Diagrams of the four basic network topologies">
+        <figure>
+          <svg viewBox="0 0 120 100" role="img" aria-label="Star: every device connects to one central switch">
+            <line x1="60" y1="50" x2="20" y2="15"/><line x1="60" y1="50" x2="100" y2="15"/><line x1="60" y1="50" x2="20" y2="85"/><line x1="60" y1="50" x2="100" y2="85"/><line x1="60" y1="50" x2="60" y2="8"/>
+            <rect class="hub" x="50" y="42" width="20" height="16" rx="3"/>
+            <circle class="node" cx="20" cy="15" r="7"/><circle class="node" cx="100" cy="15" r="7"/><circle class="node" cx="20" cy="85" r="7"/><circle class="node" cx="100" cy="85" r="7"/><circle class="node" cx="60" cy="8" r="7"/>
+          </svg>
+          <figcaption><strong>Star</strong></figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 120 100" role="img" aria-label="Bus: every device connects to one shared cable">
+            <line x1="5" y1="50" x2="115" y2="50"/>
+            <line x1="20" y1="50" x2="20" y2="22"/><line x1="50" y1="50" x2="50" y2="78"/><line x1="80" y1="50" x2="80" y2="22"/><line x1="105" y1="50" x2="105" y2="78"/>
+            <circle class="node" cx="20" cy="18" r="7"/><circle class="node" cx="50" cy="82" r="7"/><circle class="node" cx="80" cy="18" r="7"/><circle class="node" cx="105" cy="82" r="7"/>
+          </svg>
+          <figcaption><strong>Bus</strong></figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 120 100" role="img" aria-label="Ring: each device connects to the next in a loop">
+            <circle class="ring" cx="60" cy="50" r="36"/>
+            <circle class="node" cx="60" cy="14" r="7"/><circle class="node" cx="96" cy="50" r="7"/><circle class="node" cx="60" cy="86" r="7"/><circle class="node" cx="24" cy="50" r="7"/>
+          </svg>
+          <figcaption><strong>Ring</strong></figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 120 100" role="img" aria-label="Mesh: devices connect to many or all other devices">
+            <line x1="25" y1="20" x2="95" y2="20"/><line x1="25" y1="20" x2="25" y2="80"/><line x1="25" y1="20" x2="95" y2="80"/><line x1="95" y1="20" x2="25" y2="80"/><line x1="95" y1="20" x2="95" y2="80"/><line x1="25" y1="80" x2="95" y2="80"/>
+            <circle class="node" cx="25" cy="20" r="7"/><circle class="node" cx="95" cy="20" r="7"/><circle class="node" cx="25" cy="80" r="7"/><circle class="node" cx="95" cy="80" r="7"/>
+          </svg>
+          <figcaption><strong>Mesh</strong></figcaption>
+        </figure>
+      </div>
       <ul>
-        <li><strong>WEP (1997):</strong> Wired Equivalent Privacy — the first wireless encryption, now obsolete due to weaknesses.</li>
-        <li><strong>WPA (2003):</strong> Wi-Fi Protected Access — used RC4 and TKIP for stronger encryption.</li>
-        <li><strong>WPA2:</strong> Enhanced WPA using AES encryption, providing modern wireless security.</li>
+        <li><strong>Star:</strong> every device connects to a central switch or access point. The most common LAN layout today. One cable failing affects one device; the central device failing takes down everything.</li>
+        <li><strong>Bus:</strong> all devices share one cable. Old and rare: one break stops the whole network.</li>
+        <li><strong>Ring:</strong> each device connects to the next in a loop. Mostly historic, still seen in some provider fibre networks.</li>
+        <li><strong>Mesh:</strong> devices connect to several others, so data has more than one path. Used for WAN links and home "mesh Wi-Fi" systems. Reliable but costly to cable.</li>
+        <li><strong>Hybrid:</strong> a mix, such as several stars linked together. Most real networks are hybrids.</li>
       </ul>
 
-      <p>Devices on a Wi-Fi network use a shared <strong>SSID (Service Set Identifier)</strong> as the network name.</p>
+      <div class="check" data-answer="0">
+        <p class="check-q">In an office, every PC is cabled to one switch in the closet. One PC's cable is cut and only that PC goes offline. Then the switch loses power and every PC goes offline. Which topology is this?</p>
+        <div class="check-options">
+          <button type="button">Star</button>
+          <button type="button">Bus</button>
+          <button type="button">Ring</button>
+          <button type="button">Mesh</button>
+        </div>
+        <p class="check-why">Every device has its own link to one central device. A single link failing affects one device; the centre failing affects all of them.</p>
+      </div>
     </div>
 
-    <div class="rubric-table">
-      <h2>802.11 Standards</h2>
+    <div class="section">
+      <h2>Wi-Fi: The IEEE 802.11 Standards</h2>
+      <p>The IEEE (Institute of Electrical and Electronics Engineers) writes the 802 family of networking standards. <strong>802.3</strong> is wired Ethernet and <strong>802.11</strong> is Wi-Fi. Since Wi-Fi 6, each standard also has a simple generation name.</p>
       <table>
         <thead>
-          <tr>
-            <th>Standard</th>
-            <th>Maximum Transfer Rate</th>
-            <th>Band</th>
-          </tr>
+          <tr><th>Standard</th><th>Name</th><th>Bands</th><th>Maximum speed (theoretical)</th></tr>
         </thead>
         <tbody>
-          <tr><td>802.11a</td><td>54 Mbps</td><td>5 GHz</td></tr>
-          <tr><td>802.11b</td><td>11 Mbps</td><td>2.4 GHz</td></tr>
-          <tr><td>802.11g</td><td>54 Mbps</td><td>2.4 GHz</td></tr>
-          <tr><td>802.11n</td><td>150 Mbps</td><td>5 GHz</td></tr>
-          <tr><td>802.11ac</td><td>1.7 Gbps</td><td>5 GHz</td></tr>
+          <tr><td>802.11a</td><td></td><td>5 GHz</td><td>54 Mbps</td></tr>
+          <tr><td>802.11b</td><td></td><td>2.4 GHz</td><td>11 Mbps</td></tr>
+          <tr><td>802.11g</td><td></td><td>2.4 GHz</td><td>54 Mbps</td></tr>
+          <tr><td>802.11n</td><td>Wi-Fi 4</td><td>2.4 GHz and 5 GHz</td><td>600 Mbps</td></tr>
+          <tr><td>802.11ac</td><td>Wi-Fi 5</td><td>5 GHz</td><td>About 6.9 Gbps</td></tr>
+          <tr><td>802.11ax</td><td>Wi-Fi 6</td><td>2.4 GHz and 5 GHz</td><td>About 9.6 Gbps</td></tr>
+          <tr><td>802.11ax</td><td>Wi-Fi 6E</td><td>Adds 6 GHz</td><td>About 9.6 Gbps</td></tr>
+          <tr><td>802.11be</td><td>Wi-Fi 7</td><td>2.4, 5 and 6 GHz</td><td>About 46 Gbps</td></tr>
         </tbody>
       </table>
+      <p>Real-world speeds are much lower than these maximums. New devices and routers today are mostly Wi-Fi 6, 6E or 7, and each standard works with the older ones on the same band.</p>
+      <h3>Bands and channels</h3>
+      <ul>
+        <li><strong>2.4 GHz:</strong> longest range and best through walls, but slower and crowded. Only 3 channels don't overlap (1, 6 and 11 in the US), and microwaves and Bluetooth share the band.</li>
+        <li><strong>5 GHz:</strong> faster, with many more non-overlapping channels, but shorter range.</li>
+        <li><strong>6 GHz</strong> (Wi-Fi 6E and 7): the fastest and least crowded, with the shortest range.</li>
+      </ul>
+      <p>Every wireless network has a name, its <strong>SSID</strong> (Service Set Identifier).</p>
 
-      <h3>802.11 Standard Comparison</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/aTuaEk5hnAs" title="Wireless Network Technologies - CompTIA A+ 220-1201 - 2.2 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Wireless Network Technologies – CompTIA A+ 220-1201 – 2.2" (free A+ course).</p>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A customer wants the best Wi-Fi signal in a back bedroom, two walls away from the router. Speed matters less than staying connected. Which band should that room's devices use?</p>
+        <div class="check-options">
+          <button type="button">6 GHz</button>
+          <button type="button">5 GHz</button>
+          <button type="button">2.4 GHz</button>
+          <button type="button">It makes no difference</button>
+        </div>
+        <p class="check-why">Lower frequencies travel farther and pass through walls better. 2.4 GHz is slower but has the longest range.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Wireless Security</h2>
+      <table>
+        <thead>
+          <tr><th>Setting</th><th>What it is</th><th>Use it?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Open</td><td>No password, no encryption.</td><td>Only for guest networks, never for private data.</td></tr>
+          <tr><td>WEP (1997)</td><td>The first Wi-Fi encryption. Can be cracked in minutes.</td><td>Never.</td></tr>
+          <tr><td>WPA (2003)</td><td>A stopgap fix using TKIP. Also broken.</td><td>Never.</td></tr>
+          <tr><td>WPA2 (2004)</td><td>Strong AES encryption. Still very common.</td><td>Yes, if WPA3 is not available. Use a long passphrase.</td></tr>
+          <tr><td>WPA3 (2018)</td><td>Current standard. Replaces the pre-shared key handshake with SAE, which resists password-guessing attacks, and uses stronger encryption.</td><td>Yes: the best choice.</td></tr>
+        </tbody>
+      </table>
+      <ul>
+        <li><strong>Personal vs Enterprise:</strong> <em>Personal</em> mode uses one shared passphrase for everyone (homes, small offices). <em>Enterprise</em> mode gives each user their own login, checked by a central server (RADIUS, using 802.1X), so one person leaving doesn't mean changing everyone's password.</li>
+        <li><strong>WPS (Wi-Fi Protected Setup):</strong> the push-button or 8-digit PIN shortcut for joining a network. The PIN can be guessed quickly, so turn WPS off.</li>
+      </ul>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">You are setting up a new router for a small dental office. The router offers WEP, WPA2-Personal, WPA3-Personal and WPS. What should you choose?</p>
+        <div class="check-options">
+          <button type="button">WPA2-Personal, with WPS on to make joining easy</button>
+          <button type="button">WPA3-Personal with a long passphrase, and WPS off</button>
+          <button type="button">WEP, because every device supports it</button>
+          <button type="button">An open network with a hidden SSID</button>
+        </div>
+        <p class="check-why">WPA3 is the strongest option, and WPS's PIN can be guessed. Hiding the SSID does not secure anything.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Bluetooth</h2>
+      <p>Bluetooth is short-range wireless for connecting devices to each other (headsets, keyboards, phones, watches), forming a PAN. It uses the 2.4 GHz band and low power. Devices are <strong>paired</strong> once, sometimes with a PIN or a code to confirm, and then reconnect automatically.</p>
+      <h3>Classes (power and range)</h3>
+      <table>
+        <thead><tr><th>Class</th><th>Typical range</th><th>Maximum power</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Class 1</td><td>About 100 m (328 ft)</td><td>100 mW</td><td>USB adapters, industrial devices</td></tr>
+          <tr><td>Class 2</td><td>About 10 m (33 ft)</td><td>2.5 mW</td><td>Most phones, headsets and laptops</td></tr>
+          <tr><td>Class 3</td><td>About 1 m (3 ft)</td><td>1 mW</td><td>Very short-range accessories</td></tr>
+        </tbody>
+      </table>
+      <h3>Versions</h3>
+      <table>
+        <thead><tr><th>Version</th><th>What it added</th></tr></thead>
+        <tbody>
+          <tr><td>1.x</td><td>The original, about 1 Mbps.</td></tr>
+          <tr><td>2.x</td><td>Enhanced Data Rate, up to 3 Mbps; easier pairing (2.1).</td></tr>
+          <tr><td>3.x</td><td>High Speed mode, up to 24 Mbps by handing large transfers to Wi-Fi.</td></tr>
+          <tr><td>4.x</td><td>Introduced <strong>Bluetooth Low Energy (LE)</strong> for fitness trackers, sensors and other battery devices.</td></tr>
+          <tr><td>5.x</td><td>Faster LE (2 Mbps) and much longer LE range, up to about 240 m (800 ft) in open space.</td></tr>
+        </tbody>
+      </table>
+      <h3>Bluetooth or Wi-Fi?</h3>
+      <p>Use <strong>Bluetooth</strong> to connect one device to another nearby (earbuds to a phone) with little power. Use <strong>Wi-Fi</strong> to connect devices to a network and the Internet at higher speed and range. Keep Bluetooth devices up to date and turn off discoverable mode when not pairing; attacks such as <em>bluesnarfing</em> (stealing data) target old or always-discoverable devices.</p>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 3 minutes)</h4>
       <ol>
-        <li>Most modern wireless networks use 802.11n or 802.11ac.</li>
-        <li>5 GHz frequencies have 24 non-overlapping channels, while 2.4 GHz has only 3.</li>
-        <li>5 GHz provides faster speeds but shorter range due to higher attenuation.</li>
+        <li>Connect to Wi-Fi. Open <strong>Command Prompt</strong>, type <code>netsh wlan show interfaces</code> and press Enter.</li>
+        <li>Find <strong>Radio type</strong> (which 802.11 standard you are using), <strong>Band</strong> and <strong>Channel</strong>. Which Wi-Fi generation is that?</li>
+        <li>Find <strong>Authentication</strong>. Is your network using WPA2 or WPA3, Personal or Enterprise?</li>
+        <li>Optional: <code>netsh wlan show networks mode=bssid</code> lists nearby networks with their channel and security. Are any of them open or WEP?</li>
       </ol>
-    </div>
-
-    <div class="rubric-table">
-      <h2>Bluetooth Technology</h2>
-      <p>Bluetooth enables short-range wireless communication between devices using low-power radio signals, forming a <strong>Personal Area Network (PAN)</strong>. It supports up to eight connected devices and operates at 2.4 GHz, similar to Wi-Fi but optimized for low data transfer and energy efficiency.</p>
-
-      <h3>Bluetooth Classes</h3>
-      <table>
-        <thead>
-          <tr><th>Bluetooth Class</th><th>Operating Range</th><th>Maximum Power</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Class 1</td><td>100 meters (328 feet)</td><td>100 mW (20 dBm)</td></tr>
-          <tr><td>Class 2</td><td>10 meters (33 feet)</td><td>2.5 mW (4 dBm)</td></tr>
-          <tr><td>Class 3</td><td>1 meter (3 feet)</td><td>1 mW (0 dBm)</td></tr>
-          <tr><td>Class 4</td><td>0.5 meters (1.5 feet)</td><td>0.5 mW (-3 dBm)</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Bluetooth Versions</h3>
-      <table>
-        <thead>
-          <tr><th>Version</th><th>Features / Improvements</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1.x</td><td>Up to 1 Mbps data rate.</td></tr>
-          <tr><td>2.x</td><td>Enhanced Data Rate (EDR) up to 3 Mbps.</td></tr>
-          <tr><td>3.x</td><td>High-speed mode with up to 24 Mbps.</td></tr>
-          <tr><td>4.x</td><td>Low Energy (LE) for reduced power use.</td></tr>
-          <tr><td>5.x</td><td>Up to 2 Mbps, extended range to 800 feet.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Bluetooth vs Wi-Fi</h3>
-      <table>
-        <thead>
-          <tr><th>Type</th><th>Main Purpose</th><th>Range</th><th>Data/Speed</th><th>Security</th><th>Cost</th><th>Complexity</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Bluetooth</td><td>Device-to-device communication</td><td>Up to 33 feet</td><td>Low / Slow</td><td>Low</td><td>Low</td><td>Simple</td></tr>
-          <tr><td>Wi-Fi</td><td>Connect devices to the Internet</td><td>Up to 300 feet</td><td>High / Fast</td><td>High</td><td>Higher</td><td>Complex</td></tr>
-        </tbody>
-      </table>
     </div>
 
     <div class="slide-footer">
@@ -170,8 +237,6 @@
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L1-NETWORKING-001"
