@@ -180,12 +180,12 @@
   /* 4) Motherboard diagram: <div class="mobo-diagram"></div>
      Explore mode: click a part to learn what it is. Quiz mode: find the named part. */
   var MOBO_PARTS = [
-    { id: 'io',    name: 'Rear I/O panel', x: 14,  y: 30,  w: 44,  h: 170, info: 'The ports you see on the back of the case: USB, network (RJ45), audio and the onboard video outputs. It is attached to the motherboard, not the case.' },
+    { id: 'io',    name: 'Rear I/O panel', label: 'Rear I/O', anchor: 'start', lx: 10, x: 14,  y: 30,  w: 44,  h: 170, info: 'The ports you see on the back of the case: USB, network (RJ45), audio and the onboard video outputs. It is attached to the motherboard, not the case.' },
     { id: 'cpu8',  name: 'CPU power connector (8-pin)', x: 80, y: 18, w: 60, h: 22, info: 'Extra 12V power from the power supply straight to the CPU. A computer that powers on but shows nothing is often missing this cable.' },
     { id: 'cpu',   name: 'CPU socket', x: 170, y: 70,  w: 120, h: 120, info: 'Holds the processor. Sockets are specific to a CPU family (for example Intel LGA or AMD AM5), so the CPU and motherboard must match. A heatsink and fan sit on top.' },
     { id: 'fan',   name: 'CPU fan header', x: 300, y: 40,  w: 34,  h: 14, info: 'A small 4-pin connector for the CPU cooler fan. Many motherboards warn or refuse to boot if no fan is detected here.' },
     { id: 'ram',   name: 'RAM (DIMM) slots', x: 360, y: 40, w: 70, h: 200, info: 'Hold the memory modules. Desktops use DIMMs (laptops use smaller SO-DIMMs). Install matched pairs in the slots the manual names to get dual-channel speed.' },
-    { id: 'atx24', name: '24-pin main power connector', x: 456, y: 90, w: 24, h: 120, info: 'The main power cable from the power supply. Without it the board gets no power at all.' },
+    { id: 'atx24', name: '24-pin main power connector', label: '24-pin power', anchor: 'end', lx: 488, x: 456, y: 90, w: 24, h: 120, info: 'The main power cable from the power supply. Without it the board gets no power at all.' },
     { id: 'm2',    name: 'M.2 slot', x: 150, y: 228, w: 150, h: 18, info: 'For M.2 SSDs (and some Wi-Fi cards). Depending on the board, the slot runs NVMe over PCIe, SATA, or both. The card is held down with one small screw.' },
     { id: 'x16',   name: 'PCIe x16 slot', x: 70,  y: 268, w: 290, h: 18, info: 'The long expansion slot, used mainly for graphics cards. It is the slot nearest the CPU, with the most lanes.' },
     { id: 'x1',    name: 'PCIe x1 slot', x: 70,  y: 312, w: 80,  h: 16, info: 'A short expansion slot for small cards such as network, sound or USB cards. A x1 card also fits in a longer slot.' },
@@ -251,12 +251,13 @@
         g.appendChild(inner);
       }
       var label = document.createElementNS(NS, 'text');
-      label.setAttribute('x', p.x + p.w / 2);
+      label.setAttribute('x', p.lx != null ? p.lx : p.x + p.w / 2);
+      if (p.anchor) label.setAttribute('style', 'text-anchor:' + p.anchor);
       label.setAttribute('y', p.id === 'io' || p.id === 'atx24' || p.id === 'ram' || p.id === 'sata' ? p.y + p.h + 14 : p.y + p.h / 2 + 4);
       if (p.id === 'cpu8' || p.id === 'fan' || p.id === 'front') label.setAttribute('y', p.y - 5);
       if (p.id === 'cmos') label.setAttribute('y', p.y + p.h + 14);
       label.setAttribute('class', 'mobo-label');
-      label.textContent = p.name.replace(' (8-pin)', '').replace(' connector', '').replace(' (DIMM)', '');
+      label.textContent = p.label || p.name.replace(' (8-pin)', '').replace(' connector', '').replace(' (DIMM)', '');
       g.appendChild(label);
       g.setAttribute('aria-label', p.name);
       g.addEventListener('click', function () { pick(p); });
