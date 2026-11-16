@@ -5,7 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cloud Computing - Lesson</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    img { max-width: 100%; height: auto; }
+    .resp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .resp th, .resp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: center; }
+    .resp th:first-child, .resp td:first-child { text-align: left; }
+    .resp td.you { background: #dbeafe; color: #1e3a8a; }
+    .resp td.prov { background: #f3f4f6; color: #374151; }
+    .resp-key { font-size: 0.9rem; margin: 0 0 4px; }
+    .resp-key span { display: inline-block; padding: 1px 8px; border-radius: 4px; margin-right: 6px; }
+    .resp-wrap { overflow-x: auto; }
+  </style>
 </head>
 
 <body>
@@ -18,93 +30,175 @@
     <section aria-labelledby="objectives-heading">
       <h3 id="objectives-heading">Learning Objectives</h3>
       <ul>
-        <li>Define the role of a hypervisor in virtualization.</li>
-        <li>Differentiate between cloud deployment models.</li>
-        <li>Summarize client-side virtualization.</li>
-        <li>Differentiate between cloud service types.</li>
-        <li>Categorize the many types of SaaS applications.</li>
+        <li>Explain what virtualization and a hypervisor are, and tell a Type 1 hypervisor from a Type 2.</li>
+        <li>List what a computer needs to run virtual machines.</li>
+        <li>Give reasons to use virtualization on a desktop, and tell virtual machines from containers.</li>
+        <li>Tell the cloud deployment models apart: public, private, hybrid and community.</li>
+        <li>Tell IaaS, PaaS and SaaS apart, and say who manages what in each.</li>
+        <li>Describe the cloud characteristics the A+ exam names.</li>
       </ul>
-    </section>
-    <section>
-      <h3>Virtualization</h3>
-      <p>Virtualization is the process of running a virtual instance of a computer system on its own partition. It creates a software-based version of something such as an application, server, network, or storage. For example, this is often used to run multiple operating systems on a single computer at the same time, such as running a version of Windows and a version of macOS on the same system. Using virtualization can help reduce technology expenses and create smoother operating processes.</p>
     </section>
 
     <section>
-      <h3>Virtual Machines</h3>
-      <p>To understand what a virtual machine is, you have to consider the traditional alternative—the physical machine. Usually, a single computer physically occupies space on a desk and runs a single operating system. In contrast, a virtual machine is just a file (also known as an image) that acts like a computer but in reality only exists virtually. In this way, it's like having one computer inside of another. A single computer can run a variety of virtual machines to greatly enhance what it's typically able to do. These virtual machines give the user the same experience as if they were running the program on a dedicated computer.</p>
-      <p>Virtual machines don't require any special hardware, but each machine you install does create a drain on your system's available resources. You're limited only by how much the host computer can handle. Multiple virtual machines can run on the same computer, but it's important to make sure you have enough resources on the host computer to support them.</p>
-      <p>All the virtual machines on your computer will access the same physical hardware in order to run.</p>
-      <p>Some things to consider when creating virtual machines are the amount of storage space on the computer, the amount of RAM available, the quality of the video card, and the quality of the processor.</p>
+      <h3>Virtualization</h3>
+      <p><strong>Virtualization</strong> uses software to split one physical computer into several isolated <strong>virtual machines</strong> (VMs). Each VM behaves like a complete computer with its own operating system, called the <strong>guest</strong>, while sharing the real hardware of the <strong>host</strong>. For example, a Windows laptop can run a Linux VM in a window next to its normal apps.</p>
+      <p>A VM is stored as a few files: a settings file (how many CPU cores, how much memory) and a <strong>virtual disk</strong> file that holds the guest's operating system and data. Because it is just files, a VM can be copied, backed up, moved to another host, or rolled back with a <strong>snapshot</strong>.</p>
     </section>
 
     <section>
       <h3>Hypervisors</h3>
-      <p>Hypervisors, also known as virtual machine managers, are the software that creates and manages virtual machines. There are two main types of hypervisors:</p>
-      <ol>
-        <li><strong>Type 1 hypervisors</strong>, also known as bare-metal hypervisors, run directly on the host's hardware. They have direct access to the computer's resources and can run multiple operating systems simultaneously. Examples of Type 1 hypervisors include VMware ESXi, Microsoft Hyper-V, and Citrix Hypervisor.</li>
-        <li><strong>Type 2 hypervisors</strong>, also known as hosted hypervisors, run on top of an existing operating system. They are typically used on desktop computers and are less powerful than Type 1 hypervisors. Examples of Type 2 hypervisors include Oracle VirtualBox, VMware Workstation, and Parallels Desktop.</li>
-      </ol>
-      <img src="hypervisor.png">
-      <p>Type 1 hypervisors are generally preferred in enterprise environments because they are more powerful and efficient than Type 2 hypervisors. However, Type 2 hypervisors are more user-friendly and can be used on a wider range of hardware.</p>
+      <p>The <strong>hypervisor</strong> (also called a virtual machine manager) is the software that creates and runs VMs and shares the hardware between them.</p>
+      <ul>
+        <li><strong>Type 1 (bare metal):</strong> runs directly on the hardware, with no operating system underneath. Used on servers and in data centers because it is efficient and stable. Examples: VMware ESXi, Microsoft Hyper-V, Proxmox VE.</li>
+        <li><strong>Type 2 (hosted):</strong> an app that runs on top of a normal operating system. Easy to install on a desktop or laptop; a little slower because the host OS sits in between. Examples: Oracle VirtualBox, VMware Workstation, Parallels Desktop.</li>
+      </ul>
+      <img src="hypervisor.png" alt="Type 1 hypervisor: hardware, then the hypervisor, then several guest operating systems. Type 2 hypervisor: hardware, then a host operating system, then the hypervisor, then several guest operating systems.">
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/xXOIdDWUNGU" title="Virtualization Concepts - CompTIA A+ 220-1201 - 4.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Virtualization Concepts – CompTIA A+ 220-1201 – 4.1" (free A+ course).</p>
+    </section>
+
+    <section>
+      <h3>What a host needs</h3>
+      <p>Every running VM takes a share of the host's real resources, so plan for the host plus every VM you will run at the same time.</p>
+      <ul>
+        <li><strong>CPU with virtualization support:</strong> Intel VT-x or AMD-V, switched on in the BIOS/UEFI settings (often off from the factory; see the Boot Process lesson). Without it, most hypervisors will not start a VM. More cores let you give each VM its own.</li>
+        <li><strong>Memory (RAM):</strong> usually the first limit. Each VM's RAM is reserved while it runs, on top of what the host needs.</li>
+        <li><strong>Storage:</strong> free space for each virtual disk and its snapshots. An SSD makes VMs far faster.</li>
+        <li><strong>Network:</strong> each VM gets a virtual network card. Common modes: <strong>NAT</strong> (the VM shares the host's address and reaches the Internet, but the network cannot see it), <strong>bridged</strong> (the VM joins your real network like another device) and <strong>host-only / internal</strong> (the VM can talk only to the host or other VMs, useful for testing malware or attacks safely).</li>
+        <li><strong>Security:</strong> a guest is a full computer. It needs its own updates, antivirus and passwords, even though it runs inside another one.</li>
+      </ul>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A student installs VirtualBox, but every 64-bit VM fails to start with a message that "VT-x is disabled". The laptop has 16 GB of RAM and plenty of free space. What should they do?</p>
+        <div class="check-options">
+          <button type="button">Buy a better video card</button>
+          <button type="button">Reinstall VirtualBox as a Type 1 hypervisor</button>
+          <button type="button">Turn on Intel virtualization (VT-x) in the BIOS/UEFI settings</button>
+          <button type="button">Give the VM more RAM</button>
+        </div>
+        <p class="check-why">VT-x (or AMD-V on AMD processors) is a CPU feature the hypervisor needs. It is switched on in the firmware settings, not in Windows.</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>Why use virtualization on a desktop?</h3>
+      <ul>
+        <li><strong>Sandbox:</strong> open a suspicious file or website in a VM, then throw the VM away (or roll back a snapshot). Anything it infects stays inside.</li>
+        <li><strong>Test and development:</strong> try an update, a new app or a configuration change on a copy before touching a real machine.</li>
+        <li><strong>Legacy software and operating systems:</strong> keep an old program running on the older operating system it needs.</li>
+        <li><strong>Cross-platform:</strong> run Linux tools on a Windows laptop, or test a website on another operating system.</li>
+      </ul>
+      <p><strong>Containers</strong> are a lighter alternative. A container packages one app with the libraries it needs, but shares the host's operating system kernel instead of running a whole guest OS. Containers start in seconds and use little memory; a VM gives stronger isolation and can run a different operating system. Docker is the best-known container tool.</p>
+      <p><strong>Desktop virtualization (VDI)</strong> runs users' desktops as VMs on servers in a data center or the cloud. People connect from a laptop or thin client, and IT manages every desktop in one place.</p>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A help-desk technician receives an email attachment that might be malware and must find out what it does without risking the office network. What is the best approach?</p>
+        <div class="check-options">
+          <button type="button">Open it in a VM set to host-only networking, then roll the VM back to a snapshot</button>
+          <button type="button">Open it on their own workstation with antivirus turned on</button>
+          <button type="button">Open it in a container on the file server</button>
+          <button type="button">Forward it to a coworker to open</button>
+        </div>
+        <p class="check-why">A VM is a sandbox: host-only networking keeps the file off the real network, and the snapshot erases whatever it did.</p>
+      </div>
     </section>
 
     <section>
       <h3>Cloud Computing</h3>
-      <p>Cloud computing has been a revolutionary shift in the way that individuals and companies operate. Instead of storing everything locally on each individual machine, cloud computing allows you to do much of your work and storage over the internet. Things that are stored and shared in this way are said to be in the cloud.</p>
-    </section>
+      <p><strong>Cloud computing</strong> means renting computing resources (servers, storage, databases, apps) from a provider over the Internet instead of buying and running them yourself. The provider runs huge numbers of virtualized servers and hands out shares of them on demand. Virtualization is what makes the cloud possible.</p>
 
-    <section>
-      <h3>Cloud Deployment Models</h3>
+      <h4>Deployment models: who uses it</h4>
       <ul>
-        <li><strong>Public Cloud:</strong> This is a cloud infrastructure that is available to the general public. The cloud service provider is responsible for managing and maintaining the infrastructure.</li>
-        <li><strong>Private Cloud:</strong> This is a cloud infrastructure that is dedicated to a single organization. The organization has complete control over the infrastructure and is responsible for managing and maintaining it.</li>
-        <li><strong>Hybrid Cloud:</strong> This is a combination of public and private cloud infrastructures. The organization can use the public cloud for non-sensitive workloads and the private cloud for sensitive workloads that require enhanced security and compliance.</li>
-        <li><strong>Community Cloud:</strong> This is a cloud computing model that involves sharing computing resources among organizations with common interests, such as a particular industry or geographical location.</li>
+        <li><strong>Public cloud:</strong> shared by many customers and run by a provider such as AWS, Microsoft Azure or Google Cloud.</li>
+        <li><strong>Private cloud:</strong> used by one organization only. It can run in the organization's own data center or be hosted by a provider just for them. More control, higher cost.</li>
+        <li><strong>Hybrid cloud:</strong> a mix of public and private, connected together. For example, sensitive records stay in the private cloud while the public website runs in the public cloud.</li>
+        <li><strong>Community cloud:</strong> shared by several organizations with the same needs, such as government agencies or hospitals with the same compliance rules.</li>
       </ul>
-    </section>
 
-    <section>
-      <h3>Cloud Service Types</h3>
+      <h4>Service models: what you rent</h4>
       <ul>
-        <li><strong>Infrastructure as a Service (IaaS):</strong> This provides users with virtual machines, storage, and network resources. Users can install and configure their own operating systems, applications, and software.</li>
-        <li><strong>Platform as a Service (PaaS):</strong> This provides users with a platform for developing, running, and managing applications. Users do not have to worry about managing the underlying hardware and operating system.</li>
-        <li><strong>Software as a Service (SaaS):</strong> This provides users with access to software applications over the internet. Users do not have to install or maintain the software on their own devices.</li>
+        <li><strong>Infrastructure as a Service (IaaS):</strong> virtual machines, storage and networks. You install and manage the operating system and everything above it. Examples: Amazon EC2, Azure Virtual Machines.</li>
+        <li><strong>Platform as a Service (PaaS):</strong> a ready platform to run your own code. The provider manages the servers and operating system; you manage your app and its data. Examples: Heroku, Google App Engine, Azure App Service.</li>
+        <li><strong>Software as a Service (SaaS):</strong> a finished app used through a browser or app. The provider manages everything; you manage your users, settings and data. Examples: Microsoft 365, Gmail, Salesforce, Zoom.</li>
       </ul>
+
+      <p class="resp-key"><span class="you" style="background:#dbeafe;color:#1e3a8a;">You</span><span style="background:#f3f4f6;color:#374151;">Provider</span> Who manages each layer:</p>
+      <div class="resp-wrap">
+        <table class="resp">
+          <thead><tr><th>Layer</th><th>Your own server room</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr></thead>
+          <tbody>
+            <tr><td>Data, users and access</td><td class="you">You</td><td class="you">You</td><td class="you">You</td><td class="you">You</td></tr>
+            <tr><td>Application</td><td class="you">You</td><td class="you">You</td><td class="you">You</td><td class="prov">Provider</td></tr>
+            <tr><td>Operating system</td><td class="you">You</td><td class="you">You</td><td class="prov">Provider</td><td class="prov">Provider</td></tr>
+            <tr><td>Virtualization</td><td class="you">You</td><td class="prov">Provider</td><td class="prov">Provider</td><td class="prov">Provider</td></tr>
+            <tr><td>Servers, storage, network</td><td class="you">You</td><td class="prov">Provider</td><td class="prov">Provider</td><td class="prov">Provider</td></tr>
+            <tr><td>Building, power, cooling</td><td class="you">You</td><td class="prov">Provider</td><td class="prov">Provider</td><td class="prov">Provider</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>This split is called the <strong>shared responsibility model</strong>, and it matters for security: the provider secures what it manages, but in every model <em>you</em> are still responsible for your data, who has access, and how you configure the service. Many cloud breaches come from customer mistakes, such as a storage bucket left open to the public or an account without multifactor authentication.</p>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A company rents virtual servers from a cloud provider and installs Windows Server and its own web app on them. Which service model is this, and who must install the Windows security updates?</p>
+        <div class="check-options">
+          <button type="button">SaaS; the provider</button>
+          <button type="button">IaaS; the company</button>
+          <button type="button">PaaS; the provider</button>
+          <button type="button">IaaS; the provider</button>
+        </div>
+        <p class="check-why">Renting virtual machines is IaaS. In IaaS the customer manages the operating system, so patching Windows is the company's job.</p>
+      </div>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/KZxAY5ssUxc" title="Cloud Models - CompTIA A+ 220-1201 - 4.2 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Cloud Models – CompTIA A+ 220-1201 – 4.2" (free A+ course).</p>
     </section>
 
     <section>
-      <h3>Key Benefits of Cloud Computing</h3>
+      <h3>Cloud characteristics</h3>
+      <p>The A+ exam expects you to recognize these terms:</p>
       <ul>
-        <li><strong>Lower Costs:</strong> With cloud computing, you pay only for the services you need as long as you need them.</li>
-        <li><strong>Easier Collaboration:</strong> With cloud computing, it's simple for people to work together even when they're not geographically close.</li>
-        <li><strong>Data Backup:</strong> If files are kept in the cloud, it's easier to make sure that you don't lose them. Even if your individual machine crashes, files can be restored from a cloud location.</li>
-        <li><strong>Data Security:</strong> Cloud computing has many technologies that help protect your data so that only authorized individuals can access it.</li>
+        <li><strong>Shared resources:</strong> many customers use the same pool of hardware. <em>Internal</em> shared resources belong to your organization; <em>external</em> ones belong to a provider.</li>
+        <li><strong>Multitenancy:</strong> many customers ("tenants") run on the same hardware, kept separate from each other by software.</li>
+        <li><strong>Metered utilization:</strong> you pay for what you use, by the hour, the gigabyte or the user, like an electricity bill.</li>
+        <li><strong>Rapid elasticity:</strong> resources grow automatically when demand rises and shrink when it falls.</li>
+        <li><strong>High availability:</strong> the service keeps running when hardware fails, because it is copied across servers and often across data centers.</li>
+        <li><strong>File synchronization:</strong> files saved to services like OneDrive, Google Drive or Dropbox are kept the same on every device.</li>
       </ul>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">An online store's website automatically adds servers during a Black Friday rush and removes them the next week, and the store only pays for the extra hours. Which two characteristics is it using?</p>
+        <div class="check-options">
+          <button type="button">Multitenancy and file synchronization</button>
+          <button type="button">High availability and file synchronization</button>
+          <button type="button">Shared resources and multitenancy</button>
+          <button type="button">Rapid elasticity and metered utilization</button>
+        </div>
+        <p class="check-why">Growing and shrinking with demand is rapid elasticity; paying only for the hours used is metered utilization.</p>
+      </div>
     </section>
 
     <section>
-      <h3>The SaaS Model</h3>
-      <p>In a typical SaaS model, the software is hosted on a central server and users are charged a monthly fee to gain access to it. Under this model, the end user doesn't need a license because everything is hosted in the cloud. The end user also doesn't need any particular kind of hardware to host the software as it's taken care of by the host company.</p>
-      <p>Many companies like this business model because it creates a steady stream of monthly revenue. Since the customer is only renting the software, access can be revoked if the customer stops paying. This is in contrast to traditional software, which is purchased for a one-time fee.</p>
-    </section>
-
-    <section>
-      <h3>Categories of SaaS Applications</h3>
+      <h3>Benefits and drawbacks</h3>
       <ul>
-        <li>CRM management software such as Salesforce.</li>
-        <li>Office tools such as Microsoft Office 365 (Word, Excel, and PowerPoint).</li>
-        <li>Online storage solutions such as Dropbox, Google Drive, and Microsoft OneDrive.</li>
-        <li>Customer service software such as Zendesk.</li>
-        <li>Electronic signature and document management software such as DocuSign.</li>
-        <li>Real-time messaging solutions such as Slack.</li>
-        <li>Virtual meeting solutions such as GoToMeeting and Zoom.</li>
-        <li>HR tools such as Workday.</li>
-        <li>Course management tools such as Blackboard.</li>
-        <li>Survey creation tools such as Qualtrics.</li>
-        <li>Email services such as Gmail, HubSpot, and Sendinblue.</li>
+        <li><strong>Benefits:</strong> no hardware to buy up front; scale up or down quickly; work from anywhere and collaborate easily; providers offer backups and copies in several locations.</li>
+        <li><strong>Drawbacks:</strong> everything depends on the Internet connection and on the provider staying up; monthly costs can grow quietly; moving away from one provider can be hard (lock-in); your data sits on someone else's hardware, so contracts, location and compliance rules matter.</li>
       </ul>
+      <p>Most SaaS apps are paid by <strong>subscription</strong>: each user needs a licence, paid monthly or yearly, and access stops when the payments stop. This is different from older software bought once and installed on each computer.</p>
     </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 3 minutes)</h4>
+      <ol>
+        <li>Press <strong>Ctrl+Shift+Esc</strong> to open Task Manager, go to <strong>Performance</strong> &gt; <strong>CPU</strong>, and find <strong>Virtualization</strong> under the graph. Is it Enabled? If it says Disabled, this is the setting you would switch on in the BIOS/UEFI before running VMs.</li>
+        <li>Note the number of <strong>Cores</strong> and, under <strong>Memory</strong>, the total RAM. How many VMs with 2 cores and 4 GB of RAM each could this computer run while you still use it?</li>
+        <li>Optional: open Command Prompt, type <code>systeminfo</code> and press Enter. The last lines show the <strong>Hyper-V Requirements</strong>, or "A hypervisor has been detected" if a hypervisor is already running.</li>
+      </ol>
+    </div>
 
     <div class="certmaster-card">
       <h2>Next: CompTIA A+, Lesson 8</h2>
@@ -114,12 +208,6 @@
     </div>
 
   </div>
-
-  <!-- Prism.js for syntax highlighting -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- V School Netlify Reporting Scripts -->
   <script
