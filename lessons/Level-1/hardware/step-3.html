@@ -41,15 +41,15 @@
       <div class="section" aria-labelledby="important-hardware-heading">
         <h4 id="important-hardware-heading">Some Important Hardware</h4>
         <ul>
-            <li><strong>Power Supply:</strong> Another responsibility of the motherboard is to ensure all all the components get the right amount of electricity. This electricity comes to the computer through a power supply unit. Power supplies take AC power from a wall outlet and covert it into DC power.</li>
+            <li><strong>Power Supply Unit (PSU):</strong> Every component needs electricity at the right voltage. The power supply unit takes AC (alternating current) power from the wall outlet and converts it into the DC (direct current) power the components use, at standard voltages such as 12V, 5V and 3.3V. The motherboard then passes power on to the components plugged into it.</li>
             <li><strong>Network Interface Card(NIC):</strong> Today, most computers need to connect to the internet. That's the job of the Network Interface Card, or NIC. Some motherboards have a NIC built in, while others need one to be added on. Some NIC's are for wired, some wireless, and some for both.</li>
             <li><strong>Graphics Processing Unit(GPU):</strong> The CPU is the main processor in a computer, but computers require additional processing power for creating images and graphics. This is supplied by the Graphical Processing Unit, or GPU. Most Computers today handle graphics processing through the CPU and RAM, this is called integrated graphics (or onboard graphics). But computers that are used for gaming, video editing, 3D modeling and animation will need a GPU that's dedicated to graphics processing. The best graphics card will be expensive because they also contain their own specialized ram, processors and cooling systems.</li>
-            <li><strong>Cooling Systems:</strong> One of the problems of high speed computing is that it produces a lot of heat. a typical desktop CPU can get hot enough to boil water. This much heat can damage internal components. In a typical desktop system cooling is done via Heatsinks and fans, in higher end systems water cooling can be used as well.</li>
+            <li><strong>Cooling Systems:</strong> High-speed computing produces a lot of heat; a busy CPU can reach around 90–100°C, and that much heat can damage components or make the system slow itself down (thermal throttling). A typical desktop is cooled with a heatsink, thermal paste and fans; higher-end systems may use liquid cooling.</li>
         </ul>
         <p><strong>Internal Computing Components</strong></p>
         <ul>
             <li><strong>CPU:</strong> The most important part of any modern computer system is the central processing unit, or CPU. Just like the brain controls the body, the CPU controls the other parts of the computer by getting information from them, then telling them what to do. After receiving raw input data from the user, the CPU applies the data to a list of instructions, called a computer program. Then the CPU executes each line of the computer program in order, turning the data from the user into information. This is called processing. </li>
-            <li><strong>RAM:</strong> The CPU is great at performing calculations, but it can only deal with one line of code at a time - it can't keep track of the whole program at once. Instead, the computer stores this info in RAM, or Random-Access Memory. When you run a program, the computer loads the instructions in RAM. Then, the CPU takes the first line of instructions from RAM, Executes its and writes the results back to RAM to use later. RAM is extremely fast, but it's also volatile. If you turn off the computer, RAM will forget everything it was holding. For this reason, RAM is sometimes called "short term memory" - it's only concerned with whatever the computer is using right now. </li>
+            <li><strong>RAM:</strong> The CPU is great at performing calculations, but it can only deal with one line of code at a time - it can't keep track of the whole program at once. Instead, the computer stores this info in RAM, or Random-Access Memory. When you run a program, the computer loads the instructions in RAM. Then, the CPU takes the first line of instructions from RAM, executes it, and writes the results back to RAM to use later. RAM is extremely fast, but it's also volatile. If you turn off the computer, RAM will forget everything it was holding. For this reason, RAM is sometimes called "short term memory" - it's only concerned with whatever the computer is using right now. </li>
             <li><strong>Motherboard:</strong> The CPU and RAM are connected by a large flat component called the motherboard. The Motherboard is like the spine in your body, it connects all the other parts to each other and sends electrical signals between them. An important part of the motherboard is a chip that contains the BIOS, or Basic Input Output System (or UEFI, Unified Extensible Firmware Interface). When you start a computer, the BIOS makes sure all necessary parts are plugged in and working properly, then it tells the Operating System to load.</li>
         </ul>
       </div>
@@ -60,10 +60,10 @@
         <img src="bus1.png">
         <p>There are a variety of different types of buses used in computer systems, each with different characteristics and uses. Some of the most common types of buses include:</p>
         <ul>
-          <li><strong>System bus:</strong> Also known as the front-side bus, this bus connects the CPU to main memory and other components, such as the video card and hard disk drive.</li>
-          <li><strong>Expansion bus:</strong> This bus provides a way to add additional components to a computer system, such as a video card or network card. Common expansion buses include the Peripheral Component Interconnect (PCI) and the Accelerated Graphics Port (AGP).</li>
-          <li><strong>Backplane bus:</strong> This bus is used in large computer systems, such as servers, to connect multiple components and provide a high-speed data transfer path.</li>
-          <li><strong>Internal bus:</strong> This bus is used to connect components that are located within a single device, such as a hard disk drive.</li>
+          <li><strong>System bus:</strong> Connects the CPU to main memory (RAM) and the motherboard's chipset. Older computers used a "front-side bus" for this; modern CPUs have the memory controller built in and talk to RAM directly.</li>
+          <li><strong>Expansion bus:</strong> Lets you add components such as a video card or network card. On modern computers this is PCI Express (PCIe). Older buses, PCI and AGP, are now legacy.</li>
+          <li><strong>Backplane bus:</strong> Used in larger systems, such as servers and storage enclosures, to connect many cards or drives over a shared high-speed board.</li>
+          <li><strong>Internal bus:</strong> Connects the parts inside a single component, such as the cores and cache inside a CPU.</li>
         </ul>
         <img src="bus2.png">
         <p>Buses are an important part of computer systems, as they enable different components to communicate with one another and work together to perform various tasks.</p>
@@ -73,10 +73,10 @@
       <h3>Computer Buses</h3>
       <p>In computers, the bus is responsible for transferring the following:</p>
       <ul>
-        <li><strong>Power:</strong> Each component requires electricity; the bus provides this power.</li>
+        <li><strong>Power:</strong> Expansion slots also deliver power to the cards plugged into them (for example, a PCIe x16 slot supplies up to 75 watts; bigger graphics cards need extra power cables from the PSU).</li>
         <li><strong>Data:</strong> The data is the information that is transferred between the components in the computer.</li>
         <li><strong>Memory Location:</strong> Memory temporarily stores the data while it's needed for processing. The bus keeps track of the address or location where the data is stored in the memory.</li>
-        <li><strong>Clock Timing:</strong> A computer has a clock mechanism, often performed by the CPU, which synchronizes how all the components work together over the bus.</li>
+        <li><strong>Clock Timing:</strong> A clock signal, generated on the motherboard, keeps the components in step with each other as they send data over the bus.</li>
       </ul>
       <img src="pci.png">
     </div>
@@ -89,16 +89,19 @@
       
       <h4>PCIe</h4>
       <p> PCI Express, or PCIe, is a next-generation I/O bus architecture. Rather than a shared bus, each PCIe slot links to a switch which prioritizes and routes data through a point-to-point dedicated connection and provides a serial full-duplex method of transmission. PCIe is backwards compatible and allows legacy PCI technology to run in the same system. PCIe buses are most commonly used for video cards in modern computer systems, although nearly any device can be designed for a PCIe slot.</p>
-      <p>Basic PCIe provides one lane for transmission (x1), at a transfer rate of 250 MBps. It can also provide multiple transmission lanes (x2, x4, x8, x16, x32). Newer versions of PCIe can transfer data at an even higher rate per lane:</p>
+      <p>A PCIe slot is made of lanes: x1, x4, x8 or x16 (graphics cards use x16). More lanes means more bandwidth. Each new version of PCIe roughly doubles the speed of every lane:</p>
       <ul>
-        <li>Version 1: 250 MBps</li>
-        <li>Version 2: 500 MBps</li>
-        <li>Version 3: 1 GBps</li>
-        <li>Version 4: 2 GBps</li>
+        <li>Version 1.0: about 250 MB/s per lane</li>
+        <li>Version 2.0: about 500 MB/s per lane</li>
+        <li>Version 3.0: about 1 GB/s per lane</li>
+        <li>Version 4.0: about 2 GB/s per lane</li>
+        <li>Version 5.0: about 4 GB/s per lane (current desktops and fast NVMe SSDs)</li>
+        <li>Version 6.0: about 8 GB/s per lane (newest servers)</li>
       </ul>
+      <p>So a PCIe 4.0 x16 graphics card slot moves about 32 GB/s. Cards and slots of different versions work together, at the speed of the slower one.</p>
 
-      <h4>PCI with AGP</h4>
-      <p>AGP is similar to PCI but designed specifically for graphics support. Motherboards that provide AGP support have a single AGP slot. AGP is commonly used for video cards in modern computer systems but has been replaced by PCIe.</p>
+      <h4>AGP (legacy)</h4>
+      <p>AGP (Accelerated Graphics Port) was a slot made just for graphics cards in the late 1990s and 2000s. It has been completely replaced by PCIe; you will only see it in very old computers.</p>
     </div>
 
   </div>
@@ -117,7 +120,7 @@
           </li>
 
           <li>
-            <strong>Processing devices:</strong> These are used to process data and perform calculations. The CPU and RAM are examples of processing devices.
+            <strong>Processing devices:</strong> These are used to process data and perform calculations. The CPU and GPU are examples of processing devices. (RAM is not a processing device: it is memory that holds what the CPU is working on right now.)
           </li>
 
           <li>
@@ -125,7 +128,7 @@
           </li>
         </ol>
 
-        <p>Peripheral devices and input/output (I/O) devices are often used interchangeably, but they are not exactly the same thing. Peripheral devices are a broad category that includes any device that can be connected to a computer system, such as printers, scanners, and cameras. I/O devices, on the other hand, specifically refer to devices that are used for input and output operations, such as keyboards, mice, and monitors. While all I/O devices are considered peripheral devices, not all peripheral devices are I/O devices.</p>
+        <p><strong>Peripherals vs. input/output devices:</strong> a <em>peripheral</em> is any device you connect to a computer from outside to add a function, such as a keyboard, mouse, monitor, printer, scanner, webcam or external drive. Most peripherals are input devices (keyboard, mouse, scanner, webcam), output devices (monitor, printer, speakers) or both (a touchscreen). Some are storage instead, like an external hard drive. "Input/output" describes what a device does; "peripheral" describes that it is attached from outside.</p>
         <h2>Next, Complete CompTIA A+ Lesson 2</h2>
         <p>If the embed doesnt work, use the button instead.</p>
       <iframe
@@ -162,7 +165,7 @@
         <ul>
           <li><strong>Desktops</strong>: Often referred to as workstations or PCs, desktops are computer systems small enough to fit on, under, or near a desk. They are widely used for business, industry, and home use. Desktop systems are equipped with peripheral devices such as a monitor, keyboard, mouse, and speakers. They have several advantages including modularity, ease of repair and upgrade, the power to run CPU-intensive tasks, and storage capacity to handle larger amounts of data than other devices. However, they are not mobile and require continuous access to an A/C power outlet.</li>
           <li><strong>All-in-one devices</strong>: These types of desktop computers contain every component except the keyboard and mouse in the same case as the monitor. They require less space than a desktop and are easy to move to a new location. However, they are harder and more expensive to repair, and in most cases, you are not able to expand the memory or disk space.</li>
-          <li><strong>Notebooks and laptops</strong>: Also known as subnotebooks, these computers have all components built into one case. They can run the same productivity applications as desktop systems, are smaller, weigh less, use less power than desktop systems, and include batteries that allow them to run without external power for a period of time. They are mobile and often include built-in wireless networking. However, they are more difficult to upgrade or repair, usually more expensive than comparable desktop systems, and typically have less computing power than comparable desktops.</li>
+          <li><strong>Notebooks and laptops</strong>: These computers have all components built into one case. They can run the same productivity applications as desktop systems, are smaller, weigh less, use less power than desktop systems, and include batteries that allow them to run without external power for a period of time. They are mobile and often include built-in wireless networking. However, they are more difficult to upgrade or repair, usually more expensive than comparable desktop systems, and typically have less computing power than comparable desktops.</li>
           <li><strong>Hybrid laptop devices (2-in-1)</strong>: These computers cater to the needs of both tablet and laptop users. They provide a touchscreen and other tablet-style conveniences but also provide an operating system and keyboard.</li>
           <li><strong>Gaming consoles</strong>: These are computer systems specifically built to be operated by a gaming pad instead of a keyboard and mouse. They include major computer components, such as CPU, GPU, RAM, an operating system, disk storage, etc. These components are designed to work best with games and the high graphics capabilities required by these games.</li>
           <li><strong>Network Client</strong>: This is a device that can connect to a network. All the above devices can be network clients.</li>
@@ -174,7 +177,6 @@
     </div>
 
     <footer class="slide-footer">
-      <p>Resources: (as provided in input)</p>
     </footer>
   </div>
 

@@ -18,73 +18,93 @@
     <section aria-labelledby="objectives-heading">
       <h3 id="objectives-heading">Learning Objectives</h3>
       <ul>
-        <li>Compare and contrast Hard Disk Drives (HDDs) and Solid-State Drives (SSDs) in terms of technology, speed, durability, and cost</li>
-        <li>Define optical storage and identify common optical storage devices, such as CD-ROMs, DVDs, and Blu-ray discs.</li>
-        <li>Explore the concept of external storage devices, including USB drives, external hard drives, and network-attached storage (NAS).</li>
+        <li>Explain the difference between memory (RAM) and storage.</li>
+        <li>Compare Hard Disk Drives (HDDs) and Solid-State Drives (SSDs) in technology, speed, durability and cost.</li>
+        <li>Identify storage interfaces: SATA, NVMe/M.2, SAS, and the legacy PATA/IDE and SCSI.</li>
+        <li>Identify flash, optical, external and network-attached storage (NAS).</li>
+        <li>Describe RAID levels 0, 1, 5, 6 and 10.</li>
+        <li>Explain drives, volumes and partitions (MBR and GPT).</li>
       </ul>
     </section>
 
     <div class="section" aria-labelledby="storage-heading">
-      <h3 id="storage-heading">Storage Types</h3>
-      <p>A processor uses random access memory (RAM) to store information about a program it's currently running. RAM is extremely fast, and the processor can read from and write to it billions of times each second. However, RAM is volatile; if the system shuts off, RAM loses everything it had stored in memory. So, we have Mass storage devices to store important data for persistent use.</p>
+      <h3 id="storage-heading">Memory vs. Storage</h3>
+      <p>A processor uses random access memory (RAM) to hold the program it is running right now. RAM is extremely fast, but it is <strong>volatile</strong>: when the power goes off, everything in it is lost. <strong>Storage</strong> (also called mass storage) is <strong>non-volatile</strong>: it keeps your files, programs and operating system when the computer is off. Storage is much bigger and cheaper per gigabyte than RAM, but slower.</p>
+    </div>
 
-      <p>This lesson covers the topic of common Mass storage devices.</p>
+    <div class="section" aria-labelledby="hdd-ssd-heading">
+      <h3 id="hdd-ssd-heading">Hard Disk Drives (HDDs) vs. Solid-State Drives (SSDs)</h3>
+      <table class="rubric-table">
+        <thead><tr><th></th><th>HDD</th><th>SSD</th></tr></thead>
+        <tbody>
+          <tr><td><strong>How it works</strong></td><td>Magnetic platters spin (5,400, 7,200, 10,000 or 15,000 RPM) while a read/write head moves across them.</td><td>NAND flash memory chips. No moving parts.</td></tr>
+          <tr><td><strong>Speed</strong></td><td>About 100–250 MB/s. Slow to find scattered data.</td><td>SATA SSD: about 550 MB/s. NVMe SSD: about 3,000–14,000 MB/s.</td></tr>
+          <tr><td><strong>Durability</strong></td><td>Moving parts can be damaged by drops and wear out.</td><td>Handles shock well. Each memory cell supports a limited number of writes, but modern drives last for years of normal use.</td></tr>
+          <tr><td><strong>Cost and capacity</strong></td><td><strong>Cheaper per gigabyte</strong>, with the biggest capacities. Used for bulk storage and backups.</td><td>Costs more per gigabyte. The standard for the operating system and programs.</td></tr>
+          <tr><td><strong>Other</strong></td><td>Makes noise, uses more power, gives off more heat.</td><td>Silent and uses less power; boots and loads programs much faster.</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Form factors:</strong> 3.5-inch (desktop HDDs), 2.5-inch (laptop HDDs and SATA SSDs), and M.2 cards (SSDs, in sizes such as 2242, 2260 and 2280, meaning 22 mm wide by 42, 60 or 80 mm long).</p>
     </div>
 
     <div class="section" aria-labelledby="common-storage-heading">
-      <h3 id="common-storage-heading">Common Storage Devices</h3>
-
-      <p>To store information when the computer is turned off (called persistent storage), computers must use long-term storage. Otherwise, data would be lost whenever the system shuts down. There are several different types of long-term storage devices that are commonly implemented in most computer systems.</p>
-
-      <div style="margin-top:12px;">
-      </div>
-
+      <h3 id="common-storage-heading">Storage Interfaces</h3>
+      <p>The interface is how a drive connects to the motherboard and talks to the computer.</p>
       <ul>
-        <li>SCSI - A SCSI (scuzzy) controller was one of the first disk controllers. It was developed in the 1970s. It has a 50-pin flat ribbon connector. SCSI controllers are now being phased out.</li>
-        <li>IDE/EIDE/PATA - Controllers based on the IBM PC industry standard architecture (ISA) 16-bit bus standard.</li>
-        <li>SATA - SATA supports disk hot-swapping. This means the drive can be changed while the computer is powered on. SATA uses better cables and provides faster speeds than SCSI and IDE/EIDE/PATA.</li>
-        <li>M.2 - M.2 is a compact form factor for solid-state storage devices that has become the standard for modern PCs and laptops. Unlike traditional 2.5-inch SATA drives, M.2 drives are small rectangular cards that plug directly into the motherboard, saving space and eliminating cable clutter. They come in various lengths (commonly 2280, meaning 22mm wide by 80mm long) and can use either the SATA interface or the much faster NVMe protocol over PCIe lanes. NVMe M.2 drives offer significantly faster read/write speeds—often exceeding 5,000 MB/s or even 7,000 MB/s with PCIe 4.0 and 5.0—compared to SATA's 550 MB/s limit.</li>
-    </ul>
+        <li><strong>SATA (Serial ATA):</strong> the long-time standard for HDDs and 2.5-inch SSDs. Up to 6 Gb/s (about 600 MB/s). Uses a 7-pin data cable and a 15-pin power connector, and supports hot-swapping (replacing a drive while the computer is on) where the system allows it. Most motherboards have several SATA ports.</li>
+        <li><strong>NVMe over PCIe (usually in an M.2 slot):</strong> today's standard for fast SSDs. NVMe drives use PCIe lanes directly, so they are many times faster than SATA. Note: <em>M.2 is a shape, not a speed</em>. An M.2 card can be a fast NVMe drive or a slower SATA drive, so check which kinds the slot supports.</li>
+        <li><strong>SAS (Serial Attached SCSI):</strong> used in servers. Fast and reliable; a SAS controller can also run SATA drives.</li>
+        <li><strong>PATA / IDE / EIDE (legacy):</strong> the older parallel interface, with a wide 40-pin ribbon cable and "master/slave" jumpers. Replaced by SATA.</li>
+        <li><strong>Parallel SCSI (legacy):</strong> one of the earliest disk interfaces, developed in the late 1970s, with a 50-pin (later 68-pin) ribbon cable. Replaced by SAS.</li>
+      </ul>
+      <p>A typical desktop today has an NVMe SSD for the operating system and programs, and may add a large SATA HDD for files and backups.</p>
+    </div>
 
-      <p>SATA is (or was) the most common controller used in desktop and laptop computers. There are usually four SATA ports on most motherboards. Nowadays modern systems are moving towards M.2 similarly to how UEFI is replacing BIOS</p>
+    <div class="section" aria-labelledby="other-storage-heading">
+      <h3 id="other-storage-heading">Flash, Optical, External and Network Storage</h3>
+      <ul>
+        <li><strong>Flash storage:</strong> SSDs, USB flash drives (thumb drives) and memory cards (SD, microSD) all store data on flash memory. Thumb drives and memory cards are small and removable; SSDs are built for speed and installed inside the computer.</li>
+        <li><strong>Optical discs:</strong> a laser reads (and can write) the data. CD: about 700 MB. DVD: 4.7 GB (8.5 GB dual layer). Blu-ray: 25 GB (50 GB dual layer). "-ROM" discs are read-only, "-R" can be written once, "-RW" can be rewritten. Mostly legacy today.</li>
+        <li><strong>External drives:</strong> an HDD or SSD in an enclosure, connected by USB or Thunderbolt. Common for backups and moving large files.</li>
+        <li><strong>Network-attached storage (NAS):</strong> a storage device on the network that shares files with many users, usually with several drives in RAID. (A storage area network, SAN, gives servers block-level storage over a dedicated network.)</li>
+      </ul>
+    </div>
 
-      <div style="margin-top:12px;">
-      </div>
-
-      <div style="margin-top:12px;">
-      </div>
-
-      <div style="margin-top:12px;">
-      </div>
-
-      <p>A typical desktop computer system has several storage devices attached to it. For example, it may have a solid-state drive (SSD) for the operating system and key programs, a hard disk drive (HDD) for file storage, an optical drive for CDs and DVDs, and removable USB storage devices.</p>
+    <div class="section" aria-labelledby="raid-heading">
+      <h3 id="raid-heading">RAID (Redundant Array of Independent Disks)</h3>
+      <p>RAID combines several drives so they act as one, for speed, for protection against a drive failing, or both.</p>
+      <ul>
+        <li><strong>RAID 0 (striping):</strong> data split across 2 or more drives. Fastest, but <em>no</em> protection: if one drive fails, all the data is lost.</li>
+        <li><strong>RAID 1 (mirroring):</strong> 2 drives hold identical copies. Survives one drive failing; you get the capacity of one drive.</li>
+        <li><strong>RAID 5 (striping with parity):</strong> 3 or more drives. Survives one drive failing; one drive's worth of space goes to parity.</li>
+        <li><strong>RAID 6 (double parity):</strong> 4 or more drives. Survives two drives failing.</li>
+        <li><strong>RAID 10 (1+0, mirrored stripes):</strong> 4 or more drives. Fast, and survives a drive failing in each mirrored pair.</li>
+      </ul>
+      <p><strong>RAID is not a backup.</strong> It protects against a drive failing, not against deleted files, ransomware or a fire, so you still need backups.</p>
     </div>
 
     <div class="section" aria-labelledby="drives-heading">
-      <h3 id="drives-heading">Drives</h3>
-
-      <p>Typically, each storage device on the computer is called a drive. A drive is the top-level folder, or directory, of a file system. Each drive is assigned a letter by the computer. The one that contains the operating system is typically called the C drive (C:).</p>
-
-      <p><strong>What happened to the A and B drives?</strong>In the early days of desktop computers, the A and B drives were typically used for 3/5-inch and 5-inch floppy disks, respectively. Even though floppy disks have been surpassed by better technology, the tradition of calling the principal hard drive the C drive is still with us.</p>
+      <h3 id="drives-heading">Drives, Volumes and Drive Letters</h3>
+      <p>A physical disk can be divided into one or more <strong>partitions</strong>. A partition that has been formatted with a file system (such as NTFS) is a <strong>volume</strong>, and Windows gives each volume a <strong>drive letter</strong>. The volume holding Windows is usually C:.</p>
+      <p><strong>What happened to the A and B drives?</strong> On early PCs, A: and B: were reserved for floppy disk drives (3.5-inch and 5.25-inch floppies). Floppies are gone, but hard drives still start at C: by tradition.</p>
     </div>
 
     <div class="section" aria-labelledby="partitioning-heading">
       <h3 id="partitioning-heading">Partitioning</h3>
-
-      <p>Most operating systems in the 1990s could only support drives of a certain size. For example, Windows 95 only allowed a maximum drive size of 32GB. This was a problem if someone wanted to use a hard drive with more capacity than this. The solution to this problem was partitioning, or dividing a single physical disk into multiple logical drives called volumes. Typically, one of these volumes would be the C drive and contain the operating system, and the others would be assigned other drive letters.</p>
-
-      <p>Today's operating systems can support enormous drive sizes. Because of this, partitioning isn't as common as it used to be. However, you still may want to partition a disk if you want to:</p>
-
+      <p>Before a new disk can be used, it gets a partition style:</p>
       <ul>
-        <li>Dual boot your computer with two operating systems, such as Windows and Linux</li>
-        <li>Hide sensitive files on a partition without an assigned drive letter</li>
-        <li>Back up files that may be lost if the operating system becomes corrupted</li>
-        <li>Save an image of the operating system on the same disk as the operating system itself</li>
+        <li><strong>MBR (Master Boot Record):</strong> the older style. Disks up to 2 TB and up to 4 primary partitions.</li>
+        <li><strong>GPT (GUID Partition Table):</strong> the modern style, required for UEFI booting. Supports enormous disks and up to 128 partitions in Windows.</li>
       </ul>
-
-      <p>Each volume you create on a disk consumes some of the storage space. In other words, if you create three volumes on a 500GB HDD, you may be left with only 400 GB of available storage space.</p>
+      <p>Reasons to create more than one partition:</p>
+      <ul>
+        <li>Dual boot two operating systems, such as Windows and Linux.</li>
+        <li>Keep data separate from the operating system, so reinstalling the operating system does not erase it.</li>
+        <li>Hold a recovery image of the operating system (many computers ship with a hidden recovery partition).</li>
+      </ul>
+      <p>Each file system uses a little space for its own bookkeeping, but dividing a disk into partitions does not cost a meaningful share of its capacity.</p>
     </div>
-    
+
     <h2>Next, Complete CompTIA A+ Lesson 3</h2>
         <p>If the embed doesnt work, use the button instead.</p>
       <iframe
@@ -101,7 +121,7 @@
                 </button>
 
     <footer class="slide-footer">
-      <p>Resources: (as provided in input)</p>
+
     </footer>
   </div>
 
