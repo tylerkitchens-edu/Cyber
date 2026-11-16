@@ -108,6 +108,15 @@
     "courseId": "Cybersecurity"
   },
   {
+    "lessonId": "L1-NETWORKING-005",
+    "title": "Supporting Network Services",
+    "section": "Networking",
+    "level": 1,
+    "order": 5,
+    "storyPoints": 4,
+    "courseId": "Cybersecurity"
+  },
+  {
     "lessonId": "L1-CLOUD-001",
     "title": "Cloud Computing",
     "section": "Cloud",
@@ -422,7 +431,7 @@
     "storyPoints": 5,
     "courseId": "Cybersecurity"
   },
-   {
+  {
     "lessonId": "L4-VULN-001",
     "title": "Emerging Technologies and Secure Development",
     "section": "Vuln",
@@ -430,7 +439,7 @@
     "order": 8,
     "storyPoints": 5,
     "courseId": "Cybersecurity"
-  }, 
+  },
   {
     "lessonId": "L4-VULN-002",
     "title": "Vulnerability Management",
