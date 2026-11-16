@@ -280,9 +280,10 @@
       if (!target) return;
       if (p.id === target.id) {
         shapes[p.id].classList.add('right');
-        info.innerHTML = '<strong class="ok">Correct: </strong><span></span>';
+        info.innerHTML = '<strong class="ok">Correct: </strong><span></span> <button type="button" class="mobo-next">Next part</button>';
         info.querySelector('span').textContent = p.name + '. ' + p.info;
-        setTimeout(nextQuestion, 1800);
+        info.querySelector('.mobo-next').addEventListener('click', nextQuestion);
+        target = null;
       } else {
         shapes[p.id].classList.add('wrong');
         info.innerHTML = '<strong class="no">Not quite.</strong> <span></span>';

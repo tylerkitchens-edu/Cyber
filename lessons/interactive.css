@@ -151,3 +151,4 @@
 .mobo-info p { margin: 4px 0 0; }
 .mobo-info .ok { color: #15803d; }
 .mobo-info .no { color: #b91c1c; }
+.mobo-next { margin-left: 8px; padding: 4px 12px; border: 1px solid #111827; border-radius: 6px; background: #111827; color: #ffffff; font: inherit; cursor: pointer; }
