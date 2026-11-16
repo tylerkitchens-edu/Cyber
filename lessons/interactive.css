@@ -1,6 +1,6 @@
 /* Styles for interactive.js pieces (2026-11-16). Shared by every level. */
 
-/* Check yourself */
+/* Knowledge check */
 .check {
     border: 1px solid #d1d5db;
     border-left: 4px solid #2563eb;
@@ -10,7 +10,7 @@
     background: #f9fafb;
 }
 .check::before {
-    content: "Check yourself";
+    content: "Knowledge check";
     display: block;
     font-size: 0.8rem;
     font-weight: 600;

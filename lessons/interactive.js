@@ -3,7 +3,7 @@
      <link rel="stylesheet" href="../../interactive.css">
      <script src="../../interactive.js" defer></script>
 
-   1) "Check yourself" question (ungraded, instant feedback). data-answer is the 0-based index of the right option.
+   1) "Knowledge check" question (ungraded, instant feedback). data-answer is the 0-based index of the right option.
       <div class="check" data-answer="1">
         <p class="check-q">Question?</p>
         <div class="check-options"><button type="button">Option A</button><button type="button">Option B</button></div>
