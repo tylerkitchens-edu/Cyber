@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Storage types - Lesson</title>
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
   <!-- Prism CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
 </head>
@@ -45,6 +47,17 @@
         </tbody>
       </table>
       <p><strong>Form factors:</strong> 3.5-inch (desktop HDDs), 2.5-inch (laptop HDDs and SATA SSDs), and M.2 cards (SSDs, in sizes such as 2242, 2260 and 2280, meaning 22 mm wide by 42, 60 or 80 mm long).</p>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A customer needs 20 TB to store years of security-camera footage as cheaply as possible. Speed is not important. What should you recommend?</p>
+        <div class="check-options">
+          <button type="button">NVMe SSDs</button>
+          <button type="button">SATA SSDs</button>
+          <button type="button">Hard disk drives (HDDs)</button>
+          <button type="button">Blu-ray discs</button>
+        </div>
+        <p class="check-why">HDDs are the cheapest per gigabyte and come in the biggest sizes, which is exactly what bulk storage needs. SSDs are faster but cost more per gigabyte.</p>
+      </div>
     </div>
 
     <div class="section" aria-labelledby="common-storage-heading">
@@ -58,6 +71,17 @@
         <li><strong>Parallel SCSI (legacy):</strong> one of the earliest disk interfaces, developed in the late 1970s, with a 50-pin (later 68-pin) ribbon cable. Replaced by SAS.</li>
       </ul>
       <p>A typical desktop today has an NVMe SSD for the operating system and programs, and may add a large SATA HDD for files and backups.</p>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A user installs a new M.2 SSD but it is no faster than their old 2.5-inch SATA SSD. What is the most likely reason?</p>
+        <div class="check-options">
+          <button type="button">M.2 drives are always slower than 2.5-inch drives</button>
+          <button type="button">The M.2 drive (or the slot) uses SATA, not NVMe</button>
+          <button type="button">The drive needs to be partitioned as MBR</button>
+          <button type="button">The SATA power cable is not connected</button>
+        </div>
+        <p class="check-why">M.2 is only a shape. An M.2 drive can use the SATA interface (about 550 MB/s) or NVMe over PCIe (thousands of MB/s). Check both the drive and what the slot supports.</p>
+      </div>
     </div>
 
     <div class="section" aria-labelledby="other-storage-heading">
@@ -80,7 +104,26 @@
         <li><strong>RAID 6 (double parity):</strong> 4 or more drives. Survives two drives failing.</li>
         <li><strong>RAID 10 (1+0, mirrored stripes):</strong> 4 or more drives. Fast, and survives a drive failing in each mirrored pair.</li>
       </ul>
+      <p><strong>Try the simulator:</strong> fail one drive, then two, at each level, and watch what happens to the data and the usable space.</p>
+      <div class="raid-sim"></div>
+
       <p><strong>RAID is not a backup.</strong> It protects against a drive failing, not against deleted files, ransomware or a fire, so you still need backups.</p>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/5E16qftlfRY" title="RAID - CompTIA A+ 220-1201 - 3.4 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "RAID – CompTIA A+ 220-1201 – 3.4" (free A+ course).</p>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A small office wants its file server to keep running if any <em>two</em> drives fail at the same time. Which RAID level should it use?</p>
+        <div class="check-options">
+          <button type="button">RAID 0</button>
+          <button type="button">RAID 1</button>
+          <button type="button">RAID 5</button>
+          <button type="button">RAID 6</button>
+        </div>
+        <p class="check-why">RAID 6 stores two sets of parity, so any two drives can fail without losing data. RAID 5 survives only one, and RAID 0 survives none.</p>
+      </div>
     </div>
 
     <div class="section" aria-labelledby="drives-heading">
@@ -103,6 +146,16 @@
         <li>Hold a recovery image of the operating system (many computers ship with a hidden recovery partition).</li>
       </ul>
       <p>Each file system uses a little space for its own bookkeeping, but dividing a disk into partitions does not cost a meaningful share of its capacity.</p>
+
+      <div class="try-it">
+        <h4>Try it on your computer (Windows, 2 minutes)</h4>
+        <ol>
+          <li>Press <strong>Ctrl+Shift+Esc</strong> to open Task Manager, select <strong>Performance</strong>, then click your disk. The top right shows whether it is an <strong>SSD</strong> or an <strong>HDD</strong>.</li>
+          <li>Right-click the Start button and choose <strong>Disk Management</strong>. Look at the partitions on Disk 0: which one is C:, and is there a hidden recovery partition?</li>
+          <li>Right-click <strong>Disk 0</strong> (the label on the left), choose <strong>Properties</strong>, then the <strong>Volumes</strong> tab. "Partition style" tells you whether the disk is <strong>MBR</strong> or <strong>GPT</strong>.</li>
+        </ol>
+        <p>Only look; don't change anything in Disk Management. On a Mac, open <strong>System Information</strong> and select <strong>Storage</strong> to see your drive type.</p>
+      </div>
     </div>
 
     <div class="certmaster-card">
