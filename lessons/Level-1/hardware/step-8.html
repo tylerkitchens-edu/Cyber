@@ -1,62 +1,229 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CompTIA Wrap Up</title>
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mobile Devices and Printers - Lesson</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    .cmp-wrap { overflow-x: auto; }
+  </style>
 </head>
+
 <body>
-  <div class="slide-container">
-    <div class="slide-header">
-      <h1>CompTIA Wrap Up</h1>
+  <div class="slide-container" role="region" aria-labelledby="slide-title">
+    <header class="slide-header">
+      <h1 id="slide-title">Mobile Devices and Printers</h1>
       <h2>Lesson</h2>
-    </div>
+    </header>
 
-    <h3>Learning Objectives</h3>
-    <ul>
-      <li>Understand the protection and maintenance of mobile devices and printers on enterprise networks</li>
-      <li>Complete CompTIA Core 1 Practice Assessment correctly</li>
-      <li>Schedule a review with an instructor</li>
-      <li>Apply effective test-taking strategies and question analysis</li>
-      <li>Review exam results and prepare study plans if necessary</li>
-    </ul>
+    <section aria-labelledby="objectives-heading">
+      <h3 id="objectives-heading">Learning Objectives</h3>
+      <ul>
+        <li>Name the laptop parts a technician commonly replaces.</li>
+        <li>Connect a phone or laptop with Bluetooth, NFC, a hotspot or tethering, and know when each fits.</li>
+        <li>Explain how organizations secure and manage mobile devices (screen locks, MDM, remote wipe).</li>
+        <li>Tell laser, inkjet, thermal, impact and 3D printers apart, and put the laser printing steps in order.</li>
+        <li>Install, share and secure a printer, and fix the most common printer problems.</li>
+      </ul>
+    </section>
 
-    <div class="section">
-      <h3>Mobile Devices & Printers</h3>
-      <p>As mobile devices and printers become more integrated with the enterprise network, it is important to understand how to protect them and maintain them. Protecting these components from malicious attacks and system failures is crucial to maintain operations and prevent breaches.</p>
-        <div class="certmaster-card">
-          <h2>Next: CompTIA A+, Lessons 9 and 10</h2>
-          <p>Open CertMaster Learn in a new tab and complete <strong>Lessons 9 and 10</strong>, including their practice questions. Then come back here and continue.</p>
-          <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-          <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
+    <section>
+      <h3>Laptops: what a technician replaces</h3>
+      <p>Laptops pack the same parts as a desktop into a small case, so many parts are built in. The ones a technician usually replaces:</p>
+      <ul>
+        <li><strong>Battery:</strong> wears out after a few hundred charge cycles. A swollen battery is a safety hazard: stop using the laptop and replace it.</li>
+        <li><strong>Memory (RAM):</strong> SO-DIMM modules, smaller than desktop DIMMs. Many thin laptops have RAM soldered to the motherboard, so it cannot be upgraded.</li>
+        <li><strong>Storage:</strong> usually an M.2 SSD (see the Storage types lesson); older laptops use a 2.5-inch drive.</li>
+        <li><strong>Keyboard, touchpad, screen and wireless card:</strong> replaced as whole parts. The Wi-Fi antenna wires run up through the hinge into the screen lid.</li>
+      </ul>
+      <p>Before opening any laptop: unplug it, disconnect the battery if you can, ground yourself against static electricity, and keep the tiny screws organized.</p>
+    </section>
+
+    <section>
+      <h3>Connecting mobile devices</h3>
+      <ul>
+        <li><strong>Bluetooth:</strong> short-range wireless for headsets, keyboards and other accessories. Devices are <strong>paired</strong> once: make one discoverable, select it on the other, and confirm the matching code.</li>
+        <li><strong>NFC (near-field communication):</strong> works only within a few centimetres. Used for tap-to-pay and tapping a badge or phone to a reader.</li>
+        <li><strong>Hotspot:</strong> the phone shares its cellular data connection over Wi-Fi, so several devices can connect.</li>
+        <li><strong>Tethering:</strong> shares the phone's connection with one device, over USB or Bluetooth.</li>
+        <li><strong>Cellular:</strong> 4G LTE and 5G data from the mobile carrier. Phones and some laptops also have <strong>GPS</strong> for location.</li>
+        <li><strong>Wired and sync:</strong> USB-C (Lightning on older iPhones) for charging and data. Contacts, calendars, photos and email usually sync through a cloud account rather than a cable.</li>
+      </ul>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A field technician's laptop has no Wi-Fi at a customer site, but their work phone has a good 5G signal. What lets the laptop get online?</p>
+        <div class="check-options">
+          <button type="button">NFC</button>
+          <button type="button">Turn on the phone's hotspot (or tether it over USB)</button>
+          <button type="button">Pair the laptop's Bluetooth mouse</button>
+          <button type="button">Plug in a docking station</button>
         </div>
+        <p class="check-why">A hotspot or tethering shares the phone's cellular data connection with the laptop. NFC only reaches a few centimetres and is used for things like tap-to-pay.</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>Securing and managing mobile devices</h3>
+      <p>Phones and laptops are easy to lose and carry company email and data, so organizations protect them:</p>
+      <ul>
+        <li><strong>Screen lock:</strong> PIN, password, fingerprint or face. Set the device to lock itself after a short idle time.</li>
+        <li><strong>Encryption:</strong> modern phones encrypt storage once a screen lock is set; laptops use BitLocker (Windows) or FileVault (macOS).</li>
+        <li><strong>Multifactor authentication (MFA):</strong> a stolen password alone is not enough to sign in.</li>
+        <li><strong>MDM (mobile device management):</strong> software such as Microsoft Intune that lets IT enforce screen locks and encryption, push apps and updates, and <strong>locate, lock or remotely wipe</strong> a lost device.</li>
+        <li><strong>BYOD (bring your own device):</strong> staff use their own phones for work. MDM can keep work apps and data in a separate, managed area, so IT can wipe only the work data and leave personal photos alone.</li>
+        <li><strong>Updates and app sources:</strong> keep the OS updated and install apps only from the official app store.</li>
+      </ul>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/NhGi9M4JP7g" title="Mobile Device Management - CompTIA A+ 220-1201 - 1.3 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Mobile Device Management – CompTIA A+ 220-1201 – 1.3" (free A+ course).</p>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">An employee leaves their company phone in a taxi. It holds company email. What should IT do first?</p>
+        <div class="check-options">
+          <button type="button">Wait a week in case the phone is returned</button>
+          <button type="button">Change the employee's desk phone number</button>
+          <button type="button">Use the MDM console to lock the phone and, if it cannot be found, remotely wipe it</button>
+          <button type="button">Ask the taxi company to factory reset it</button>
+        </div>
+        <p class="check-why">MDM can locate, lock and remotely wipe a managed device, which protects the company data even if the phone is never found.</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>Printer types</h3>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th>Type</th><th>How it prints</th><th>Where you see it</th><th>Supplies and wear parts</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Laser</strong></td><td>A laser draws the page as an electrical charge on a drum, toner sticks to it, and heat fuses the toner onto the paper.</td><td>Offices; fast, sharp text, low cost per page</td><td>Toner cartridge, imaging drum, fuser, rollers (maintenance kit)</td></tr>
+            <tr><td><strong>Inkjet</strong></td><td>Sprays tiny drops of liquid ink from a print head.</td><td>Homes, photos</td><td>Ink cartridges; print heads can clog</td></tr>
+            <tr><td><strong>Thermal</strong></td><td>Heats special heat-sensitive paper, which turns dark.</td><td>Receipts, shipping labels</td><td>Thermal paper; clean the heating element</td></tr>
+            <tr><td><strong>Impact</strong> (dot matrix)</td><td>Pins strike an inked ribbon against the paper.</td><td>Multi-part forms (carbon copies), some warehouses</td><td>Ribbon, print head; tractor-feed paper</td></tr>
+            <tr><td><strong>3D</strong></td><td>Builds an object layer by layer, usually from melted plastic filament.</td><td>Prototypes, parts</td><td>Filament, build plate, nozzle</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Print quality is measured in <strong>DPI</strong> (dots per inch): the higher the number, the finer the detail.</p>
+    </section>
+
+    <section>
+      <h3>The laser printing process</h3>
+      <p>The A+ exam expects these seven steps in order:</p>
+      <ol>
+        <li><strong>Processing:</strong> the printer turns the page into a raster image, a map of every dot on the page.</li>
+        <li><strong>Charging:</strong> a roller (or corona wire) gives the drum a uniform negative charge.</li>
+        <li><strong>Exposing:</strong> the laser writes the image onto the drum, removing the charge wherever toner should go.</li>
+        <li><strong>Developing:</strong> toner sticks to the areas the laser touched.</li>
+        <li><strong>Transferring:</strong> the toner moves from the drum onto the paper.</li>
+        <li><strong>Fusing:</strong> heat and pressure melt the toner into the paper. That is why pages come out warm.</li>
+        <li><strong>Cleaning:</strong> leftover toner is wiped off the drum and the charge is removed, ready for the next page.</li>
+      </ol>
+
+      <div class="order-steps">
+        <p class="order-q">Practice: put the seven laser printing steps in order. Use the arrows to move a step, then check.</p>
+        <ol>
+          <li>Processing</li>
+          <li>Charging</li>
+          <li>Exposing</li>
+          <li>Developing</li>
+          <li>Transferring</li>
+          <li>Fusing</li>
+          <li>Cleaning</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h3>Installing, sharing and securing printers</h3>
+      <ul>
+        <li><strong>Connections:</strong> USB for one computer; Ethernet or Wi-Fi to share the printer on the network. Network printers should get a reserved IP address so computers can always find them.</li>
+        <li><strong>Drivers:</strong> the driver is the software that lets the operating system talk to that printer model. Get it from the manufacturer or Windows Update.</li>
+        <li><strong>Page description language (PDL):</strong> the language that describes how each page should look so the printer can draw it. The two common ones are <strong>PCL</strong> (from HP) and <strong>PostScript</strong> (from Adobe).</li>
+        <li><strong>Sharing:</strong> a print server, or Windows printer sharing, lets several users print to one printer and lets IT manage the queue.</li>
+        <li><strong>Security:</strong> printers are network devices and get attacked too. Change the default admin password, update the firmware, and use secure (badge or PIN) release so confidential pages are not left in the tray. Many printers store scanned and printed jobs on an internal drive: wipe it before the printer is sold or thrown away.</li>
+      </ul>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">What is a page description language (PDL) such as PCL or PostScript?</p>
+        <div class="check-options">
+          <button type="button">A language that describes how each page should look so the printer can draw it</button>
+          <button type="button">The cable standard used to connect a printer</button>
+          <button type="button">The printer's admin password</button>
+          <button type="button">A type of toner</button>
+        </div>
+        <p class="check-why">The driver translates a document into a PDL such as PCL or PostScript, and the printer uses that description to build the page.</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>Maintenance and common problems</h3>
+      <ul>
+        <li><strong>Faded or streaky pages:</strong> toner or ink is low, or (inkjet) the print heads need cleaning from the printer's maintenance menu.</li>
+        <li><strong>Toner smears or rubs off:</strong> the fuser is not getting hot enough; replace it (usually as part of a maintenance kit).</li>
+        <li><strong>Same mark repeating down the page:</strong> a damaged drum or roller.</li>
+        <li><strong>Paper jams:</strong> worn pickup rollers, damp paper or the wrong paper type. Clear jams in the direction the paper travels.</li>
+        <li><strong>Garbled characters:</strong> the wrong or a corrupt driver; reinstall the correct one.</li>
+        <li><strong>Jobs stuck in the queue:</strong> clear the queue and restart the Print Spooler service.</li>
+      </ul>
+      <p>Laser printers need a <strong>maintenance kit</strong> (fuser, rollers) after a set number of pages; the printer's status page shows the count. After installing it, reset the counter.</p>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/hp2DfL6KxwA" title="Laser Printer Maintenance - CompTIA A+ 220-1201 - 3.8 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Laser Printer Maintenance – CompTIA A+ 220-1201 – 3.8" (free A+ course).</p>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Pages from an office laser printer come out with toner that smudges when you run a finger over it. Which part is most likely failing?</p>
+        <div class="check-options">
+          <button type="button">The laser</button>
+          <button type="button">The network card</button>
+          <button type="button">The printer driver</button>
+          <button type="button">The fuser</button>
+        </div>
+        <p class="check-why">The fuser melts toner into the paper. If it does not get hot enough, the toner sits loose on the page and smudges.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 3 minutes)</h4>
+      <ol>
+        <li>Open <strong>Settings</strong> &gt; <strong>Bluetooth &amp; devices</strong> &gt; <strong>Printers &amp; scanners</strong>. Which printers are listed? "Microsoft Print to PDF" is a software printer that saves a PDF instead of printing.</li>
+        <li>Press <strong>Win+R</strong>, type <code>services.msc</code> and press Enter. Find <strong>Print Spooler</strong>: this is the service you restart when jobs get stuck in the queue. Look, but do not stop it.</li>
+        <li>On your phone, find the <strong>hotspot</strong> setting and the <strong>screen lock</strong> timeout. How long does your phone stay unlocked when you put it down?</li>
+      </ol>
     </div>
 
-    <div class="slide-footer">
-      <p>Cybersecurity Curriculum | Mobile Devices & Printers</p>
+    <div class="certmaster-card">
+      <h2>Next: CompTIA A+, Lessons 9 and 10</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lessons 9 and 10</strong>, including their practice questions. Then come back here and continue.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
+
   </div>
 
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
-  <!-- Lesson Entry Script -->
-  <script src="https://vschool-reports.netlify.app/ltp.js"
+  <!-- V School Netlify Reporting Scripts -->
+  <script
+    src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L1-MOBILE-001"
-    data-lesson-title="CompTIA Wrap Up"
+    data-lesson-title="Mobile Devices and Printers"
     data-course-id="Cybersecurity">
   </script>
 
-  <!-- Feedback Script (hidden) -->
-  <script src="https://vschool-reports.netlify.app/feedback.js"
+  <script
+    src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L1-MOBILE-001"
-    data-lesson-title="CompTIA Wrap Up"
+    data-lesson-title="Mobile Devices and Printers"
     data-course-id="Cybersecurity"
     data-button-selector="#myFeedbackBtn">
   </script>
