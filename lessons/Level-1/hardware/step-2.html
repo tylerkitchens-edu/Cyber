@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Troubleshooting - Lesson</title>
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
 </head>
 <body>
   <div class="slide-container" role="region" aria-labelledby="slide-title">
@@ -35,6 +37,45 @@
         <li><strong>Document the findings, actions and outcomes.</strong> Record what happened, what you did and the result, so the next technician can use it.</li>
       </ol>
       <p>Throughout every step: consider corporate policies, procedures and the impact on others before you make a change.</p>
+
+      <div class="order-steps">
+        <p class="order-q">Practice: put CompTIA's six troubleshooting steps in order. Use the arrows to move a step, then check.</p>
+        <ol>
+          <li>Identify the problem</li>
+          <li>Establish a theory of probable cause</li>
+          <li>Test the theory to determine the cause</li>
+          <li>Establish a plan of action and implement the solution</li>
+          <li>Verify full system functionality and implement preventive measures</li>
+          <li>Document the findings, actions and outcomes</li>
+        </ol>
+      </div>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/_MhEZbyHbyk" title="How to Troubleshoot - CompTIA A+ 220-1101 - 5.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "How to Troubleshoot – CompTIA A+ 220-1101 – 5.1". It is from the previous exam version, but the six steps are the same on the current exam.</p>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A user says their laptop stopped connecting to Wi-Fi this morning. You have asked what changed, and they mention installing an update last night. You suspect the update replaced the Wi-Fi driver. What should you do next?</p>
+        <div class="check-options">
+          <button type="button">Reinstall the operating system</button>
+          <button type="button">Document the fix in the ticket</button>
+          <button type="button">Test the theory, for example by checking the driver version or rolling the driver back</button>
+          <button type="button">Replace the Wi-Fi card</button>
+        </div>
+        <p class="check-why">You have identified the problem and established a theory (the update changed the driver). The next step is to test that theory. Documenting comes last, and replacing hardware or reinstalling skips straight past testing.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">You replaced a failed power supply and the computer now turns on. Before closing the ticket, what should you do?</p>
+        <div class="check-options">
+          <button type="button">Nothing; the problem is solved</button>
+          <button type="button">Verify the whole system works (it boots, drives and fans run, the user can work), then document what you did</button>
+          <button type="button">Go back and establish a new theory</button>
+          <button type="button">Back up the user's data</button>
+        </div>
+        <p class="check-why">Steps 5 and 6: verify full system functionality (and add preventive measures if needed, such as a surge protector), then document the findings, actions and outcomes.</p>
+      </div>
 
       <h3>Troubleshooting Tips</h3>
       <p>Keep in mind the following tips when troubleshooting systems:</p>

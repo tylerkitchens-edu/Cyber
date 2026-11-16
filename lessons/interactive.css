@@ -100,3 +100,54 @@
 .raid-status { font-weight: 600; margin: 4px 0 10px; }
 .raid-status.safe { color: #15803d; }
 .raid-status.lost { color: #b91c1c; }
+
+/* Put-in-order exercise */
+.order-steps {
+    border: 1px solid #d1d5db;
+    border-left: 4px solid #7c3aed;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    background: #faf5ff;
+}
+.order-q { font-weight: 600; margin: 0 0 10px; }
+.order-list { margin: 0 0 10px; padding-left: 24px; }
+.order-list li { margin: 6px 0; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; background: #ffffff; display: flex; align-items: center; gap: 6px; }
+.order-list li .order-text { flex: 1; }
+.order-list li.right { border-color: #15803d; background: #dcfce7; }
+.order-list li.wrong { border-color: #b91c1c; background: #fee2e2; }
+.order-list li button, .order-controls button {
+    border: 1px solid #d1d5db; border-radius: 6px; background: #ffffff; font: inherit; cursor: pointer; padding: 4px 10px;
+}
+.order-list li button:disabled { opacity: 0.35; cursor: default; }
+.order-result { font-weight: 600; margin: 8px 0 0; }
+.order-result.ok { color: #15803d; }
+.order-result.no { color: #b91c1c; }
+
+/* Motherboard diagram */
+.mobo-diagram {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    background: #f9fafb;
+}
+.mobo-modes { display: flex; gap: 6px; margin-bottom: 8px; }
+.mobo-modes button { padding: 6px 12px; border: 1px solid #d1d5db; border-radius: 6px; background: #ffffff; font: inherit; cursor: pointer; }
+.mobo-modes button[aria-pressed="true"] { background: #111827; color: #ffffff; border-color: #111827; }
+.mobo-prompt { font-weight: 600; margin: 0 0 8px; }
+.mobo-wrap svg { width: 100%; max-width: 560px; height: auto; display: block; }
+.mobo-board { fill: #1e5a3a; }
+.mobo-part rect, .mobo-part circle { fill: #2d3748; stroke: #cbd5e1; stroke-width: 1.5; cursor: pointer; }
+.mobo-part .mobo-detail { fill: #4a5568; stroke: #94a3b8; stroke-width: 1; }
+.mobo-part:hover rect, .mobo-part:hover circle, .mobo-part:focus rect, .mobo-part:focus circle { stroke: #fde047; stroke-width: 2.5; }
+.mobo-part:focus { outline: none; }
+.mobo-part.selected rect, .mobo-part.selected circle { fill: #2563eb; }
+.mobo-part.right rect, .mobo-part.right circle { fill: #15803d; }
+.mobo-part.wrong rect, .mobo-part.wrong circle { fill: #b91c1c; }
+.mobo-label { fill: #f8fafc; font-size: 11px; text-anchor: middle; pointer-events: none; font-family: inherit; }
+.mobo-diagram.quiz .mobo-label { display: none; }
+.mobo-info { min-height: 3em; margin-top: 10px; }
+.mobo-info p { margin: 4px 0 0; }
+.mobo-info .ok { color: #15803d; }
+.mobo-info .no { color: #b91c1c; }

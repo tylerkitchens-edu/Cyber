@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hardware basics - Lesson</title>
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
   <!-- Prism CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
 </head>
@@ -52,6 +54,21 @@
             <li><strong>RAM:</strong> The CPU is great at performing calculations, but it can only deal with one line of code at a time - it can't keep track of the whole program at once. Instead, the computer stores this info in RAM, or Random-Access Memory. When you run a program, the computer loads the instructions in RAM. Then, the CPU takes the first line of instructions from RAM, executes it, and writes the results back to RAM to use later. RAM is extremely fast, but it's also volatile. If you turn off the computer, RAM will forget everything it was holding. For this reason, RAM is sometimes called "short term memory" - it's only concerned with whatever the computer is using right now. </li>
             <li><strong>Motherboard:</strong> The CPU and RAM are connected by a large flat component called the motherboard. The Motherboard is like the spine in your body, it connects all the other parts to each other and sends electrical signals between them. An important part of the motherboard is a chip that contains the BIOS, or Basic Input Output System (or UEFI, Unified Extensible Firmware Interface). When you start a computer, the BIOS makes sure all necessary parts are plugged in and working properly, then it tells the Operating System to load.</li>
         </ul>
+
+        <h4>Find it on the motherboard</h4>
+        <p>Click each part to learn what it does. When you know them, switch to <strong>Quiz me</strong> and find each one without the labels. (Simplified drawing; real boards vary in layout.)</p>
+        <div class="mobo-diagram"></div>
+
+        <div class="check" data-answer="0">
+          <p class="check-q">What does the power supply unit (PSU) do?</p>
+          <div class="check-options">
+            <button type="button">Converts AC power from the wall outlet into DC power for the components</button>
+            <button type="button">Converts DC power from the wall outlet into AC power for the components</button>
+            <button type="button">Stores power so the computer keeps running during an outage</button>
+            <button type="button">Keeps the BIOS settings and clock when the computer is unplugged</button>
+          </div>
+          <p class="check-why">The PSU turns the wall's AC into the DC voltages (12V, 5V, 3.3V) the parts use. Keeping power during an outage is a UPS's job, and keeping the BIOS settings and clock is the CMOS battery's job.</p>
+        </div>
       </div>
 
       <div class="section" aria-labelledby="buses-heading">
@@ -99,6 +116,17 @@
         <li>Version 6.0: about 8 GB/s per lane (newest servers)</li>
       </ul>
       <p>So a PCIe 4.0 x16 graphics card slot moves about 32 GB/s. Cards and slots of different versions work together, at the speed of the slower one.</p>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A PCIe 4.0 graphics card is installed in a PCIe 3.0 x16 slot. What happens?</p>
+        <div class="check-options">
+          <button type="button">It will not fit or will not work</button>
+          <button type="button">It works, at PCIe 3.0 speed</button>
+          <button type="button">It works, at PCIe 4.0 speed</button>
+          <button type="button">It works, but only as an x1 card</button>
+        </div>
+        <p class="check-why">PCIe versions are backward and forward compatible. The card and slot agree on the fastest version both support, here PCIe 3.0 (about 1 GB/s per lane, about 16 GB/s across x16).</p>
+      </div>
 
       <h4>AGP (legacy)</h4>
       <p>AGP (Accelerated Graphics Port) was a slot made just for graphics cards in the late 1990s and 2000s. It has been completely replaced by PCIe; you will only see it in very old computers.</p>
@@ -150,6 +178,17 @@
         </ul>
         <p>If POST encounters any critical errors, it usually communicates through a series of beep codes or error messages since the display may not be initialized yet. For example, a series of long beeps might indicate a RAM failure.</p>
         <p>Once POST completes successfully, the system proceeds to boot the operating system. If POST fails, the computer won't boot at all - this helps prevent damage and alerts users to hardware problems.</p>
+
+        <div class="check" data-answer="2">
+          <p class="check-q">A computer powers on, the fans spin, the screen stays black and it gives a series of beeps. What is the most likely meaning?</p>
+          <div class="check-options">
+            <button type="button">The operating system is corrupted</button>
+            <button type="button">The hard drive is full</button>
+            <button type="button">POST found a hardware problem, such as a RAM fault, and is reporting it with a beep code</button>
+            <button type="button">The CMOS battery needs to be charged</button>
+          </div>
+          <p class="check-why">POST runs before the operating system loads, and because the display may not be working yet it reports faults with beep codes. Look up the pattern in the motherboard manual; reseating or replacing RAM is a common fix.</p>
+        </div>
     </div>
 
       <div class="section" aria-labelledby="computer-types-heading">
@@ -164,6 +203,17 @@
           <li><strong>Mobile Devices</strong>: These are small computing devices, such as tablets and smartphones. They are much more mobile than any other type of computing device and include a variety of integrated devices, such as cameras, microphones, and wireless networking. However, they are difficult to repair and nearly impossible to upgrade.</li>
           <li><strong>Servers</strong>: These are computers whose purpose is to provide shared disk storage or to perform a special service for a large number of people, such as web processing, email, or database services. Servers are widely used in business and typically have more memory, disk space, and processing power than a desktop computer.</li>
         </ul>
+      </div>
+
+      <div class="try-it">
+        <h4>Try it on your computer (Windows, 3 minutes)</h4>
+        <ol>
+          <li>Press <strong>Ctrl+Shift+Esc</strong> to open Task Manager and select <strong>Performance</strong>.</li>
+          <li>Click <strong>CPU</strong>: note the processor model, its speed, and how many cores and logical processors it has.</li>
+          <li>Click <strong>Memory</strong>: note how much RAM is installed, its speed, and how many slots are used ("Slots used: 2 of 4").</li>
+          <li>Press <strong>Windows+R</strong>, type <code>msinfo32</code> and press Enter. Find the <strong>BIOS Version/Date</strong>, <strong>BIOS Mode</strong> (UEFI or Legacy) and the <strong>BaseBoard</strong> (motherboard) maker.</li>
+        </ol>
+        <p>Only look; don't change any settings. On a Mac, choose <strong>Apple menu &gt; About This Mac &gt; More Info</strong> to see the chip and memory.</p>
       </div>
   
     </div>

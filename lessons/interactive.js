@@ -113,9 +113,213 @@
     render();
   }
 
+  /* 3) Put-in-order exercise. Write the items in the CORRECT order; the page shuffles them.
+     <div class="order-steps"><p class="order-q">Put the steps in order.</p>
+       <ol><li>First</li><li>Second</li>...</ol></div> */
+  function setupOrder(root) {
+    var correct = Array.prototype.map.call(root.querySelectorAll('ol > li'), function (li) { return li.textContent.trim(); });
+    var oldList = root.querySelector('ol');
+    var items = correct.slice();
+    function shuffle() {
+      do {
+        for (var i = items.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = items[i]; items[i] = items[j]; items[j] = t; }
+      } while (items.join('|') === correct.join('|'));
+    }
+    shuffle();
+    var list = document.createElement('ol');
+    list.className = 'order-list';
+    oldList.parentNode.replaceChild(list, oldList);
+    var controls = document.createElement('div');
+    controls.className = 'order-controls';
+    controls.innerHTML = '<button type="button" class="order-check">Check my order</button> <button type="button" class="order-reset">Shuffle again</button>';
+    var result = document.createElement('p');
+    result.className = 'order-result';
+    result.setAttribute('aria-live', 'polite');
+    root.appendChild(controls);
+    root.appendChild(result);
+    var marks = null;
+
+    function render() {
+      list.innerHTML = '';
+      items.forEach(function (text, i) {
+        var li = document.createElement('li');
+        if (marks) li.className = marks[i] ? 'right' : 'wrong';
+        var label = document.createElement('span');
+        label.className = 'order-text';
+        label.textContent = text;
+        var up = document.createElement('button');
+        up.type = 'button'; up.textContent = '↑'; up.disabled = i === 0;
+        up.setAttribute('aria-label', 'Move "' + text + '" up');
+        up.addEventListener('click', function () { move(i, -1); });
+        var down = document.createElement('button');
+        down.type = 'button'; down.textContent = '↓'; down.disabled = i === items.length - 1;
+        down.setAttribute('aria-label', 'Move "' + text + '" down');
+        down.addEventListener('click', function () { move(i, 1); });
+        li.appendChild(label); li.appendChild(up); li.appendChild(down);
+        list.appendChild(li);
+      });
+    }
+    function move(i, d) {
+      var t = items[i]; items[i] = items[i + d]; items[i + d] = t;
+      marks = null; result.textContent = ''; result.className = 'order-result';
+      render();
+    }
+    controls.querySelector('.order-check').addEventListener('click', function () {
+      marks = items.map(function (t, i) { return t === correct[i]; });
+      var right = marks.filter(Boolean).length;
+      if (right === items.length) { result.textContent = 'Correct! All ' + right + ' steps are in the right order.'; result.className = 'order-result ok'; }
+      else { result.textContent = right + ' of ' + items.length + ' are in the right place (green). Move the red ones and check again.'; result.className = 'order-result no'; }
+      render();
+    });
+    controls.querySelector('.order-reset').addEventListener('click', function () {
+      shuffle(); marks = null; result.textContent = ''; result.className = 'order-result'; render();
+    });
+    render();
+  }
+
+  /* 4) Motherboard diagram: <div class="mobo-diagram"></div>
+     Explore mode: click a part to learn what it is. Quiz mode: find the named part. */
+  var MOBO_PARTS = [
+    { id: 'io',    name: 'Rear I/O panel', x: 14,  y: 30,  w: 44,  h: 170, info: 'The ports you see on the back of the case: USB, network (RJ45), audio and the onboard video outputs. It is attached to the motherboard, not the case.' },
+    { id: 'cpu8',  name: 'CPU power connector (8-pin)', x: 80, y: 18, w: 60, h: 22, info: 'Extra 12V power from the power supply straight to the CPU. A computer that powers on but shows nothing is often missing this cable.' },
+    { id: 'cpu',   name: 'CPU socket', x: 170, y: 70,  w: 120, h: 120, info: 'Holds the processor. Sockets are specific to a CPU family (for example Intel LGA or AMD AM5), so the CPU and motherboard must match. A heatsink and fan sit on top.' },
+    { id: 'fan',   name: 'CPU fan header', x: 300, y: 40,  w: 34,  h: 14, info: 'A small 4-pin connector for the CPU cooler fan. Many motherboards warn or refuse to boot if no fan is detected here.' },
+    { id: 'ram',   name: 'RAM (DIMM) slots', x: 360, y: 40, w: 70, h: 200, info: 'Hold the memory modules. Desktops use DIMMs (laptops use smaller SO-DIMMs). Install matched pairs in the slots the manual names to get dual-channel speed.' },
+    { id: 'atx24', name: '24-pin main power connector', x: 456, y: 90, w: 24, h: 120, info: 'The main power cable from the power supply. Without it the board gets no power at all.' },
+    { id: 'm2',    name: 'M.2 slot', x: 150, y: 228, w: 150, h: 18, info: 'For M.2 SSDs (and some Wi-Fi cards). Depending on the board, the slot runs NVMe over PCIe, SATA, or both. The card is held down with one small screw.' },
+    { id: 'x16',   name: 'PCIe x16 slot', x: 70,  y: 268, w: 290, h: 18, info: 'The long expansion slot, used mainly for graphics cards. It is the slot nearest the CPU, with the most lanes.' },
+    { id: 'x1',    name: 'PCIe x1 slot', x: 70,  y: 312, w: 80,  h: 16, info: 'A short expansion slot for small cards such as network, sound or USB cards. A x1 card also fits in a longer slot.' },
+    { id: 'chip',  name: 'Chipset', x: 330, y: 318, w: 70, h: 60, info: 'Handles communication between the CPU and many other parts (SATA, USB, extra PCIe lanes). Usually under a flat heatsink.' },
+    { id: 'sata',  name: 'SATA ports', x: 430, y: 300, w: 44, h: 80, info: 'Data connectors for SATA hard drives, SSDs and optical drives. Power comes separately from the power supply.' },
+    { id: 'cmos',  name: 'CMOS battery', x: 200, y: 345, w: 34, h: 34, round: true, info: 'A coin battery (CR2032) that keeps the clock and BIOS/UEFI settings when the computer is unplugged. A dead one makes the date and time reset at every start.' },
+    { id: 'front', name: 'Front-panel header', x: 290, y: 404, w: 80, h: 14, info: 'Small pins that connect the case\'s power button, reset button and lights. If the power button does nothing, check this connection.' }
+  ];
+
+  function setupMobo(root) {
+    var NS = 'http://www.w3.org/2000/svg';
+    var mode = 'explore';
+    var target = null;
+    var asked = [];
+    root.innerHTML =
+      '<div class="mobo-modes" role="group" aria-label="Mode">' +
+        '<button type="button" data-mode="explore" aria-pressed="true">Explore the parts</button>' +
+        '<button type="button" data-mode="quiz" aria-pressed="false">Quiz me</button>' +
+      '</div>' +
+      '<p class="mobo-prompt" aria-live="polite"></p>' +
+      '<div class="mobo-wrap"></div>' +
+      '<div class="mobo-info" aria-live="polite"></div>';
+    var prompt = root.querySelector('.mobo-prompt');
+    var info = root.querySelector('.mobo-info');
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 500 440');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Simplified diagram of a desktop motherboard');
+    root.querySelector('.mobo-wrap').appendChild(svg);
+
+    var board = document.createElementNS(NS, 'rect');
+    board.setAttribute('x', 4); board.setAttribute('y', 4); board.setAttribute('width', 492); board.setAttribute('height', 432);
+    board.setAttribute('rx', 10); board.setAttribute('class', 'mobo-board');
+    svg.appendChild(board);
+
+    var shapes = {};
+    MOBO_PARTS.forEach(function (p) {
+      var g = document.createElementNS(NS, 'g');
+      g.setAttribute('class', 'mobo-part');
+      g.setAttribute('tabindex', '0');
+      g.setAttribute('role', 'button');
+      var s;
+      if (p.round) {
+        s = document.createElementNS(NS, 'circle');
+        s.setAttribute('cx', p.x + p.w / 2); s.setAttribute('cy', p.y + p.h / 2); s.setAttribute('r', p.w / 2);
+      } else {
+        s = document.createElementNS(NS, 'rect');
+        s.setAttribute('x', p.x); s.setAttribute('y', p.y); s.setAttribute('width', p.w); s.setAttribute('height', p.h); s.setAttribute('rx', 3);
+      }
+      g.appendChild(s);
+      if (p.id === 'ram') { // draw the four slots
+        for (var k = 0; k < 4; k++) {
+          var slot = document.createElementNS(NS, 'rect');
+          slot.setAttribute('x', p.x + 6 + k * 16); slot.setAttribute('y', p.y + 6); slot.setAttribute('width', 8); slot.setAttribute('height', p.h - 12);
+          slot.setAttribute('class', 'mobo-detail');
+          g.appendChild(slot);
+        }
+      }
+      if (p.id === 'cpu') {
+        var inner = document.createElementNS(NS, 'rect');
+        inner.setAttribute('x', p.x + 25); inner.setAttribute('y', p.y + 25); inner.setAttribute('width', p.w - 50); inner.setAttribute('height', p.h - 50);
+        inner.setAttribute('class', 'mobo-detail');
+        g.appendChild(inner);
+      }
+      var label = document.createElementNS(NS, 'text');
+      label.setAttribute('x', p.x + p.w / 2);
+      label.setAttribute('y', p.id === 'io' || p.id === 'atx24' || p.id === 'ram' || p.id === 'sata' ? p.y + p.h + 14 : p.y + p.h / 2 + 4);
+      if (p.id === 'cpu8' || p.id === 'fan' || p.id === 'front') label.setAttribute('y', p.y - 5);
+      if (p.id === 'cmos') label.setAttribute('y', p.y + p.h + 14);
+      label.setAttribute('class', 'mobo-label');
+      label.textContent = p.name.replace(' (8-pin)', '').replace(' connector', '').replace(' (DIMM)', '');
+      g.appendChild(label);
+      g.setAttribute('aria-label', p.name);
+      g.addEventListener('click', function () { pick(p); });
+      g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p); } });
+      svg.appendChild(g);
+      shapes[p.id] = g;
+    });
+
+    function clearMarks() { Object.keys(shapes).forEach(function (k) { shapes[k].classList.remove('selected', 'right', 'wrong'); }); }
+
+    function pick(p) {
+      clearMarks();
+      if (mode === 'explore') {
+        shapes[p.id].classList.add('selected');
+        info.innerHTML = '<strong></strong><p></p>';
+        info.querySelector('strong').textContent = p.name;
+        info.querySelector('p').textContent = p.info;
+        return;
+      }
+      if (!target) return;
+      if (p.id === target.id) {
+        shapes[p.id].classList.add('right');
+        info.innerHTML = '<strong class="ok">Correct: </strong><span></span>';
+        info.querySelector('span').textContent = p.name + '. ' + p.info;
+        setTimeout(nextQuestion, 1800);
+      } else {
+        shapes[p.id].classList.add('wrong');
+        info.innerHTML = '<strong class="no">Not quite.</strong> <span></span>';
+        info.querySelector('span').textContent = 'That is the ' + p.name + '. Try again.';
+      }
+    }
+
+    function nextQuestion() {
+      clearMarks();
+      if (asked.length === MOBO_PARTS.length) asked = [];
+      var left = MOBO_PARTS.filter(function (p) { return asked.indexOf(p.id) < 0; });
+      target = left[Math.floor(Math.random() * left.length)];
+      asked.push(target.id);
+      prompt.textContent = 'Find the ' + target.name + '. (' + asked.length + ' of ' + MOBO_PARTS.length + ')';
+      info.innerHTML = '';
+    }
+
+    function setMode(m) {
+      mode = m;
+      root.classList.toggle('quiz', m === 'quiz');
+      Array.prototype.forEach.call(root.querySelectorAll('.mobo-modes button'), function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-mode') === m ? 'true' : 'false');
+      });
+      clearMarks(); info.innerHTML = '';
+      if (m === 'quiz') { asked = []; nextQuestion(); }
+      else { target = null; prompt.textContent = 'Click any part to see what it is and what it does.'; }
+    }
+    Array.prototype.forEach.call(root.querySelectorAll('.mobo-modes button'), function (b) {
+      b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); });
+    });
+    setMode('explore');
+  }
+
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll('.check'), setupCheck);
     Array.prototype.forEach.call(document.querySelectorAll('.raid-sim'), setupRaid);
+    Array.prototype.forEach.call(document.querySelectorAll('.order-steps'), setupOrder);
+    Array.prototype.forEach.call(document.querySelectorAll('.mobo-diagram'), setupMobo);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
