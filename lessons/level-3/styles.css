@@ -207,3 +207,24 @@ img {
         font-size: 0.9rem;
     }
 }
+
+/* CompTIA CertMaster sign-in card (replaces the old embed, 2026-11-16) */
+.certmaster-card {
+    border: 1px solid #c7d2fe;
+    background: #eef2ff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 24px 0;
+}
+.certmaster-card h2 {
+    margin-top: 0;
+}
+.certmaster-card a.btn-primary {
+    display: inline-block;
+    text-decoration: none;
+}
+.certmaster-card .certmaster-tip {
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 0;
+}
