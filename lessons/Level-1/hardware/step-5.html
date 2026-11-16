@@ -5,48 +5,156 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boot Process - Lesson</title>
   <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
 </head>
 <body>
   <div class="slide-container" role="region" aria-labelledby="slide-title">
     <header class="slide-header">
-      <h1 id="slide-title">Boot Process</h1>
+      <h1 id="slide-title">The Boot Process, BIOS and UEFI</h1>
       <h2>Lesson</h2>
     </header>
 
     <section aria-labelledby="objectives-heading">
       <h3 id="objectives-heading">Learning Objectives</h3>
       <ul>
-        <li>Understand the sequence of events during the boot process, from power-on to loading the operating system</li>
-        <li>Differentiate between BIOS and UEFI, and understand their roles in system initialization</li>
-        <li>Explain the role of CMOS in storing hardware settings and boot configuration</li>
+        <li>Explain what firmware is, and compare BIOS and UEFI.</li>
+        <li>Describe each stage of the boot process, from pressing the power button to the sign-in screen.</li>
+        <li>Open the firmware settings and identify the settings the A+ exam covers: boot order, Secure Boot, TPM, passwords and virtualization.</li>
+        <li>Recognize common boot problems and their likely causes.</li>
       </ul>
     </section>
 
-    <div class="section" aria-labelledby="boot-process-heading">
-      <h3 id="boot-process-heading">Boot Process / Digital Data</h3>
-      <p>Every computer follows a structured process when starting up, known as the boot process. In this section, we will explore how a system initializes hardware, loads firmware, and eventually boots into an operating system. Additionally, we will examine how digital data is processed, stored, and transferred within a computer system. Understanding these concepts helps in troubleshooting boot issues and understanding binary data handling.</p>
+    <div class="section" aria-labelledby="firmware-heading">
+      <h3 id="firmware-heading">1. Firmware: BIOS and UEFI</h3>
+      <p><strong>Firmware</strong> is software stored on a chip on the motherboard. It is the first code that runs when the computer turns on. Its jobs are to check and start the hardware, then hand control to the operating system. There are two kinds:</p>
+      <table class="rubric-table">
+        <thead><tr><th></th><th>BIOS (legacy)</th><th>UEFI (modern)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Age</strong></td><td>The original PC firmware, from the 1980s.</td><td>The replacement, standard on computers built in the last decade or so.</td></tr>
+          <tr><td><strong>Boot disks</strong></td><td>Boots from <strong>MBR</strong> disks (up to 2 TB, 4 primary partitions).</td><td>Boots from <strong>GPT</strong> disks (huge disks, up to 128 partitions in Windows), using a small <strong>EFI system partition</strong>.</td></tr>
+          <tr><td><strong>Security</strong></td><td>No built-in protection for the boot process.</td><td><strong>Secure Boot</strong> refuses to start boot software that is not signed by a trusted maker, which blocks many rootkits.</td></tr>
+          <tr><td><strong>Setup screen</strong></td><td>Text only, keyboard only.</td><td>Graphical, and usually supports the mouse.</td></tr>
+          <tr><td><strong>Windows 11</strong></td><td>Not supported.</td><td>Required, with Secure Boot capability and TPM 2.0.</td></tr>
+        </tbody>
+      </table>
+      <p>Many people still say "BIOS" when they mean UEFI, and many UEFI systems can switch to a "Legacy" or "CSM" mode that behaves like BIOS.</p>
+      <p><strong>Where are the settings kept, and what is the CMOS battery for?</strong> Firmware settings (boot order, passwords, and so on) are saved on the motherboard. On older computers they were kept in a small memory chip called <strong>CMOS</strong>, which needed a coin battery (usually a CR2032) to keep them. Modern boards keep settings in flash memory, but the battery still runs the <strong>real-time clock</strong>. Either way, the classic sign of a dead CMOS battery is <strong>the date and time resetting every time the computer is unplugged</strong>, sometimes with lost settings or a "CMOS checksum" message.</p>
+      <p><strong>Updating firmware</strong> ("flashing the BIOS") fixes bugs, adds support for new CPUs and closes security holes. Use only the motherboard or PC maker's update, and never let the power go off during the update: an interrupted update can leave the board unable to start.</p>
 
+      <div class="check" data-answer="2">
+        <p class="check-q">Every time a user unplugs their desktop overnight, the date and time are wrong the next morning. What is the most likely cause?</p>
+        <div class="check-options">
+          <button type="button">The operating system needs updating</button>
+          <button type="button">The power supply is failing</button>
+          <button type="button">The CMOS battery on the motherboard is dead</button>
+          <button type="button">Secure Boot is turned off</button>
+        </div>
+        <p class="check-why">The coin battery keeps the clock running when the computer has no power. When it dies, the clock resets every time power is removed. Replace the battery (usually a CR2032), then set the date, time and any lost settings.</p>
+      </div>
+    </div>
+
+    <div class="section" aria-labelledby="boot-heading">
+      <h3 id="boot-heading">2. The Boot Process, Stage by Stage</h3>
+      <p>Click through each stage. For every stage you will see what happens, and what you would notice if it went wrong. Knowing where a boot stops tells you where to look.</p>
+
+      <div class="stepper">
+        <div class="stepper-step" data-title="Power on">
+          <p>You press the power button. The power supply starts and, once its voltages are steady, sends a <strong>"power good"</strong> signal to the motherboard. The CPU then starts running the firmware.</p>
+          <p class="stepper-fail"><strong>If it fails:</strong> nothing happens at all, or fans spin for a moment and stop. Check the outlet and power cable, the power supply switch, the 24-pin and CPU power cables, and the front-panel power button connection.</p>
+        </div>
+        <div class="stepper-step" data-title="Firmware starts">
+          <p>The firmware (UEFI or BIOS) loads its saved settings, such as the boot order and passwords, and begins setting up the CPU, memory and chipset.</p>
+          <p class="stepper-fail"><strong>If it fails:</strong> the computer powers on but shows nothing, or the date and settings are wrong (dead CMOS battery). A failed firmware update can also stop the board here.</p>
+        </div>
+        <div class="stepper-step" data-title="POST">
+          <p>The <strong>Power-On Self-Test</strong> checks the essential hardware: CPU, memory, video and keyboard controller. If everything passes, many computers give a single short beep or show the maker's logo.</p>
+          <p class="stepper-fail"><strong>If it fails:</strong> a pattern of <strong>beep codes</strong> or an error message, often with a black screen. Look the pattern up in the motherboard manual. Reseating RAM or the graphics card is a common fix.</p>
+        </div>
+        <div class="stepper-step" data-title="Find a boot device">
+          <p>The firmware checks the devices in the <strong>boot order</strong> (for example: USB drive, then the internal SSD, then the network) and picks the first one that has a working boot loader.</p>
+          <p class="stepper-fail"><strong>If it fails:</strong> "No boot device found", "Operating system not found" or "Insert boot media". Often a USB stick was left in and is first in the boot order, or the boot drive has failed or is not detected.</p>
+        </div>
+        <div class="stepper-step" data-title="Boot loader">
+          <p>A small program called the <strong>boot loader</strong> starts the operating system. On UEFI systems it lives in the <strong>EFI system partition</strong> (for Windows, the <strong>Windows Boot Manager</strong>); on BIOS systems it starts from the disk's <strong>Master Boot Record</strong>. With Secure Boot on, the firmware checks the boot loader's signature first.</p>
+          <p class="stepper-fail"><strong>If it fails:</strong> "BOOTMGR is missing", a Secure Boot violation message, or a BitLocker recovery-key screen after a firmware or TPM change.</p>
+        </div>
+        <div class="stepper-step" data-title="Operating system loads">
+          <p>The boot loader loads the operating system's core (the <strong>kernel</strong>) into RAM. The kernel starts the drivers and background services, then shows the sign-in screen.</p>
+          <p class="stepper-fail"><strong>If it fails:</strong> the logo appears and then the system crashes (a blue screen), restarts in a loop, or starts Automatic Repair. A recently added driver, update or failing drive is a common cause.</p>
+        </div>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A computer shows the maker's logo, then says "No boot device found". A user mentions they used a USB stick to copy files earlier. What should you check first?</p>
+        <div class="check-options">
+          <button type="button">Replace the power supply</button>
+          <button type="button">Remove the USB stick, or check that the internal drive is first in the boot order</button>
+          <button type="button">Replace the RAM</button>
+          <button type="button">Reinstall the operating system</button>
+        </div>
+        <p class="check-why">POST passed (the logo appeared), so the problem is at the "find a boot device" stage. A USB stick that comes first in the boot order but has nothing bootable on it is a classic cause. Start with the simplest, most likely cause.</p>
+      </div>
+    </div>
+
+    <div class="section" aria-labelledby="setup-heading">
+      <h3 id="setup-heading">3. Getting Into the Firmware Settings</h3>
+      <ul>
+        <li><strong>During startup:</strong> press the setup key as soon as the computer turns on. Common keys are <strong>Del</strong>, <strong>F2</strong>, <strong>F1</strong> or <strong>F10</strong>; the startup screen or the maker's manual tells you which. A separate key (often F12) opens a one-time <strong>boot menu</strong> to boot from a USB drive without changing the boot order.</li>
+        <li><strong>From Windows:</strong> on fast computers the startup screen flashes by too quickly. Go to <strong>Settings &gt; System &gt; Recovery &gt; Advanced startup &gt; Restart now</strong>, then <strong>Troubleshoot &gt; Advanced options &gt; UEFI Firmware Settings</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="section" aria-labelledby="settings-heading">
+      <h3 id="settings-heading">4. Firmware Settings You Need to Know</h3>
+      <ul>
+        <li><strong>Boot order (boot priority):</strong> which devices the computer tries to boot from, in order.</li>
+        <li><strong>Secure Boot:</strong> only allows signed, trusted boot loaders. Keep it on; Windows 11 expects it.</li>
+        <li><strong>TPM (Trusted Platform Module):</strong> a security chip, or a feature built into the CPU (called fTPM on AMD and PTT on Intel), that stores encryption keys. BitLocker drive encryption and Windows 11 use it. Clearing or changing the TPM can trigger a BitLocker recovery-key prompt, so have the key before you touch it.</li>
+        <li><strong>Passwords:</strong> a <strong>supervisor/administrator password</strong> stops people changing firmware settings; a <strong>user/boot password</strong> is needed before the computer will start at all.</li>
+        <li><strong>Virtualization (Intel VT-x, AMD-V or SVM):</strong> must be on to run virtual machines (Hyper-V, VirtualBox, VMware) and some Windows security features.</li>
+        <li><strong>Enabling and disabling devices and ports:</strong> for example, turning off USB ports so data cannot be copied off a sensitive computer, or turning off the onboard graphics when a graphics card is installed.</li>
+        <li><strong>Fan and temperature settings:</strong> fan speed curves and temperature alarms.</li>
+      </ul>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/QfJkU0vD3gg" title="BIOS Settings - CompTIA A+ 220-1201 - 3.5 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "BIOS Settings – CompTIA A+ 220-1201 – 3.5" (free A+ course).</p>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A student installs VirtualBox, but every virtual machine fails to start with an error about hardware virtualization. What should you change?</p>
+        <div class="check-options">
+          <button type="button">Turn off Secure Boot</button>
+          <button type="button">Clear the TPM</button>
+          <button type="button">Set a supervisor password</button>
+          <button type="button">Turn on virtualization (Intel VT-x or AMD-V/SVM) in the firmware settings</button>
+        </div>
+        <p class="check-why">Virtual machines need the CPU's virtualization feature, which is often turned off by default in the firmware. Turning off Secure Boot or clearing the TPM would not help, and both can cause other problems.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A company wants to stop staff from changing the boot order to start the computer from their own USB drive. What should the technician set?</p>
+        <div class="check-options">
+          <button type="button">A supervisor (administrator) password on the firmware settings</button>
+          <button type="button">A Windows sign-in password</button>
+          <button type="button">Turn off the TPM</button>
+          <button type="button">Turn off POST</button>
+        </div>
+        <p class="check-why">A supervisor password locks the firmware settings, so the boot order cannot be changed. Many organizations also disable booting from USB. A Windows password does nothing before Windows starts.</p>
+      </div>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 3 minutes)</h4>
       <ol>
-        <li><strong>Step 1: Activate BIOS</strong> - Electrical power activates the Basic Input/Output System (BIOS).</li>
-        <li><strong>Step 2: Check CMOS</strong> - The BIOS reads the CMOS chip for system settings and instructions for hardware initialization.</li>
-        <li><strong>Step 3: Initialize Hardware</strong> - The BIOS wakes up and configures hardware devices such as fans, memory, hard drives, and processors.</li>
-        <li><strong>Step 4: POST</strong> - BIOS performs a Power-On Self-Test (POST) to verify that all hardware is functioning properly.</li>
-        <li><strong>Step 5: Find an OS</strong> - BIOS searches for a bootable device according to the boot order stored in the CMOS.</li>
-        <li><strong>Step 6: Load OS into RAM</strong> - BIOS loads the operating system into RAM, and the processor begins executing OS instructions. BIOS then becomes dormant.</li>
-        <img src="boot.png">
+        <li>Press <strong>Windows+R</strong>, type <code>msinfo32</code> and press Enter. Find <strong>BIOS Mode</strong> (UEFI or Legacy) and <strong>Secure Boot State</strong> (On or Off).</li>
+        <li>Right-click the Start button and choose <strong>Disk Management</strong>. On Disk 0, find the small <strong>EFI System Partition</strong> (usually 100 to 300 MB). That is where the boot loader lives.</li>
+        <li>Press <strong>Windows+R</strong>, type <code>tpm.msc</code> and press Enter. Is a TPM present, and which version is it?</li>
       </ol>
+      <p>Only look; don't change any settings, and don't open the firmware settings from Windows unless an instructor asks you to. On a Mac, Apple's own startup system is different, so this part is Windows only.</p>
     </div>
 
-    <div class="section" aria-labelledby="bios-uefi-heading">
-      <h3 id="bios-uefi-heading">BIOS & UEFI</h3>
-      <p>Accessing BIOS usually requires pressing a key (F1, F2, Del, etc.) during boot. Within BIOS settings, you can adjust CPU clock, memory timings, and boot order.</p>
-      <p><strong>BIOS:</strong> Non-volatile firmware stored on a memory chip on the motherboard. Runs first and loads the OS. Settings are retained via CMOS.</p>
-      <p><strong>UEFI:</strong> Modern graphical boot tool with advantages including faster booting, support for large drives, enhanced security, and EFI file-based startup. Provides an easier GUI for configuration.</p>
-      <p><strong>CMOS:</strong> A small RAM chip powered by a battery that stores BIOS settings such as system date, time, and hardware configuration.</p>
-      <p>BIOS is software; CMOS is hardware. BIOS uses CMOS to save critical system information, even when power is disconnected.</p>
-    </div>
-    
     <div class="certmaster-card">
       <h2>Next: CompTIA A+, Lesson 4</h2>
       <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 4</strong>, including its practice questions. Then come back here and continue.</p>
@@ -55,14 +163,8 @@
     </div>
 
     <footer class="slide-footer">
-      <p>Resources: (as provided in input)</p>
     </footer>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script
     src="https://vschool-reports.netlify.app/ltp.js"
@@ -78,14 +180,5 @@
     data-lesson-title="Boot Process"
     data-course-id="Cybersecurity"
     data-button-selector="#myFeedbackBtn"></script>
-
-  <!-- SUMMARY REPORT -->
-  <!--
-    Generated slide: /slides/boot_process_l1_hardware_cybersecurity_20251002.html
-    xAI Artifact ID: xaifile_boot_process_20251002_v1
-    Version ID: v1
-
-    Parsing issues: None detected.
-  -->
 </body>
 </html>

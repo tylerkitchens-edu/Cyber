@@ -317,7 +317,55 @@
     setMode('explore');
   }
 
+  /* 5) Click-through timeline. Each .stepper-step is one stage; data-title is its short name.
+     <div class="stepper">
+       <div class="stepper-step" data-title="Power on"><p>What happens.</p><p class="stepper-fail"><strong>If it fails:</strong> ...</p></div>
+     </div> */
+  function setupStepper(root) {
+    var steps = Array.prototype.slice.call(root.querySelectorAll('.stepper-step'));
+    if (!steps.length) return;
+    var nav = document.createElement('div');
+    nav.className = 'stepper-nav';
+    nav.setAttribute('role', 'tablist');
+    var bar = document.createElement('div');
+    bar.className = 'stepper-controls';
+    bar.innerHTML = '<button type="button" class="stepper-prev">&larr; Previous</button><span class="stepper-count" aria-live="polite"></span><button type="button" class="stepper-next">Next &rarr;</button>';
+    root.insertBefore(nav, steps[0]);
+    root.appendChild(bar);
+    var tabs = steps.map(function (s, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.innerHTML = '<span class="stepper-num">' + (i + 1) + '</span><span class="stepper-title"></span>';
+      b.querySelector('.stepper-title').textContent = s.getAttribute('data-title') || ('Step ' + (i + 1));
+      b.addEventListener('click', function () { show(i); });
+      nav.appendChild(b);
+      var h = document.createElement('h4');
+      h.className = 'stepper-heading';
+      h.textContent = (i + 1) + '. ' + (s.getAttribute('data-title') || '');
+      s.insertBefore(h, s.firstChild);
+      s.setAttribute('role', 'tabpanel');
+      return b;
+    });
+    var current = 0;
+    function show(i) {
+      current = i;
+      steps.forEach(function (s, k) { s.hidden = k !== i; });
+      tabs.forEach(function (t, k) {
+        t.setAttribute('aria-selected', k === i ? 'true' : 'false');
+        t.classList.toggle('done', k < i);
+      });
+      bar.querySelector('.stepper-prev').disabled = i === 0;
+      bar.querySelector('.stepper-next').disabled = i === steps.length - 1;
+      bar.querySelector('.stepper-count').textContent = 'Stage ' + (i + 1) + ' of ' + steps.length;
+    }
+    bar.querySelector('.stepper-prev').addEventListener('click', function () { if (current > 0) show(current - 1); });
+    bar.querySelector('.stepper-next').addEventListener('click', function () { if (current < steps.length - 1) show(current + 1); });
+    show(0);
+  }
+
   function init() {
+    Array.prototype.forEach.call(document.querySelectorAll('.stepper'), setupStepper);
     Array.prototype.forEach.call(document.querySelectorAll('.check'), setupCheck);
     Array.prototype.forEach.call(document.querySelectorAll('.raid-sim'), setupRaid);
     Array.prototype.forEach.call(document.querySelectorAll('.order-steps'), setupOrder);
