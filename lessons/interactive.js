@@ -11,6 +11,7 @@
       </div>
 
    2) RAID simulator: <div class="raid-sim"></div>
+   6) Bit toggle (binary/decimal/hex): <div class="bit-toggle"></div>
 */
 (function () {
   'use strict';
@@ -364,7 +365,67 @@
     show(0);
   }
 
+  /* 6) Bit toggle: eight clickable bits that show the byte's decimal and hex value, with a practice mode.
+     <div class="bit-toggle"></div> */
+  function setupBits(root) {
+    var PLACES = [128, 64, 32, 16, 8, 4, 2, 1];
+    var bits = [0, 0, 0, 0, 0, 0, 0, 0];
+    var target = null;
+    root.innerHTML =
+      '<div class="bits-row"></div>' +
+      '<p class="bits-values" aria-live="polite"></p>' +
+      '<div class="bits-controls">' +
+        '<button type="button" class="bits-practice">Practice</button>' +
+        '<button type="button" class="bits-clear">Clear</button>' +
+      '</div>' +
+      '<p class="bits-task" aria-live="polite"></p>';
+    var row = root.querySelector('.bits-row');
+    var values = root.querySelector('.bits-values');
+    var task = root.querySelector('.bits-task');
+    var buttons = PLACES.map(function (p, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'bit';
+      b.innerHTML = '<span class="bit-place">' + p + '</span><span class="bit-val">0</span>';
+      b.addEventListener('click', function () { bits[i] = bits[i] ? 0 : 1; render(); });
+      row.appendChild(b);
+      return b;
+    });
+    function value() { return bits.reduce(function (sum, b, i) { return sum + b * PLACES[i]; }, 0); }
+    function render() {
+      var v = value();
+      buttons.forEach(function (b, i) {
+        b.classList.toggle('on', bits[i] === 1);
+        b.querySelector('.bit-val').textContent = bits[i];
+        b.setAttribute('aria-label', 'Place value ' + PLACES[i] + ', bit is ' + (bits[i] ? 'on' : 'off'));
+      });
+      var hex = v.toString(16).toUpperCase();
+      if (hex.length < 2) hex = '0' + hex;
+      values.innerHTML = 'Binary <strong>' + bits.slice(0, 4).join('') + ' ' + bits.slice(4).join('') +
+        '</strong> &nbsp;=&nbsp; Decimal <strong>' + v + '</strong> &nbsp;=&nbsp; Hex <strong>' + hex + '</strong>';
+      if (target === null) return;
+      if (v === target.n) {
+        task.textContent = 'Correct! ' + target.label + ' is ' + bits.join('') + ' in binary. Press "Practice" for another.';
+        task.className = 'bits-task ok';
+        target = null;
+      }
+    }
+    function newTask() {
+      var n = 1 + Math.floor(Math.random() * 255);
+      var h = n.toString(16).toUpperCase();
+      target = { n: n, label: Math.random() < 0.4 ? 'Hex ' + (h.length < 2 ? '0' + h : h) : 'Decimal ' + n };
+      bits = [0, 0, 0, 0, 0, 0, 0, 0];
+      task.textContent = 'Set the bits to make ' + target.label + '.';
+      task.className = 'bits-task';
+      render();
+    }
+    root.querySelector('.bits-practice').addEventListener('click', newTask);
+    root.querySelector('.bits-clear').addEventListener('click', function () { bits = [0, 0, 0, 0, 0, 0, 0, 0]; render(); });
+    render();
+  }
+
   function init() {
+    Array.prototype.forEach.call(document.querySelectorAll('.bit-toggle'), setupBits);
     Array.prototype.forEach.call(document.querySelectorAll('.stepper'), setupStepper);
     Array.prototype.forEach.call(document.querySelectorAll('.check'), setupCheck);
     Array.prototype.forEach.call(document.querySelectorAll('.raid-sim'), setupRaid);

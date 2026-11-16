@@ -181,3 +181,25 @@
 .stepper-controls button { padding: 6px 12px; border: 1px solid #d1d5db; border-radius: 6px; background: #ffffff; font: inherit; cursor: pointer; }
 .stepper-controls button:disabled { opacity: 0.4; cursor: default; }
 .stepper-count { font-size: 0.9rem; color: #4b5563; }
+
+/* Bit toggle (binary, decimal and hex converter) */
+.bit-toggle {
+  border: 1px solid #d1d5db; border-radius: 10px; padding: 16px; margin: 16px 0; background: #f9fafb;
+}
+.bits-row { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+.bit-toggle .bit {
+  display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0;
+  border: 1px solid #d1d5db; border-radius: 8px; background: #ffffff; font: inherit; cursor: pointer;
+}
+.bit-toggle .bit:nth-child(4) { margin-right: 6px; }
+.bit-place { font-size: 0.8rem; color: #4b5563; }
+.bit-val { font-size: 1.4rem; font-weight: 700; font-family: Consolas, monospace; }
+.bit-toggle .bit.on { background: #111827; border-color: #111827; color: #ffffff; }
+.bit-toggle .bit.on .bit-place { color: #d1d5db; }
+.bits-values { margin: 12px 0 8px; font-size: 1.05rem; }
+.bits-controls { display: flex; gap: 8px; }
+.bits-controls button { padding: 6px 12px; border: 1px solid #d1d5db; border-radius: 6px; background: #ffffff; font: inherit; cursor: pointer; }
+.bits-task { margin: 10px 0 0; font-weight: 600; }
+.bits-task:empty { display: none; }
+.bits-task.ok { color: #15803d; }
+@media (max-width: 480px) { .bit-val { font-size: 1.1rem; } .bit-place { font-size: 0.7rem; } }
