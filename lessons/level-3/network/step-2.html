@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OSI Model</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -27,19 +34,77 @@
       <h3>Overview</h3>
       <p>The Open Systems Interconnection (OSI) Model is a conceptual framework used to understand and implement network communications. It divides the communication process into seven distinct layers. This structured approach helps in troubleshooting, designing, and optimizing network systems. Each layer serves a unique function and communicates with adjacent layers to provide a complete communication pathway.</p>
       <p>The seven layers include Application, Presentation, Session, Transport, Network, Data Link, and Physical Layer. These layers work together to facilitate data transmission across a network, allowing interoperability between different types of systems and technologies. Understanding each layer's role and function is key to troubleshooting and optimizing network performance.</p>
-      <p><em>Note: the next page will have a walkthrough for OSI model communications order. Please refer to this image and remember to scroll down, bouncing between the lecture recording and the image as necessary.</em></p>
     </div>
+
+    <div class="section">
+      <h3>The seven layers at a glance</h3>
+      <table class="cmp">
+        <tr><th>#</th><th>Layer</th><th>What it does</th><th>Data is called</th><th>Examples</th></tr>
+        <tr><td>7</td><td>Application</td><td>The network services applications use</td><td>Data</td><td>HTTP, DNS, SMTP, FTP</td></tr>
+        <tr><td>6</td><td>Presentation</td><td>Formats, encrypts and compresses data</td><td>Data</td><td>TLS encryption, JPEG, character encoding</td></tr>
+        <tr><td>5</td><td>Session</td><td>Opens, manages and closes conversations between devices</td><td>Data</td><td>Session IDs, control protocols</td></tr>
+        <tr><td>4</td><td>Transport</td><td>Splits data into pieces, adds port numbers, delivers reliably (TCP) or quickly (UDP)</td><td>Segment (TCP) / datagram (UDP)</td><td>TCP, UDP, ports 80 and 443</td></tr>
+        <tr><td>3</td><td>Network</td><td>Logical addressing and routing between networks</td><td>Packet</td><td>IP addresses, routers</td></tr>
+        <tr><td>2</td><td>Data Link</td><td>Delivery on the local network using MAC addresses; error check (CRC)</td><td>Frame</td><td>Ethernet, switches, Wi-Fi access points</td></tr>
+        <tr><td>1</td><td>Physical</td><td>Signals on the wire or through the air</td><td>Bits</td><td>Cables, connectors, radio, hubs</td></tr>
+      </table>
+      <p><strong>Encapsulation:</strong> when a device sends, each layer from 7 down to 1 adds its own header (the transport layer adds ports, the network layer adds IP addresses, the data link layer adds MAC addresses and a CRC trailer). The receiving device works back up from 1 to 7, and each layer removes its header. A common memory aid from layer 1 up: "<strong>P</strong>lease <strong>D</strong>o <strong>N</strong>ot <strong>T</strong>hrow <strong>S</strong>ausage <strong>P</strong>izza <strong>A</strong>way".</p>
+      <p><strong>Troubleshooting by layer:</strong> most technicians start at the bottom. Is the cable plugged in and the link light on (1)? Does the switch see the device (2)? Does it have a valid IP address and can it ping the gateway (3)? Is the port open and the service listening (4)? Only then look at the application (5-7).</p>
+
+      <div class="order-steps">
+        <p class="order-q">Practice: put the layers in order from layer 1 (top of the list) to layer 7. Use the arrows to move a layer, then check.</p>
+        <ol>
+          <li>Physical</li>
+          <li>Data Link</li>
+          <li>Network</li>
+          <li>Transport</li>
+          <li>Session</li>
+          <li>Presentation</li>
+          <li>Application</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/AYgXr1dynKU" title="Understanding the OSI Model - CompTIA Network+ N10-009 - 1.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Understanding the OSI Model – CompTIA Network+ N10-009 – 1.1" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">A switch reads a destination MAC address to decide which port to send data to. At which layer does it work, and what is the data called there?</p>
+        <div class="check-options">
+          <button type="button">Layer 3, packet</button>
+          <button type="button">Layer 2, frame</button>
+          <button type="button">Layer 4, segment</button>
+          <button type="button">Layer 1, bits</button>
+        </div>
+        <p class="check-why">MAC addresses belong to the data link layer (layer 2), where the data is a frame. Routers use IP addresses at layer 3, where it's a packet.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A user can ping a web server by its IP address, but the website won't load. Where should you look next?</p>
+        <div class="check-options">
+          <button type="button">The network cable (layer 1)</button>
+          <button type="button">The switch port (layer 2)</button>
+          <button type="button">The IP address (layer 3)</button>
+          <button type="button">The port and the web service (layers 4 and up)</button>
+        </div>
+        <p class="check-why">A working ping proves layers 1-3 are fine. Check that port 443 (or 80) is open and the web service is running, then the application itself.</p>
+      </div>
+    </div>
+
+    <p><em>Next: a diagram of how data moves through the layers, then the lecture recording. Keep the diagram open and refer to it while you watch.</em></p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Level 3: Networking</p>
     </div>
   </div>
 
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
