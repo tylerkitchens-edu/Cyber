@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 7: Installing Operating Systems</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,32 +20,100 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 7</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 7</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-      </div>
+    <p>In this lesson you plan and carry out operating system installations and upgrades: checking requirements, choosing how to boot the installer, picking the right type of install, preparing the drive, and finishing the job afterwards.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 7</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 7, Installing Operating Systems</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson explores the installation and configuration of various operating systems, including Windows, Linux, and macOS. Students will learn about installation methods, partitions, file systems, and post-installation tasks.</p>
-      <p>The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-      please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.</p>
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Before you install: check the requirements</h4>
+      <p>Windows 11 needs a 64-bit processor with at least 2 cores at 1 GHz, 4 GB of RAM, 64 GB of storage, UEFI firmware with <strong>Secure Boot</strong>, and a <strong>TPM 2.0</strong> security chip. Older computers often fail on TPM 2.0 or Secure Boot. Also check that the user's applications and hardware drivers work on the new version, and <strong>back up their data</strong> first.</p>
+      <h4>How to start the installer (boot methods)</h4>
+      <ul>
+        <li><strong>USB flash drive:</strong> the most common; made with Microsoft's Media Creation Tool.</li>
+        <li><strong>Network (PXE boot):</strong> the computer loads the installer from a server, which is useful for many machines at once.</li>
+        <li><strong>ISO file</strong> mounted in a virtual machine, an internal recovery partition, or an external drive.</li>
+      </ul>
+      <h4>Types of installation</h4>
+      <table class="cmp">
+        <tr><th>Type</th><th>What it does</th></tr>
+        <tr><td>Clean install</td><td>Wipes the drive and installs fresh. Nothing is kept, so restore data and reinstall apps afterwards.</td></tr>
+        <tr><td>In-place upgrade</td><td>Installs the new version over the old one and keeps files, settings and apps.</td></tr>
+        <tr><td>Image deployment</td><td>Copies a prepared, ready-configured image to many computers.</td></tr>
+        <tr><td>Zero-touch / remote deployment</td><td>New computers set themselves up from the cloud the first time a user signs in.</td></tr>
+        <tr><td>Repair install</td><td>Reinstalls Windows over itself to fix problems while keeping files and apps.</td></tr>
+      </table>
+      <h4>Preparing the drive</h4>
+      <p>Choose the partition style (<strong>GPT</strong> for UEFI computers, MBR only for old BIOS systems), create partitions, and format them. A <strong>quick format</strong> just creates a new file system; a <strong>full format</strong> also checks the drive for bad sectors and takes much longer.</p>
+      <h4>After the install</h4>
+      <p>Install drivers and Windows updates, install the user's applications, restore their data, check that everything works, and record what you did.</p>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/SoDrALxWWTg" title="Installing Operating Systems - CompTIA A+ 220-1202 - 1.2 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Installing Operating Systems – CompTIA A+ 220-1202 – 1.2" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">A five-year-old PC fails Microsoft's Windows 11 compatibility check even though it has 16 GB of RAM and a 512 GB SSD. What is the most likely reason?</p>
+        <div class="check-options">
+          <button type="button">It has too little storage</button>
+          <button type="button">It has an SSD instead of a hard drive</button>
+          <button type="button">It lacks TPM 2.0 or Secure Boot</button>
+          <button type="button">It uses NTFS</button>
+        </div>
+        <p class="check-why">TPM 2.0 and Secure Boot are the Windows 11 requirements older computers most often miss. Its RAM and storage are well above the minimum.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A user wants Windows 11 on their Windows 10 laptop and wants to keep all their files and apps. Which installation type fits?</p>
+        <div class="check-options">
+          <button type="button">Clean install</button>
+          <button type="button">In-place upgrade</button>
+          <button type="button">Image deployment</button>
+          <button type="button">Full format then install</button>
+        </div>
+        <p class="check-why">An in-place upgrade keeps files, settings and apps. A clean install wipes the drive. Back up first anyway.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A school needs to install the same configured Windows setup on 60 lab computers. Which approach saves the most time?</p>
+        <div class="check-options">
+          <button type="button">A clean install from USB on each one</button>
+          <button type="button">An in-place upgrade on each one</button>
+          <button type="button">A repair install</button>
+          <button type="button">Image deployment over the network (PXE boot)</button>
+        </div>
+        <p class="check-why">One prepared image, deployed over the network with PXE boot, sets up every computer the same way without visiting each one with a USB drive.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Press <strong>Win+R</strong>, type <code>tpm.msc</code>. Does your computer have a TPM, and which <strong>Specification Version</strong> (2.0?)?</li>
+        <li>Run <code>msinfo32</code>. Find <strong>BIOS Mode</strong> (UEFI or Legacy) and <strong>Secure Boot State</strong>.</li>
+        <li>Open <strong>Disk Management</strong>, right-click <strong>Disk 0</strong> &gt; <strong>Properties</strong> &gt; <strong>Volumes</strong>. Is the partition style GPT or MBR?</li>
+      </ol>
+      <p>Could your computer run Windows 11? Which requirement would you check first on an older one?</p>
     </div>
+
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

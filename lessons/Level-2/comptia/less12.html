@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 3: Configuring Windows</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,35 +20,99 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
+    <p>In this lesson you learn where Windows settings live and how to change the ones a support technician touches every day: accounts, display, network, power, apps and file options.</p>
 
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 3</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 3</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 3</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 3, Configuring Windows</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
+    </div>
+
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Two places for settings</h4>
+      <p>Windows has the modern <strong>Settings</strong> app and the older <strong>Control Panel</strong>. Microsoft keeps moving things into Settings, but Control Panel is still used for several tools, and the exam expects you to know both.</p>
+      <table class="cmp">
+        <tr><th>Task</th><th>Where</th></tr>
+        <tr><td>Install updates, pause updates</td><td>Settings &gt; Windows Update</td></tr>
+        <tr><td>Uninstall or repair a program</td><td>Settings &gt; Apps &gt; Installed apps, or Control Panel &gt; Programs and Features</td></tr>
+        <tr><td>Add or change user accounts</td><td>Settings &gt; Accounts, or Control Panel &gt; User Accounts</td></tr>
+        <tr><td>Wi-Fi, Ethernet, network profile, VPN</td><td>Settings &gt; Network &amp; internet</td></tr>
+        <tr><td>Screen resolution, scaling, multiple monitors</td><td>Settings &gt; System &gt; Display</td></tr>
+        <tr><td>Sleep timers, lid and power button actions</td><td>Settings &gt; System &gt; Power, or Control Panel &gt; Power Options</td></tr>
+        <tr><td>Show hidden files and file extensions</td><td>File Explorer Options (Control Panel), or File Explorer's View menu</td></tr>
+        <tr><td>Proxy and browser security zones</td><td>Control Panel &gt; Internet Options</td></tr>
+        <tr><td>Larger text, narrator, high contrast</td><td>Settings &gt; Accessibility</td></tr>
+      </table>
+      <h4>Settings worth knowing well</h4>
+      <ul>
+        <li><strong>Network profile:</strong> <em>Public</em> hides the computer from other devices on the network (use it on coffee-shop and hotel Wi-Fi). <em>Private</em> allows network discovery and file sharing (home or trusted office).</li>
+        <li><strong>Sleep vs hibernate:</strong> sleep keeps your work in RAM using a little power, and wakes in seconds. Hibernate saves the contents of RAM to the drive and powers off completely. <strong>Fast startup</strong> is a partial hibernate that makes boot faster.</li>
+        <li><strong>File extensions:</strong> Windows hides them by default. Turning them on lets users spot a dangerous file such as <code>invoice.pdf.exe</code>.</li>
+        <li><strong>Accounts:</strong> a <em>local account</em> exists only on that computer; a <em>Microsoft account</em> signs in with an email address and syncs settings and OneDrive. Either can be a standard user or an administrator.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/0qfZtEZCvn0" title="Windows Settings - CompTIA A+ 220-1202 - 1.6 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
+      <p class="video-credit">Video: Professor Messer, "Windows Settings – CompTIA A+ 220-1202 – 1.6" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">A user received "invoice.pdf" by email, but your security team says it was really a program. What setting would have helped the user spot this?</p>
+        <div class="check-options">
+          <button type="button">Turn on Fast startup</button>
+          <button type="button">Show file name extensions in File Explorer</button>
+          <button type="button">Set the network profile to Private</button>
+          <button type="button">Switch to a Microsoft account</button>
+        </div>
+        <p class="check-why">With extensions shown, the file appears as invoice.pdf.exe, which gives it away as a program. Windows hides known extensions by default.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A salesperson connects their laptop to hotel Wi-Fi. Which network profile should Windows use?</p>
+        <div class="check-options">
+          <button type="button">Private, so the printer can be found</button>
+          <button type="button">Domain</button>
+          <button type="button">Public</button>
+          <button type="button">It does not matter on Wi-Fi</button>
+        </div>
+        <p class="check-why">Public hides the laptop from other devices on an untrusted network and turns off discovery and sharing.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A user wants their laptop to use no battery at all overnight but still reopen all their windows in the morning. What should they use?</p>
+        <div class="check-options">
+          <button type="button">Sleep</button>
+          <button type="button">Hibernate</button>
+          <button type="button">Shut down</button>
+          <button type="button">Lock the screen</button>
+        </div>
+        <p class="check-why">Hibernate saves everything in RAM to the drive and powers off completely. Sleep keeps RAM powered, so it slowly uses battery.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Open File Explorer, then <strong>View</strong> &gt; <strong>Show</strong> &gt; <strong>File name extensions</strong>. Look at a few files: what extensions do you see?</li>
+        <li>Open <strong>Settings</strong> &gt; <strong>Network &amp; internet</strong>, click your connection and check whether it is <strong>Public</strong> or <strong>Private</strong>. Is that the right choice for where you are?</li>
+        <li>Press <strong>Win+R</strong>, type <code>control</code> and press Enter. Find <strong>Programs and Features</strong> and <strong>Power Options</strong>, then find the same settings in the Settings app.</li>
+      </ol>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>In this lesson, you will explore how to configure Windows operating systems, manage user settings, adjust system configurations, and optimize performance. These foundational skills are key to supporting and maintaining Windows-based environments in the field.</p>
-      <p>
-        The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-        please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.
-      </p>
-    </div>
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

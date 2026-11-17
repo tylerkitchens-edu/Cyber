@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 4: Managing Windows</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,34 +20,103 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 4</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 4</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-      </div>
+    <p>In this lesson you meet the Windows management tools a technician uses to see what a computer is doing, fix it and keep it running: the Microsoft Management Console snap-ins, Task Manager and the system utilities.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 4</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 4, Managing Windows</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson focuses on Windows management concepts, including configuring administrative tools, managing users and permissions, maintaining devices and drivers, and troubleshooting performance and service issues within Windows systems.</p>
-    <p>
-        The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-        please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.
-    </p>    
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <p>Most management tools open faster from the Run box (<strong>Win+R</strong>) than from menus. Learn each tool's job and its command; the exam asks "which tool would you use to...".</p>
+      <table class="cmp">
+        <tr><th>Tool</th><th>Command</th><th>Use it to</th></tr>
+        <tr><td>Event Viewer</td><td><code>eventvwr.msc</code></td><td>Read logs of errors, warnings and crashes (Windows Logs &gt; System and Application).</td></tr>
+        <tr><td>Disk Management</td><td><code>diskmgmt.msc</code></td><td>Create, format and resize partitions; assign drive letters.</td></tr>
+        <tr><td>Task Scheduler</td><td><code>taskschd.msc</code></td><td>Run a program or script automatically at a set time or event.</td></tr>
+        <tr><td>Device Manager</td><td><code>devmgmt.msc</code></td><td>See every device, update or roll back drivers, find devices with problems.</td></tr>
+        <tr><td>Certificate Manager</td><td><code>certmgr.msc</code></td><td>View and manage the user's security certificates.</td></tr>
+        <tr><td>Local Users and Groups</td><td><code>lusrmgr.msc</code></td><td>Create accounts and add them to groups (not in Windows Home).</td></tr>
+        <tr><td>Performance Monitor</td><td><code>perfmon.msc</code></td><td>Track CPU, memory and disk use over time.</td></tr>
+        <tr><td>Group Policy Editor</td><td><code>gpedit.msc</code></td><td>Set policies such as password rules (not in Windows Home).</td></tr>
+        <tr><td>Services</td><td><code>services.msc</code></td><td>Start, stop and set the startup type of background services.</td></tr>
+        <tr><td>System Information</td><td><code>msinfo32</code></td><td>See hardware, BIOS/UEFI mode and Windows version in one place.</td></tr>
+        <tr><td>Resource Monitor</td><td><code>resmon</code></td><td>See exactly which process is using the disk, network or memory.</td></tr>
+        <tr><td>System Configuration</td><td><code>msconfig</code></td><td>Choose a diagnostic startup or Safe boot for troubleshooting.</td></tr>
+        <tr><td>Registry Editor</td><td><code>regedit</code></td><td>Edit Windows' settings database directly. Back it up first: one wrong change can stop Windows starting.</td></tr>
+      </table>
+      <h4>Task Manager (Ctrl+Shift+Esc)</h4>
+      <ul>
+        <li><strong>Processes:</strong> what is running and how much CPU, memory, disk and network each uses; <strong>End task</strong> closes a frozen program.</li>
+        <li><strong>Performance:</strong> live graphs for CPU, memory, disk, network and GPU.</li>
+        <li><strong>Startup apps:</strong> turn off programs that launch at sign-in and slow the computer down.</li>
+        <li><strong>Users</strong> and <strong>Services</strong> tabs: who is signed in and which services are running.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/e0KInDq-6Pw" title="The Microsoft Management Console - CompTIA A+ 220-1202 - 1.4 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "The Microsoft Management Console – CompTIA A+ 220-1202 – 1.4" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="0">
+        <p class="check-q">A computer restarted by itself overnight. Where do you look first to find out why?</p>
+        <div class="check-options">
+          <button type="button">Event Viewer</button>
+          <button type="button">Disk Management</button>
+          <button type="button">Certificate Manager</button>
+          <button type="button">Task Scheduler</button>
+        </div>
+        <p class="check-why">Event Viewer keeps the System log, which records crashes, unexpected shutdowns and the errors that came before them.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A backup script must run every night at 2 AM, even when nobody is signed in. Which tool sets that up?</p>
+        <div class="check-options">
+          <button type="button">Services</button>
+          <button type="button">Task Scheduler</button>
+          <button type="button">Task Manager</button>
+          <button type="button">Resource Monitor</button>
+        </div>
+        <p class="check-why">Task Scheduler runs programs and scripts at set times or on events, with or without a user signed in.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A user's computer takes several minutes to become usable after they sign in. Which Task Manager tab should you check first?</p>
+        <div class="check-options">
+          <button type="button">Performance</button>
+          <button type="button">Users</button>
+          <button type="button">Startup apps</button>
+          <button type="button">Details</button>
+        </div>
+        <p class="check-why">The Startup apps tab lists programs that launch at sign-in and how much each slows the start. Disable the ones the user doesn't need.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Press <strong>Win+R</strong>, type <code>eventvwr.msc</code>. Open <strong>Windows Logs</strong> &gt; <strong>System</strong> and find one <strong>Error</strong>. What was the source, and when did it happen?</li>
+        <li>Open <strong>Task Manager</strong> (Ctrl+Shift+Esc) &gt; <strong>Startup apps</strong>. Which app has the highest startup impact?</li>
+        <li>Run <code>msinfo32</code>. Find your <strong>BIOS Mode</strong> and <strong>Installed Physical Memory (RAM)</strong>.</li>
+      </ol>
+      <p>Look only: don't change anything in these tools on a computer you rely on.</p>
     </div>
+
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

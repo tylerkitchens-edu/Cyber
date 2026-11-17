@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 5: Supporting Windows</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,32 +20,97 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 5</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 5</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-      </div>
+    <p>In this lesson you troubleshoot Windows: crashes, slow performance, programs and services that fail, and computers that will not start. You also learn the recovery tools that get a system working again.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 5</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 5, Supporting Windows</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson focuses on supporting Windows environments through effective troubleshooting, system configuration, recovery tools, and best practices for maintaining performance and stability.</p>
-      <p>The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-      please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.</p>
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Common problems and first steps</h4>
+      <table class="cmp">
+        <tr><th>Symptom</th><th>Likely causes</th><th>First steps</th></tr>
+        <tr><td>Blue screen (stop error) and restart</td><td>A bad driver or update, failing RAM or drive, overheating</td><td>Note the stop code; check Event Viewer; undo the latest driver or update; boot to Safe Mode if needed.</td></tr>
+        <tr><td>Slow performance</td><td>Too many startup apps, low RAM, a full drive, malware</td><td>Task Manager (Processes, Startup apps); free disk space; scan for malware.</td></tr>
+        <tr><td>Program crashes or won't open</td><td>A corrupted install, missing update, incompatibility</td><td>Repair or reinstall the app; check for updates; run it as administrator if it needs to be.</td></tr>
+        <tr><td>Service fails to start</td><td>A dependency stopped, wrong account, corrupted files</td><td>Check services.msc and Event Viewer for the reason.</td></tr>
+        <tr><td>Won't boot</td><td>Corrupted boot files, a bad update, a failing drive</td><td>Windows Recovery Environment: Startup Repair, uninstall updates, System Restore.</td></tr>
+      </table>
+      <h4>Recovery tools, from least to most drastic</h4>
+      <ol>
+        <li><strong>Safe Mode:</strong> starts Windows with only basic drivers and services, so you can remove the thing causing problems.</li>
+        <li><strong>Roll back</strong> a driver (Device Manager) or <strong>uninstall</strong> a recent update.</li>
+        <li><strong><code>sfc /scannow</code></strong> (System File Checker, run as administrator): finds and repairs damaged Windows system files.</li>
+        <li><strong>System Restore:</strong> returns system files, drivers, settings and installed programs to an earlier restore point. Personal files are not changed.</li>
+        <li><strong>Startup Repair</strong> in the Windows Recovery Environment (WinRE): fixes problems that stop Windows booting.</li>
+        <li><strong>Reset this PC:</strong> reinstalls Windows, with the choice to keep or remove personal files. Apps must be reinstalled.</li>
+      </ol>
+      <p>Always try the least drastic fix first, and back up the user's data before anything that could remove it.</p>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/qIenQsBAg2U" title="Troubleshooting Windows - CompTIA A+ 220-1202 - 3.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Troubleshooting Windows – CompTIA A+ 220-1202 – 3.1" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">A computer started showing blue screens right after a new graphics driver was installed. What should the technician try first?</p>
+        <div class="check-options">
+          <button type="button">Reset this PC</button>
+          <button type="button">Replace the graphics card</button>
+          <button type="button">Boot into Safe Mode and roll back the driver</button>
+          <button type="button">Reinstall Windows from USB</button>
+        </div>
+        <p class="check-why">The problem started with the new driver, so undo that change first. Safe Mode loads only basic drivers, so the computer stays up long enough to roll it back.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A user ran System Restore to fix a problem. What happens to the documents they saved yesterday?</p>
+        <div class="check-options">
+          <button type="button">They are deleted</button>
+          <button type="button">They are kept; System Restore doesn't change personal files</button>
+          <button type="button">They are moved to the Recycle Bin</button>
+          <button type="button">They are rolled back to the restore point's version</button>
+        </div>
+        <p class="check-why">System Restore changes system files, drivers, settings and installed programs. It leaves personal files such as documents and photos alone.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Windows reports that some of its own system files are damaged. Which command checks and repairs them?</p>
+        <div class="check-options">
+          <button type="button">ipconfig /all</button>
+          <button type="button">chkdsk /?</button>
+          <button type="button">sfc /scannow</button>
+          <button type="button">gpupdate /force</button>
+        </div>
+        <p class="check-why">System File Checker (sfc /scannow, run as administrator) compares Windows system files with known good copies and repairs any that are damaged.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Open <strong>Settings</strong> &gt; <strong>System</strong> &gt; <strong>Recovery</strong>. Find <strong>Reset this PC</strong> and <strong>Advanced startup</strong>. Look only: don't click Reset.</li>
+        <li>Press <strong>Win+R</strong>, type <code>sysdm.cpl</code>, open the <strong>System Protection</strong> tab. Is protection on for your C: drive? When was the last restore point?</li>
+        <li>Open <strong>Device Manager</strong>, double-click any device, open the <strong>Driver</strong> tab and find <strong>Roll Back Driver</strong>. (It is greyed out if there is no older driver to go back to.)</li>
+      </ol>
     </div>
+
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

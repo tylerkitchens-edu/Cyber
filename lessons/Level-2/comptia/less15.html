@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 6: Securing Windows</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,32 +20,98 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 6</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 6</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-      </div>
+    <p>In this lesson you secure Windows: accounts and groups, sign-in options, permissions on files and shared folders, encryption, and the built-in antivirus and firewall.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 6</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 6, Securing Windows</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers the tools, configurations, and best practices used to secure Windows operating systems, including account management, authentication, updates, and malware protection.</p>
-      <p>The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-      please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.</p>
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Accounts, groups and User Account Control</h4>
+      <ul>
+        <li><strong>Administrators</strong> can change anything; <strong>standard users</strong> can use the computer but can't install most software or change system settings. Use standard accounts for daily work (least privilege).</li>
+        <li><strong>Guest</strong> access is disabled by default and should stay that way.</li>
+        <li><strong>User Account Control (UAC)</strong> asks for confirmation, or an administrator's password, before a change that needs administrator rights. It stops programs from making system changes silently.</li>
+        <li><strong>Sign-in options:</strong> password, PIN, <strong>Windows Hello</strong> (face or fingerprint), security key. A Windows Hello PIN works only on that one device, which makes it safer than reusing a password.</li>
+      </ul>
+      <h4>NTFS and share permissions</h4>
+      <ul>
+        <li><strong>NTFS permissions</strong> (the folder's Security tab) apply to everyone, whether they sit at the computer or connect over the network: Full control, Modify, Read &amp; execute, Read, Write.</li>
+        <li><strong>Share permissions</strong> (Advanced Sharing) apply only to people connecting over the network: Full Control, Change, Read.</li>
+        <li>Over the network, Windows applies <strong>both</strong>, and the <strong>more restrictive</strong> one wins.</li>
+        <li>Permissions are <strong>inherited</strong> from the parent folder by default. A file <strong>moved</strong> within the same drive keeps its permissions; a file <strong>copied</strong>, or moved to another drive, takes the permissions of its new folder.</li>
+      </ul>
+      <h4>Encryption and built-in protection</h4>
+      <ul>
+        <li><strong>BitLocker</strong> encrypts a whole drive (Pro and higher), usually with the key kept in the computer's TPM chip. <strong>BitLocker To Go</strong> encrypts removable drives.</li>
+        <li><strong>EFS</strong> (Encrypting File System) encrypts individual files and folders for one user account on NTFS.</li>
+        <li><strong>Microsoft Defender Antivirus</strong> and <strong>Windows Defender Firewall</strong> are on by default; check them in the <strong>Windows Security</strong> app.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/SR7tw10W5YU" title="Windows Security Settings - CompTIA A+ 220-1202 - 2.2 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Windows Security Settings – CompTIA A+ 220-1202 – 2.2" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">A shared folder gives the Sales group "Full Control" share permission, but its NTFS permission for Sales is "Read". What can a salesperson do when they open it over the network?</p>
+        <div class="check-options">
+          <button type="button">Full Control</button>
+          <button type="button">Read only</button>
+          <button type="button">Nothing; the permissions conflict</button>
+          <button type="button">Change</button>
+        </div>
+        <p class="check-why">Over the network both sets apply, and the more restrictive one wins. NTFS Read is more restrictive than share Full Control.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">An employee carries client files on a USB flash drive. How should the drive be protected if it is lost?</p>
+        <div class="check-options">
+          <button type="button">Encrypt it with BitLocker To Go</button>
+          <button type="button">Format it as FAT32</button>
+          <button type="button">Hide the folder</button>
+          <button type="button">Turn on UAC</button>
+        </div>
+        <p class="check-why">BitLocker To Go encrypts removable drives, so the files can't be read without the password or recovery key.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Why does Windows show a User Account Control prompt when you install a program?</p>
+        <div class="check-options">
+          <button type="button">To check the program for viruses</button>
+          <button type="button">To update Windows first</button>
+          <button type="button">To ask for a product key</button>
+          <button type="button">To confirm a change that needs administrator rights</button>
+        </div>
+        <p class="check-why">UAC stops programs from making system-wide changes without someone confirming, or entering an administrator password on a standard account.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Open the <strong>Windows Security</strong> app. Is <strong>Virus &amp; threat protection</strong> on? Is the <strong>Firewall</strong> on for your current network type?</li>
+        <li>Open <strong>Settings</strong> &gt; <strong>Accounts</strong> &gt; <strong>Your info</strong>. Is your account an administrator or a standard user? Then open <strong>Sign-in options</strong>: which methods are set up?</li>
+        <li>Right-click any folder in your Documents, choose <strong>Properties</strong> &gt; <strong>Security</strong>. Which users and groups have access, and with which permissions? Look only.</li>
+      </ol>
     </div>
+
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
