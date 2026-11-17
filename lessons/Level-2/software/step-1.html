@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Software Basics and Operating Systems</title>
   <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,101 +20,175 @@
       <h2>Lesson</h2>
     </div>
 
+    <p><strong>Level 2 goal:</strong> pass the CompTIA A+ Core 2 (220-1202) exam and become fully A+ certified. This page sets up the software side of IT before the CompTIA lessons.</p>
+
     <h3>Learning Objectives</h3>
     <ul>
-      <li>The goal of this level is to obtain core 2 of A+ and become fully A+ certified</li>
-      <li>Configure Windows user settings</li>
-      <li>Configure Windows system settings</li>
-      <li>Identify features of Linux</li>
-      <li>Identify features of macOS</li>
-      <li>Use remote access technologies</li>
-      <li>Explain data handling best practices</li>
+      <li>Describe the types of software and give examples of each</li>
+      <li>Explain what an operating system does and which systems run on which devices</li>
+      <li>Compare Windows editions and 32-bit vs 64-bit versions</li>
+      <li>Choose the right file system for a drive</li>
+      <li>Explain why updates and end-of-support dates matter</li>
     </ul>
 
-    <div class="section">
-      <h3>Intro to Software</h3>
-      <p>Software refers to the programs, data, and instructions that enable a computer system to perform tasks. It is the set of instructions that control the behavior of the computer and its hardware components. There are three main types of software:</p>
+    <section class="section">
+      <h3>Types of software</h3>
+      <p>Software is the programs, data and instructions that tell a computer's hardware what to do. You will see it sorted in two ways. Both are common, and they don't disagree: the three-type version just splits one group in two.</p>
 
-      <h4>System Software</h4>
-      <p>System software is a type of software that is responsible for managing the hardware components of a computer system and providing a platform for running other software applications. System software includes operating systems, device drivers, firmware, and utility programs. Operating systems, such as Windows, macOS, and Linux, provide a foundation for other software applications to run on.</p>
-
-      <h4>Application Software</h4>
-      <p>Application software is designed to perform specific tasks or functions for users. Examples of application software include web browsers, word processors, graphics editors, and email clients.</p>
-
-      <h4>Programming Software</h4>
-      <p>Programming software includes all of the tools and programs that developers use to create and maintain software applications. Examples of programming software include integrated development environments (IDEs), compilers, and debuggers.</p>
-
-      <p>In addition to these main types of software, there are also other categories of software, such as middleware, which is software that connects different applications and systems together, and enterprise software, which is used by businesses to manage their operations and data.</p>
-    </div>
-
-    <div class="section">
-      <h3>Operating Systems</h3>
-      <p>Operating system vary by device as follows:</p>
-
+      <h4>The two-type view</h4>
       <ul>
-        <li><strong>Workstations:</strong> Workstations (desktops, laptops, servers, etc.) generally use either Windows, MacOS, or Linux.</li>
-        <li><strong>Mobile Devices:</strong> The two most common operating systems for mobile devices are Android and iOS.</li>
-        <li><strong>Embedded Systems:</strong> Many devices, such as gaming consoles, televisions, and smart cars, have embedded operating systems called firmware. These devices need a simple, reliable OS that runs in a relatively static environment.</li>
-        <li><strong>Hypervisors:</strong> A special type of software called a hypervisor can be used to run multiple operating systems on the same hardware in a process called virtualization.</li>
+        <li><strong>System software</strong> runs the computer itself: the operating system, device drivers, firmware and utility programs (backup, antivirus, disk tools).</li>
+        <li><strong>Application software</strong> does a job for the user: web browsers, word processors, email clients, games, and also the tools developers use to write code.</li>
       </ul>
+
+      <h4>The three-type view</h4>
+      <ul>
+        <li><strong>System software</strong>: the same as above.</li>
+        <li><strong>Application software</strong>: programs for end users.</li>
+        <li><strong>Programming software</strong>: tools for building other software, such as code editors and integrated development environments (IDEs), compilers and debuggers. In the two-type view these count as applications.</li>
+      </ul>
+
+      <p><strong>On a test:</strong> read the answer choices. If "programming software" is one of them, the question is using the three-type view. If a question asks for "the two main types", the answer is system and application.</p>
+      <p>You may also hear about <strong>middleware</strong> (software that connects other applications, such as a database connector) and <strong>enterprise software</strong> (large business systems for things like payroll or customer records). They are kinds of application software, not separate types.</p>
+    </section>
+
+    <section class="section">
+      <h3>Which operating system runs where</h3>
+      <ul>
+        <li><strong>Desktops and laptops (workstations):</strong> Windows, macOS, Linux, or ChromeOS on Chromebooks.</li>
+        <li><strong>Servers:</strong> mostly Windows Server and Linux.</li>
+        <li><strong>Phones and tablets:</strong> Android and iOS/iPadOS.</li>
+        <li><strong>Embedded devices</strong> (smart TVs, routers, game consoles, cars): a small, specialized operating system stored in the device's <strong>firmware</strong>, the software kept on a chip on the device. It does one job and rarely changes.</li>
+        <li><strong>Hypervisors:</strong> software that runs several operating systems on one physical machine (virtualization, from the Level 1 Cloud Computing lesson).</li>
+      </ul>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/IhcZqUs1IF8" title="Operating Systems Overview - CompTIA A+ 220-1202 - 1.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Operating Systems Overview – CompTIA A+ 220-1202 – 1.1" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>What an operating system does</h3>
+      <ul>
+        <li><strong>User interface:</strong> a graphical user interface (GUI) of windows, icons and menus, and a command-line interface (CLI) where you type commands, such as Command Prompt, PowerShell or a Linux terminal.</li>
+        <li><strong>Go-between for hardware and applications:</strong> applications ask the OS to read a file or draw on screen; the OS turns that into instructions the hardware understands.</li>
+        <li><strong>Process and memory management:</strong> many programs run at once, and the OS shares out CPU time and RAM between them. Task Manager shows this.</li>
+        <li><strong>Device management:</strong> the OS talks to each device through a <strong>driver</strong>, a small program that translates between the OS and that piece of hardware. Device Manager shows every device and its driver.</li>
+        <li><strong>Storage management:</strong> Windows' <strong>Disk Management</strong> tool (<code>diskmgmt.msc</code>) creates, deletes and resizes partitions, formats volumes and assigns drive letters. Separately, Windows' "Defragment and Optimize Drives" tool keeps hard drives tidy and sends TRIM to SSDs; it runs automatically.</li>
+        <li><strong>File management:</strong> organizes data into folders and files. On Windows you use File Explorer.</li>
+        <li><strong>Application and service management:</strong> installing and removing programs, and running <strong>services</strong>, programs that work in the background without a window (Windows Update, the print spooler, search indexing).</li>
+        <li><strong>Security and access control:</strong> users sign in, and the OS decides what each account may do. The <strong>principle of least privilege</strong> means giving each account only the access it needs for its job. Everyday work happens in a standard account, and an administrator account is used only when needed. If a standard account is tricked into running malware, the damage is limited.</li>
+      </ul>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A new employee only needs to use email and the company's sales app. Following the principle of least privilege, what kind of account should they get?</p>
+        <div class="check-options">
+          <button type="button">An administrator account, so they never need to ask IT for help</button>
+          <button type="button">The shared IT administrator login</button>
+          <button type="button">A standard user account</button>
+          <button type="button">A guest account with no password</button>
+        </div>
+        <p class="check-why">Least privilege means only the access needed for the job. A standard account can use email and the sales app but can't install software or change system settings, which limits the damage if the account is misused.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A technician needs to give a newly installed second drive a letter so it shows up in File Explorer. Which tool do they use?</p>
+        <div class="check-options">
+          <button type="button">Disk Management</button>
+          <button type="button">Task Manager</button>
+          <button type="button">Defragment and Optimize Drives</button>
+          <button type="button">Device Manager</button>
+        </div>
+        <p class="check-why">Disk Management (diskmgmt.msc) creates and formats volumes and assigns drive letters. Device Manager shows the drive's hardware and driver, but it doesn't set up volumes.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>Windows editions and versions</h3>
+      <p>Windows comes in <strong>editions</strong> with different features. A support technician needs to know which edition a computer has, because some tasks are impossible on Home.</p>
+      <table class="cmp">
+        <tr><th>Edition</th><th>Who it's for</th><th>Key differences</th></tr>
+        <tr><td>Home</td><td>Personal computers</td><td>Can't join a company domain. No BitLocker drive encryption (some devices have the simpler "device encryption"). No Group Policy Editor. Can't be the host for incoming Remote Desktop connections.</td></tr>
+        <tr><td>Pro</td><td>Small businesses and power users</td><td>Adds domain join, BitLocker, Group Policy and Remote Desktop host.</td></tr>
+        <tr><td>Enterprise</td><td>Large organizations (volume licensing)</td><td>Everything in Pro plus extra security and management features.</td></tr>
+        <tr><td>Education</td><td>Schools and universities</td><td>Close to Enterprise, licensed for education.</td></tr>
+      </table>
+      <p><strong>32-bit vs 64-bit:</strong> a 32-bit operating system can use at most 4 GB of RAM. A 64-bit operating system can use far more, and it runs both 64-bit and most older 32-bit programs. Windows 11 comes only in 64-bit. To check, go to Settings &gt; System &gt; About &gt; System type.</p>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/B7JZ6rfH06Q" title="An Overview of Windows - CompTIA A+ 220-1202 - 1.3 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "An Overview of Windows – CompTIA A+ 220-1202 – 1.3" (free A+ course).</p>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A small business wants its laptops encrypted with BitLocker and joined to the company domain. The laptops run Windows 11 Home. What should the technician recommend?</p>
+        <div class="check-options">
+          <button type="button">Install a 32-bit version of Windows</button>
+          <button type="button">Upgrade them to Windows 11 Pro</button>
+          <button type="button">Turn on BitLocker in Disk Management</button>
+          <button type="button">Nothing; Home already supports both</button>
+        </div>
+        <p class="check-why">Home can't join a domain and doesn't include BitLocker. Pro adds both.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>File systems</h3>
+      <p>Before a drive can store files, it must be formatted with a <strong>file system</strong>, the method the OS uses to organize and find data on it.</p>
+      <table class="cmp">
+        <tr><th>File system</th><th>Used by</th><th>Good to know</th></tr>
+        <tr><td>NTFS</td><td>Windows (the default)</td><td>File permissions, encryption, very large files and drives. macOS can read it but not write to it.</td></tr>
+        <tr><td>FAT32</td><td>Older and simple devices</td><td>Works almost everywhere, but no single file can be larger than 4 GB.</td></tr>
+        <tr><td>exFAT</td><td>USB flash drives and memory cards</td><td>No 4 GB file limit, and works on Windows and macOS. The usual choice for a drive shared between them.</td></tr>
+        <tr><td>ext4</td><td>Linux</td><td>The common Linux default.</td></tr>
+        <tr><td>APFS</td><td>macOS and iOS</td><td>Apple's current file system, designed for SSDs.</td></tr>
+        <tr><td>ReFS</td><td>Windows Server</td><td>Built for reliability on large storage systems.</td></tr>
+      </table>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/lwCu2rpXP1E" title="File Systems - CompTIA A+ 220-1202 - 1.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "File Systems – CompTIA A+ 220-1202 – 1.1" (free A+ course).</p>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A video editor needs a USB drive that works on both a Windows PC and a Mac, and some video files are 10 GB. Which file system should the drive use?</p>
+        <div class="check-options">
+          <button type="button">NTFS</button>
+          <button type="button">FAT32</button>
+          <button type="button">APFS</button>
+          <button type="button">exFAT</button>
+        </div>
+        <p class="check-why">exFAT works on both Windows and macOS and has no 4 GB file limit. FAT32 can't hold a 10 GB file, a Mac can't write to NTFS, and Windows can't read APFS.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>Updates and end of support</h3>
+      <p>Operating systems get regular <strong>security updates</strong> (patches for newly found weaknesses) and larger <strong>feature updates</strong>. Every version also has an <strong>end-of-support date</strong>, after which it gets no more security fixes. For example, Windows 10 support ended on October 14, 2025. A computer running an unsupported OS stays open to every weakness found after that date, so part of IT support is keeping systems updated and planning upgrades before support ends.</p>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Open <strong>Settings</strong> &gt; <strong>System</strong> &gt; <strong>About</strong>. Find your Windows <strong>edition</strong> (Home, Pro...), <strong>version</strong>, and <strong>system type</strong> (64-bit?).</li>
+        <li>Right-click the Start button and choose <strong>Disk Management</strong>. How many disks and partitions does your computer have? Which file system does the C: drive use? Look only: don't change anything here.</li>
+        <li>Open <strong>Task Manager</strong> (Ctrl+Shift+Esc) and the <strong>Services</strong> tab. Find a service that is running even though you never opened it.</li>
+      </ol>
+      <p>On a Mac: Apple menu &gt; About This Mac shows the macOS version; Disk Utility shows your drives and their file system (APFS).</p>
     </div>
 
-    <div class="section">
-      <h3>OS Functions & Descriptions</h3>
-
-      <h4>Graphical User Interfaces</h4>
-      <p>One of the main functions of an operating system is to provide an interface between the computer and the user. Most modern operating systems use a graphical user interface (GUI), where pictures, icons, and other images are used to represent files, folders, and system controls. The GUI makes it easy for humans to understand and use.</p>
-
-      <h4>Command Line Interfaces</h4>
-      <p>Another way users interact with the operating system is using the command line interface. The command line accepts input from the keyboard, instead of a mouse or touchscreen.</p>
-
-      <h4>Interface Between Applications and Hardware</h4>
-      <p>Operating systems provide an interface between the computer's hardware and application software. Hardware communicates in raw physical signals, like pulses of electricity or light. Software interprets ones and zeroes as digital information. The OS takes data from the hardware and passes it to the software in a way the software can understand. The operating system takes instructions from the software and passes it to the hardware to be executed.</p>
-
-      <h4>Disk Management</h4>
-      <p>It's important for storage hardware to be well organized. If information is scattered around a disk in a haphazard way, it takes a long time for the computer to get the information it needs and the system slows down. Operating systems have disk management software that helps keep storage devices well organized and maintained.</p>
-
-      <h4>File Management</h4>
-      <p>The file management interface for Microsoft Windows is called File Explorer. Within this interface, you can create, delete, open, or rename files and folders. The files can be stored on a local disk or on other devices connected through a network server.</p>
-
-      <h4>Process/Memory Management</h4>
-      <p>Computers work by executing lists of instructions. Sometimes, computers need to run multiple lists of instructions, or processes, at the same time. The OS makes sure that each process is sent to the CPU in an orderly way.</p>
-    </div>
-
-    <div class="section">
-      <h3>OS Functions Continued</h3>
-
-      <h4>Application Management</h4>
-      <p>Operating systems manage applications installed on a system. The OS has tools to view, configure, and delete applications.</p>
-
-      <h4>Service Management</h4>
-      <p>The OS also runs services, which are processes that run automatically in the background. Services do things like indexing files for better searches, verifying that software is up to date, and backing up files.</p>
-
-      <h4>Device Management</h4>
-      <p>Another of the operating system's jobs is to know the hardware that is connected to the system, interpret instructions from the hardware, and send instructions to it by using a driver. Drivers are like interpreters that help the hardware and the OS to speak the same language.</p>
-
-      <h4>Access Control/Protection</h4>
-      <p>An important operating system role is security. Operating systems require users to log in with credentials before accessing sensitive information on the computer. One of these most important principles in network security is the principle of least privilege.</p>
-    
     <div class="certmaster-card">
-      <h2>Next: CompTIA A+, Lesson 11</h2>
-      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 11</strong>, including its practice questions. Then come back here and continue.</p>
+      <h2>Next: CompTIA A+ Core 2, Lessons 1 and 2</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 1, What Does an IT Specialist Do?</strong> and <strong>Lesson 2, Managing Support Procedures</strong>, including their practice questions. Then come back here and continue.</p>
       <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-    </div>
-
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Software</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
