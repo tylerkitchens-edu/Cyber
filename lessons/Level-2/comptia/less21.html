@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 12: Using Data Security</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,32 +20,96 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 12</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 12</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-      </div>
+    <p>Data has to be protected for its whole life: while it's stored, while it moves, and when the drive it lives on is retired. In this lesson you learn encryption, data handling and how to destroy data properly.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 12</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 12, Using Data Security</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson focuses on data security fundamentals including encryption, secure data destruction, backups, and proper handling of sensitive information to maintain confidentiality and integrity.</p>
-      <p>The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-      please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.</p>
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Protecting stored data</h4>
+      <ul>
+        <li><strong>BitLocker</strong> encrypts a whole drive (Windows Pro and above); <strong>BitLocker To Go</strong> encrypts USB drives. Keep the recovery key somewhere safe.</li>
+        <li><strong>Encrypting File System (EFS)</strong> encrypts single files and folders for one user account (Windows Pro and above).</li>
+        <li><strong>FileVault</strong> is the macOS full-disk encryption.</li>
+        <li><strong>Data loss prevention (DLP)</strong> software stops sensitive data, such as card numbers, from leaving by email or USB.</li>
+      </ul>
+      <h4>Destroying data when a drive is retired</h4>
+      <table class="cmp">
+        <tr><th>Method</th><th>What it is</th><th>Drive can be reused?</th></tr>
+        <tr><td>Standard format</td><td>Rebuilds the file system; the old data can often be recovered with tools</td><td>Yes, but it isn't safe for sensitive data</td></tr>
+        <tr><td>Erasing / wiping</td><td>Overwrites every part of the drive, or uses the drive's built-in secure erase (best for SSDs)</td><td>Yes</td></tr>
+        <tr><td>Degaussing</td><td>A strong magnet scrambles a hard disk's platters; it doesn't work on SSDs</td><td>No</td></tr>
+        <tr><td>Shredding, drilling, crushing, incineration</td><td>Physical destruction</td><td>No</td></tr>
+      </table>
+      <p>When an outside company destroys drives, it should give you a <strong>certificate of destruction</strong> as proof.</p>
+      <h4>Regulated data</h4>
+      <p>Some data has legal rules: personally identifiable information (PII), health information (PHI, under HIPAA), payment card data (PCI DSS) and government data. You met these on the Cybersecurity Fundamentals page; the CompTIA lesson adds how to handle them.</p>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/VCQpo2pas1o" title="Data Destruction - CompTIA A+ 220-1202 - 2.9 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Data Destruction – CompTIA A+ 220-1202 – 2.9" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">A company is selling old laptops with SSDs and wants the drives reused safely. Which method fits?</p>
+        <div class="check-options">
+          <button type="button">Degaussing</button>
+          <button type="button">Drilling</button>
+          <button type="button">Secure erase / wiping</button>
+          <button type="button">A standard format</button>
+        </div>
+        <p class="check-why">A secure erase overwrites all the data and leaves the drive usable. Degaussing doesn't work on SSDs, drilling destroys the drive, and a standard format leaves recoverable data.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A contractor shredded 200 hard drives for you. What document should you get from them?</p>
+        <div class="check-options">
+          <button type="button">A certificate of destruction</button>
+          <button type="button">An end-user license agreement</button>
+          <button type="button">A change request</button>
+          <button type="button">An acceptable use policy</button>
+        </div>
+        <p class="check-why">The certificate of destruction proves the drives were destroyed, which matters for audits and regulations.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A user wants to encrypt one folder of personal files on a shared Windows Pro computer, not the whole drive. What should they use?</p>
+        <div class="check-options">
+          <button type="button">BitLocker</button>
+          <button type="button">Degaussing</button>
+          <button type="button">FileVault</button>
+          <button type="button">Encrypting File System (EFS)</button>
+        </div>
+        <p class="check-why">EFS encrypts individual files and folders for a user account. BitLocker encrypts the whole drive, and FileVault is for macOS.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Open <strong>Settings</strong> and search for <strong>BitLocker</strong> (Windows Pro) or <strong>Device encryption</strong> (Windows Home). Is your C: drive encrypted?</li>
+        <li>Right-click a test folder &gt; <strong>Properties</strong> &gt; <strong>Advanced</strong>. Find the "Encrypt contents to secure data" option (EFS; greyed out on Windows Home). Look only; there's no need to turn it on.</li>
+      </ol>
+      <p>On a Mac: System Settings &gt; Privacy &amp; Security &gt; FileVault.</p>
     </div>
+
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

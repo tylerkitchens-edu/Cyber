@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 13: Implementing Operational Procedures</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,32 +20,106 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 13</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 13</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-      </div>
+    <p>Operational procedures are how an IT team works: tickets, documentation, changes, backups, safety and professional conduct. They make up a large part of the Core 2 exam.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 13</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 13, Implementing Operational Procedures</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson introduces operational procedures including documentation, disaster recovery, change management, communication protocols, and environmental safety—critical for maintaining professional IT operations.</p>
-      <p>The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-      please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.</p>
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Tickets and documentation</h4>
+      <ul>
+        <li><strong>Ticket:</strong> who, what, when, the category and severity, the steps taken, and how it was resolved. Write it so the next technician could repeat your fix.</li>
+        <li><strong>Asset management:</strong> an inventory of hardware and software, with asset tags, owners and warranty dates.</li>
+        <li><strong>Documents:</strong> standard operating procedures (SOPs), the acceptable use policy (AUP), a knowledge base, incident reports, and onboarding and offboarding checklists.</li>
+      </ul>
+      <h4>Change management</h4>
+      <p>Every change is requested and documented with its purpose, scope, risk analysis, test results and a <strong>rollback plan</strong>. A change advisory board (CAB) approves it, it happens in a planned maintenance window, and end users confirm it works.</p>
+      <h4>Backups</h4>
+      <table class="cmp">
+        <tr><th>Type</th><th>Backs up</th><th>To restore you need</th></tr>
+        <tr><td>Full</td><td>Everything</td><td>The last full backup</td></tr>
+        <tr><td>Incremental</td><td>Changes since the last backup of any type</td><td>The last full plus every incremental since</td></tr>
+        <tr><td>Differential</td><td>Changes since the last full backup</td><td>The last full plus the latest differential</td></tr>
+      </table>
+      <p>The <strong>3-2-1 rule</strong>: 3 copies of the data, on 2 different kinds of media, with 1 copy off site. Test restores regularly; a backup you can't restore is not a backup.</p>
+      <h4>Safety and the environment</h4>
+      <ul>
+        <li>Prevent electrostatic discharge (ESD) with an antistatic wrist strap and mat; keep components in antistatic bags.</li>
+        <li>Unplug equipment before opening it; lift with your legs; never open a power supply or a CRT monitor.</li>
+        <li>Recycle batteries, toner and electronics according to local rules, and read the safety data sheet (SDS) for chemicals.</li>
+      </ul>
+      <h4>Incidents, licensing and professionalism</h4>
+      <ul>
+        <li><strong>Incident response:</strong> report it, preserve the evidence, and keep a <strong>chain of custody</strong> that records everyone who handles it.</li>
+        <li><strong>Licensing:</strong> follow the end-user license agreement (EULA); personal licenses are not for business use; open-source software has its own license terms.</li>
+        <li><strong>Professionalism:</strong> be on time, listen without interrupting, avoid jargon, don't take personal calls, respect the customer's private data, and confirm the problem is solved before you leave.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/AhcQlR73Bo4" title="Change Management - CompTIA A+ 220-1202 - 4.2 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Change Management – CompTIA A+ 220-1202 – 4.2" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">A full backup runs on Sunday and an incremental backup every other night. The server fails on Thursday morning. What do you need to restore?</p>
+        <div class="check-options">
+          <button type="button">Only Sunday's full backup</button>
+          <button type="button">Sunday's full backup and Wednesday's incremental</button>
+          <button type="button">Sunday's full backup and the Monday, Tuesday and Wednesday incrementals</button>
+          <button type="button">Only Wednesday's incremental</button>
+        </div>
+        <p class="check-why">Each incremental only holds the changes since the backup before it, so you need the full backup plus every incremental after it. With differential backups you'd need only the full plus Wednesday's.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A planned server update goes wrong during the maintenance window. Which part of the change request tells the team what to do?</p>
+        <div class="check-options">
+          <button type="button">The rollback plan</button>
+          <button type="button">The purpose of the change</button>
+          <button type="button">The end-user acceptance</button>
+          <button type="button">The asset tag</button>
+        </div>
+        <p class="check-why">The rollback plan describes how to undo the change and return to the last working state.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">You find illegal content on a company laptop during a repair. What must you do?</p>
+        <div class="check-options">
+          <button type="button">Delete it so no one else sees it</button>
+          <button type="button">Copy it to your own USB drive</button>
+          <button type="button">Finish the repair and say nothing</button>
+          <button type="button">Report it, preserve it, and document the chain of custody</button>
+        </div>
+        <p class="check-why">Follow the incident response process: report it to the right person, don't change the evidence, and record everyone who handles it.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it (10 minutes)</h4>
+      <ol>
+        <li>Write a practice ticket for a problem you had recently with any device: the symptom, the steps you tried, and the fix. Could someone else follow it?</li>
+        <li>Plan a 3-2-1 backup for your own files: where are your three copies, on which two kinds of media, and which one is off site (a cloud service counts)?</li>
+        <li>Windows: search for <strong>File History</strong>. Is it on, and where does it save?</li>
+      </ol>
     </div>
+
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

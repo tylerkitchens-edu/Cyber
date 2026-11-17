@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 9: Configuring SOHO Network Security</title>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -12,49 +20,119 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 9</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 9</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
+    <p>Small office and home office (SOHO) networks usually depend on one router that does everything. In this lesson you learn how to lock that router down and the attacks it protects against.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 9</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 9, Configuring SOHO Network Security</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
+    </div>
+
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Securing a SOHO router</h4>
+      <ul>
+        <li><strong>Change the default admin password</strong> first. Default passwords are published online.</li>
+        <li><strong>Update the firmware</strong> to patch security holes.</li>
+        <li><strong>Use WPA3</strong> (or WPA2 with AES if a device can't do WPA3) and a strong passphrase. Never WEP or WPA.</li>
+        <li><strong>Turn off WPS</strong>: its 8-digit PIN can be brute-forced.</li>
+        <li><strong>Change the default SSID</strong>, so the name doesn't reveal the router model. Hiding the SSID adds almost no security.</li>
+        <li><strong>Guest network</strong>: visitors get internet access but can't reach your computers and printers.</li>
+        <li><strong>Turn off UPnP</strong> unless you need it: it lets programs on the network open ports in the firewall by themselves.</li>
+        <li><strong>Turn off remote management</strong> from the internet.</li>
+      </ul>
+      <h4>Router features you need to know</h4>
+      <table class="cmp">
+        <tr><th>Feature</th><th>What it does</th></tr>
+        <tr><td>Port forwarding</td><td>Sends traffic arriving on one port to one inside device (for example, port 443 to a web server)</td></tr>
+        <tr><td>DMZ (screened subnet)</td><td>Puts one device outside the firewall's protection. Use it only when port forwarding can't work.</td></tr>
+        <tr><td>DHCP reservation</td><td>Always gives a device (such as a printer) the same IP address</td></tr>
+        <tr><td>MAC address filtering</td><td>Allows only listed devices. Weak on its own: MAC addresses are easy to fake.</td></tr>
+        <tr><td>Content filtering</td><td>Blocks websites by category or name</td></tr>
+        <tr><td>Static WAN IP</td><td>A fixed public address from the internet provider, needed if you host a service</td></tr>
+      </table>
+      <h4>Attacks on wireless networks</h4>
+      <ul>
+        <li><strong>Evil twin:</strong> a fake access point with the same name as a real one, to capture what users send.</li>
+        <li><strong>On-path attack</strong> (once called man-in-the-middle): the attacker sits between two devices and reads or changes the traffic.</li>
+        <li><strong>Denial of service (DoS):</strong> flooding or jamming so legitimate users can't connect.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/pq_CKhYYYVQ" title="Securing a SOHO Network - CompTIA A+ 220-1202 - 2.10 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Securing a SOHO Network – CompTIA A+ 220-1202 – 2.10" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">A home office has a printer whose IP address keeps changing, so the computers lose it. What should you set up on the router?</p>
+        <div class="check-options">
+          <button type="button">A DMZ for the printer</button>
+          <button type="button">A DHCP reservation for the printer</button>
+          <button type="button">MAC address filtering</button>
+          <button type="button">A guest network</button>
+        </div>
+        <p class="check-why">A DHCP reservation always gives the printer the same IP address. A DMZ would expose the printer to the internet.</p>
       </div>
 
+      <div class="check" data-answer="0">
+        <p class="check-q">Which router setting should you turn off because its PIN can be brute-forced?</p>
+        <div class="check-options">
+          <button type="button">WPS</button>
+          <button type="button">WPA3</button>
+          <button type="button">DHCP</button>
+          <button type="button">Content filtering</button>
+        </div>
+        <p class="check-why">Wi-Fi Protected Setup (WPS) uses an 8-digit PIN that is checked in two halves, so it can be guessed quickly.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Visitors at a small office need internet access, but must not be able to reach the office file server. What is the best option?</p>
+        <div class="check-options">
+          <button type="button">Give them the main Wi-Fi password</button>
+          <button type="button">Hide the SSID</button>
+          <button type="button">Put the file server in the DMZ</button>
+          <button type="button">Turn on the guest network</button>
+        </div>
+        <p class="check-why">A guest network gives internet access but keeps guests apart from the office devices.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Find your router's address: press <strong>Win+R</strong>, type <code>cmd</code>, then run <code>ipconfig</code> and look for <strong>Default Gateway</strong>.</li>
+        <li>If it's your own router, open that address in a browser and sign in. <strong>Look only; don't change anything.</strong> Find the Wi-Fi security type (WPA2 or WPA3?), whether WPS is on, the firmware version and any port forwarding rules.</li>
+        <li>No access to the router? Open Windows <strong>Settings</strong> &gt; <strong>Network &amp; internet</strong> &gt; <strong>Wi-Fi</strong> &gt; your network's properties and find the <strong>Security type</strong>.</li>
+      </ol>
     </div>
 
-    <div class="section">
-      <h3>Lesson Overview</h3>
-      <p>
-        In this level you will be working with the <strong>CompTIA CertMaster Learn</strong> and <strong>Labs for A+</strong>.
-        CompTIA is a globally recognized Cybersecurity certifications vendor and their certifications will help you land a job as a Cyber professional.
-      </p>
-
-      <p>
-        The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-        please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor
-      </p>
-    </div>
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
 
-  <!-- V School Reporting Script -->
+  <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L2-CYBERSEC-003"
     data-lesson-title="Configuring SOHO Network Security"
-    data-course-id="Cybersecurity">
-  </script>
+    data-course-id="Cybersecurity"></script>
 
-  <!-- V School Feedback Script -->
+  <!-- Feedback Script -->
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L2-CYBERSEC-003"
     data-lesson-title="Configuring SOHO Network Security"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn">
-  </script>
+    data-button-selector="#myFeedbackBtn"></script>
 </body>
 </html>

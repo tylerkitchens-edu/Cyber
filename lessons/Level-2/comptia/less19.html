@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 10: Managing Security Settings</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,32 +20,119 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 10</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 10</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-      </div>
+    <p>In this lesson you configure the security settings on a workstation: how users sign in, how the browser is kept safe, and what to do step by step when a computer has malware.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 10</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 10, Managing Security Settings</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson focuses on managing and implementing security settings, including group policies, user permissions, access controls, and secure authentication configurations to maintain system integrity.</p>
-      <p>The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-      please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.</p>
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Signing in: authentication factors</h4>
+      <ul>
+        <li><strong>Something you know:</strong> password, PIN.</li>
+        <li><strong>Something you have:</strong> phone authenticator app, hardware token, smart card.</li>
+        <li><strong>Something you are:</strong> fingerprint, face (Windows Hello).</li>
+      </ul>
+      <p><strong>Multifactor authentication (MFA)</strong> needs two different <em>kinds</em> of factor. A password plus a PIN is still one factor (both are something you know). Single sign-on (SSO) lets one sign-in open many applications.</p>
+      <h4>Workstation good practice</h4>
+      <ul>
+        <li>Strong passwords, an account lockout after several failed attempts, and a screen lock after a few minutes idle.</li>
+        <li>Rename or disable the built-in Administrator account and disable the Guest account. Use standard accounts day to day.</li>
+        <li>Turn off AutoRun/AutoPlay for USB drives, keep updates and antivirus on, and encrypt the drive (BitLocker).</li>
+      </ul>
+      <h4>Browser security</h4>
+      <ul>
+        <li>Download browsers and extensions only from trusted sources, and remove extensions you don't use.</li>
+        <li>Check for HTTPS and a valid certificate before typing passwords.</li>
+        <li>Use a password manager, keep the pop-up blocker on, and clear the cache and cookies when troubleshooting.</li>
+      </ul>
+      <h4>The malware removal steps (in order)</h4>
+      <ol>
+        <li>Investigate and verify the malware symptoms.</li>
+        <li>Quarantine the infected system (disconnect it from the network).</li>
+        <li>Disable System Restore in Windows (restore points may hold the malware).</li>
+        <li>Remediate: update the anti-malware software, then scan and remove (Safe Mode or a boot-time scan if needed).</li>
+        <li>Schedule scans and run updates.</li>
+        <li>Enable System Restore and create a new restore point.</li>
+        <li>Educate the end user.</li>
+      </ol>
+      <div class="order-steps">
+        <p class="order-q">Practice: put the malware removal steps in order. Use the arrows to move a step, then check.</p>
+        <ol>
+          <li>Investigate and verify the symptoms</li>
+          <li>Quarantine the infected system</li>
+          <li>Disable System Restore</li>
+          <li>Remediate: update anti-malware, scan and remove</li>
+          <li>Schedule scans and run updates</li>
+          <li>Enable System Restore and create a restore point</li>
+          <li>Educate the end user</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/job81SfpQNU" title="Removing Malware - CompTIA A+ 220-1202 - 2.6 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Removing Malware – CompTIA A+ 220-1202 – 2.6" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">You have confirmed that a laptop is infected with malware. What is the next step?</p>
+        <div class="check-options">
+          <button type="button">Educate the end user</button>
+          <button type="button">Disable System Restore</button>
+          <button type="button">Quarantine the laptop</button>
+          <button type="button">Reinstall Windows</button>
+        </div>
+        <p class="check-why">After investigating and verifying the symptoms, quarantine the system so the malware can't spread. Disabling System Restore comes next.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Which of these is true multifactor authentication?</p>
+        <div class="check-options">
+          <button type="button">A password and a PIN</button>
+          <button type="button">A password and a code from an authenticator app</button>
+          <button type="button">Two different passwords</button>
+          <button type="button">A security question and a password</button>
+        </div>
+        <p class="check-why">The password is something you know and the app code is something you have. The other answers use two factors of the same kind.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Why should System Restore be disabled while removing malware?</p>
+        <div class="check-options">
+          <button type="button">Restore points may contain the malware and bring it back</button>
+          <button type="button">It makes the scan run faster</button>
+          <button type="button">It frees space for the anti-malware software</button>
+          <button type="button">Windows requires it before Safe Mode</button>
+        </div>
+        <p class="check-why">Malware can hide in restore points. Turn System Restore back on, with a fresh restore point, once the system is clean.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Open <strong>Settings</strong> &gt; <strong>Accounts</strong> &gt; <strong>Sign-in options</strong>. Which Windows Hello options does your computer offer?</li>
+        <li>Open <strong>Windows Security</strong> &gt; <strong>Virus &amp; threat protection</strong>. When was the last scan, and are the protection updates current?</li>
+        <li>In your browser, open the extensions page (<code>chrome://extensions</code> or <code>edge://extensions</code>). Is there one you don't use? Removing it is good practice.</li>
+      </ol>
     </div>
+
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
@@ -56,4 +150,3 @@
     data-button-selector="#myFeedbackBtn"></script>
 </body>
 </html>
-

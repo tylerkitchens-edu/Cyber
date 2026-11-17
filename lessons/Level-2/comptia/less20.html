@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 11: Supporting Mobile Software</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -13,32 +20,98 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 11</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 11</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-      </div>
+    <p>Phones and tablets hold company email and data, so they need the same care as a laptop. In this lesson you learn to secure mobile devices and troubleshoot their apps and operating systems.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 11</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 11, Supporting Mobile Software</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
     </div>
 
-    <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson provides an overview of mobile device operating systems, app management, synchronization settings, and common troubleshooting techniques for iOS and Android environments.</p>
-      <p>The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-      please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.</p>
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Securing a mobile device</h4>
+      <ul>
+        <li><strong>Screen lock:</strong> PIN, password, pattern, fingerprint or face. Set a short auto-lock time.</li>
+        <li><strong>Locator apps and remote wipe:</strong> find a lost device, or erase it if it can't be recovered.</li>
+        <li><strong>Updates:</strong> install OS and app updates; get apps only from the official stores.</li>
+        <li><strong>Mobile device management (MDM):</strong> lets the company enforce policies, push apps and wipe company data. With <strong>BYOD</strong> (bring your own device), work data is often kept in a separate, managed work profile.</li>
+        <li><strong>Encryption and backups:</strong> modern iOS and Android devices encrypt their storage once a screen lock is set. Back up to iCloud or Google.</li>
+      </ul>
+      <h4>Troubleshooting mobile problems</h4>
+      <table class="cmp">
+        <tr><th>Symptom</th><th>Try first</th></tr>
+        <tr><td>An app crashes or won't open</td><td>Force-stop and reopen it; update it; clear its cache (Android); reinstall it</td></tr>
+        <tr><td>Battery drains fast</td><td>Check battery use by app; lower brightness; turn off unused radios; check battery health</td></tr>
+        <tr><td>Device is slow</td><td>Restart; close apps; free storage space; update the OS</td></tr>
+        <tr><td>OS update fails</td><td>Charge the device, connect to Wi-Fi, free storage space, then retry</td></tr>
+        <tr><td>Screen won't rotate</td><td>Check that rotation lock is off</td></tr>
+        <tr><td>Won't connect to Wi-Fi or Bluetooth</td><td>Toggle airplane mode; forget and rejoin the network; re-pair the device</td></tr>
+      </table>
+      <h4>Signs of a security problem</h4>
+      <p>Unexpected high data use, pop-ups and fake security warnings, apps you didn't install, unknown charges, or a device running hot when idle. Common causes: apps installed from outside the store (<strong>sideloading</strong>, such as an Android .apk file), a <strong>jailbroken</strong> (iOS) or <strong>rooted</strong> (Android) device, or developer mode left on.</p>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/WNWFV4r_6Wk" title="Mobile Device Security - CompTIA A+ 220-1202 - 2.8 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Mobile Device Security – CompTIA A+ 220-1202 – 2.8" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="3">
+        <p class="check-q">An employee's company phone is stolen and can't be found. What should IT do to protect company data?</p>
+        <div class="check-options">
+          <button type="button">Change the phone's screen lock</button>
+          <button type="button">Disable Bluetooth</button>
+          <button type="button">Install a new antivirus app</button>
+          <button type="button">Send a remote wipe through MDM</button>
+        </div>
+        <p class="check-why">A remote wipe erases the data, so the thief can't read it. MDM can send the wipe to a managed device.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A user's Android phone suddenly shows pop-ups and uses a lot of data. They recently installed a game from a website, not the Play Store. What is the most likely cause?</p>
+        <div class="check-options">
+          <button type="button">A sideloaded app containing malware</button>
+          <button type="button">Rotation lock</button>
+          <button type="button">A weak Wi-Fi signal</button>
+          <button type="button">An expired SIM card</button>
+        </div>
+        <p class="check-why">Installing an .apk from outside the official store (sideloading) skips the store's checks. Remove the app and scan the device.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">An iPhone update keeps failing. What should the user check first?</p>
+        <div class="check-options">
+          <button type="button">Turn on developer mode</button>
+          <button type="button">Battery charge, Wi-Fi connection and free storage space</button>
+          <button type="button">Jailbreak the phone</button>
+          <button type="button">Reset the phone to factory settings</button>
+        </div>
+        <p class="check-why">Updates need enough free space, a stable connection and enough battery. A factory reset is a last resort.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it on your phone (5 minutes)</h4>
+      <ol>
+        <li>On your phone, open the battery settings. Which app used the most battery today?</li>
+        <li>Find the auto-lock (screen timeout) setting. How long is it? 30 seconds to 2 minutes is a sensible choice.</li>
+        <li>Check that your phone's locator is on: <strong>Find My</strong> (iPhone) or <strong>Find My Device</strong> (Android). Look at the remote options it offers: play sound, lock, erase.</li>
+      </ol>
     </div>
+
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

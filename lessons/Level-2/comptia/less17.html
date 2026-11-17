@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 8: Supporting Other OS</title>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -12,49 +20,120 @@
       <h2>CompTIA A+ Core 2</h2>
     </div>
 
-    <div class="section">
-      <div class="certmaster-card">
-        <h2>Next: CompTIA A+, Lesson 8</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 8</strong>, including its practice questions. Then come back here and continue.</p>
-        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
+    <p>Windows is not the only operating system a technician supports. In this lesson you learn the Linux and macOS tools, commands and features that come up on the job and on the Core 2 exam.</p>
+
+    <div class="certmaster-card">
+      <h2>First: CompTIA A+ Core 2, Lesson 8</h2>
+      <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 8, Supporting Other OS</strong>, including its practice questions. Then come back here for the key points, a video and a few knowledge checks.</p>
+      <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+      <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ Core 2 course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
+    </div>
+
+    <section class="section">
+      <h3>What the exam expects</h3>
+      <h4>Linux</h4>
+      <p>Linux comes in many <strong>distributions</strong> (Ubuntu, Debian, Fedora, Red Hat Enterprise Linux, Linux Mint). Most use the <strong>ext4</strong> or <strong>XFS</strong> file system. You manage it mostly from the terminal, and the exam expects you to know what each common command does.</p>
+      <table class="cmp">
+        <tr><th>Command</th><th>What it does</th></tr>
+        <tr><td><code>ls</code>, <code>pwd</code>, <code>cd</code></td><td>List a folder's contents; show the current folder; change folder</td></tr>
+        <tr><td><code>cp</code>, <code>mv</code>, <code>rm</code></td><td>Copy; move or rename; delete files</td></tr>
+        <tr><td><code>chmod</code>, <code>chown</code></td><td>Change a file's permissions; change its owner</td></tr>
+        <tr><td><code>sudo</code>, <code>su</code></td><td>Run one command as the administrator (root); switch to another user</td></tr>
+        <tr><td><code>apt</code>, <code>dnf</code></td><td>Install and update software (Debian and Ubuntu use apt; Fedora and Red Hat use dnf)</td></tr>
+        <tr><td><code>grep</code>, <code>find</code></td><td>Search inside files for text; search for files by name</td></tr>
+        <tr><td><code>ps</code>, <code>top</code></td><td>List running processes; live view of processes and resource use</td></tr>
+        <tr><td><code>ip</code>, <code>ping</code>, <code>dig</code></td><td>Show and set network addresses; test a connection; look up DNS</td></tr>
+        <tr><td><code>df</code>, <code>du</code></td><td>Free space on each drive; space used by a folder</td></tr>
+        <tr><td><code>nano</code>, <code>man</code></td><td>Edit a text file; read the manual for any command (<code>man ls</code>)</td></tr>
+      </table>
+      <p><strong>Root</strong> is the Linux administrator account. Good practice is to sign in as a normal user and put <code>sudo</code> in front of the few commands that need admin rights.</p>
+      <h4>macOS</h4>
+      <table class="cmp">
+        <tr><th>Feature</th><th>What it is</th></tr>
+        <tr><td>Finder, Spotlight, Dock, Mission Control</td><td>File browser; search (Cmd+Space); app bar; view of all open windows and desktops</td></tr>
+        <tr><td>System Settings</td><td>The macOS control panel (called System Preferences before macOS 13)</td></tr>
+        <tr><td>Keychain</td><td>Stores passwords, certificates and keys</td></tr>
+        <tr><td>FileVault</td><td>Full-disk encryption (the macOS version of BitLocker)</td></tr>
+        <tr><td>Time Machine</td><td>Built-in backup to an external drive</td></tr>
+        <tr><td>Disk Utility, Terminal</td><td>Drive management and repair (First Aid); the command line (most of the Linux commands above work here too)</td></tr>
+        <tr><td>.dmg, .pkg, .app</td><td>Disk image you open and drag the app from; installer package; the app itself</td></tr>
+      </table>
+    </section>
+
+    <section class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/cpc3bHzWKG4" title="Linux - CompTIA A+ 220-1202 - 1.9 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Linux – CompTIA A+ 220-1202 – 1.9" (free A+ course).</p>
+    </section>
+
+    <section class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">On an Ubuntu server, you try to install a package and get "permission denied". What do you put in front of the install command?</p>
+        <div class="check-options">
+          <button type="button">chmod</button>
+          <button type="button">su</button>
+          <button type="button">sudo</button>
+          <button type="button">ps</button>
+        </div>
+        <p class="check-why">sudo runs a single command with administrator (root) rights, for example <code>sudo apt install htop</code>. su switches you to another user for the whole session.</p>
       </div>
 
+      <div class="check" data-answer="0">
+        <p class="check-q">Which Linux command searches inside files for a word, such as "error" in a log file?</p>
+        <div class="check-options">
+          <button type="button">grep</button>
+          <button type="button">find</button>
+          <button type="button">ls</button>
+          <button type="button">df</button>
+        </div>
+        <p class="check-why">grep searches the contents of files for text. find searches for files by their name or other properties.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A Mac user wants their whole drive encrypted in case the laptop is stolen. Which macOS feature do they turn on?</p>
+        <div class="check-options">
+          <button type="button">Time Machine</button>
+          <button type="button">Keychain</button>
+          <button type="button">Spotlight</button>
+          <button type="button">FileVault</button>
+        </div>
+        <p class="check-why">FileVault encrypts the whole drive. Time Machine is backup, Keychain stores passwords, and Spotlight is search.</p>
+      </div>
+    </section>
+
+    <div class="try-it">
+      <h4>Try it (Linux in your browser, or a Mac, 10 minutes)</h4>
+      <ol>
+        <li>No Linux computer? Open <a href="https://bellard.org/jslinux/" target="_blank" rel="noopener">JSLinux</a> and start one of the Linux consoles. It runs in your browser.</li>
+        <li>Type <code>pwd</code>, then <code>ls -l /etc</code>. Read one line of the output: who owns the file, and what are its permissions?</li>
+        <li>Try <code>df -h</code> and <code>ps</code>. If <code>man</code> is installed, <code>man ls</code> shows the manual (press <strong>q</strong> to quit).</li>
+      </ol>
+      <p>On a Mac: open Terminal (Cmd+Space, type "Terminal") and try the same commands.</p>
     </div>
 
-    <div class="section">
-      <h3>Lesson Overview</h3>
-      <p>
-        In this level you will be working with the <strong>CompTIA CertMaster Learn</strong> and <strong>Labs for A+</strong>.
-        CompTIA is a globally recognized Cybersecurity certifications vendor and their certifications will help you land a job as a Cyber professional.
-      </p>
-
-      <p>
-        The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-        please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, and schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.
-      </p>
-    </div>
+    <p>The CompTIA content can sometimes feel dry or hard to digest. If you're feeling unmotivated or stuck, reach out to your peers or an instructor: join the weekly meetings, book a 1-on-1 with an instructor, or contact a TA.</p>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | CompTIA A+ Core 2</p>
     </div>
   </div>
 
-  <!-- V School Reporting Script -->
+  <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L2-CYBERSEC-001"
     data-lesson-title="Supporting Other OS"
-    data-course-id="Cybersecurity">
-  </script>
+    data-course-id="Cybersecurity"></script>
 
-  <!-- V School Feedback Script -->
+  <!-- Feedback Script -->
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L2-CYBERSEC-001"
     data-lesson-title="Supporting Other OS"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn">
-  </script>
+    data-button-selector="#myFeedbackBtn"></script>
 </body>
 </html>
