@@ -2,29 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 5: Implementing Vulnerability Scanning Methods</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 5: Applying Access Management</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 5: Implementing Vulnerability Scanning Methods</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 5: Applying Access Management</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Most attacks today start with a stolen identity rather than a hacked server. This lesson covers how access is granted and protected, and the signs that an account has been taken over.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>authentication and authorization methods, including MFA and single sign-on;</li>
+        <li>privileged access management (PAM) and secrets management;</li>
+        <li>identity-based indicators of compromise such as impossible travel.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 1.1 (identity and access management) and 1.2 (identity-based indicators).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 5</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 5</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 5</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 5: Applying Access Management</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson provides hands-on coverage of vulnerability scanning methods and tools. Topics include credentialed vs. non-credentialed scanning, agent-based vs. agentless approaches, internal vs. external scans, active vs. passive discovery, web application scanning, and infrastructure scanning. You will learn to configure scan policies, schedule scans appropriately, and interpret scanner output including false positives and scan coverage gaps.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Entra ID Monitoring</h4>
+        <p>Investigate sign-in and audit logs in Microsoft Entra ID (formerly Azure AD), the identity service behind Microsoft 365, and spot the main identity attacks.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/entraidmonitoring" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/monitoringactivedirectory" target="_blank" rel="noopener">Monitoring Active Directory</a> (60 minutes: finding anomalies in on-premises Active Directory logs).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Who are you, and what may you do?</h4>
+      <ul>
+        <li><strong>Authentication</strong> proves who you are (password, passkey, MFA). <strong>Authorization</strong> decides what you may do once signed in (roles, permissions).</li>
+        <li><strong>MFA</strong> adds a second factor. Phishing-resistant methods (passkeys, FIDO2 security keys) are stronger than codes or push prompts.</li>
+        <li><strong>Single sign-on and federation</strong> (SAML, OAuth, OpenID Connect) let one identity provider vouch for the user to many apps. It is convenient, and it makes that one account very valuable to attackers.</li>
+      </ul>
+
+      <h4>Protecting the most powerful accounts</h4>
+      <ul>
+        <li><strong>Privileged access management (PAM)</strong> keeps admin credentials in a vault, hands them out just in time for a set period, records admin sessions, and rotates the passwords afterwards.</li>
+        <li><strong>Secrets management:</strong> API keys, tokens and service passwords belong in a secrets vault, never in code or configuration files. A key pushed to a public code repository can be found and abused within minutes.</li>
+      </ul>
+
+      <h4>Signs an identity has been compromised</h4>
+      <table class="cmp">
+        <tr><th>Indicator</th><th>What it looks like</th></tr>
+        <tr><td>Impossible travel</td><td>Sign-ins from two places too far apart for the time between them</td></tr>
+        <tr><td>MFA fatigue</td><td>Dozens of push prompts until a tired user taps "approve"</td></tr>
+        <tr><td>Password spraying</td><td>One common password tried against many accounts, a few failures each</td></tr>
+        <tr><td>Unauthorized access</td><td>An account suddenly reading data or using admin tools it never touched before</td></tr>
+        <tr><td>Persistence changes</td><td>A new MFA device, mail-forwarding rule or app consent added right after a risky sign-in</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A user signs in from Denver at 9:00 and from Singapore at 9:20. What is this indicator called?</p>
+        <div class="check-options">
+          <button type="button">Impossible travel</button>
+          <button type="button">Password spraying</button>
+          <button type="button">Privilege creep</button>
+          <button type="button">MFA fatigue</button>
+        </div>
+        <p class="check-why">No one can travel that far in 20 minutes, so at least one sign-in is not the real user (or is a VPN that needs checking).</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A developer pushed code containing a cloud API key to a public repository. What should happen first?</p>
+        <div class="check-options">
+          <button type="button">Delete the repository and say nothing</button>
+          <button type="button">Revoke and rotate the key, then move it into a secrets manager</button>
+          <button type="button">Make the repository private</button>
+          <button type="button">Add a comment asking people not to use the key</button>
+        </div>
+        <p class="check-why">Assume the key is already copied. Revoke it so it stops working, then check the logs for misuse and store the new key in a vault.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Which control hands out admin credentials only when needed, for a limited time, and records the session?</p>
+        <div class="check-options">
+          <button type="button">Single sign-on</button>
+          <button type="button">Role-based access control</button>
+          <button type="button">Federation</button>
+          <button type="button">Privileged access management (PAM)</button>
+        </div>
+        <p class="check-why">PAM vaults privileged credentials, grants them just in time, records use and rotates them afterwards.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +124,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-005"
-    data-lesson-title="Implementing Vulnerability Scanning Methods"
+    data-lesson-title="Applying Access Management"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-005"
-    data-lesson-title="Implementing Vulnerability Scanning Methods"
+    data-lesson-title="Applying Access Management"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

@@ -2,29 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 12: Understanding Application Vulnerability Assessment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 12: Improving Processes with Automation</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 12: Understanding Application Vulnerability Assessment</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 12: Improving Processes with Automation</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>A good SOC gets faster and more consistent over time. This lesson covers standardising work, automating the repetitive parts, tuning detections and connecting tools together.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>standard processes: team coordination, playbooks and runbooks;</li>
+        <li>automation and orchestration with SOAR, and infrastructure as code;</li>
+        <li>data enrichment, rule and alert tuning, and dashboards;</li>
+        <li>connecting tools with APIs, webhooks and plug-ins, and governing the use of AI.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 1.5 (efficiency and process improvement) and 1.6 (AI in security operations).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 12</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 12</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 12</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 12: Improving Processes with Automation</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers application-level vulnerability assessment techniques. Topics include static application security testing (SAST), dynamic application security testing (DAST), software composition analysis (SCA), API security testing, web application vulnerability scanning, common application vulnerabilities (OWASP Top 10), secure code review concepts, and how application assessments integrate into the secure software development lifecycle (SSDLC).</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Introduction to SOAR</h4>
+        <p>See how security orchestration, automation and response (SOAR) platforms run playbooks that join your tools together and handle repetitive steps automatically.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/soar" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>What to automate</h4>
+      <p>Automate work that is <strong>repetitive, well defined and low risk</strong>: enriching an alert with reputation and asset data, opening and updating tickets, blocking a confirmed-bad indicator, resetting a password after confirmed phishing. Keep people on judgement calls and on actions that could cause an outage.</p>
+
+      <h4>A SOAR playbook, step by step (reported phishing)</h4>
+      <ol>
+        <li>A user reports an email; the SOAR platform opens a ticket.</li>
+        <li>It extracts the sender, links and attachment hashes.</li>
+        <li>It checks each against threat intelligence and a sandbox.</li>
+        <li>If malicious: block the sender and links, remove the same email from every mailbox, and alert an analyst. If clean: reply to the user and close the ticket.</li>
+      </ol>
+
+      <h4>Keeping detections useful</h4>
+      <ul>
+        <li><strong>Rule and alert tuning</strong> cuts false positives (exclude a known-good scanner, adjust a threshold) so real alerts aren't buried. Track the false-positive rate before and after.</li>
+        <li><strong>Dashboards</strong> show volume, trends and open work at a glance.</li>
+        <li><strong>Infrastructure as code (IaC)</strong> builds systems from version-controlled templates, so every build is identical and changes are reviewed.</li>
+      </ul>
+
+      <h4>Connecting tools</h4>
+      <ul>
+        <li><strong>API:</strong> one tool asks another for data or to take an action, when it chooses to.</li>
+        <li><strong>Webhook:</strong> a tool pushes a message to a set address the moment an event happens.</li>
+        <li><strong>Plug-in:</strong> a ready-made add-on that connects a product to a platform.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Which task is the best first candidate for automation?</p>
+        <div class="check-options">
+          <button type="button">Deciding whether to shut down the payment system</button>
+          <button type="button">Looking up the reputation of every IP address in new alerts</button>
+          <button type="button">Talking to the press about a breach</button>
+          <button type="button">Approving a risk acceptance</button>
+        </div>
+        <p class="check-why">Enrichment is repetitive, well defined and safe to automate. The others need human judgement and authority.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A detection fires 500 times a day, almost all on a known-good backup server. What should the team do?</p>
+        <div class="check-options">
+          <button type="button">Delete the detection rule</button>
+          <button type="button">Hire more analysts to close the alerts</button>
+          <button type="button">Tune the rule, for example by excluding that server, and watch the false-positive rate</button>
+          <button type="button">Turn off logging on the backup server</button>
+        </div>
+        <p class="check-why">Tuning keeps the detection for real threats while removing known noise. Deleting the rule or the logs creates blind spots.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Which describes a webhook?</p>
+        <div class="check-options">
+          <button type="button">A tool pushes a message to another system as soon as an event happens</button>
+          <button type="button">A tool asks another for data on a schedule</button>
+          <button type="button">A browser extension for analysts</button>
+          <button type="button">A type of phishing link</button>
+        </div>
+        <p class="check-why">Webhooks push on an event. With an API call, the calling tool decides when to ask.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +126,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-012"
-    data-lesson-title="Understanding Application Vulnerability Assessment"
+    data-lesson-title="Improving Processes with Automation"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-012"
-    data-lesson-title="Understanding Application Vulnerability Assessment"
+    data-lesson-title="Improving Processes with Automation"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

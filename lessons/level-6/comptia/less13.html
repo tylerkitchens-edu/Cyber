@@ -2,29 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 13: Exploring Scripting Tools and Analysis Concepts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 13: Assessing Application Vulnerabilities</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 13: Exploring Scripting Tools and Analysis Concepts</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 13: Assessing Application Vulnerabilities</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Web applications are among the most attacked systems in any organization. This lesson covers the common application flaws and the tools used to find them.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>common web application vulnerabilities and how to recognise them;</li>
+        <li>web application scanners and proxies: Burp Suite, ZAP and Nikto;</li>
+        <li>cloud and infrastructure-as-code scanning tools.</li>
+      </ul>
+      <p>On the exam this is mostly objective 2.2 (output from vulnerability assessment tools, web application scanners) and the application indicators in 1.2.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 13</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 13</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 13</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 13: Assessing Application Vulnerabilities</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson introduces scripting and automation for security operations. You will explore Python, PowerShell, and Bash scripting for log parsing, IOC extraction, automated scanning, API integration, and report generation. The lesson also covers regular expressions for pattern matching, JSON/XML data parsing, and how scripting skills enhance SOC analyst efficiency in threat detection, incident response, and vulnerability management workflows.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Burp Suite: Repeater</h4>
+        <p>Use Burp Suite's Repeater to capture a web request, change it and resend it, the core way testers check how an application handles unexpected input.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/burpsuiterepeater" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/burpsuiteintruder" target="_blank" rel="noopener">Burp Suite: Intruder</a> (automating many requests) &middot; <a href="https://tryhackme.com/room/detectingwebattacks" target="_blank" rel="noopener">Detecting Web Attacks</a> (the defender's side, in logs and traffic).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Common application vulnerabilities</h4>
+      <table class="cmp">
+        <tr><th>Vulnerability</th><th>What it looks like</th></tr>
+        <tr><td>SQL injection</td><td>Input such as <code>' OR 1=1--</code> changes the database query</td></tr>
+        <tr><td>Cross-site scripting (XSS)</td><td>The site shows a visitor's input (such as <code>&lt;script&gt;</code>) back as code in other people's browsers</td></tr>
+        <tr><td>Directory traversal / local file inclusion</td><td><code>../../etc/passwd</code> in a URL to read files outside the web folder</td></tr>
+        <tr><td>Broken access control</td><td>Changing <code>?account=1001</code> to <code>1002</code> shows someone else's data</td></tr>
+        <tr><td>Server-side request forgery (SSRF)</td><td>Tricking the server into fetching internal addresses, such as cloud metadata</td></tr>
+        <tr><td>Cross-site request forgery (CSRF)</td><td>A malicious page makes a signed-in user's browser send a request they didn't intend</td></tr>
+      </table>
+
+      <h4>Tools</h4>
+      <ul>
+        <li><strong>Burp Suite:</strong> an intercepting proxy. Proxy captures traffic, Repeater resends one edited request, Intruder sends many variations automatically, and the Scanner (paid edition) finds issues automatically.</li>
+        <li><strong>ZAP</strong> (Zed Attack Proxy): a free, open-source alternative with an automated scanner.</li>
+        <li><strong>Nikto:</strong> scans a web server for dangerous files, outdated software and misconfigurations.</li>
+        <li><strong>Cloud and IaC:</strong> ScoutSuite and Prowler audit cloud accounts; Trivy scans container images; Checkov checks infrastructure-as-code templates before deployment.</li>
+      </ul>
+      <p>Scanner output still needs an analyst: confirm each finding (false positives are common), rate it, and give developers clear reproduction steps.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A web log shows <code>GET /download?file=../../../../etc/passwd</code>. What is being attempted?</p>
+        <div class="check-options">
+          <button type="button">SQL injection</button>
+          <button type="button">Cross-site scripting</button>
+          <button type="button">Directory traversal</button>
+          <button type="button">Denial of service</button>
+        </div>
+        <p class="check-why">The "../" sequences climb out of the web folder to read system files.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Which Burp Suite tool resends a single captured request after you edit it?</p>
+        <div class="check-options">
+          <button type="button">Repeater</button>
+          <button type="button">Intruder</button>
+          <button type="button">Proxy</button>
+          <button type="button">Decoder</button>
+        </div>
+        <p class="check-why">Repeater is for manual, one-at-a-time testing. Intruder automates many variations.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A login form accepts <code>admin' OR 1=1--</code> as a username and signs the tester in. What is the vulnerability?</p>
+        <div class="check-options">
+          <button type="button">Cross-site request forgery</button>
+          <button type="button">Server-side request forgery</button>
+          <button type="button">Broken authentication by brute force</button>
+          <button type="button">SQL injection</button>
+        </div>
+        <p class="check-why">The input changed the logic of the database query. The fix is parameterized queries (Lesson 14).</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +121,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-013"
-    data-lesson-title="Exploring Scripting Tools and Analysis Concepts"
+    data-lesson-title="Assessing Application Vulnerabilities"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-013"
-    data-lesson-title="Exploring Scripting Tools and Analysis Concepts"
+    data-lesson-title="Assessing Application Vulnerabilities"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

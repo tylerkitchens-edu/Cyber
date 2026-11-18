@@ -2,29 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 2: Exploring Threat Intelligence and Threat Hunting Concepts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 2: Applying Risk Management Strategies</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 2: Exploring Threat Intelligence and Threat Hunting Concepts</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 2: Applying Risk Management Strategies</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>An analyst finds far more problems than anyone can fix at once. Risk management is how an organization decides what to fix first, what to live with, and what to hand to someone else.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>the kinds of security controls (administrative, technical, physical) and what each one does (prevent, detect, respond, correct);</li>
+        <li>risk appetite, inherent risk and residual risk;</li>
+        <li>the four ways to treat a risk: accept, transfer, avoid, mitigate;</li>
+        <li>risk that comes from suppliers and third-party software.</li>
+      </ul>
+      <p>On the exam this is mostly objective 2.4 (control types, risks and vulnerability management).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 2</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 2</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 2</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 2: Applying Risk Management Strategies</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson examines threat intelligence sources, types, and lifecycle management. You will explore open-source intelligence (OSINT), commercial threat feeds, information sharing organizations (ISACs), STIX/TAXII frameworks, and how to operationalize threat intelligence within a SOC. The lesson also introduces proactive threat hunting concepts including hypothesis-driven hunting, indicator-based searches, and the use of MITRE ATT&CK as a hunting framework.</p>
+      <h3>Step 2: Key ideas to remember</h3>
+
+      <h4>Controls: what kind, and what they do</h4>
+      <table class="cmp">
+        <tr><th>Control type</th><th>Examples</th></tr>
+        <tr><td>Administrative (managerial)</td><td>Policies, training, background checks, change management</td></tr>
+        <tr><td>Technical</td><td>Firewalls, MFA, encryption, EDR</td></tr>
+        <tr><td>Physical</td><td>Locks, badges, fences, cameras</td></tr>
+      </table>
+      <table class="cmp">
+        <tr><th>Control function</th><th>What it does</th><th>Example</th></tr>
+        <tr><td>Preventative</td><td>Stops it happening</td><td>MFA blocks a stolen password</td></tr>
+        <tr><td>Detective</td><td>Notices it happened</td><td>An IDS alert, a log review</td></tr>
+        <tr><td>Responsive</td><td>Acts while it is happening</td><td>EDR isolating an infected laptop</td></tr>
+        <tr><td>Corrective</td><td>Puts things right afterwards</td><td>Restoring from backup, applying a patch</td></tr>
+      </table>
+
+      <h4>Risk in plain terms</h4>
+      <ul>
+        <li><strong>Inherent risk</strong> is the risk before any controls. <strong>Residual risk</strong> is what is left after the controls are in place. There is always some residual risk.</li>
+        <li><strong>Risk appetite</strong> is how much risk leadership is willing to live with to get the job done. If residual risk is above the appetite, more must be done.</li>
+        <li>Policies, governance and <strong>service-level objectives</strong> (for example "critical vulnerabilities patched within 15 days") turn the appetite into rules analysts can follow.</li>
+      </ul>
+
+      <h4>Four ways to treat a risk</h4>
+      <ul>
+        <li><strong>Mitigate:</strong> add controls to reduce it (patch, segment, add MFA).</li>
+        <li><strong>Transfer:</strong> make someone else carry the cost (cyber insurance, a contract with a provider).</li>
+        <li><strong>Avoid:</strong> stop doing the risky thing (retire the old system, don't launch the feature).</li>
+        <li><strong>Accept:</strong> leadership signs off on living with it, usually because fixing it costs more than the risk. Accepted risks are written down and reviewed.</li>
+      </ul>
+
+      <h4>Third-party and supply chain risk</h4>
+      <p>Much of an organization's risk comes from others: cloud providers, managed service providers, and the open-source libraries inside its software. <strong>Software composition analysis (SCA)</strong> tools list those libraries and flag known vulnerabilities, and a <strong>software bill of materials (SBOM)</strong> is the ingredient list that lets you answer "are we using the vulnerable library?" quickly.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A company buys cyber insurance to cover the cost of a ransomware attack. Which risk treatment is this?</p>
+        <div class="check-options">
+          <button type="button">Mitigate</button>
+          <button type="button">Avoid</button>
+          <button type="button">Transfer</button>
+          <button type="button">Accept</button>
+        </div>
+        <p class="check-why">Insurance moves the financial impact to someone else. It does not make an attack less likely, so other controls are still needed.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A server is patched, segmented and monitored. The risk that still remains is called:</p>
+        <div class="check-options">
+          <button type="button">Residual risk</button>
+          <button type="button">Inherent risk</button>
+          <button type="button">Risk appetite</button>
+          <button type="button">Compensating risk</button>
+        </div>
+        <p class="check-why">Inherent risk is before controls; residual risk is what is left after them. Leadership compares residual risk with its risk appetite.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">An intrusion detection system raises an alert on suspicious traffic. What is its control function?</p>
+        <div class="check-options">
+          <button type="button">Preventative</button>
+          <button type="button">Corrective</button>
+          <button type="button">Physical</button>
+          <button type="button">Detective</button>
+        </div>
+        <p class="check-why">An IDS notices and reports; it does not block. (An intrusion prevention system, IPS, would be preventative.)</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +123,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-002"
-    data-lesson-title="Exploring Threat Intelligence and Threat Hunting Concepts"
+    data-lesson-title="Applying Risk Management Strategies"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-002"
-    data-lesson-title="Exploring Threat Intelligence and Threat Hunting Concepts"
+    data-lesson-title="Applying Risk Management Strategies"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

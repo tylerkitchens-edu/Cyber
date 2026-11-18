@@ -2,29 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 14: Understanding Application Security and Attack Mitigation Best Practices</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 14: Securing Applications</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 14: Understanding Application Security and Attack Mitigation Best Practices</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 14: Securing Applications</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Finding application flaws is half the job; preventing them is the other half. This lesson covers secure coding practices and the testing that keeps applications safe from design to production.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>secure coding practices that prevent the common vulnerabilities;</li>
+        <li>static and dynamic application security testing (SAST and DAST);</li>
+        <li>software composition analysis, software bills of materials and supply chain risk;</li>
+        <li>measuring a program with the Software Assurance Maturity Model (SAMM).</li>
+      </ul>
+      <p>On the exam this is mostly objectives 2.3 (mitigation: secure coding) and 2.4 (application security and third-party risk).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 14</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 14</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 14</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 14: Securing Applications</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers application security best practices and attack mitigation strategies. Topics include input validation, output encoding, parameterized queries, secure session management, authentication hardening, encryption implementation, secure API design, web application firewall (WAF) configuration, content security policies, and defense against common attack vectors including injection, cross-site scripting (XSS), cross-site request forgery (CSRF), and server-side request forgery (SSRF).</p>
+      <h3>Step 2: Key ideas to remember</h3>
+
+      <h4>Secure coding: the fix for each flaw</h4>
+      <table class="cmp">
+        <tr><th>Practice</th><th>Prevents</th></tr>
+        <tr><td>Parameterized queries (prepared statements)</td><td>SQL injection</td></tr>
+        <tr><td>Input validation (allow lists) and output encoding</td><td>Cross-site scripting and other injection</td></tr>
+        <tr><td>Server-side access checks on every request</td><td>Broken access control</td></tr>
+        <tr><td>Anti-CSRF tokens and SameSite cookies</td><td>Cross-site request forgery</td></tr>
+        <tr><td>Secrets kept out of code (use a vault)</td><td>Leaked keys and passwords</td></tr>
+        <tr><td>Generic error messages; detailed errors only in logs</td><td>Information disclosure</td></tr>
+        <tr><td>Least privilege for the application's own accounts</td><td>Limits the damage of any flaw</td></tr>
+      </table>
+
+      <h4>Testing throughout the life cycle</h4>
+      <ul>
+        <li><strong>SAST</strong> (static) reads the source code without running it. It finds problems early, in the developer's pipeline, but can raise false positives.</li>
+        <li><strong>DAST</strong> (dynamic) attacks the running application from outside, as an attacker would. It finds real, exploitable issues but only later, once the app runs.</li>
+        <li><strong>SCA</strong> (software composition analysis) lists the open-source libraries an app uses and flags known-vulnerable versions.</li>
+        <li>An <strong>SBOM</strong> (software bill of materials) is the full ingredient list. When a library flaw like Log4Shell is announced, the SBOM tells you in minutes which applications are affected.</li>
+        <li><strong>SAMM</strong>, the OWASP Software Assurance Maturity Model, measures how mature a software security program is and what to improve next.</li>
+      </ul>
+      <p>When code can't be fixed quickly, a <strong>web application firewall (WAF)</strong> is a common compensating control.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">What is the most effective fix for SQL injection?</p>
+        <div class="check-options">
+          <button type="button">A longer password policy</button>
+          <button type="button">Parameterized queries (prepared statements)</button>
+          <button type="button">Hiding error messages only</button>
+          <button type="button">Encrypting the database at rest</button>
+        </div>
+        <p class="check-why">Parameterized queries keep user input as data, so it can never change the query. Hiding errors only makes the flaw harder to find.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A critical flaw is announced in a popular open-source logging library. What tells you fastest which of your applications use it?</p>
+        <div class="check-options">
+          <button type="button">A software bill of materials (SBOM)</button>
+          <button type="button">A penetration test</button>
+          <button type="button">The firewall logs</button>
+          <button type="button">The SAMM score</button>
+        </div>
+        <p class="check-why">An SBOM lists every component in each application, so you can search it immediately. SCA tools keep it current.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Which testing method examines source code without running the application?</p>
+        <div class="check-options">
+          <button type="button">DAST</button>
+          <button type="button">Penetration testing</button>
+          <button type="button">Fuzzing</button>
+          <button type="button">SAST</button>
+        </div>
+        <p class="check-why">Static analysis reads code; dynamic analysis tests the running application.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +112,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-014"
-    data-lesson-title="Understanding Application Security and Attack Mitigation Best Practices"
+    data-lesson-title="Securing Applications"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-014"
-    data-lesson-title="Understanding Application Security and Attack Mitigation Best Practices"
+    data-lesson-title="Securing Applications"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

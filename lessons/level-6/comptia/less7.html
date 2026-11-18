@@ -2,29 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 7: Communicating Vulnerability Information</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 7: Assessing Network Vulnerabilities</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 7: Communicating Vulnerability Information</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 7: Assessing Network Vulnerabilities</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Vulnerability management is a large part of the CySA+ exam. This lesson covers how to plan and run scans, read their output, and decide what to fix first.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>scan types and how to plan scans without disrupting the business;</li>
+        <li>the main scanning and assessment tools and what their output means;</li>
+        <li>prioritising with CVSS, EPSS, active exploitation and asset context;</li>
+        <li>mitigation options, and checking that a fix actually worked.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 2.1 (scanning methods), 2.2 (assessment tool output) and 2.3 (prioritising and mitigating).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 7</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 7</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 7</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 7: Assessing Network Vulnerabilities</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers the communication and reporting aspects of vulnerability management. Topics include vulnerability reporting formats, risk scoring communication, stakeholder-appropriate reporting (technical vs. executive), remediation tracking, SLA management, escalation procedures, and compliance reporting. You will learn to build effective vulnerability dashboards and present findings that drive action across technical and business teams.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 45 minutes</p>
+        <h4>Nessus</h4>
+        <p>Set up and run Nessus, one of the most widely used vulnerability scanners, and read its findings.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/rpnessusredux" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/openvas" target="_blank" rel="noopener">OpenVAS</a> (45 minutes: the open-source scanner) &middot; <a href="https://tryhackme.com/room/zer0logon" target="_blank" rel="noopener">Zero Logon</a> (30 minutes: an attack room showing why an actively exploited critical vulnerability goes to the front of the queue; optional).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Planning a scan</h4>
+      <ul>
+        <li>Start from an accurate <strong>asset inventory</strong>: you can't scan what you don't know about.</li>
+        <li>Plan around the business: schedule outside busy hours, watch performance on fragile or sensitive systems, account for network segmentation, and meet regulatory requirements (for example PCI DSS for card data).</li>
+      </ul>
+      <table class="cmp">
+        <tr><th>Scan choice</th><th>What it means</th></tr>
+        <tr><td>Internal vs external</td><td>From inside the network, or from the internet as an attacker would see you</td></tr>
+        <tr><td>Credentialed vs non-credentialed</td><td>Signed in to the system (sees missing patches and settings; more accurate) or not (sees only what is exposed)</td></tr>
+        <tr><td>Agent vs agentless</td><td>Software on each host reports in (good for laptops that roam) or the scanner reaches out over the network</td></tr>
+        <tr><td>Active vs passive</td><td>Sends probes, or only listens to traffic (safer for OT)</td></tr>
+        <tr><td>Discovery</td><td>Mapping scans and device fingerprinting to find what exists</td></tr>
+        <tr><td>Baseline</td><td>Checks settings against a standard such as CIS Benchmarks</td></tr>
+      </table>
+
+      <h4>Tools you should recognise</h4>
+      <p>Network mapping: Nmap, Angry IP Scanner, Masscan. Vulnerability scanners: Nessus, OpenVAS, Nuclei. Web application scanners: Burp Suite, ZAP, Nikto. Cloud and infrastructure-as-code checks: ScoutSuite, Prowler, Trivy, Checkov. Multipurpose and reconnaissance: Metasploit, Maltego, Recon-ng. Breach and attack simulation: Atomic Red Team, Caldera.</p>
+
+      <h4>Deciding what to fix first</h4>
+      <ul>
+        <li><strong>CVSS</strong> scores how severe a vulnerability is (0-10). <strong>EPSS</strong> estimates how likely it is to be exploited in the next 30 days.</li>
+        <li>Raise the priority when it is <strong>actively exploited</strong> (for example on CISA's Known Exploited Vulnerabilities list), when the asset is valuable or internet-facing, and when there is an easy exploit. Lower it for isolated systems.</li>
+        <li>Check findings for <strong>false positives</strong> (reported but not really there) before asking a team to fix them. <strong>False negatives</strong> (real but missed) are why credentialed scans matter.</li>
+        <li>Mitigations: patch, change the configuration, add a <strong>compensating control</strong> (such as segmentation or a WAF) when you can't patch, or record a formal <strong>exception</strong>. Then <strong>validate</strong> by rescanning.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Which scan finds the most missing patches on a Windows server?</p>
+        <div class="check-options">
+          <button type="button">A non-credentialed external scan</button>
+          <button type="button">A credentialed scan</button>
+          <button type="button">A passive scan</button>
+          <button type="button">A discovery (ping) scan</button>
+        </div>
+        <p class="check-why">Signed in, the scanner can read installed software versions and settings instead of guessing from the outside.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Finding A: CVSS 9.8 on an isolated lab machine with no known exploits. Finding B: CVSS 7.5 on an internet-facing server, on CISA's Known Exploited list. Which first?</p>
+        <div class="check-options">
+          <button type="button">A, because it has the higher score</button>
+          <button type="button">Neither: only scores above 9.0 matter</button>
+          <button type="button">B, because it is exposed and actively exploited</button>
+          <button type="button">Whichever is quicker to patch</button>
+        </div>
+        <p class="check-why">Severity alone isn't priority. Exposure, active exploitation and asset value push B ahead.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A server can't be patched until a vendor update arrives next quarter. What is the best interim step?</p>
+        <div class="check-options">
+          <button type="button">Ignore it until the update arrives</button>
+          <button type="button">Turn off vulnerability scanning for that server</button>
+          <button type="button">Delete the finding from the report</button>
+          <button type="button">Apply a compensating control, such as restricting network access to it, and record an exception</button>
+        </div>
+        <p class="check-why">Compensating controls reduce the risk until the real fix is possible; the exception documents the decision and its review date.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +128,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-007"
-    data-lesson-title="Communicating Vulnerability Information"
+    data-lesson-title="Assessing Network Vulnerabilities"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-007"
-    data-lesson-title="Communicating Vulnerability Information"
+    data-lesson-title="Assessing Network Vulnerabilities"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

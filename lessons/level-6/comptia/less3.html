@@ -2,29 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 3: Explaining Important System and Network Architecture Concepts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 3: Managing System Security and Configurations</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 3: Explaining Important System and Network Architecture Concepts</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 3: Managing System Security and Configurations</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Before you can spot something wrong on a computer, you need to know what right looks like. This lesson covers how systems are hardened, which files and processes matter, and how endpoints and mobile devices are kept to a standard.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>system hardening and secure configuration baselines;</li>
+        <li>the critical files on Windows and Linux that attackers go after;</li>
+        <li>what normal system processes look like, so you can spot impostors;</li>
+        <li>how endpoint and mobile device management keep devices compliant.</li>
+      </ul>
+      <p>On the exam this is mostly objective 1.1 (operating system and device management concepts).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 3</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 3</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 3</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 3: Managing System Security and Configurations</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers system and network architecture concepts critical to security operations. Topics include network segmentation, zero trust architecture, software-defined networking (SDN), cloud infrastructure security, containerization and orchestration, identity and access management integration, log architecture, and how network design decisions impact detection and response capabilities.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Windows Logging for SOC</h4>
+        <p>Learn which Windows logs and event IDs a SOC relies on, and use them to spot suspicious activity on a host.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/windowsloggingforsoc" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/linuxloggingforsoc" target="_blank" rel="noopener">Linux Logging for SOC</a> (45 minutes: the same for Linux).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Hardening</h4>
+      <p>Hardening means reducing what an attacker can use. Typical steps: remove or disable software and services you don't need, close unused ports, change default accounts and passwords, apply patches, turn on logging, and restrict administrator rights. A <strong>configuration baseline</strong> (for example a CIS Benchmark) writes the hardened settings down so every system can be built and checked against it.</p>
+
+      <h4>Critical files worth knowing</h4>
+      <table class="cmp">
+        <tr><th>System</th><th>File or location</th><th>Why attackers care</th></tr>
+        <tr><td>Linux</td><td><code>/etc/passwd</code>, <code>/etc/shadow</code></td><td>User accounts; <code>shadow</code> holds the password hashes</td></tr>
+        <tr><td>Linux</td><td><code>/etc/crontab</code> and cron folders</td><td>Scheduled tasks: a common way to keep a foothold (persistence)</td></tr>
+        <tr><td>Both</td><td>The <code>hosts</code> file (Windows: <code>C:\Windows\System32\drivers\etc\hosts</code>)</td><td>Can silently redirect a website name to an attacker's address</td></tr>
+        <tr><td>Windows</td><td>Registry "Run" keys</td><td>Programs listed there start at every sign-in (persistence)</td></tr>
+        <tr><td>Windows</td><td>Memory of <code>lsass.exe</code></td><td>Holds credentials; dumping it is a classic attack (Mimikatz)</td></tr>
+      </table>
+
+      <h4>Normal processes, and impostors</h4>
+      <p>Windows always runs certain processes, such as <code>svchost.exe</code>, <code>lsass.exe</code> and <code>services.exe</code>, from <code>C:\Windows\System32</code>. Malware often hides behind those names. Warning signs: the right name in the wrong folder, a near-miss spelling (<code>scvhost.exe</code>), an unexpected parent process, or a second copy of a process that should only run once (<code>lsass.exe</code>).</p>
+
+      <h4>Endpoints and mobile devices</h4>
+      <p><strong>Endpoint management</strong> tools push the baseline, patches and security software to every computer. <strong>Mobile device management (MDM)</strong> does the same for phones and tablets: it enforces a screen lock and encryption, separates work data from personal data, and can wipe a lost device.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">EDR reports <code>svchost.exe</code> running from <code>C:\Users\Public\</code>. What should you think?</p>
+        <div class="check-options">
+          <button type="button">Normal: svchost.exe always runs several copies</button>
+          <button type="button">Suspicious: the real svchost.exe runs from C:\Windows\System32</button>
+          <button type="button">Normal: users can run system processes from their own folders</button>
+          <button type="button">Harmless unless it uses a lot of CPU</button>
+        </div>
+        <p class="check-why">Many copies of svchost.exe are normal, but only from System32. The right name in the wrong folder is a classic way malware hides.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Which Linux file holds the password hashes?</p>
+        <div class="check-options">
+          <button type="button">/etc/passwd</button>
+          <button type="button">/etc/hosts</button>
+          <button type="button">/etc/shadow</button>
+          <button type="button">/etc/crontab</button>
+        </div>
+        <p class="check-why">/etc/passwd lists accounts but is readable by everyone; the hashes moved to /etc/shadow, which only root can read.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Which of these is a hardening step?</p>
+        <div class="check-options">
+          <button type="button">Disabling services the server does not need</button>
+          <button type="button">Giving every user administrator rights to save support time</button>
+          <button type="button">Turning off logging to improve performance</button>
+          <button type="button">Keeping the default admin password so support can sign in</button>
+        </div>
+        <p class="check-why">Hardening removes what an attacker could use. The other three all make the system easier to attack.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +121,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-003"
-    data-lesson-title="Explaining Important System and Network Architecture Concepts"
+    data-lesson-title="Managing System Security and Configurations"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-003"
-    data-lesson-title="Explaining Important System and Network Architecture Concepts"
+    data-lesson-title="Managing System Security and Configurations"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

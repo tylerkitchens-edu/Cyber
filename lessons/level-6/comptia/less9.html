@@ -2,29 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 9: Demonstrating Incident Response Communication</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 9: Executing Incident Response Plans</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 9: Demonstrating Incident Response Communication</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 9: Executing Incident Response Plans</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>This lesson is the hands-on side of incident response: triaging, collecting evidence properly, containing the threat, and restoring service, step by step.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>developing plans and playbooks, defining roles, and running tabletop and simulation exercises;</li>
+        <li>collecting, correlating and enriching logs; triage; building a timeline; judging severity;</li>
+        <li>evidence handling: chain of custody, integrity checks, preservation and legal hold;</li>
+        <li>isolation, escalation, remediation, restoration and root cause analysis.</li>
+      </ul>
+      <p>On the exam this is mostly objective 3.3 (implementing incident response techniques).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 9</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 9</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 9</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 9: Executing Incident Response Plans</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson focuses on the communication aspects of incident response. You will learn about incident declaration procedures, escalation paths, internal and external notification requirements, regulatory reporting obligations, status update cadences, post-incident reporting, root cause analysis documentation, and lessons learned facilitation. The lesson emphasizes clear, timely, and audience-appropriate communication throughout the incident lifecycle.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Detection and Analysis</h4>
+        <p>Work through the detection and analysis phase of an incident: confirm what happened, scope it and judge its impact.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/detectionandanalysis" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Before the incident</h4>
+      <p>An <strong>incident response plan</strong> and a <strong>communication plan</strong>, <strong>playbooks</strong> for common incident types, and named <strong>roles</strong> (incident lead, scribe, communications, technical leads). Teams practise with <strong>tabletop exercises</strong> (talking through a scenario around a table) and <strong>simulations</strong> (actually performing the steps in a test environment).</p>
+
+      <h4>During the incident</h4>
+      <ol>
+        <li><strong>Triage:</strong> is it real, how bad, what is affected? Collect and correlate logs, and enrich them (asset owner, user, threat intelligence).</li>
+        <li><strong>Timeline:</strong> put events in order across systems (this is why clocks must be synchronized).</li>
+        <li><strong>Severity, impact and priority</strong> decide who is pulled in and how fast.</li>
+        <li><strong>Gather evidence</strong> before it disappears (below).</li>
+        <li><strong>Isolate</strong> affected systems (network isolation through EDR, disabling accounts) and <strong>escalate</strong> as the plan says.</li>
+        <li><strong>Remediate and verify</strong>, <strong>release from isolation</strong>, <strong>restore</strong> from known-good backups, and monitor closely.</li>
+        <li>Find the <strong>root cause</strong> and develop <strong>corrective actions</strong> so it can't happen the same way again.</li>
+      </ol>
+
+      <h4>Handling evidence</h4>
+      <ul>
+        <li><strong>Order of volatility:</strong> collect what disappears first. Memory goes before disk; pulling the power loses everything in RAM.</li>
+        <li><strong>Data integrity:</strong> hash evidence (for example SHA-256) when you collect it, and work on copies, so you can prove nothing changed.</li>
+        <li><strong>Chain of custody:</strong> a record of who handled the evidence, when, and why.</li>
+        <li><strong>Legal hold:</strong> an instruction to preserve relevant data, overriding normal deletion schedules, when litigation is expected.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A workstation is running live malware. What should be collected before anyone shuts it down?</p>
+        <div class="check-options">
+          <button type="button">Nothing: shut it down immediately</button>
+          <button type="button">A copy of its memory (RAM)</button>
+          <button type="button">Only the user's documents</button>
+          <button type="button">The keyboard and mouse for fingerprints</button>
+        </div>
+        <p class="check-why">Memory is the most volatile evidence and often holds the malware, network connections and keys. Isolate the machine from the network instead of powering it off.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Why do investigators hash a disk image when they collect it?</p>
+        <div class="check-options">
+          <button type="button">To prove later that the evidence hasn't changed</button>
+          <button type="button">To encrypt the evidence</button>
+          <button type="button">To make the image smaller</button>
+          <button type="button">To remove personal data</button>
+        </div>
+        <p class="check-why">Re-hashing later and getting the same value shows integrity. That, together with chain of custody, makes evidence trustworthy.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">The team walks through a ransomware scenario in a meeting room, discussing what each person would do. What is this?</p>
+        <div class="check-options">
+          <button type="button">A penetration test</button>
+          <button type="button">A full simulation</button>
+          <button type="button">A tabletop exercise</button>
+          <button type="button">A root cause analysis</button>
+        </div>
+        <p class="check-why">Tabletops are discussion-based. Simulations actually carry out the steps in a test environment.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +123,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-009"
-    data-lesson-title="Demonstrating Incident Response Communication"
+    data-lesson-title="Executing Incident Response Plans"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-009"
-    data-lesson-title="Demonstrating Incident Response Communication"
+    data-lesson-title="Executing Incident Response Plans"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

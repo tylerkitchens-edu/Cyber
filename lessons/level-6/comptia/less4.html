@@ -2,29 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 4: Understanding Process Improvement in Security Operations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 4: Comparing System Architectures</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 4: Understanding Process Improvement in Security Operations</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 4: Comparing System Architectures</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Analysts now protect a mix of on-premises servers, cloud services, containers and connected industrial equipment. Each design changes what you can see, what can go wrong, and who is responsible for fixing it.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>the security trade-offs of virtualization, containers, cloud-native services and APIs;</li>
+        <li>Zero Trust, SASE and hybrid cloud network designs;</li>
+        <li>why operational technology (OT, ICS, SCADA) needs different handling;</li>
+        <li>where encryption and data protection fit into each design.</li>
+      </ul>
+      <p>On the exam this is mostly objective 1.1 (infrastructure, network architecture and critical infrastructure concepts).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 4</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 4</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 4</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 4: Comparing System Architectures</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson examines how security operations teams continuously improve their processes and capabilities. You will learn about security operations center (SOC) maturity models, workflow optimization, automation and orchestration (SOAR), metrics-driven improvement, tabletop exercises, after-action reviews, and how to align security operations with organizational risk management objectives and service level agreements.</p>
+      <h3>Step 2: Key ideas to remember</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">Optional TryHackMe practice</p>
+        <p class="lab-more">There is no required lab for this lesson. <strong>Want some practice?</strong> <a href="https://tryhackme.com/room/cloudsecuritypitfalls" target="_blank" rel="noopener">Cloud Security Pitfalls</a> (30 minutes: the risks companies face when they move to the cloud).</p>
+      </div>
+
+      <table class="cmp">
+        <tr><th>Design</th><th>What it is</th><th>Security view</th></tr>
+        <tr><td>Virtualization</td><td>Many virtual machines share one physical host (hypervisor)</td><td>Fast to rebuild and snapshot; a hypervisor flaw or "VM escape" could expose every guest</td></tr>
+        <tr><td>Containers</td><td>Apps packaged with their libraries, sharing the host's kernel</td><td>Small and short-lived, so scan images before deploying; a kernel flaw affects every container</td></tr>
+        <tr><td>Cloud native / serverless</td><td>Built from the provider's managed services</td><td>The provider secures the platform; you still secure your data, identities and settings (shared responsibility). Misconfiguration is the top cause of cloud breaches</td></tr>
+        <tr><td>APIs</td><td>How programs talk to each other</td><td>Every API is a door: it needs authentication, rate limits and logging</td></tr>
+        <tr><td>Hybrid cloud</td><td>On-premises and cloud working together</td><td>Logs and identities are split across both; you need one view of both</td></tr>
+      </table>
+
+      <h4>Zero Trust and SASE</h4>
+      <ul>
+        <li><strong>Zero Trust</strong> means "never trust, always verify": being on the company network earns nothing. Every request is checked for who the user is, the health of their device and what they are allowed to reach. Zero Trust Network Access (ZTNA) gives access to one application at a time instead of the whole network, as a traditional VPN does.</li>
+        <li><strong>SASE</strong> (secure access service edge) delivers networking and security (ZTNA, secure web gateway, cloud firewall, data loss prevention) as one cloud service, close to wherever the user is.</li>
+      </ul>
+
+      <h4>Critical infrastructure: OT, ICS and SCADA</h4>
+      <p>Operational technology runs physical things: power, water, factories. Industrial control systems (ICS) and SCADA systems that supervise them put <strong>availability and safety first</strong>. Devices may run for decades, can't be patched or rebooted on short notice, and can be disrupted by an aggressive scan. Protect them with strict segmentation and passive monitoring.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A remote worker is on the company VPN, but still has to re-prove who they are and that their laptop is healthy before opening the HR app. Which model is this?</p>
+        <div class="check-options">
+          <button type="button">Defense in depth only</button>
+          <button type="button">Zero Trust</button>
+          <button type="button">Perimeter security</button>
+          <button type="button">Air gap</button>
+        </div>
+        <p class="check-why">Zero Trust gives no trust for network location; every request is checked for identity, device health and permission.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Why are active vulnerability scans run very carefully on SCADA networks?</p>
+        <div class="check-options">
+          <button type="button">SCADA devices never have vulnerabilities</button>
+          <button type="button">Scans are illegal on industrial networks</button>
+          <button type="button">Fragile industrial devices can crash, stopping physical processes</button>
+          <button type="button">SCADA traffic is always encrypted</button>
+        </div>
+        <p class="check-why">Availability and safety come first in OT. Prefer passive monitoring and scheduled, tested maintenance windows.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">In the cloud, who is responsible for a storage bucket left open to the public?</p>
+        <div class="check-options">
+          <button type="button">The cloud provider</button>
+          <button type="button">Nobody: cloud storage is always private</button>
+          <button type="button">The internet service provider</button>
+          <button type="button">The customer who configured it</button>
+        </div>
+        <p class="check-why">Under shared responsibility the provider secures the platform, but the customer owns its data and settings.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +112,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-004"
-    data-lesson-title="Understanding Process Improvement in Security Operations"
+    data-lesson-title="Comparing System Architectures"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-004"
-    data-lesson-title="Understanding Process Improvement in Security Operations"
+    data-lesson-title="Comparing System Architectures"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

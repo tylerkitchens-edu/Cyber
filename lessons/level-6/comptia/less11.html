@@ -2,29 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 11: Analyzing Potentially Malicious Activity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 11: Automating Data Analysis</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 11: Analyzing Potentially Malicious Activity</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 11: Automating Data Analysis</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>An analyst can't read millions of log lines by hand. This lesson covers the patterns, file formats and small scripts that turn a mountain of data into an answer, and where AI fits in.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>decoding and parsing data with CyberChef;</li>
+        <li>regular expressions for finding patterns;</li>
+        <li>the file formats you'll meet (JSON, XML, YAML, EVTX);</li>
+        <li>short Python, PowerShell and shell scripts for log analysis, and the uses and risks of AI in security operations.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 1.3 (decoding, pattern recognition, file formats, scripting) and 1.6 (AI in security operations).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 11</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 11</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 11</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 11: Automating Data Analysis</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson focuses on the analytical methodology for investigating potentially malicious activity. You will learn to analyze indicators of compromise (IoCs), distinguish between true positives and false positives, perform root cause analysis on alerts, map attacker behavior to the MITRE ATT&CK framework, identify lateral movement and persistence mechanisms, and document findings for escalation or closure.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>CyberChef: The Basics</h4>
+        <p>Use CyberChef, the "Swiss Army knife" for analysts, to decode, convert and extract data step by step.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/cyberchefbasics" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/loganalysiswithsiem" target="_blank" rel="noopener">Log Analysis with SIEM</a> (90 minutes: detecting malicious behaviour in SIEM logs).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Decoding and patterns</h4>
+      <ul>
+        <li>Attackers encode commands and data (Base64, hex, URL encoding) to hide them. <strong>CyberChef</strong> chains "recipes" such as From Base64, then Decompress, then Extract URLs.</li>
+        <li><strong>Regular expressions</strong> describe patterns. For example <code>\b\d{1,3}(\.\d{1,3}){3}\b</code> finds things shaped like IPv4 addresses, and <code>[A-Za-z0-9+/]{40,}={0,2}</code> finds long Base64-looking strings.</li>
+      </ul>
+
+      <h4>File formats</h4>
+      <table class="cmp">
+        <tr><th>Format</th><th>Where you see it</th></tr>
+        <tr><td>JSON</td><td>Cloud logs, APIs, most modern tools</td></tr>
+        <tr><td>XML</td><td>Older applications, Windows event data inside the log</td></tr>
+        <tr><td>YAML</td><td>Configuration files, Sigma detection rules, infrastructure as code</td></tr>
+        <tr><td>EVTX</td><td>Saved Windows event log files</td></tr>
+      </table>
+
+      <h4>Small scripts, big savings</h4>
+      <p>Count failed SSH sign-ins by source address on Linux:</p>
+      <pre><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr</code></pre>
+      <p>Count failed Windows sign-ins (event 4625) in PowerShell:</p>
+      <pre><code>(Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625}).Count</code></pre>
+      <p>Python does the same at larger scale (reading JSON logs, calling threat-intelligence APIs). For the exam, you should be able to read a short script and say what it does.</p>
+
+      <h4>AI in security operations</h4>
+      <ul>
+        <li><strong>Useful for:</strong> comparing artifacts, summarising long logs, drafting reports, correlating events, and helping an investigation along.</li>
+        <li><strong>Risks:</strong> hallucinations (confident wrong answers, so verify), data exposure (sensitive logs pasted into a public tool), model poisoning, and malicious prompts hidden in the data being analysed.</li>
+        <li><strong>Governance:</strong> follow the organization's AI usage policy and legal or regulatory rules about where data may go.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A PowerShell command line contains a long string ending in <code>==</code>. Which tool helps you read it quickly?</p>
+        <div class="check-options">
+          <button type="button">Nmap</button>
+          <button type="button">CyberChef (From Base64)</button>
+          <button type="button">Nessus</button>
+          <button type="button">Wireshark</button>
+        </div>
+        <p class="check-why">Trailing "=" signs are typical padding of Base64. Decode it in CyberChef (encoded PowerShell is often UTF-16LE).</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">What is an <code>.evtx</code> file?</p>
+        <div class="check-options">
+          <button type="button">A saved Windows event log</button>
+          <button type="button">A Linux system log</button>
+          <button type="button">A packet capture</button>
+          <button type="button">A YAML detection rule</button>
+        </div>
+        <p class="check-why">EVTX is the Windows Event Log format; tools such as Event Viewer, PowerShell and SIEM agents read it.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">An analyst pastes customer logs into a public AI chatbot to summarise them. What is the main risk?</p>
+        <div class="check-options">
+          <button type="button">Hallucination</button>
+          <button type="button">Model poisoning</button>
+          <button type="button">A slower investigation</button>
+          <button type="button">Data exposure to an outside service</button>
+        </div>
+        <p class="check-why">Sensitive data may be stored or used by the provider. Use approved tools under the organization's AI usage policy. Also check any summary, because AI can hallucinate.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +131,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-011"
-    data-lesson-title="Analyzing Potentially Malicious Activity"
+    data-lesson-title="Automating Data Analysis"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-011"
-    data-lesson-title="Analyzing Potentially Malicious Activity"
+    data-lesson-title="Automating Data Analysis"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

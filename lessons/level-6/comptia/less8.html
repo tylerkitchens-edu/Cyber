@@ -2,29 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 8: Explaining Incident Response Activities</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 8: Managing Incident Response and Communication</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 8: Explaining Incident Response Activities</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 8: Managing Incident Response and Communication</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>When an incident is declared, the technical work is only half the job. The rest is telling the right people the right things at the right time, and reporting clearly afterwards.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>the phases of the incident response process;</li>
+        <li>incident declaration, escalation and communication plans;</li>
+        <li>who needs to be told (legal, PR, regulators, law enforcement, customers) and how;</li>
+        <li>reporting: executive summaries, lessons learned, metrics and handovers, for both incidents and vulnerability management.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 3.2 (incident response process), 4.1 (vulnerability management reporting) and 4.2 (incident response reporting and communication).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 8</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 8</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 8</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 8: Managing Incident Response and Communication</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers the incident response lifecycle in depth. You will learn about preparation, detection and analysis, containment strategies (short-term and long-term), eradication, recovery, and post-incident activities. Topics also include evidence preservation, chain of custody, forensic data collection, incident classification and severity determination, and coordination with internal teams and external stakeholders during active incidents.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>SOC L1 Alert Reporting</h4>
+        <p>Practise writing up, escalating and communicating a high-risk alert the way a working analyst does.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/socl1alertreporting" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/irpreparation" target="_blank" rel="noopener">Preparation</a> (45 minutes: the first phase of incident response) &middot; <a href="https://tryhackme.com/room/reportwritingsocl2" target="_blank" rel="noopener">Report Writing for SOC L2</a> (30 minutes: writing clear investigation reports).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>The incident response process</h4>
+      <p>CySA+ uses these phases: <strong>Preparation</strong> (plans, tools, training) → <strong>Detection</strong> → <strong>Analysis</strong> → <strong>Containment</strong> (stop the spread) → <strong>Eradication</strong> (remove the cause) → <strong>Recovery</strong> (restore and monitor) → <strong>Post-incident</strong> (lessons learned). NIST groups the same work into four phases, so you may see both.</p>
+
+      <h4>Communication</h4>
+      <ul>
+        <li><strong>Declare and escalate</strong> by the plan's criteria, so the right people are pulled in at the right severity.</li>
+        <li>The <strong>communication plan</strong> names the stakeholders and who speaks to whom: leadership, the <strong>legal team</strong> (notification duties, evidence), <strong>public relations</strong> (all public statements), <strong>regulators</strong> (often with deadlines), <strong>law enforcement</strong> and <strong>customers</strong>.</li>
+        <li>Use <strong>out-of-band channels</strong> (a phone bridge or a separate chat system) if the attacker might be reading company email or chat.</li>
+        <li>Keep a clean <strong>shift or incident handover</strong>: what's known, what's done, what's next.</li>
+      </ul>
+
+      <h4>Reports and metrics</h4>
+      <ul>
+        <li>An <strong>executive summary</strong> states the impact and decisions needed in plain language, without technical detail.</li>
+        <li>The <strong>after-action report</strong> covers the timeline, root cause, what worked, what didn't, and corrective actions.</li>
+        <li>Incident metrics: mean time to detect (MTTD), to respond, and to remediate, alert volume, and false-positive rate. Vulnerability metrics: open findings by risk, trends, SLA compliance, and the <strong>inhibitors to remediation</strong> (legacy systems, business disruption, vendor contracts, no patch available).</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">The attacker may have access to company email. How should the response team coordinate?</p>
+        <div class="check-options">
+          <button type="button">Use an out-of-band channel, such as a phone bridge or separate chat system</button>
+          <button type="button">Use company email but mark messages confidential</button>
+          <button type="button">Wait until the attacker is removed before talking</button>
+          <button type="button">Post updates in the all-staff channel</button>
+        </div>
+        <p class="check-why">If the attacker can read normal channels, they'll see your plans. Out-of-band communication protects the response.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Who should approve a public statement about a breach?</p>
+        <div class="check-options">
+          <button type="button">The first analyst who saw the alert</button>
+          <button type="button">Public relations, with the legal team</button>
+          <button type="button">The vendor of the affected system</button>
+          <button type="button">Whoever is on shift</button>
+        </div>
+        <p class="check-why">Public statements carry legal and reputational weight, so PR and legal own them under the communication plan.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Which metric measures how long it takes, on average, to notice an incident after it starts?</p>
+        <div class="check-options">
+          <button type="button">Mean time to remediate</button>
+          <button type="button">False-positive rate</button>
+          <button type="button">Alert volume</button>
+          <button type="button">Mean time to detect (MTTD)</button>
+        </div>
+        <p class="check-why">MTTD measures detection speed. Mean time to respond and to remediate measure what happens after detection.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +120,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-008"
-    data-lesson-title="Explaining Incident Response Activities"
+    data-lesson-title="Managing Incident Response and Communication"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-008"
-    data-lesson-title="Explaining Incident Response Activities"
+    data-lesson-title="Managing Incident Response and Communication"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>

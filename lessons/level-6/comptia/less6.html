@@ -2,29 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 6: Performing Vulnerability Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 6: Threat Intelligence and Threat Hunting</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+    pre code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 6: Performing Vulnerability Analysis</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 6: Threat Intelligence and Threat Hunting</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Threat intelligence tells you who is attacking organizations like yours and how. Threat hunting uses that knowledge to go looking for attackers who got past your alerts.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>threat actors, their tactics, techniques and procedures (TTPs), and MITRE ATT&amp;CK;</li>
+        <li>the Pyramid of Pain, and why some indicators matter more than others;</li>
+        <li>where intelligence comes from and how to judge it;</li>
+        <li>how a hypothesis-driven threat hunt works, plus threat modeling and attack frameworks.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 1.4 (threat intelligence and threat hunting) and 3.1 (attack methodology frameworks).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 6</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 6</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 6</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 6: Threat Intelligence and Threat Hunting</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson focuses on analyzing vulnerability scan results to determine true risk. You will learn to validate findings, assess exploitability using CVSS scores and exploit databases, correlate vulnerabilities with threat intelligence, evaluate asset criticality and exposure, and prioritize remediation. The lesson also covers common vulnerability types including misconfigurations, unpatched software, weak credentials, and insecure defaults.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>MITRE</h4>
+        <p>Explore MITRE ATT&amp;CK and the other free MITRE resources analysts use to map, understand and hunt attacker techniques.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/mitre" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/pyramidofpainax" target="_blank" rel="noopener">Pyramid Of Pain</a> (30 minutes: which indicators hurt attackers most) &middot; <a href="https://tryhackme.com/room/threathuntingintroduction" target="_blank" rel="noopener">Threat Hunting: Introduction</a> (60 minutes: how proactive hunts are run).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Know the adversary</h4>
+      <ul>
+        <li><strong>Advanced persistent threats (APTs)</strong> are skilled, well-funded groups, often state-backed, that stay hidden for a long time. <strong>Insider threats</strong> already have legitimate access.</li>
+        <li><strong>TTPs</strong> describe how an attacker works. <strong>MITRE ATT&amp;CK</strong> is a free catalogue of real attacker tactics (the goal, such as persistence) and techniques (how, such as a scheduled task). A heat map of ATT&amp;CK shows which techniques you can detect and where your gaps are.</li>
+        <li><strong>Attack frameworks</strong> describe an intrusion step by step: the <strong>Cyber Kill Chain</strong> (reconnaissance through actions on objectives), the <strong>Diamond Model</strong> (adversary, capability, infrastructure, victim) and MITRE ATT&amp;CK.</li>
+      </ul>
+
+      <h4>The Pyramid of Pain</h4>
+      <p>From bottom (easy for the attacker to change) to top (hard): hash values, IP addresses, domain names, network and host artifacts, tools, and TTPs. Blocking a file hash costs an attacker seconds; detecting their behaviour forces them to change how they work.</p>
+
+      <h4>Judging intelligence</h4>
+      <ul>
+        <li>Sources: <strong>open-source intelligence</strong> (OSINT: public reports, feeds), <strong>closed-source</strong> (paid feeds, government) and <strong>sharing communities</strong> such as industry ISACs.</li>
+        <li>Good intelligence is <strong>timely, relevant and accurate</strong>. An old indicator list for an industry you aren't in is low-value.</li>
+        <li>Indicators of compromise (IoCs) are <strong>atomic</strong> (one value, such as an IP or hash) or <strong>behavioural</strong> (a pattern, such as Word starting PowerShell).</li>
+      </ul>
+
+      <h4>Threat hunting, modeling and deception</h4>
+      <ul>
+        <li>A <strong>hunt</strong> starts with a hypothesis ("an attacker is using scheduled tasks for persistence"), searches the data, and turns what it finds into new detections.</li>
+        <li><strong>Threat modeling</strong> looks for weaknesses in a design. <strong>STRIDE</strong> stands for Spoofing, Tampering, Repudiation, Information disclosure, Denial of service and Elevation of privilege.</li>
+        <li><strong>Cyber deception</strong> (honeypots, honeytokens, fake credentials) produces high-confidence alerts, because no legitimate user should ever touch them.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">According to the Pyramid of Pain, which detection forces an attacker to change the most?</p>
+        <div class="check-options">
+          <button type="button">Blocking a malware file hash</button>
+          <button type="button">Blocking the attacker's IP address</button>
+          <button type="button">Detecting the attacker's techniques and behaviour (TTPs)</button>
+          <button type="button">Blocking one phishing domain</button>
+        </div>
+        <p class="check-why">Hashes, IPs and domains are cheap to change. Changing how they operate is expensive, so TTP-based detection hurts most.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">How does a threat hunt normally start?</p>
+        <div class="check-options">
+          <button type="button">With a hypothesis about attacker activity that might be present</button>
+          <button type="button">When the SIEM raises a high-severity alert</button>
+          <button type="button">After a breach is announced in the news</button>
+          <button type="button">With a full vulnerability scan</button>
+        </div>
+        <p class="check-why">Hunting is proactive: it looks for what the alerts missed, starting from a testable hypothesis.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A threat feed lists a single IP address used by a ransomware group. What kind of indicator is that?</p>
+        <div class="check-options">
+          <button type="button">Behavioural</button>
+          <button type="button">A TTP</button>
+          <button type="button">A threat model</button>
+          <button type="button">Atomic</button>
+        </div>
+        <p class="check-why">Atomic indicators are single values (IP, domain, hash). Behavioural indicators describe patterns of activity.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +126,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-006"
-    data-lesson-title="Performing Vulnerability Analysis"
+    data-lesson-title="Threat Intelligence and Threat Hunting"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-006"
-    data-lesson-title="Performing Vulnerability Analysis"
+    data-lesson-title="Threat Intelligence and Threat Hunting"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>
