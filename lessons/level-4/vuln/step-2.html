@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 8: Vulnerability Management</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -46,7 +53,7 @@
       <h3>CVE and CVSS</h3>
 
       <h4>Common Vulnerabilities and Exposures (CVE)</h4>
-      <p>CVE is a standardized naming system for publicly known cybersecurity vulnerabilities. Each vulnerability receives a unique identifier in the format <strong>CVE-YYYY-NNNNN</strong> (year and sequence number). The CVE system is maintained by MITRE Corporation and funded by the U.S. Department of Homeland Security. CVE entries provide a common language that allows security teams, vendors, and tools to reference the same vulnerability unambiguously.</p>
+      <p>CVE is a standardized naming system for publicly known cybersecurity vulnerabilities. Each vulnerability receives a unique identifier in the format <strong>CVE-YYYY-NNNNN</strong> (year and sequence number). The CVE program is run by MITRE Corporation with funding from the U.S. Cybersecurity and Infrastructure Security Agency (CISA), and many vendors act as CVE numbering authorities that assign IDs. CVE entries provide a common language that allows security teams, vendors, and tools to reference the same vulnerability unambiguously.</p>
       <pre><code>Example: CVE-2021-44228 (Log4Shell)
   - Affected: Apache Log4j 2.x library
   - Impact: Remote code execution via crafted log messages
@@ -149,15 +156,44 @@
       <p>Many vulnerability scanning tools (Nessus, Qualys) include compliance scanning modules that can check systems against these benchmarks automatically and generate audit-ready reports.</p>
     </div>
 
+    <!-- level4-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/9B0mtWk_AM0" title="Vulnerability Scanning - CompTIA Security+ SY0-701 - 4.3 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Vulnerability Scanning – CompTIA Security+ SY0-701 – 4.3" (free Security+ course; SY0-701 is the current exam).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">Which vulnerability should be fixed first?</p>
+        <div class="check-options">
+          <button type="button">CVSS 9.8 on a lab server with no data and no network access</button>
+          <button type="button">CVSS 5.0 on an internal printer</button>
+          <button type="button">CVSS 8.1 on an internet-facing server with customer data, with a public exploit</button>
+          <button type="button">CVSS 3.1 on a test laptop</button>
+        </div>
+        <p class="check-why">Severity, exploitability and the asset's importance together set the priority. An internet-facing server with customer data and a known exploit comes first.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A scan logs in to each server and checks installed patch levels. What kind of scan is it?</p>
+        <div class="check-options">
+          <button type="button">Non-credentialed</button>
+          <button type="button">Credentialed</button>
+          <button type="button">A port scan</button>
+          <button type="button">A penetration test</button>
+        </div>
+        <p class="check-why">Credentialed (authenticated) scans log in, so they can see installed software and settings that an outside scan can't.</p>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"

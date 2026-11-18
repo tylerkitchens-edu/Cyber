@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 3: Security Zones and Identity Management</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -174,15 +181,44 @@ Partner → Secure Portal / VPN → Extranet server → Controlled access to spe
       <p>Every user, process, and system should operate with the minimum level of access necessary to perform its function. This limits the blast radius of compromised accounts and reduces insider threat risk. Least privilege should be enforced at every layer: user accounts, service accounts, API keys, firewall rules, and database permissions.</p>
     </div>
 
+    <!-- level4-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/MpIzA4fNWew" title="Multifactor Authentication - CompTIA Security+ SY0-701 - 4.6 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Multifactor Authentication – CompTIA Security+ SY0-701 – 4.6" (free Security+ course; SY0-701 is the current exam).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">Which login is true multifactor authentication?</p>
+        <div class="check-options">
+          <button type="button">A password and a security question</button>
+          <button type="button">A password and a PIN</button>
+          <button type="button">A password and a code from an authenticator app</button>
+          <button type="button">Two different passwords</button>
+        </div>
+        <p class="check-why">A password is something you know; the authenticator app on your phone is something you have. The other options are all knowledge factors.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A hospital wants nurses to open patient records only while on shift and only from hospital devices. Which access control model fits best?</p>
+        <div class="check-options">
+          <button type="button">Discretionary (DAC)</button>
+          <button type="button">Attribute-based (ABAC)</button>
+          <button type="button">Mandatory (MAC)</button>
+          <button type="button">No model; use a shared account</button>
+        </div>
+        <p class="check-why">ABAC decides using attributes such as role, time of day and device. RBAC alone can't express "only on shift, only on a hospital device".</p>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"

@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 1: Introduction to the Cybersecurity Essentials</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 1: Introduction to the Cybersecurity Essentials</h1>
-      <h2>Level 5: Cybersecurity Essentials</h2>
+      <h2>Level 4: Cybersecurity Essentials</h2>
     </div>
 
     <div class="section">
@@ -23,7 +30,7 @@
       <ul>
         <li>Identify the algorithms used in symmetrical and asymmetrical encryption.</li>
         <li>Define the concepts of the CIA triad and identify the technologies supporting each element.</li>
-        <li>Describe the certification process for a Certificate Authority (CA).</li>
+        <li>Explain how hashing and digital signatures protect integrity (certificate authorities follow in Lesson 2).</li>
         <li>Differentiate between Authentication and Authorization.</li>
       </ul>
     </div>
@@ -51,21 +58,70 @@
 
       <h4>Asymmetric Encryption</h4>
       <img src="asymm.png">
-      <p>Asymmetric encryption uses a pair of keys: a public key for encryption and a private key for decryption. Algorithms like RSA (Rivest–Shamir–Adleman) rely on mathematical problems such as integer factorization. Asymmetric encryption is slower but provides secure key exchange without sharing the private key.</p>
+      <p>Asymmetric encryption uses a pair of keys that are mathematically linked. Data encrypted with the public key can only be decrypted with the matching private key (used for confidentiality), and data signed with the private key can be checked by anyone with the public key (used for digital signatures). Algorithms like RSA (Rivest–Shamir–Adleman) rely on mathematical problems such as integer factorization. Asymmetric encryption is much slower, so in practice (for example in TLS) it is used to agree on or exchange a symmetric session key, and the fast symmetric key then encrypts the actual data.</p>
 
       <h4>Cryptographic Algorithms</h4>
-      <p>Modern cryptography relies on tested algorithms for secure communication. These algorithms are the foundation for SSL/TLS, VPNs, digital signatures, and secure email systems.</p>
+      <p>Modern cryptography relies on tested, public algorithms. They are the foundation for TLS, VPNs, digital signatures and secure email.</p>
+      <table class="cmp">
+        <tr><th>Purpose</th><th>Algorithms to know</th><th>Notes</th></tr>
+        <tr><td>Symmetric encryption</td><td>AES (128 or 256-bit), ChaCha20</td><td>Fast; used for bulk data. DES and 3DES are retired.</td></tr>
+        <tr><td>Asymmetric encryption and signatures</td><td>RSA, ECC (for example ECDSA)</td><td>ECC gives the same strength as RSA with much shorter keys.</td></tr>
+        <tr><td>Key exchange</td><td>Diffie-Hellman (DH, ECDHE)</td><td>Two parties agree on a shared secret over an open network.</td></tr>
+        <tr><td>Hashing</td><td>SHA-256, SHA-3</td><td>MD5 and SHA-1 are broken for security use.</td></tr>
+      </table>
+      <h4>Hashing and Digital Signatures</h4>
+      <p>A <strong>hash</strong> is a fixed-length fingerprint of data. The same input always gives the same hash, and changing a single bit gives a completely different one, so hashes prove <strong>integrity</strong>. Hashing is one-way: you can't turn a hash back into the data. Passwords are stored as <strong>salted hashes</strong> (a random value added before hashing) so identical passwords don't produce identical hashes.</p>
+      <p>A <strong>digital signature</strong> is a hash of the message encrypted with the sender's <strong>private key</strong>. The receiver decrypts it with the sender's <strong>public key</strong> and compares it with their own hash of the message. A match proves the message wasn't changed (integrity), who sent it (authentication) and that the sender can't deny it (<strong>non-repudiation</strong>).</p>
+    </div>
+
+    <!-- level4-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/EcGmQjl6XEo" title="Hashing and Digital Signatures - CompTIA Security+ SY0-701 - 1.4 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Hashing and Digital Signatures – CompTIA Security+ SY0-701 – 1.4" (free Security+ course; SY0-701 is the current exam).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">Two offices need to encrypt large amounts of data quickly, but first they must share a key safely over the internet. What do they use?</p>
+        <div class="check-options">
+          <button type="button">RSA for all the data</button>
+          <button type="button">A hash of each file</button>
+          <button type="button">Asymmetric cryptography (or Diffie-Hellman) to exchange a key, then AES for the data</button>
+          <button type="button">MD5 for the key exchange, then AES</button>
+        </div>
+        <p class="check-why">This is how TLS and VPNs work: asymmetric methods solve key exchange, and fast symmetric encryption protects the data.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Alice signs a contract file. Which key does she use to create the signature, and which key does Bob use to check it?</p>
+        <div class="check-options">
+          <button type="button">Bob's public key, then Bob's private key</button>
+          <button type="button">Alice's private key, then Alice's public key</button>
+          <button type="button">Alice's public key, then Alice's private key</button>
+          <button type="button">A shared symmetric key on both sides</button>
+        </div>
+        <p class="check-why">Only Alice holds her private key, so only she can sign. Anyone can check the signature with her public key.</p>
+      </div>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it on your computer (5 minutes)</h4>
+      <ol>
+        <li>Create a text file called <code>note.txt</code> containing the word <code>hello</code>.</li>
+        <li>Windows: in PowerShell run <code>Get-FileHash .\note.txt -Algorithm SHA256</code>. Mac or Linux: run <code>shasum -a 256 note.txt</code>.</li>
+        <li>Change one letter in the file, save it and hash it again. Compare the two hashes.</li>
+        <li>Find a download page that publishes a SHA-256 checksum (many Linux distributions do) and explain how you would use it to check your download.</li>
+      </ol>
     </div>
 
     <div class="slide-footer">
-      <p>Cybersecurity Curriculum | Level 5: Cybersecurity Essentials</p>
+      <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script src="https://vschool-reports.netlify.app/ltp.js" 
     data-api="https://vschool-reports.netlify.app" 

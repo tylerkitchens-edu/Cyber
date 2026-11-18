@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 15: Risk Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 5: Risk Management</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 1: Risk Management</h1>
-      <h2>Cybersecurity Essentials</h2>
+      <h1>Lesson 5: Risk Management</h1>
+      <h2>Level 4: Cybersecurity Essentials</h2>
     </div>
 
     <div class="section">
@@ -30,13 +37,14 @@
         Effective risk management begins with identifying, assessing, and mitigating potential threats that could affect organizational assets. Risks can be classified as <strong>internal</strong> (originating from within the organization, e.g., employee errors or system misconfigurations) or <strong>external</strong> (originating outside the organization, e.g., cyberattacks, natural disasters). 
       </p>
       <p>
-        Once risks are identified, organizations can apply appropriate mitigation strategies, including:
+        Once risks are identified, organizations choose one of four risk responses:
       </p>
       <ul>
         <li><strong>Risk Avoidance:</strong> Eliminating actions or exposures that introduce risk.</li>
         <li><strong>Risk Transference:</strong> Shifting the risk to a third party, such as through insurance or outsourcing.</li>
         <li><strong>Risk Acceptance:</strong> Acknowledging the risk and choosing to accept it without additional action.</li>
-        <li><strong>Risk Reduction:</strong> Implementing controls to reduce the likelihood or impact of a risk.</li>
+        <li><strong>Risk Mitigation (reduction):</strong> Implementing controls, such as firewalls, encryption or training, to reduce the likelihood or impact of a risk.</li>
+        <li><strong>Inherent risk</strong> is the risk before any controls are applied. Whatever is left after controls are applied is <strong>residual risk</strong>. Leaders compare it with the organization's <strong>risk appetite</strong> (how much risk it is willing to accept).</li>
       </ul>
     </div>
 
@@ -50,7 +58,8 @@
       </p>
       <ul>
         <li><strong>Single Loss Expectancy (SLE):</strong> The expected monetary loss from a single occurrence of a threat. Example: a successful malware attack might cost $1,000 per incident.</li>
-        <li><strong>Exposure Factor (EF):</strong> The percentage of the asset value lost due to the threat. For example, a 50% loss to a $1,000 asset would be $500.</li>
+        <li><strong>Asset Value (AV):</strong> What the asset is worth, for example $2,000.</li>
+        <li><strong>Exposure Factor (EF):</strong> The percentage of the asset value lost in one incident. Then SLE = AV x EF. For example, if an incident destroys 50% of a $2,000 asset, the SLE is $1,000.</li>
         <li><strong>Annualized Rate of Occurrence (ARO):</strong> How often a threat is expected to occur annually. Example: ARO = 2 means twice per year, ARO = 0.25 means once every four years.</li>
         <li><strong>Annual Loss Expectancy (ALE):</strong> The expected annual loss calculated as SLE x ARO. Example: If SLE = $1,000 and ARO = 0.25, then ALE = $250.</li>
       </ul>
@@ -157,16 +166,44 @@
       <p>Organizations use these standards to create repeatable, consistent processes for managing cybersecurity risk effectively.</p>
     </div>
 
+    <!-- level4-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/Ykx7t54y-oo" title="Risk Analysis - CompTIA Security+ SY0-701 - 5.2 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Risk Analysis – CompTIA Security+ SY0-701 – 5.2" (free Security+ course; SY0-701 is the current exam).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">A laptop is worth $1,500. When one is stolen the whole value is lost, and the company loses 4 laptops a year. What is the ALE?</p>
+        <div class="check-options">
+          <button type="button">$1,500</button>
+          <button type="button">$375</button>
+          <button type="button">$6,000</button>
+          <button type="button">$4,000</button>
+        </div>
+        <p class="check-why">SLE = $1,500 x 100% = $1,500. ALE = SLE x ARO = $1,500 x 4 = $6,000 a year. Spending less than that on prevention can be justified.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A company buys cyber insurance to cover the cost of a breach. Which risk response is that?</p>
+        <div class="check-options">
+          <button type="button">Transference</button>
+          <button type="button">Avoidance</button>
+          <button type="button">Acceptance</button>
+          <button type="button">Mitigation</button>
+        </div>
+        <p class="check-why">Insurance shifts the financial impact to a third party. The risk itself still exists, so controls are still needed.</p>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Threats and Risk Management</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js" data-api="https://vschool-reports.netlify.app" data-lesson-id="l4-RISK-001" data-lesson-title="Risk Management" data-course-id="Cybersecurity"></script>

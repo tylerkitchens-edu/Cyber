@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 3: Understanding Cybersecurity Threats</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 4: Understanding Cybersecurity Threats</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 3: Understanding Cybersecurity Threats</h1>
-      <h2>Threats and Risk Management</h2>
+      <h1>Lesson 4: Understanding Cybersecurity Threats</h1>
+      <h2>Level 4: Cybersecurity Essentials</h2>
     </div>
 
     <div class="section">
@@ -77,16 +84,68 @@
       </ul>
     </div>
 
+    <!-- level4-companion -->
+    <div class="section">
+      <h3>Threat Actors</h3>
+      <table class="cmp">
+        <tr><th>Actor</th><th>Motive</th><th>Resources</th></tr>
+        <tr><td>Nation-state</td><td>Espionage, disruption, politics</td><td>Very high; long, patient campaigns (advanced persistent threats)</td></tr>
+        <tr><td>Organized crime</td><td>Money (ransomware, fraud, data theft)</td><td>High</td></tr>
+        <tr><td>Hacktivist</td><td>A cause or message</td><td>Low to medium</td></tr>
+        <tr><td>Insider</td><td>Revenge, money, or simple mistakes</td><td>Already has access</td></tr>
+        <tr><td>Unskilled attacker</td><td>Curiosity, bragging</td><td>Low; uses others' tools</td></tr>
+        <tr><td>Shadow IT</td><td>Getting work done without approval</td><td>Creates unmanaged risk, usually without bad intent</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>More Attacks to Know</h3>
+      <ul>
+        <li><strong>More malware:</strong> keyloggers (record keystrokes), logic bombs (wait for a trigger), fileless malware (runs in memory, using built-in tools like PowerShell), and botnets (infected machines controlled together, often for DDoS).</li>
+        <li><strong>More social engineering:</strong> smishing (by text message), whaling (phishing aimed at executives), pretexting (a made-up story to gain trust), business email compromise (a hijacked or spoofed company mailbox requesting payments), and watering-hole attacks (infecting a site the target visits).</li>
+        <li><strong>On-path attack</strong> is CompTIA's current name for man-in-the-middle. ARP poisoning and rogue Wi-Fi are common ways to get on the path.</li>
+        <li><strong>Password attacks:</strong> brute force, dictionary, password spraying (one common password against many accounts) and credential stuffing (reusing leaked username and password pairs).</li>
+        <li><strong>Application attacks:</strong> SQL injection, cross-site scripting (XSS) and buffer overflows. You'll see these again in Lesson 7.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/-eZs8wjjGGE" title="An Overview of Malware - CompTIA Security+ SY0-701 - 2.4 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "An Overview of Malware – CompTIA Security+ SY0-701 – 2.4" (free Security+ course; SY0-701 is the current exam).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">An attacker tries the password "Winter2026!" against 5,000 company accounts, once each, to avoid lockouts. What is this?</p>
+        <div class="check-options">
+          <button type="button">Brute force</button>
+          <button type="button">Password spraying</button>
+          <button type="button">Credential stuffing</button>
+          <button type="button">A dictionary attack on one account</button>
+        </div>
+        <p class="check-why">Spraying uses one or a few common passwords across many accounts. Credential stuffing reuses real leaked username and password pairs.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">An employee gets a text "from the CEO" asking them to buy gift cards urgently. Which attack is this, and what should they do?</p>
+        <div class="check-options">
+          <button type="button">Whaling; reply to ask for details</button>
+          <button type="button">Vishing; call the number in the text</button>
+          <button type="button">A worm; restart the phone</button>
+          <button type="button">Smishing with impersonation; verify through a known channel and report it</button>
+        </div>
+        <p class="check-why">Urgency plus an authority figure plus an unusual payment request are classic signs. Check through a contact you already know, never through the message itself.</p>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Threats and Risk Management</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js" data-api="https://vschool-reports.netlify.app" data-lesson-id="l4-THREAT-001" data-lesson-title="Understanding Cybersecurity Threats" data-course-id="Cybersecurity"></script>

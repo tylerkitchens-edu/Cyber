@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 6: Business Continuity and Incident Response</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -46,9 +53,11 @@
       <p>Effective incident response reduces the duration and impact of incidents, ensures faster recovery, and helps prevent similar events in the future. Prompt and structured responses can safeguard sensitive data, maintain customer trust, and minimize financial losses.</p>
 
       <h4>Key Steps in Incident Response</h4>
+      <p>Security+ (SY0-701) lists the process as Preparation, Detection, Analysis, Containment, Eradication, Recovery and Lessons learned. NIST SP 800-61 groups the same work into four phases. The steps:</p>
       <ol>
         <li><strong>Preparation:</strong> Establish policies, tools, roles, and communication plans to handle incidents effectively.</li>
-        <li><strong>Identification:</strong> Detect and recognize incidents quickly using monitoring tools, alerts, or reports.</li>
+        <li><strong>Detection:</strong> Notice that something may be wrong, from monitoring tools, alerts or user reports.</li>
+        <li><strong>Analysis:</strong> Confirm it is a real incident, work out its scope and how serious it is, and decide its priority.</li>
         <li><strong>Containment:</strong> Limit the scope and impact of the incident to prevent further damage.</li>
         <li><strong>Eradication:</strong> Remove the root cause of the incident, such as malware or unauthorized access.</li>
         <li><strong>Recovery:</strong> Restore affected systems, applications, and data to normal operation.</li>
@@ -57,15 +66,44 @@
       <p>Integrating incident response with the BCP ensures that an organization can maintain essential services while addressing threats, resulting in greater operational resilience and minimized downtime.</p>
     </div>
 
+    <!-- level4-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/X2UiMLxRdhE" title="Incident Response - CompTIA Security+ SY0-701 - 4.8 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Incident Response – CompTIA Security+ SY0-701 – 4.8" (free Security+ course; SY0-701 is the current exam).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">Ransomware is found on one file server. The team has confirmed it and knows which systems are affected. What comes next?</p>
+        <div class="check-options">
+          <button type="button">Restore from backup straight away</button>
+          <button type="button">Containment: isolate the server from the network</button>
+          <button type="button">Write the lessons-learned report</button>
+          <button type="button">Reinstall every computer in the company</button>
+        </div>
+        <p class="check-why">Contain first so it can't spread. Then eradicate (remove the cause), recover (restore from clean backups), and finally hold the lessons-learned review.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">What is the difference between a business continuity plan and a disaster recovery plan?</p>
+        <div class="check-options">
+          <button type="button">They are the same thing</button>
+          <button type="button">The BCP only covers IT; the DRP covers the whole business</button>
+          <button type="button">The BCP keeps the whole business running; the DRP restores IT systems and is part of it</button>
+          <button type="button">The DRP is written after a disaster</button>
+        </div>
+        <p class="check-why">Business continuity covers people, processes and communications. Disaster recovery is the IT part that restores systems and data.</p>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"

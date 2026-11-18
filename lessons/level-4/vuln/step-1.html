@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 7: Emerging Technologies and Secure Development</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -48,19 +55,19 @@
       </table>
 
       <h4>OWASP Top 10</h4>
-      <p>The <strong>Open Web Application Security Project (OWASP) Top 10</strong> is the industry-standard reference for the most critical web application security risks. Understanding these categories helps developers and security teams prioritize defenses:</p>
-      <ul>
-        <li><strong>Broken Access Control:</strong> Users acting outside their intended permissions (e.g., accessing another user's account data).</li>
-        <li><strong>Cryptographic Failures:</strong> Weak or missing encryption exposing sensitive data (e.g., storing passwords in plaintext).</li>
-        <li><strong>Injection:</strong> Untrusted input executed as code (e.g., SQL injection, command injection).</li>
-        <li><strong>Insecure Design:</strong> Architectural flaws that cannot be fixed by implementation — missing threat models or security design patterns.</li>
+      <p>The <strong>Open Web Application Security Project (OWASP) Top 10</strong> is the industry-standard reference for the most critical web application security risks. The current edition is the <strong>OWASP Top 10:2025</strong>:</p>
+      <ol>
+        <li><strong>Broken Access Control:</strong> Users acting outside their intended permissions, for example opening another user's account data. Server-side request forgery (SSRF), a separate category in 2021, is now part of this one.</li>
         <li><strong>Security Misconfiguration:</strong> Default credentials, unnecessary services enabled, overly permissive cloud storage buckets.</li>
-        <li><strong>Vulnerable and Outdated Components:</strong> Using libraries or frameworks with known vulnerabilities (e.g., unpatched Log4j).</li>
-        <li><strong>Identification and Authentication Failures:</strong> Weak session management, credential stuffing, missing MFA.</li>
-        <li><strong>Software and Data Integrity Failures:</strong> Untrusted CI/CD pipelines, missing code signing, insecure deserialization.</li>
-        <li><strong>Security Logging and Monitoring Failures:</strong> Insufficient logging that prevents detection and forensic analysis of breaches.</li>
-        <li><strong>Server-Side Request Forgery (SSRF):</strong> Exploiting server functionality to make requests to unintended internal resources.</li>
-      </ul>
+        <li><strong>Software Supply Chain Failures:</strong> Vulnerable or malicious third-party components, build tools and update channels (for example unpatched Log4j, or a compromised package).</li>
+        <li><strong>Cryptographic Failures:</strong> Weak or missing encryption exposing sensitive data, for example passwords stored in plain text.</li>
+        <li><strong>Injection:</strong> Untrusted input executed as code, for example SQL injection, command injection and cross-site scripting.</li>
+        <li><strong>Insecure Design:</strong> Architectural flaws that can't be fixed by better code alone, such as missing threat models.</li>
+        <li><strong>Authentication Failures:</strong> Weak session management, credential stuffing, missing MFA.</li>
+        <li><strong>Software or Data Integrity Failures:</strong> Unsigned updates, untrusted CI/CD pipelines, insecure deserialization.</li>
+        <li><strong>Security Logging and Alerting Failures:</strong> Too little logging or alerting to detect and investigate a breach.</li>
+        <li><strong>Mishandling of Exceptional Conditions:</strong> Errors and unusual situations handled badly, for example error messages that reveal internal details, or a system that "fails open" when something goes wrong.</li>
+      </ol>
 
       <h4>Security Testing Tools</h4>
       <p>Automated security testing is essential for catching vulnerabilities at scale. Three key testing categories:</p>
@@ -133,15 +140,36 @@
       <p>IoT devices dramatically expand an organization's attack surface. Many IoT devices ship with default credentials, limited processing power for encryption, infrequent firmware updates, and no centralized management. Securing IoT requires network segmentation (isolating IoT devices on dedicated VLANs), enforcing credential changes, monitoring for anomalous traffic patterns, and maintaining firmware update processes.</p>
     </div>
 
+    <!-- level4-companion -->
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">A developer builds a SQL query by pasting the user's search text straight into it. Which OWASP category is the risk, and what is the fix?</p>
+        <div class="check-options">
+          <button type="button">Cryptographic failure; encrypt the database</button>
+          <button type="button">Injection; use parameterized queries</button>
+          <button type="button">Security misconfiguration; change the default password</button>
+          <button type="button">Logging failure; add more logs</button>
+        </div>
+        <p class="check-why">Parameterized queries keep user input as data, never as part of the SQL command.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Which testing tool examines source code without running the application?</p>
+        <div class="check-options">
+          <button type="button">SAST</button>
+          <button type="button">DAST</button>
+          <button type="button">A vulnerability scanner run against production</button>
+          <button type="button">A penetration test</button>
+        </div>
+        <p class="check-why">Static testing (SAST) reads code. Dynamic testing (DAST) attacks the running application.</p>
+      </div>
+    </div>
+
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"

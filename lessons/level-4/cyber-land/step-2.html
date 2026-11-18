@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 2: Public Key Infrastructure</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 2: Public Key Infrastructure</h1>
-      <h2>Level 5: Cybersecurity Essentials</h2>
+      <h2>Level 4: Cybersecurity Essentials</h2>
     </div>
 
     <div class="section">
@@ -58,15 +65,15 @@
         <tbody>
           <tr>
             <td>Common Name</td>
-            <td>The fully qualified domain name (FQDN) of the website. Example: www.testout.com</td>
+            <td>The fully qualified domain name (FQDN) of the website. Example: www.example.com</td>
           </tr>
           <tr>
             <td>Subject Alternative Name (SAN)</td>
-            <td>Optional field covering multiple host names in one certificate. Example: site1.testout.com, site2.testout.com</td>
+            <td>Optional field covering multiple host names in one certificate. Example: shop.example.com, mail.example.com</td>
           </tr>
           <tr>
             <td>Organization</td>
-            <td>The full legal name of the organization, including suffixes. Example: TestOut Corporation</td>
+            <td>The full legal name of the organization, including suffixes. Example: Example Corporation, Inc.</td>
           </tr>
           <tr>
             <td>Organizational Unit</td>
@@ -74,11 +81,11 @@
           </tr>
           <tr>
             <td>City/Locality</td>
-            <td>The city where the organization is located. Example: Pleasant Grove</td>
+            <td>The city where the organization is located. Example: Springfield</td>
           </tr>
           <tr>
             <td>State/County/Region</td>
-            <td>The full name of the state or region, not abbreviated. Example: Utah</td>
+            <td>The full name of the state or region, not abbreviated. Example: Illinois</td>
           </tr>
           <tr>
             <td>Country</td>
@@ -86,7 +93,7 @@
           </tr>
           <tr>
             <td>Email Address</td>
-            <td>Contact email for the person managing the certificate. Example: sysadmin@testout.com</td>
+            <td>Contact email for the person managing the certificate. Example: sysadmin@example.com</td>
           </tr>
           <tr>
             <td>Public Key</td>
@@ -98,15 +105,67 @@
       <p>After submission, the CA validates the information and issues the certificate. Sometimes, a third-party <strong>Registration Authority (RA)</strong> assists in validation. RAs are authorized by a root CA to perform validation for specific purposes only.</p>
     </div>
 
+    <!-- level4-companion -->
+    <div class="section">
+      <h3>Certificates in Practice</h3>
+      <ul>
+        <li><strong>Chain of trust:</strong> your browser trusts a small set of root CA certificates built into the operating system. A website's certificate is trusted because it was signed by an intermediate CA, which was signed by a trusted root. The root certificate is self-signed; nothing signs it.</li>
+        <li><strong>Self-signed certificates:</strong> signed by their own key, not a CA. Fine for labs and internal testing; browsers warn users, so don't use them on public sites.</li>
+        <li><strong>Wildcard certificates</strong> (*.example.com) cover every subdomain at one level. Convenient, but if the private key is stolen, every subdomain is exposed.</li>
+        <li><strong>Subject Alternative Name (SAN):</strong> lists several exact names on one certificate, for example example.com and www.example.com.</li>
+        <li><strong>Revocation:</strong> if a private key is compromised, the CA revokes the certificate before it expires. Browsers check with a <strong>CRL</strong> (Certificate Revocation List, a published list) or <strong>OCSP</strong> (Online Certificate Status Protocol, a live check of one certificate). With <strong>OCSP stapling</strong> the web server attaches a recent OCSP answer itself.</li>
+        <li><strong>Expiration:</strong> public certificates now last about a year or less, and the maximum is being cut further, so renewals are automated (for example with ACME and Let's Encrypt).</li>
+        <li><strong>Mutual TLS (mTLS):</strong> normally only the server shows a certificate. In mTLS the client also presents one, so both sides are authenticated. It is common between services in zero-trust designs.</li>
+        <li><strong>Key escrow:</strong> a trusted third party keeps a copy of keys so data can be recovered if a key is lost.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/cLa94BZH_9s" title="Certificates - CompTIA Security+ SY0-701 - 1.4 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Certificates – CompTIA Security+ SY0-701 – 1.4" (free Security+ course; SY0-701 is the current exam).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="3">
+        <p class="check-q">A company's web server private key was stolen today, but its certificate is valid for another eight months. What should happen?</p>
+        <div class="check-options">
+          <button type="button">Nothing until the certificate expires</button>
+          <button type="button">Switch the site to HTTP</button>
+          <button type="button">Issue a self-signed certificate</button>
+          <button type="button">Ask the CA to revoke it, so CRL and OCSP checks show it as revoked, and get a new certificate with a new key</button>
+        </div>
+        <p class="check-why">Revocation is for exactly this case. Clients that check CRL or OCSP will stop trusting the stolen key.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">What is the main risk of using one wildcard certificate (*.example.com) for every server?</p>
+        <div class="check-options">
+          <button type="button">If its private key is stolen, every subdomain can be impersonated</button>
+          <button type="button">It only works in some browsers</button>
+          <button type="button">It can't be renewed</button>
+          <button type="button">It doesn't support encryption</button>
+        </div>
+        <p class="check-why">One key protects every subdomain, so one compromise affects all of them. Keep wildcard keys on as few servers as possible.</p>
+      </div>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it in your browser (5 minutes)</h4>
+      <ol>
+        <li>Open any HTTPS website, click the icon to the left of the address and open the certificate details.</li>
+        <li>Find the issuer (which CA signed it), the validity dates, and the Subject Alternative Names.</li>
+        <li>Look at the certification path: how many certificates are in the chain from the site up to the root?</li>
+      </ol>
+    </div>
+
     <div class="slide-footer">
-      <p>Cybersecurity Curriculum | Level 5: Cybersecurity Essentials</p>
+      <p>Cybersecurity Curriculum | Level 4: Cybersecurity Essentials</p>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script src="https://vschool-reports.netlify.app/ltp.js" 
     data-api="https://vschool-reports.netlify.app" 
