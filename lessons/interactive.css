@@ -203,3 +203,26 @@
 .bits-task:empty { display: none; }
 .bits-task.ok { color: #15803d; }
 @media (max-width: 480px) { .bit-val { font-size: 1.1rem; } .bit-place { font-size: 0.7rem; } }
+
+/* Hands-on lab card (TryHackMe), added 2026-11-18 for Levels 5 and 6.
+   Opens the room in a new tab, because signing in to TryHackMe inside a frame can fail. */
+.lab-card {
+    border: 1px solid #86efac;
+    border-left: 4px solid #15803d;
+    background: #f0fdf4;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0;
+}
+.lab-card .lab-kicker {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #15803d;
+    margin: 0 0 4px;
+}
+.lab-card h4 { margin: 0 0 8px; }
+.lab-card a.btn-primary { display: inline-block; text-decoration: none; }
+.lab-card .lab-more { font-size: 0.95rem; margin-bottom: 0; }
+.lab-card .lab-more a { color: #15803d; }

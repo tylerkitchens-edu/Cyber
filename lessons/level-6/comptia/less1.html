@@ -2,29 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 1: Understanding Vulnerability Response, Handling, and Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 1: Identifying Security Operations Fundamentals</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
-      <h1>Lesson 1: Understanding Vulnerability Response, Handling, and Management</h1>
-      <h2>CompTIA CySA+</h2>
+      <h1>Lesson 1: Identifying Security Operations Fundamentals</h1>
+      <h2>CompTIA CySA+ (CS0-004)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Level 6 prepares you for CompTIA CySA+, the analyst certification. Security+ taught you to recognise threats and controls. CySA+ asks you to <strong>work like an analyst</strong>: read logs and alerts, decide what is real, and act on it.</p>
+      <p>This first lesson sets up how a security operations center (SOC) works. A SOC is the team that watches an organization's systems around the clock. You will learn:</p>
+      <ul>
+        <li>how an event on a computer becomes a log, and how logs become the alerts analysts work on;</li>
+        <li>what makes logging trustworthy: collecting the right sources, synchronized clocks, protecting logs from tampering, and keeping them long enough;</li>
+        <li>who does what in a SOC, and how playbooks, automation and tuning keep the team consistent and efficient.</li>
+      </ul>
+      <p>On the exam this is mostly objective 1.1 (system and network architecture in security operations: logging) and 1.5 (efficiency and process improvement).</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA CySA+, Lesson 1</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 1</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA CySA+, Lesson 1</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 1: Identifying Security Operations Fundamentals</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your CySA+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers the full vulnerability response lifecycle including identification, classification, and management of vulnerabilities across enterprise environments. You will learn about vulnerability disclosure processes, responsible handling practices, asset inventory management, and how organizations prioritize remediation based on risk context, business criticality, and threat intelligence. The lesson also addresses patch management workflows, compensating controls, and exception handling.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes &middot; easy</p>
+        <h4>SOC L1 Alert Triage</h4>
+        <p>Work a live alert dashboard the way a first-line (Level 1) analyst does: see how events become alerts, read an alert's details, and decide whether each one is a real threat or a false alarm.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/socl1alerttriage" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/socworkbookslookups" target="_blank" rel="noopener">SOC Workbooks and Lookups</a> (45 minutes: the playbooks and reference lists analysts use) &middot; <a href="https://tryhackme.com/room/socmetricsobjectives" target="_blank" rel="noopener">SOC Metrics and Objectives</a> (45 minutes: how a SOC measures itself).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+      <h4>From event to alert</h4>
+      <p>Something happens (a sign-in, a program starting, a file download). The system <strong>logs</strong> it. The logs are sent to a central tool, usually a SIEM (security information and event management). The SIEM's rules raise an <strong>alert</strong> when something looks suspicious. Analysts work the alerts, not millions of raw logs, so an alert is only as good as the logs behind it.</p>
+
+      <h4>What makes logging trustworthy</h4>
+      <table class="cmp">
+        <tr><th>Logging concept</th><th>What it means</th><th>What goes wrong without it</th></tr>
+        <tr><td>Ingestion</td><td>Every important source actually sends its logs to the SIEM.</td><td>A server that never sends logs is a blind spot; an attack there raises no alert.</td></tr>
+        <tr><td>Configuration</td><td>Systems are set to record the events that matter (sign-ins, new processes, permission changes).</td><td>Default settings often skip the events an investigation needs.</td></tr>
+        <tr><td>Integrity and security</td><td>Logs are copied off the machine as they are written, and access to them is restricted.</td><td>An attacker with admin rights clears the local log and the evidence is gone.</td></tr>
+        <tr><td>Time synchronization</td><td>Every device sets its clock from the same time source (NTP).</td><td>Events from two devices can't be put in the right order, so the timeline of an attack is wrong.</td></tr>
+        <tr><td>Retention</td><td>Logs are kept long enough, often set by law or contract.</td><td>Many breaches are found months later; if the logs are gone, so is the story.</td></tr>
+      </table>
+
+      <h4>Who does what, and how the team stays consistent</h4>
+      <ul>
+        <li><strong>Level 1 analysts</strong> triage alerts: real or false alarm? They close false alarms and escalate real threats.</li>
+        <li><strong>Level 2 analysts</strong> investigate escalated alerts in depth and lead the response.</li>
+        <li><strong>SOC engineers</strong> build and tune the tools, rules and integrations; the <strong>SOC manager</strong> tracks speed and quality.</li>
+        <li><strong>Playbooks and runbooks</strong> write down how to handle each type of alert, so every analyst handles it the same way. A playbook sets out the overall response and its decision points; a runbook gives the detailed technical steps, which can often be automated.</li>
+        <li><strong>Automation and tuning</strong> (for example SOAR, security orchestration, automation and response) add context to alerts automatically and cut false alarms, so analysts spend their time on real threats.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">The firewall logged a connection at 14:02. The web server logged the same connection at 14:09. Which logging concept has failed?</p>
+        <div class="check-options">
+          <button type="button">Retention</button>
+          <button type="button">Ingestion</button>
+          <button type="button">Time synchronization</button>
+          <button type="button">Log configuration</button>
+        </div>
+        <p class="check-why">The two clocks disagree by seven minutes, so events can't be lined up into one timeline. Every device should set its time from the same source (NTP).</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">An attacker gained admin rights on a server and cleared its Security event log. What would have kept the evidence?</p>
+        <div class="check-options">
+          <button type="button">Keeping logs on the server for longer</button>
+          <button type="button">Sending each log entry to a central SIEM as it is written</button>
+          <button type="button">Turning on more detailed logging on that server</button>
+          <button type="button">Running a vulnerability scan every night</button>
+        </div>
+        <p class="check-why">Copies already sent off the machine survive even if the local log is wiped. That is the "integrity and security" part of logging. Clearing the log is itself a warning sign: Windows records it as event 1102.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Two analysts handle the same "phishing email reported" alert in completely different ways. What would fix this?</p>
+        <div class="check-options">
+          <button type="button">A written playbook for phishing alerts that every analyst follows</button>
+          <button type="button">A longer log retention period</button>
+          <button type="button">More SIEM alerts for phishing</button>
+          <button type="button">Escalating every phishing alert to Level 2</button>
+        </div>
+        <p class="check-why">Standardizing the process with a playbook makes every analyst take the same steps and decisions. Escalating everything just moves the problem and overloads Level 2.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">What is a Level 1 SOC analyst's main job when a new alert arrives?</p>
+        <div class="check-options">
+          <button type="button">Rebuild the affected computer</button>
+          <button type="button">Write a new detection rule for it</button>
+          <button type="button">Report it to law enforcement</button>
+          <button type="button">Triage it: decide whether it is a real threat, close it if not, escalate it if it is</button>
+        </div>
+        <p class="check-why">Level 1 is triage. Deeper investigation and remediation go to Level 2, and rule-writing belongs to SOC engineering.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,21 +131,16 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-001"
-    data-lesson-title="Understanding Vulnerability Response, Handling, and Management"
+    data-lesson-title="Identifying Security Operations Fundamentals"
     data-course-id="CompTIA CySA+">
   </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L6-CYSA-001"
-    data-lesson-title="Understanding Vulnerability Response, Handling, and Management"
+    data-lesson-title="Identifying Security Operations Fundamentals"
     data-course-id="CompTIA CySA+"
     data-button-selector="#myFeedbackBtn">
   </script>
