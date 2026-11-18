@@ -4,7 +4,13 @@
   <meta charset="UTF-8" />
   <title>Network Services for Security Operations</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
@@ -129,6 +135,40 @@
       <p>In a SIEM environment, syslog feeds from firewalls, routers, switches, and servers are aggregated, normalized, and correlated to detect patterns that no single log source would reveal on its own. For example, a firewall deny log combined with a DNS query to a known-malicious domain from the same source IP creates a high-confidence alert.</p>
     </div>
 
+    <!-- level3-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/S4s3vgm4h84" title="An Overview of DNS - CompTIA Network+ N10-009 - 3.4 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "An Overview of DNS – CompTIA Network+ N10-009 – 3.4" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">One workstation produces hundreds of NXDOMAIN responses for random-looking domains like xj7kq9m2.net. What is the most likely cause?</p>
+        <div class="check-options">
+          <button type="button">A misconfigured DHCP server</button>
+          <button type="button">A user typing web addresses wrong</button>
+          <button type="button">Malware using a domain generation algorithm (DGA)</button>
+          <button type="button">SNMP polling</button>
+        </div>
+        <p class="check-why">Malware that uses a DGA tries many generated names, and most don't exist yet, so they return NXDOMAIN. Isolate the host and investigate.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Which version of SNMP should a network use, and why?</p>
+        <div class="check-options">
+          <button type="button">v1, because it is the simplest</button>
+          <button type="button">v3, because it adds authentication and encryption</button>
+          <button type="button">v2c, because community strings are encrypted</button>
+          <button type="button">Any version, as long as the community string is "public"</button>
+        </div>
+        <p class="check-why">SNMP v1 and v2c send community strings in plain text. SNMP v3 authenticates and encrypts.</p>
+      </div>
+    </div>
+
     <div class="section" role="region" aria-labelledby="summary-services">
       <h3 id="summary-services">Summary</h3>
       <ul>
@@ -145,12 +185,6 @@
       <p>Cybersecurity Curriculum | Level 3: Network Services for Security Operations</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

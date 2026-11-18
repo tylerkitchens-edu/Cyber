@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wireless Networking</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -14,74 +21,146 @@
     </div>
 
     <div class="section">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Compare the 802.11 Wi-Fi standards, frequency bands and channels</li>
+        <li>Explain how wireless networks are built: SSIDs, access points, controllers and antennas</li>
+        <li>Choose the right wireless security (WPA2, WPA3, Personal vs Enterprise)</li>
+        <li>Explain VLANs and VPNs and the common ports you will meet on any network</li>
+      </ul>
+    </div>
+
+    <div class="section">
       <h3>Wireless Networking Basics</h3>
-      <p>Wireless networking has transformed how devices connect and communicate, eliminating the need for physical cabling and providing flexibility for users and organizations alike. From laptops and smartphones to IoT devices, wireless networks support a wide range of technologies such as <strong>Wi-Fi</strong>, <strong>Bluetooth</strong>, <strong>cellular (LTE/5G)</strong>, and <strong>NFC</strong>. Each of these technologies uses radio frequency (RF) signals to transmit data through the air.</p>
+      <p>Wireless networking connects devices without cables. Laptops, phones and IoT devices use technologies such as <strong>Wi-Fi</strong>, <strong>Bluetooth</strong>, <strong>cellular (4G LTE and 5G)</strong> and <strong>NFC</strong>. All of them send data over radio frequency (RF) signals.</p>
+      <p>Wi-Fi uses three frequency bands. <strong>2.4 GHz</strong> reaches farther and goes through walls better, but it is crowded (microwaves, Bluetooth and neighbors' networks) and has only three channels that don't overlap: <strong>1, 6 and 11</strong>. <strong>5 GHz</strong> is faster and has many more channels, but shorter range. <strong>6 GHz</strong> (Wi-Fi 6E and Wi-Fi 7) adds a large, clean band for newer devices, with the shortest range of the three.</p>
+      <p>Signal quality is measured with <strong>signal strength (RSSI, in dBm: -50 is strong, -80 is weak)</strong> and <strong>signal-to-noise ratio (SNR)</strong>. Wider channels (40, 80, 160 or 320 MHz) carry more data but use up more of the band. Technicians run a <strong>site survey</strong> with a Wi-Fi analyzer and produce a <strong>heat map</strong> to decide where access points go and which channels they use.</p>
+    </div>
 
-      <p>Most wireless networks operate on <strong>2.4 GHz</strong> or <strong>5 GHz</strong> frequency bands. The 2.4 GHz band provides greater range but is more prone to interference (from microwaves, cordless phones, etc.), while 5 GHz offers faster speeds and less congestion but a shorter range. Modern networks are increasingly adopting <strong>6 GHz Wi-Fi 6E</strong> for improved bandwidth and reduced interference.</p>
+    <div class="section">
+      <h3>The 802.11 standards</h3>
+      <table class="cmp">
+        <tr><th>Standard</th><th>Wi-Fi name</th><th>Bands</th><th>Top speed (theoretical)</th></tr>
+        <tr><td>802.11a</td><td>-</td><td>5 GHz</td><td>54 Mbit/s</td></tr>
+        <tr><td>802.11b</td><td>-</td><td>2.4 GHz</td><td>11 Mbit/s</td></tr>
+        <tr><td>802.11g</td><td>-</td><td>2.4 GHz</td><td>54 Mbit/s</td></tr>
+        <tr><td>802.11n</td><td>Wi-Fi 4</td><td>2.4 and 5 GHz</td><td>600 Mbit/s (MIMO)</td></tr>
+        <tr><td>802.11ac</td><td>Wi-Fi 5</td><td>5 GHz</td><td>About 6.9 Gbit/s (MU-MIMO)</td></tr>
+        <tr><td>802.11ax</td><td>Wi-Fi 6 / 6E</td><td>2.4, 5 (and 6 GHz for 6E)</td><td>About 9.6 Gbit/s (OFDMA)</td></tr>
+        <tr><td>802.11be</td><td>Wi-Fi 7</td><td>2.4, 5 and 6 GHz</td><td>About 46 Gbit/s (320 MHz channels, multi-link)</td></tr>
+      </table>
+      <p>Real speeds are much lower than these figures. Distance, walls, interference and the number of users all share the same airtime.</p>
+    </div>
 
-      <p>Understanding wireless performance involves analyzing factors such as <strong>signal strength (RSSI)</strong>, <strong>signal-to-noise ratio (SNR)</strong>, and <strong>channel overlap</strong>. These determine the reliability and speed of data transmission. Technicians often use tools like Wi-Fi analyzers to optimize access point placement and minimize interference.</p>
+    <div class="section">
+      <h3>How wireless networks are built</h3>
+      <ul>
+        <li><strong>SSID:</strong> the network name people see. <strong>BSSID:</strong> the MAC address of one access point's radio. <strong>ESSID:</strong> the same SSID shared by many access points so devices can roam between them.</li>
+        <li><strong>Infrastructure mode:</strong> devices connect through an access point (normal for homes and offices). <strong>Ad hoc:</strong> devices connect directly to each other. <strong>Mesh:</strong> access points connect to each other wirelessly to cover a large area.</li>
+        <li><strong>Autonomous vs lightweight access points:</strong> an autonomous access point is configured on its own; lightweight access points are managed together by a <strong>wireless LAN controller</strong> (on site or in the cloud).</li>
+        <li><strong>Antennas:</strong> <strong>omnidirectional</strong> antennas send in all directions (most access points); <strong>directional</strong> antennas (Yagi, parabolic) focus the signal in one direction, for example to link two buildings.</li>
+        <li><strong>Cellular:</strong> 4G LTE and 5G connect phones, hotspots and backup internet links through a mobile carrier. 5G adds higher speeds and much lower latency.</li>
+      </ul>
+    </div>
 
-      <h4>Wireless Security</h4>
-      <p>Because wireless transmissions travel through open air, they are inherently more vulnerable to eavesdropping and unauthorized access than wired networks. Implementing robust encryption and authentication standards is critical. Modern networks should use <strong>WPA3</strong> (Wi-Fi Protected Access 3) for the highest level of security. Avoid outdated protocols like WEP and WPA2-PSK, which are easily compromised.</p>
-      <p>Other best practices include disabling SSID broadcasting for private networks, using MAC address filtering, and segmenting guest traffic onto separate VLANs to prevent internal network exposure.</p>
+    <div class="section">
+      <h3>Wireless Security</h3>
+      <p>Wireless signals travel through open air, so anyone nearby can try to listen or connect. Encryption and authentication are what keep them out.</p>
+      <table class="cmp">
+        <tr><th>Protocol</th><th>Encryption</th><th>Use it?</th></tr>
+        <tr><td>WEP</td><td>RC4</td><td>Never. It can be cracked in minutes.</td></tr>
+        <tr><td>WPA</td><td>TKIP</td><td>No. Retired.</td></tr>
+        <tr><td>WPA2</td><td>AES (CCMP)</td><td>Acceptable with a long, random passphrase. A weak passphrase can be guessed offline after capturing the handshake.</td></tr>
+        <tr><td>WPA3</td><td>AES (CCMP; GCMP-256 in 192-bit mode), SAE handshake</td><td>Best choice. SAE stops offline guessing of the passphrase, and Enterprise mode offers 192-bit security.</td></tr>
+      </table>
+      <ul>
+        <li><strong>Personal (PSK / SAE):</strong> everyone shares one passphrase. Fine for homes and small offices.</li>
+        <li><strong>Enterprise (802.1X):</strong> each user signs in with their own account, checked by a <strong>RADIUS</strong> server (often using EAP). When someone leaves, you disable their account instead of changing the password for everyone.</li>
+        <li><strong>Guest networks and captive portals:</strong> put visitors on a separate network or VLAN, often behind a web page where they accept terms or sign in.</li>
+        <li><strong>Turn off WPS.</strong> Its PIN can be guessed.</li>
+        <li><strong>Hiding the SSID and MAC filtering are not real security.</strong> The SSID still appears in traffic, and MAC addresses are easy to copy. Use them only on top of strong encryption, never instead of it.</li>
+        <li>Watch for <strong>rogue access points</strong> (plugged into your network without permission) and <strong>evil twins</strong> (fake access points copying your SSID to capture logins).</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/YNcobcHXnnY" title="Wireless Encryption - CompTIA Network+ N10-009 - 2.3 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Wireless Encryption – CompTIA Network+ N10-009 – 2.3" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="2">
+        <p class="check-q">An office's 2.4 GHz Wi-Fi is slow because neighbors' networks overlap. Which channels should the access points use?</p>
+        <div class="check-options">
+          <button type="button">1, 2 and 3</button>
+          <button type="button">5, 10 and 15</button>
+          <button type="button">1, 6 and 11</button>
+          <button type="button">Any channel, they don't overlap</button>
+        </div>
+        <p class="check-why">In the 2.4 GHz band only channels 1, 6 and 11 don't overlap. Moving clients to 5 GHz or 6 GHz also helps.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A company of 200 people wants every employee to sign in to Wi-Fi with their own account, so access ends when someone leaves. What should it use?</p>
+        <div class="check-options">
+          <button type="button">WPA2-Personal with a long passphrase</button>
+          <button type="button">WPA3-Enterprise with 802.1X and a RADIUS server</button>
+          <button type="button">A hidden SSID with MAC filtering</button>
+          <button type="button">WEP with a 128-bit key</button>
+        </div>
+        <p class="check-why">Enterprise mode checks each user's own credentials against a RADIUS server. Personal mode uses one shared passphrase, and hiding the SSID or filtering MACs doesn't stop a determined attacker.</p>
+      </div>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it on your computer (Windows, 5 minutes)</h4>
+      <ol>
+        <li>Connect to Wi-Fi, open Command Prompt and run <code>netsh wlan show interfaces</code>.</li>
+        <li>Find these lines: <strong>Radio type</strong> (which 802.11 standard), <strong>Band</strong> and <strong>Channel</strong>, <strong>Authentication</strong> (WPA2 or WPA3, Personal or Enterprise) and <strong>Signal</strong>.</li>
+        <li>Run <code>netsh wlan show networks mode=bssid</code> to see the networks around you and the channels they use. Are any on the same 2.4 GHz channel as yours?</li>
+      </ol>
+      <p>On a Mac, hold Option and click the Wi-Fi icon to see the same details.</p>
     </div>
 
     <div class="section">
       <h3>Introduction to VLANs and VPNs</h3>
-      <p><strong>Virtual Local Area Networks (VLANs)</strong> and <strong>Virtual Private Networks (VPNs)</strong> are technologies designed to enhance network efficiency, control, and security.</p>
-
       <h4>VLANs</h4>
-      <p>A VLAN allows administrators to logically segment a single physical network into multiple virtual networks. For example, a company can separate HR, Finance, and IT traffic, even if they share the same physical switches. This segmentation reduces broadcast domains, enhances performance, and isolates sensitive data to improve security. VLANs are configured on managed switches using IEEE 802.1Q tagging standards.</p>
-
+      <p>A <strong>VLAN</strong> (Virtual LAN) splits one physical switch network into several separate logical networks. A company can keep HR, Finance and guest Wi-Fi traffic apart even when they share the same switches. Each VLAN is its own <strong>broadcast domain</strong>, so broadcasts stay smaller and devices in one VLAN can't reach another without passing through a router or firewall. Links that carry several VLANs between switches are called <strong>trunks</strong> and use <strong>IEEE 802.1Q</strong> tags.</p>
       <h4>VPNs</h4>
-      <p>VPNs extend private networks securely across public infrastructure, such as the internet. They use encryption protocols (like <strong>IPsec</strong> or <strong>SSL/TLS</strong>) to ensure data confidentiality and integrity during transmission. VPNs are essential for remote workers who need secure access to internal company systems from outside locations. Common types include <strong>site-to-site VPNs</strong> for linking branch offices and <strong>remote-access VPNs</strong> for individual users.</p>
-
-      <p>Together, VLANs and VPNs give organizations the flexibility to maintain security and scalability across diverse network environments.</p>
+      <p>A <strong>VPN</strong> (Virtual Private Network) builds an encrypted tunnel across a public network such as the internet, using protocols like <strong>IPsec</strong> or <strong>SSL/TLS</strong>. A <strong>site-to-site VPN</strong> links two offices. A <strong>remote-access VPN</strong> (client-to-site) connects one user's device to the company network. Public Wi-Fi is a common reason to use one.</p>
     </div>
 
     <div class="section">
       <h3>Network Security Essentials</h3>
-      <h4>Importance of Network Security</h4>
-      <p>As networks expand and connect more devices, the risk of unauthorized access, data breaches, and malware infections increases. Network security aims to protect data in transit and ensure the integrity and availability of critical systems. Security starts with layered defenses—often referred to as <strong>defense-in-depth</strong>—combining multiple technologies and best practices to create redundancy in protection.</p>
-
-      <h4>Key Security Measures</h4>
-      <ul>
-        <li><strong>Firewalls:</strong> Monitor and control incoming and outgoing traffic based on predefined security rules.</li>
-        <li><strong>Intrusion Detection and Prevention Systems (IDS/IPS):</strong> Detect suspicious network activity and block potential attacks.</li>
-        <li><strong>Encryption:</strong> Protects sensitive information as it moves across networks (e.g., HTTPS, IPsec).</li>
-        <li><strong>Multi-Factor Authentication (MFA):</strong> Requires multiple verification factors for secure access beyond just passwords.</li>
-        <li><strong>Security Audits:</strong> Regular evaluations that ensure compliance with organizational policies and industry standards.</li>
-      </ul>
-
-      <h4>Emerging Threats</h4>
-      <p>Modern organizations face evolving threats like <strong>ransomware</strong>, <strong>phishing</strong>, <strong>zero-day exploits</strong>, and <strong>social engineering attacks</strong>. Security awareness training is one of the most effective countermeasures—educating employees to identify suspicious links, attachments, and login attempts helps prevent incidents before they escalate.</p>
+      <p>Networks are protected in layers (<strong>defense in depth</strong>): firewalls control traffic, IDS/IPS detect and block attacks, encryption protects data in transit, multifactor authentication protects accounts, and regular audits check the controls still work. Phishing and other social engineering remain the most common way in, so user training matters as much as technology. You'll study these controls in depth in the Network Security course.</p>
     </div>
 
     <div class="section">
       <h3>Common Network Ports</h3>
-      <p>Network ports are logical endpoints used by applications to identify specific processes or network services. They operate at the <strong>Transport Layer</strong> (Layer 4) of the OSI model, working primarily through <strong>TCP</strong> or <strong>UDP</strong> protocols. Understanding common ports helps in configuring firewalls, diagnosing connectivity issues, and recognizing potential threats.</p>
-
-      <ul>
-        <li><strong>Port 80 / 443:</strong> Used for HTTP and HTTPS web traffic. HTTPS (443) provides encryption for secure browsing.</li>
-        <li><strong>Port 53:</strong> Domain Name System (DNS) — translates human-readable domain names into IP addresses.</li>
-        <li><strong>Port 123:</strong> Network Time Protocol (NTP) — synchronizes system clocks across devices to maintain authentication and logging accuracy.</li>
-        <li><strong>Ports 67 (TCP) / 68 (UDP):</strong> Dynamic Host Configuration Protocol (DHCP) — automates IP address assignment between clients and servers.</li>
-        <li><strong>Port 3389:</strong> Remote Desktop Protocol (RDP) — enables remote control of Windows computers and servers.</li>
-      </ul>
-
-      <p>Technicians and administrators should memorize these and other key ports, as they’re commonly encountered during troubleshooting, configuration, and security assessments.</p>
+      <p>Ports identify which service on a device should receive the traffic. They belong to the <strong>transport layer</strong> (layer 4) and are used by <strong>TCP</strong> or <strong>UDP</strong>. Firewalls are configured by port, so knowing the common ones is a daily skill.</p>
+      <table class="cmp">
+        <tr><th>Port</th><th>Protocol</th><th>Service</th></tr>
+        <tr><td>20, 21</td><td>TCP</td><td>FTP (file transfer, not encrypted)</td></tr>
+        <tr><td>22</td><td>TCP</td><td>SSH and SFTP (encrypted remote command line and file transfer)</td></tr>
+        <tr><td>23</td><td>TCP</td><td>Telnet (remote command line, not encrypted; avoid)</td></tr>
+        <tr><td>25</td><td>TCP</td><td>SMTP (sending email between servers)</td></tr>
+        <tr><td>53</td><td>UDP and TCP</td><td>DNS (names to IP addresses)</td></tr>
+        <tr><td>67, 68</td><td>UDP</td><td>DHCP (67 is the server, 68 is the client)</td></tr>
+        <tr><td>80, 443</td><td>TCP (443 also UDP for HTTP/3)</td><td>HTTP and HTTPS (web; 443 is encrypted)</td></tr>
+        <tr><td>123</td><td>UDP</td><td>NTP (time sync, needed for logins and logs)</td></tr>
+        <tr><td>3389</td><td>TCP</td><td>RDP (Windows Remote Desktop)</td></tr>
+      </table>
+      <p>The "Ports lecture" recording later in this course goes through the full list.</p>
     </div>
 
     <div class="slide-footer">
       <p>Cybersecurity Curriculum | Level 3: Networking</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TCP | Subnetting</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container" role="main" aria-labelledby="heading-tcp-subnet">
@@ -109,6 +116,61 @@
       <p>Mapping symptoms to the TCP/IP layer helps isolate problems quickly: link issues at Network Access, routing at Internet layer, session/port problems at Transport, and application faults at Application layer.</p>
     </div>
 
+    <!-- level3-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/p5NJ5Jt6oJo" title="IPv4 Subnet Masks - CompTIA Network+ N10-009 - 1.7 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "IPv4 Subnet Masks – CompTIA Network+ N10-009 – 1.7" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="0">
+        <p class="check-q">How many usable host addresses are in a /27 subnet?</p>
+        <div class="check-options">
+          <button type="button">30</button>
+          <button type="button">32</button>
+          <button type="button">62</button>
+          <button type="button">14</button>
+        </div>
+        <p class="check-why">A /27 leaves 5 host bits: 2<sup>5</sup> = 32 addresses, minus the network and broadcast addresses = 30 usable.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A computer has the address 192.168.1.70/26. What is the network address of its subnet?</p>
+        <div class="check-options">
+          <button type="button">192.168.1.0</button>
+          <button type="button">192.168.1.64</button>
+          <button type="button">192.168.1.70</button>
+          <button type="button">192.168.1.128</button>
+        </div>
+        <p class="check-why">A /26 makes blocks of 64: .0, .64, .128, .192. The address .70 falls in the block that starts at .64.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">What is the broadcast address of the subnet 10.0.0.0/30?</p>
+        <div class="check-options">
+          <button type="button">10.0.0.3</button>
+          <button type="button">10.0.0.4</button>
+          <button type="button">10.0.0.1</button>
+          <button type="button">10.0.0.255</button>
+        </div>
+        <p class="check-why">A /30 has 4 addresses (.0 to .3). The first is the network, the last (.3) is the broadcast, leaving .1 and .2 for hosts. That is why /30 is used for links between two routers.</p>
+      </div>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it on your computer (5 minutes)</h4>
+      <ol>
+        <li>Open Command Prompt (Windows) and run <code>ipconfig</code>, or Terminal (Mac) and run <code>ifconfig</code>.</li>
+        <li>Write down your IPv4 address and subnet mask. Turn the mask into a CIDR prefix (255.255.255.0 is /24).</li>
+        <li>Work out your network address, broadcast address and number of usable hosts by hand.</li>
+        <li>Check your answer with any online subnet calculator.</li>
+      </ol>
+    </div>
+
     <div class="section" role="region" aria-labelledby="summary-tcp-subnet">
       <h3 id="summary-tcp-subnet">Summary</h3>
       <ul>
@@ -123,12 +185,6 @@
       <p>Cybersecurity Curriculum | TCP/IP Addressing</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

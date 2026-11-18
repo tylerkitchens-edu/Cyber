@@ -4,7 +4,13 @@
   <meta charset="UTF-8" />
   <title>Cloud Computing</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
@@ -98,16 +104,44 @@
       </ul>
     </div>
 
+    <!-- level3-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/wI2x6eGF1Yg" title="Cloud Models - CompTIA Network+ N10-009 - 1.3 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Cloud Models – CompTIA Network+ N10-009 – 1.3" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="0">
+        <p class="check-q">A store's website adds servers automatically during a holiday sale and removes them afterwards. What is this called?</p>
+        <div class="check-options">
+          <button type="button">Elasticity</button>
+          <button type="button">Vertical scaling</button>
+          <button type="button">Multitenancy</button>
+          <button type="button">A private cloud</button>
+        </div>
+        <p class="check-why">Elasticity is adding and releasing resources automatically as demand changes. Scalability is the ability to grow over time.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A company uses Microsoft 365 for email and documents. Which service model is that?</p>
+        <div class="check-options">
+          <button type="button">IaaS</button>
+          <button type="button">PaaS</button>
+          <button type="button">SaaS</button>
+          <button type="button">On-premises</button>
+        </div>
+        <p class="check-why">With SaaS the provider runs the whole application; the customer just uses it and manages its own users and data.</p>
+      </div>
+    </div>
+
     <div class="slide-footer" role="contentinfo">
       <p>Cybersecurity Curriculum | Cloud Computing</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

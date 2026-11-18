@@ -4,7 +4,13 @@
   <meta charset="UTF-8" />
   <title>Network Traffic Analysis &amp; Monitoring</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
@@ -124,6 +130,51 @@
       <p>You will work extensively with SIEM platforms in the Security+ and CySA+ portions of this program. The network monitoring skills you're building now provide the data that makes SIEM analysis possible.</p>
     </div>
 
+    <!-- level3-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/ieqSi5Aicxc" title="Logs and Monitoring - CompTIA Network+ N10-009 - 3.2 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Logs and Monitoring – CompTIA Network+ N10-009 – 3.2" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">You need to know which external addresses a host talked to over the last 30 days. Which data source fits best?</p>
+        <div class="check-options">
+          <button type="button">A full packet capture</button>
+          <button type="button">NetFlow or sFlow records</button>
+          <button type="button">The DHCP lease table</button>
+          <button type="button">A Wireshark display filter</button>
+        </div>
+        <p class="check-why">Flow records are small enough to keep for weeks and record who talked to whom, when and how much. Full packet captures are too large to keep that long.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">In Wireshark, which display filter shows only traffic to or from 192.168.1.50?</p>
+        <div class="check-options">
+          <button type="button">ip == 192.168.1.50</button>
+          <button type="button">host 192.168.1.50</button>
+          <button type="button">tcp.port == 192.168.1.50</button>
+          <button type="button">ip.addr == 192.168.1.50</button>
+        </div>
+        <p class="check-why"><code>ip.addr ==</code> matches the source or destination address. "host" is capture-filter syntax, not display-filter syntax.</p>
+      </div>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it on your computer (15 minutes)</h4>
+      <ol>
+        <li>Install Wireshark from <a href="https://www.wireshark.org/download.html" target="_blank" rel="noopener">wireshark.org</a> (free).</li>
+        <li>Start a capture on your Wi-Fi or Ethernet adapter, open a website, then stop the capture.</li>
+        <li>Apply the display filter <code>dns</code> and find the query for the site you opened. Which IP address came back?</li>
+        <li>Apply <code>tcp.flags.syn == 1 &amp;&amp; tcp.flags.ack == 0</code> to see each new connection your computer started.</li>
+      </ol>
+      <p>Only capture on your own computer and network.</p>
+    </div>
+
     <div class="section" role="region" aria-labelledby="summary-traffic">
       <h3 id="summary-traffic">Summary</h3>
       <ul>
@@ -139,12 +190,6 @@
       <p>Cybersecurity Curriculum | Level 3: Network Traffic Analysis &amp; Monitoring</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

@@ -4,7 +4,13 @@
   <meta charset="UTF-8" />
   <title>Routing Fundamentals &amp; NAT</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
@@ -75,7 +81,7 @@
       <p><strong>Network Address Translation (NAT)</strong> is a process performed by routers and firewalls that modifies the source or destination IP address in packet headers as they pass through the device. NAT was originally developed to address IPv4 address exhaustion — there are only about 4.3 billion IPv4 addresses, far fewer than the number of devices connected to the Internet today.</p>
 
       <h4>How NAT Works</h4>
-      <p>In a typical home or office network, devices use <strong>private IP addresses</strong> (e.g., 192.168.1.x, 10.0.0.x, 172.16.x.x) that are not routable on the public Internet. When a device sends traffic to the Internet, the router performing NAT replaces the private source IP with the router's <strong>public IP address</strong> before forwarding the packet. When the response comes back, the router translates the public address back to the original private address and delivers the packet to the correct internal device.</p>
+      <p>In a typical home or office network, devices use <strong>private IP addresses</strong> (e.g., 192.168.1.x, 10.0.0.x, 172.16.x.x to 172.31.x.x) that are not routable on the public Internet. When a device sends traffic to the Internet, the router performing NAT replaces the private source IP with the router's <strong>public IP address</strong> before forwarding the packet. When the response comes back, the router translates the public address back to the original private address and delivers the packet to the correct internal device.</p>
 
       <h4>Types of NAT</h4>
       <ul>
@@ -105,6 +111,49 @@
       <p>Security analysts use traceroute to verify that traffic is taking expected paths, identify unexpected routing changes that could indicate a man-in-the-middle attack or BGP hijack, and troubleshoot connectivity issues to monitored assets. Comparing current traceroute output against a known baseline can quickly reveal anomalies.</p>
     </div>
 
+    <!-- level3-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/UILwCNOC5EI" title="Network Address Translation - CompTIA Network+ N10-009 - 2.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Network Address Translation – CompTIA Network+ N10-009 – 2.1" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">Your computer is 192.168.1.50/24 and wants to reach 8.8.8.8. Where does it send the packet first?</p>
+        <div class="check-options">
+          <button type="button">Directly to 8.8.8.8</button>
+          <button type="button">To its default gateway (for example 192.168.1.1)</button>
+          <button type="button">To its DNS server</button>
+          <button type="button">To every device on the subnet</button>
+        </div>
+        <p class="check-why">8.8.8.8 is not on the 192.168.1.0/24 network, so the computer hands the packet to its default gateway, the router, which forwards it on.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Fifty devices in a home all reach the internet through one public IP address. What makes that possible?</p>
+        <div class="check-options">
+          <button type="button">Static NAT</button>
+          <button type="button">Dynamic NAT</button>
+          <button type="button">PAT (NAT overload)</button>
+          <button type="button">DHCP</button>
+        </div>
+        <p class="check-why">Port Address Translation tracks each session by port number, so many private addresses can share one public address.</p>
+      </div>
+    </div>
+
+    <div class="try-it">
+      <h4>Try it on your computer (5 minutes)</h4>
+      <ol>
+        <li>Run <code>tracert 8.8.8.8</code> (Windows) or <code>traceroute 8.8.8.8</code> (Mac or Linux).</li>
+        <li>The first hop is your default gateway. Which hop is the first public (non-private) address? That is roughly where your traffic leaves your internet provider's customer network.</li>
+        <li>Look for lines of <code>* * *</code>. Remember they often mean a router doesn't answer, not that the path is broken.</li>
+      </ol>
+    </div>
+
     <div class="section" role="region" aria-labelledby="summary-routing">
       <h3 id="summary-routing">Summary</h3>
       <ul>
@@ -120,12 +169,6 @@
       <p>Cybersecurity Curriculum | Level 3: Routing Fundamentals &amp; NAT</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

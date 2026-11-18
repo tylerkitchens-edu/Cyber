@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Disaster Recovery</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
@@ -73,6 +80,55 @@
       <p>Together, these metrics provide measurable targets for DR planning. By balancing RTO and RPO values with business requirements, organizations can select appropriate technologies—such as replication, snapshots, or cloud-based backups—to meet their recovery goals.</p>
     </div>
 
+    <!-- level3-companion -->
+    <div class="section">
+      <h3>Recovery Sites and Redundancy</h3>
+      <table class="cmp">
+        <tr><th>Site</th><th>What is ready</th><th>Time to recover</th><th>Cost</th></tr>
+        <tr><td><strong>Hot site</strong></td><td>Hardware, software and current data, running</td><td>Minutes to hours</td><td>Highest</td></tr>
+        <tr><td><strong>Warm site</strong></td><td>Hardware and connectivity; data and software must be loaded</td><td>Hours to days</td><td>Medium</td></tr>
+        <tr><td><strong>Cold site</strong></td><td>Space, power and cooling only</td><td>Days to weeks</td><td>Lowest</td></tr>
+      </table>
+      <ul>
+        <li><strong>Active-active:</strong> two systems share the load all the time; if one fails, the other carries on. <strong>Active-passive:</strong> a standby system takes over only when the main one fails.</li>
+        <li><strong>MTBF</strong> (mean time between failures) shows how reliable a component is. <strong>MTTR</strong> (mean time to repair) shows how quickly it is fixed.</li>
+        <li><strong>Backups:</strong> follow the 3-2-1 rule (three copies, on two kinds of media, one off site), and test restores regularly. A backup that has never been restored is not proven.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/NaXMohP4-vU" title="Disaster Recovery - CompTIA Network+ N10-009 - 3.3 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Disaster Recovery – CompTIA Network+ N10-009 – 3.3" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="1">
+        <p class="check-q">A database is backed up every 4 hours. What is the best RPO the company can promise?</p>
+        <div class="check-options">
+          <button type="button">15 minutes</button>
+          <button type="button">4 hours</button>
+          <button type="button">24 hours</button>
+          <button type="button">Zero data loss</button>
+        </div>
+        <p class="check-why">RPO is how much data (measured in time) you can lose. With backups every 4 hours, up to 4 hours of changes can be lost.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A bank must be running again within an hour of losing its data center. Which recovery site fits?</p>
+        <div class="check-options">
+          <button type="button">A hot site</button>
+          <button type="button">A warm site</button>
+          <button type="button">A cold site</button>
+          <button type="button">No site; restore from tape</button>
+        </div>
+        <p class="check-why">Only a hot site is already running with current data. Warm and cold sites take hours to weeks to bring up.</p>
+      </div>
+    </div>
+
     <div class="section">
       <h3>Key Takeaways</h3>
       <ul>
@@ -87,11 +143,6 @@
       <p>Cybersecurity Curriculum | Level 3: Networking & Disaster Recovery</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"

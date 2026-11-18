@@ -4,7 +4,13 @@
   <meta charset="UTF-8" />
   <title>Network Security Architecture</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
@@ -36,7 +42,7 @@
       <ul>
         <li><strong>Perimeter controls:</strong> External firewalls, border routers with ACLs, DDoS protection, email gateways.</li>
         <li><strong>Network controls:</strong> Internal firewalls, VLANs, network segmentation, IDS/IPS sensors.</li>
-        <li><strong>Host controls:</strong> Endpoint detection and response (EDR), host-based firewalls, application whitelisting.</li>
+        <li><strong>Host controls:</strong> Endpoint detection and response (EDR), host-based firewalls, application allow listing.</li>
         <li><strong>Application controls:</strong> Web application firewalls (WAF), input validation, authentication mechanisms.</li>
         <li><strong>Data controls:</strong> Encryption at rest and in transit, data loss prevention (DLP), access logging.</li>
       </ul>
@@ -129,6 +135,40 @@
       <p>Zero-trust doesn't mean eliminating firewalls or perimeter controls — it means supplementing them with internal controls so that the network doesn't collapse if the perimeter is breached. This model is increasingly important as remote work, cloud services, and BYOD blur the traditional network boundary.</p>
     </div>
 
+    <!-- level3-companion -->
+    <div class="section">
+      <h3>Watch</h3>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/DsOzQLX5cg4" title="Segmentation Enforcement - CompTIA Network+ N10-009 - 4.1 (Professor Messer)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="video-credit">Video: Professor Messer, "Segmentation Enforcement – CompTIA Network+ N10-009 – 4.1" (free Network+ course).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+      <div class="check" data-answer="3">
+        <p class="check-q">An ACL has these rules in order: 1) permit any traffic to 10.0.1.0/24, 2) deny TCP 23 to 10.0.1.0/24. What happens to a Telnet (port 23) connection to 10.0.1.5?</p>
+        <div class="check-options">
+          <button type="button">It is blocked by rule 2</button>
+          <button type="button">It is blocked by the implicit deny</button>
+          <button type="button">The firewall asks the administrator</button>
+          <button type="button">It is allowed, because rule 1 matches first</button>
+        </div>
+        <p class="check-why">ACLs stop at the first matching rule. Rule 1 matches everything, so rule 2 is never reached. Specific rules go before broad ones.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A public web server must be reachable from the internet without exposing the internal network. Where should it go?</p>
+        <div class="check-options">
+          <button type="button">In a DMZ (screened subnet)</button>
+          <button type="button">On the internal network next to the database</button>
+          <button type="button">In the management zone</button>
+          <button type="button">Outside every firewall</button>
+        </div>
+        <p class="check-why">A DMZ lets the internet reach public services while an internal firewall keeps a compromised server from reaching internal systems.</p>
+      </div>
+    </div>
+
     <div class="section" role="region" aria-labelledby="summary-netsec">
       <h3 id="summary-netsec">Summary</h3>
       <ul>
@@ -145,12 +185,6 @@
       <p>Cybersecurity Curriculum | Level 3: Network Security Architecture</p>
     </div>
   </div>
-
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
