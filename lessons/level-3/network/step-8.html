@@ -26,7 +26,7 @@
         <li>Explain the purpose and methodology of packet capture and network traffic analysis.</li>
         <li>Use Wireshark to capture, filter, and interpret network traffic at a foundational level.</li>
         <li>Describe the differences between full packet capture, NetFlow/sFlow, and log-based monitoring.</li>
-        <li>Identify common network scanning tools (Nmap, Zeek, Snort) and describe their roles in security operations.</li>
+        <li>Identify common network scanning and monitoring tools (Nmap, Zeek, Snort) and describe their roles in security operations.</li>
         <li>Recognize indicators of suspicious network activity through traffic pattern analysis.</li>
         <li>Explain how network monitoring data feeds into SIEM platforms for correlation and alerting.</li>
       </ul>
@@ -45,9 +45,10 @@
       <h4>How Packet Capture Works</h4>
       <p>To capture traffic, you need to position your capture point where it can see the relevant packets:</p>
       <ul>
-        <li><strong>Network TAP (Test Access Point):</strong> A physical device installed inline on a network link that copies all traffic passing through it to a monitoring port. TAPs are passive and do not introduce latency or risk of failure. They are the gold standard for full-fidelity packet capture.</li>
+        <li><strong>Network TAP (Test Access Point):</strong> A physical device installed inline on a network link that copies all traffic passing through it to a monitoring port. TAPs add almost no latency, and most are built to keep the link working if they fail ("fail open"). They are the gold standard for full-fidelity packet capture.</li>
         <li><strong>SPAN/Mirror Port:</strong> A switch feature that copies traffic from one or more ports (or VLANs) to a designated monitoring port. Easier to deploy than TAPs but may drop packets under heavy load since the switch prioritizes forwarding over mirroring.</li>
         <li><strong>Host-Based Capture:</strong> Running a capture tool (like Wireshark or tcpdump) directly on a device. This captures only traffic to and from that specific host. Useful for targeted analysis but provides limited network-wide visibility.</li>
+        <li><strong>Promiscuous and monitor mode:</strong> normally a network card keeps only frames addressed to its own MAC address (plus broadcasts). In <strong>promiscuous mode</strong>, which Wireshark turns on by default, it keeps every frame it sees, so you can capture traffic sent to other devices, for example on a SPAN port. On Wi-Fi, <strong>monitor mode</strong> goes further and captures all wireless frames in the air, even from networks you are not joined to.</li>
       </ul>
 
       <h4>When to Use Packet Capture</h4>

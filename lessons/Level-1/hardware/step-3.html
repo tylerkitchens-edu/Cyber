@@ -29,11 +29,10 @@
     <div class="section" aria-labelledby="hardware-heading">
       <h3 id="hardware-heading">Hardware</h3>
 
-      <p>What is computer hardware? :</p>
-
-      <div class="video-section" aria-labelledby="video-heading">
-        <iframe class="video-embed" src="https://www.youtube.com/embed/_2MB8F9JSa8?start=14" title="What is computer hardware?" frameborder="0" allowfullscreen></iframe>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/_2MB8F9JSa8?start=14" title="What is Hardware? (Eye on Tech)" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
+      <p class="video-credit">Video: Eye on Tech, "What is Hardware?"</p>
 
       <p>Computer hardware refers to the physical components of a computer system that can be seen and touched, such as the central processing unit (CPU), random access memory (RAM), hard disk drive (HDD), keyboard, mouse, and monitor. These components work together to enable a computer to perform various tasks.</p>
 
@@ -154,12 +153,6 @@
         </ol>
 
         <p><strong>Peripherals vs. input/output devices:</strong> a <em>peripheral</em> is any device you connect to a computer from outside to add a function, such as a keyboard, mouse, monitor, printer, scanner, webcam or external drive. Most peripherals are input devices (keyboard, mouse, scanner, webcam), output devices (monitor, printer, speakers) or both (a touchscreen). Some are storage instead, like an external hard drive. "Input/output" describes what a device does; "peripheral" describes that it is attached from outside.</p>
-        <div class="certmaster-card">
-          <h2>Next: CompTIA A+, Lesson 2</h2>
-          <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 2</strong>, including its practice questions. Then come back here and continue.</p>
-          <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
-          <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
-        </div>
       </div>
 
       <div class="section" aria-labelledby="post-heading">
@@ -167,11 +160,16 @@
         <p>The POST (Power-On Self-Test) is a diagnostic testing sequence that a computer performs when first powered on.</p>
         <p>When you press the power button, before loading any operating system, your computer's BIOS/UEFI firmware initiates POST to check that essential system components are present and functioning correctly. The sequence typically includes:</p>
         <ul>
-            <li>Checking the CPU and clock<ul>The CPU performs a simple self-test and verification of its registers</ul><ul>The system clock is checked to ensure it's running at the correct frequency</ul></li>
-            <li>Verifying system memory(RAM)<ul>POST writes a test pattern to every memory address, It then reads back these patterns to verify data integrity</ul></li>
-            <li>Initializing core motherboard components<ul>The chipset and bus controllers are initialized</ul><ul>Basic voltage and power readings are verified</ul></li>
-            <li>Detecting and initializing storage devices<ul>POST identifies all storage devices (HDDs, SSDs, optical drives)</ul><ul>The BIOS/UEFI queries each device through the storage controllers</ul><ul>Boot device order is determined based on BIOS settings</ul></li>
-            <li>Testing basic input/output systems (keyboard, display)<ul>Basic keyboard controller initialization occurs</ul><ul>Video memory is tested and basic display output is verified</ul><ul>USB controllers are initialized </ul></li>
+            <li>Checking the CPU and clock
+              <ul><li>The CPU performs a simple self-test and checks its registers.</li><li>The system clock is checked to make sure it runs at the correct frequency.</li></ul></li>
+            <li>Checking system memory (RAM)
+              <ul><li>POST runs a quick check that the memory is present and responds. (A full memory test is a separate, slower tool, such as Windows Memory Diagnostic.)</li></ul></li>
+            <li>Initializing core motherboard components
+              <ul><li>The chipset and bus controllers are initialized.</li><li>Basic voltage and power readings are verified.</li></ul></li>
+            <li>Detecting and initializing storage devices
+              <ul><li>POST identifies the storage devices (HDDs, SSDs, optical drives).</li><li>The BIOS/UEFI queries each device through the storage controllers.</li><li>The boot device order is taken from the firmware settings.</li></ul></li>
+            <li>Testing basic input/output (keyboard, display)
+              <ul><li>The keyboard controller is initialized.</li><li>Video memory is tested and basic display output is verified.</li><li>USB controllers are initialized.</li></ul></li>
         </ul>
         <p>If POST encounters any critical errors, it usually communicates through a series of beep codes or error messages since the display may not be initialized yet. For example, a series of long beeps might indicate a RAM failure.</p>
         <p>Once POST completes successfully, the system proceeds to boot the operating system. If POST fails, the computer won't boot at all - this helps prevent damage and alerts users to hardware problems.</p>
@@ -211,6 +209,13 @@
           <li>Press <strong>Windows+R</strong>, type <code>msinfo32</code> and press Enter. Find the <strong>BIOS Version/Date</strong>, <strong>BIOS Mode</strong> (UEFI or Legacy) and the <strong>BaseBoard</strong> (motherboard) maker.</li>
         </ol>
         <p>Only look; don't change any settings. On a Mac, choose <strong>Apple menu &gt; About This Mac &gt; More Info</strong> to see the chip and memory.</p>
+      </div>
+
+      <div class="certmaster-card">
+        <h2>Next: CompTIA A+, Lesson 2</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 2</strong>, including its practice questions. Then come back here and continue.</p>
+        <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
+        <p class="certmaster-tip"><em>First time?</em> After you sign in and open your A+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
   
     </div>
