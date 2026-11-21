@@ -2,35 +2,138 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 1: Summarize Fundamental Security Concepts</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 1: Summarize Fundamental Security Concepts</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Level 5 prepares you for CompTIA Security+ (SY0-801, also called V8), the most widely requested entry-level security certification. Security+ asks you to <strong>recognise and explain</strong>: given a situation, which threat is it, which control fits, and why.</p>
+      <p>This first lesson sets out the vocabulary the rest of the course is built on.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>the goals of security: confidentiality, integrity and availability (CIA), plus non-repudiation;</li>
+        <li>authentication, authorization and accounting (AAA), least privilege and Zero Trust;</li>
+        <li>how controls are grouped by category (technical, managerial, operational, physical) and by type (preventive, deterrent, detective, corrective, compensating, directive);</li>
+        <li>why change management (approvals, impact analysis, backout plans, maintenance windows) is a security process.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 1.1 (security concepts and controls) and 1.2 (change management).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 1</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 1</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 1</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 1: Summarize Fundamental Security Concepts</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        In this lesson, you will explore the fundamental concepts of cybersecurity, forming the foundation for securing information systems. Key topics include the CIA triad (Confidentiality, Integrity, Availability), authentication and authorization methods, and basic cryptography. You will also learn about symmetric and asymmetric encryption algorithms, and understand how these concepts are applied in real-world environments to protect data and prevent unauthorized access.
-      </p>
-      <p>
-        The CompTIA content and information can sometimes get a bit dry or difficult to digest. If you’re feeling unmotivated or stuck,
-        please reach out to your peers or an instructor! Make sure to participate in the weekly meetings, schedule a 1-on-1 with an instructor, or contact a TA if you want some assistance.
-      </p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 90 minutes</p>
+        <h4>Security Principles</h4>
+        <p>Work through the CIA triad and its opposite (disclosure, alteration, destruction), defense in depth, Zero Trust, least privilege and the shared responsibility model, with short interactive exercises.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/securityprinciples" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>The goals: CIA, plus non-repudiation</h4>
+      <table class="cmp">
+        <tr><th>Goal</th><th>Means</th><th>Example control</th></tr>
+        <tr><td>Confidentiality</td><td>Only the right people can read it</td><td>Encryption, access permissions</td></tr>
+        <tr><td>Integrity</td><td>It has not been changed without anyone knowing</td><td>Hashing, digital signatures</td></tr>
+        <tr><td>Availability</td><td>It works when people need it</td><td>Backups, redundant servers</td></tr>
+        <tr><td>Non-repudiation</td><td>Someone can't deny they did it</td><td>Digital signatures, audit logs</td></tr>
+      </table>
+
+      <h4>AAA, least privilege and Zero Trust</h4>
+      <ul>
+        <li><strong>Authentication</strong> proves who you are; <strong>authorization</strong> decides what you may do; <strong>accounting</strong> records what you did.</li>
+        <li><strong>Least privilege:</strong> give each person and program only the access the job needs, and nothing more.</li>
+        <li><strong>Zero Trust:</strong> never trust a request just because it comes from inside the network. Check the user, the device and the request every time.</li>
+        <li><strong>Defense in depth:</strong> several layers of controls, so one failure doesn't open everything.</li>
+      </ul>
+
+      <h4>Controls: category and type</h4>
+      <p>Every control has a <strong>category</strong> (what it is) and a <strong>type</strong> (what it does). The exam often asks for one or the other.</p>
+      <table class="cmp">
+        <tr><th>Category</th><th>Examples</th></tr>
+        <tr><td>Technical (logical)</td><td>Firewalls, MFA, encryption</td></tr>
+        <tr><td>Managerial (administrative)</td><td>Policies, risk assessments</td></tr>
+        <tr><td>Operational</td><td>Security guards, awareness training: things people do</td></tr>
+        <tr><td>Physical (environmental)</td><td>Locks, fences, fire suppression</td></tr>
+      </table>
+      <table class="cmp">
+        <tr><th>Type</th><th>What it does</th><th>Example</th></tr>
+        <tr><td>Preventive</td><td>Stops it happening</td><td>A locked door, MFA</td></tr>
+        <tr><td>Deterrent</td><td>Discourages an attempt</td><td>A warning sign, visible cameras</td></tr>
+        <tr><td>Detective</td><td>Notices it happened</td><td>Log review, an intrusion detection alert</td></tr>
+        <tr><td>Corrective</td><td>Puts things right</td><td>Restoring from backup</td></tr>
+        <tr><td>Compensating</td><td>Stands in when the normal control can't be used</td><td>Isolating an old system that can't be patched</td></tr>
+        <tr><td>Directive</td><td>Tells people what to do</td><td>A policy that says "lock your screen"</td></tr>
+      </table>
+
+      <h4>Change management is security</h4>
+      <p>Unplanned changes cause outages and open holes. A <strong>change advisory board (CAB)</strong> approves changes after an <strong>impact analysis</strong>; each change has an owner, test results, a <strong>backout plan</strong> (how to undo it) and a <strong>maintenance window</strong>. Afterwards, diagrams and procedures are updated and the configuration is kept under <strong>version control</strong>. Watch for technical side effects: restarts, downtime, legacy applications and dependencies.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A company posts "This area is monitored by CCTV" at its entrance. What type of control is the sign?</p>
+        <div class="check-options">
+          <button type="button">Deterrent</button>
+          <button type="button">Detective</button>
+          <button type="button">Corrective</button>
+          <button type="button">Compensating</button>
+        </div>
+        <p class="check-why">The sign discourages an attempt. The cameras themselves, when someone reviews the footage, are detective.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A legacy system can't be patched, so it is moved to its own isolated network segment. What type of control is the segmentation?</p>
+        <div class="check-options">
+          <button type="button">Directive</button>
+          <button type="button">Preventive</button>
+          <button type="button">Compensating</button>
+          <button type="button">Deterrent</button>
+        </div>
+        <p class="check-why">The normal control (patching) can't be applied, so a different control makes up for it.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Before a firewall change, the team writes down exactly how to undo it if something breaks. What is this called?</p>
+        <div class="check-options">
+          <button type="button">An impact analysis</button>
+          <button type="button">A maintenance window</button>
+          <button type="button">Version control</button>
+          <button type="button">A backout plan</button>
+        </div>
+        <p class="check-why">The backout plan is the undo. The impact analysis is what the change might affect; the maintenance window is when it happens.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -38,25 +141,18 @@
     </div>
   </div>
 
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
-  <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-001"
     data-lesson-title="Summarize Fundamental Security Concepts"
-    data-course-id="Cybersecurity"></script>
-
-  <!-- Feedback Script -->
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-001"
     data-lesson-title="Summarize Fundamental Security Concepts"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

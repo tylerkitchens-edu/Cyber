@@ -2,29 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 13: Analyze Indicators of Malicious Activity</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 13: Analyze Indicators of Malicious Activity</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>This lesson is about recognising an attack from the evidence it leaves: the type of malware, the attack technique, and the indicators in logs and on systems. It is one of the most scenario-heavy parts of the exam.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>malware types: ransomware, trojans, worms, viruses, spyware, rootkits, keyloggers, logic bombs and fileless malware;</li>
+        <li>social engineering (phishing, smishing, vishing, whaling, quishing, deepfakes) and physical attacks;</li>
+        <li>network and credential attacks: DDoS, DNS attacks, on-path, password spraying, brute force, MFA bypass;</li>
+        <li>indicators of compromise, and the log and data sources used to investigate them.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 2.5 (indicators of malicious activity) and 4.8 (data sources for an investigation).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 13</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 13</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 13</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 13: Analyze Indicators of Malicious Activity</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>In this lesson, students will learn to identify and analyze indicators of malicious activity, including logs, alerts, network traffic anomalies, and other system signals. Students will understand how to differentiate between normal behavior and suspicious or malicious activity, and how to implement monitoring and detection strategies to respond effectively.</p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 45 minutes</p>
+        <h4>Logs Fundamentals</h4>
+        <p>Learn what different logs record and use them to find signs of an attack.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/logsfundamentals" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/phishingemails1tryoe" target="_blank" rel="noopener">Phishing Analysis Fundamentals</a> (30 minutes: the parts of an email and the clues that give a phishing message away) &middot; <a href="https://tryhackme.com/room/phishingemails4gkxh" target="_blank" rel="noopener">Phishing Prevention</a> (30 minutes: how organizations defend against phishing).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Malware</h4>
+      <table class="cmp">
+        <tr><th>Type</th><th>Tell-tale sign</th></tr>
+        <tr><td>Ransomware</td><td>Files encrypted, a ransom note</td></tr>
+        <tr><td>Trojan</td><td>Looks like useful software, hides a malicious payload</td></tr>
+        <tr><td>Worm</td><td>Spreads by itself across the network, no user action needed</td></tr>
+        <tr><td>Virus</td><td>Attaches to files and needs a user to run them</td></tr>
+        <tr><td>Rootkit</td><td>Hides deep in the operating system; normal tools can't see it</td></tr>
+        <tr><td>Keylogger and spyware</td><td>Records keystrokes or activity and sends it out</td></tr>
+        <tr><td>Logic bomb</td><td>Waits for a trigger (a date, an employee being removed from payroll)</td></tr>
+        <tr><td>Fileless</td><td>Runs in memory using built-in tools such as PowerShell; little on disk for antivirus to find</td></tr>
+      </table>
+
+      <h4>Social engineering and physical attacks</h4>
+      <p><strong>Phishing</strong> (email), <strong>smishing</strong> (text), <strong>vishing</strong> (voice), <strong>quishing</strong> (QR codes), <strong>spear phishing</strong> (one targeted person), <strong>whaling</strong> (executives). <strong>Deepfakes</strong> fake a real person's voice or video, for example a "CEO" on a call asking for an urgent payment. Physical attacks include tailgating, shoulder surfing, card skimming and forced entry.</p>
+
+      <h4>Network and credential attacks</h4>
+      <ul>
+        <li><strong>DDoS:</strong> floods a service from many sources. <strong>On-path</strong> (man-in-the-middle): the attacker sits between two parties. <strong>DNS cache poisoning:</strong> fake DNS answers send users to the wrong site. <strong>Protocol downgrade:</strong> forces a weaker, breakable protocol.</li>
+        <li><strong>Password spraying:</strong> a few common passwords against many accounts (avoids lockouts). <strong>Brute force:</strong> many passwords against one account. <strong>MFA bypass:</strong> for example flooding a user with push prompts until they approve one.</li>
+      </ul>
+
+      <h4>Indicators of compromise</h4>
+      <p>Known-bad file <strong>hashes</strong>, IP addresses or domains; unknown processes; <strong>impossible travel</strong> (signing in from two countries an hour apart); <strong>concurrent sessions</strong>; many <strong>account lockouts</strong>; unusual CPU, disk or network use; logs that are missing or have gaps (<strong>log manipulation</strong>); odd timestamps.</p>
+
+      <h4>Where the evidence is</h4>
+      <p>Authentication, endpoint, application, network and firewall logs; NetFlow; packet captures; vulnerability scans; dashboards; even surveillance footage. For forensics, capture a <strong>memory dump</strong> first, then a <strong>bit-level copy</strong> of the disk, and check log and file <strong>integrity</strong> with hashes.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Malware spreads from computer to computer across the network with no one opening a file. What is it?</p>
+        <div class="check-options">
+          <button type="button">A trojan</button>
+          <button type="button">A logic bomb</button>
+          <button type="button">A virus</button>
+          <button type="button">A worm</button>
+        </div>
+        <p class="check-why">Worms self-propagate. Viruses need a user to run an infected file; trojans need a user to install them.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Logs show one failed sign-in each for 3,000 different accounts, all using "Winter2026!". What attack is this?</p>
+        <div class="check-options">
+          <button type="button">Brute force</button>
+          <button type="button">Password spraying</button>
+          <button type="button">Replay</button>
+          <button type="button">Credential stuffing of one account</button>
+        </div>
+        <p class="check-why">One common password across many accounts keeps each account under the lockout limit. Brute force targets one account with many passwords.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A user signs in from Denver, then 20 minutes later from Singapore. What indicator is this?</p>
+        <div class="check-options">
+          <button type="button">Impossible travel</button>
+          <button type="button">Resource consumption</button>
+          <button type="button">Log manipulation</button>
+          <button type="button">A protocol downgrade</button>
+        </div>
+        <p class="check-why">No one can travel that fast. The account's credentials or session were probably stolen.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,25 +130,18 @@
     </div>
   </div>
 
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
-  <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-013"
     data-lesson-title="Analyze Indicators of Malicious Activity"
-    data-course-id="Cybersecurity"></script>
-
-  <!-- Feedback Script -->
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-013"
     data-lesson-title="Analyze Indicators of Malicious Activity"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

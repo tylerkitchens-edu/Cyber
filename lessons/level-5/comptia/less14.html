@@ -2,29 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 14: Summarize Security Governance Concepts</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 14: Summarize Security Governance Concepts</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Governance is how an organization decides and writes down how security should work, and checks that it does. Technical controls only work when policies, standards and procedures back them up.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>the hierarchy of policies, standards, procedures and guidelines, and the common policies (acceptable use, BYOD, incident response, data classification and more);</li>
+        <li>business continuity and disaster recovery plans as governance documents;</li>
+        <li>audits and assessments: internal and external, gap analysis, and the frameworks they measure against;</li>
+        <li>security awareness training: types, delivery and measuring whether it works.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 5.1 (governance artifacts), 5.5 (audits and assessments) and 5.6 (security awareness).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 14</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 14</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 14</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 14: Summarize Security Governance Concepts</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson covers the fundamentals of security governance, including policies, standards, procedures, and guidelines used to manage organizational security. Students will explore compliance frameworks, regulatory requirements, and best practices for implementing effective governance that aligns with business objectives and mitigates risk.</p>
+      <h3>Step 2: Key ideas to remember</h3>
+
+      <h4>The document hierarchy</h4>
+      <table class="cmp">
+        <tr><th>Document</th><th>Says</th><th>Example</th></tr>
+        <tr><td>Policy</td><td>What must happen, and why (approved by leadership)</td><td>"All company data must be classified."</td></tr>
+        <tr><td>Standard</td><td>The specific, measurable requirement</td><td>"Passwords are at least 14 characters"; "Encrypt with AES-256"</td></tr>
+        <tr><td>Procedure</td><td>Step-by-step how-to (SOPs, runbooks)</td><td>"How to onboard a new employee"</td></tr>
+        <tr><td>Guideline</td><td>Recommended, not mandatory</td><td>Benchmarks, vendor implementation guides, reference architectures</td></tr>
+      </table>
+      <p>Common policies: <strong>acceptable use (AUP)</strong>, bring your own device (<strong>BYOD</strong>), <strong>clean desk</strong>, information security, incident response, data classification and retention, access control, data disposal, vulnerability disclosure and privacy. Business continuity and disaster recovery <strong>plans</strong> are governance documents too.</p>
+
+      <h4>Audits and assessments</h4>
+      <ul>
+        <li><strong>Internal:</strong> self-assessments and the audit committee. <strong>External:</strong> regulators and independent third-party auditors, which give more assurance.</li>
+        <li>A <strong>gap analysis</strong> compares where you are with where a framework says you should be.</li>
+        <li>An <strong>audit charter</strong> sets the scope and authority; frequency is set by policy or regulation.</li>
+        <li>Frameworks may be industry-based (PCI DSS for card payments), international (ISO 27001) or regional. Threat models such as <strong>MITRE ATT&amp;CK</strong>, the <strong>Cyber Kill Chain</strong> and the <strong>Diamond Model</strong> serve as reference sources.</li>
+      </ul>
+
+      <h4>Security awareness</h4>
+      <ul>
+        <li>Training types: <strong>onboarding</strong>, <strong>ongoing</strong>, <strong>targeted</strong> (for a role, such as finance staff and invoice fraud) and <strong>corrective</strong> (after someone clicks a phishing test).</li>
+        <li>Topics: social engineering, business email compromise (BEC), passwords, removable media, remote and hybrid work, emerging threats such as deepfakes.</li>
+        <li>Measure it: phishing-simulation click and report rates, management reports, behaviour risk scores. Training that isn't measured can't be improved.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">"All passwords must be at least 14 characters" is an example of which document?</p>
+        <div class="check-options">
+          <button type="button">A policy</button>
+          <button type="button">A guideline</button>
+          <button type="button">A standard</button>
+          <button type="button">A procedure</button>
+        </div>
+        <p class="check-why">A standard sets the specific, measurable requirement that supports a policy.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Employees who click a simulated phishing email are automatically enrolled in a short follow-up course. What type of training is this?</p>
+        <div class="check-options">
+          <button type="button">Onboarding</button>
+          <button type="button">Corrective</button>
+          <button type="button">One-to-many</button>
+          <button type="button">Benchmarking</button>
+        </div>
+        <p class="check-why">Corrective training responds to a specific behaviour. Measuring click rates over time shows whether it works.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A company compares its current controls with ISO 27001 to see what it is missing before certification. What is this?</p>
+        <div class="check-options">
+          <button type="button">A penetration test</button>
+          <button type="button">A legal hold</button>
+          <button type="button">A business impact analysis</button>
+          <button type="button">A gap analysis</button>
+        </div>
+        <p class="check-why">A gap analysis shows the difference between current controls and a framework's requirements.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,25 +115,18 @@
     </div>
   </div>
 
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
-  <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-014"
     data-lesson-title="Summarize Security Governance Concepts"
-    data-course-id="Cybersecurity"></script>
-
-  <!-- Feedback Script -->
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-014"
     data-lesson-title="Summarize Security Governance Concepts"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

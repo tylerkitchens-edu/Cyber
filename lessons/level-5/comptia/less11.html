@@ -2,31 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 11: Enhance Application Security Capabilities</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 11: Enhance Application Security Capabilities</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Many attacks go straight for the applications an organization builds or runs, especially web apps. This lesson covers the common attacks and the coding and testing practices that stop them.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>application attacks: injection, buffer overflow, cross-site request forgery, directory traversal, privilege escalation and replay;</li>
+        <li>secure coding: input validation, secure cookies, safe error handling and keeping secrets out of code;</li>
+        <li>testing: static code analysis, secrets scanning in repositories and code signing;</li>
+        <li>DevSecOps: building security into automated pipelines (CI/CD).</li>
+      </ul>
+      <p>On the exam this is mostly objectives 4.1 (application security and repositories), 2.5 (application attacks) and 2.4 (code vulnerabilities).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 11</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 11</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 11</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 11: Enhance Application Security Capabilities</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        Students will learn how to enhance application security by integrating secure coding practices, threat modeling, and vulnerability testing. Topics include software development lifecycle (SDLC) security, application hardening, input validation, authentication mechanisms, patching, and application firewall deployment. The lesson emphasizes proactive measures to prevent application-level attacks such as SQL injection, cross-site scripting, and buffer overflows.
-      </p>
+      <h3>Step 2: Key ideas to remember</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">Optional TryHackMe practice</p>
+        <p class="lab-more">There is no required lab for this lesson. <strong>Want some practice?</strong> <a href="https://tryhackme.com/room/securesdlc" target="_blank" rel="noopener">SSDLC</a> (120 minutes: the secure software development life cycle and where security testing fits).</p>
+      </div>
+
+      <h4>Common application attacks</h4>
+      <table class="cmp">
+        <tr><th>Attack</th><th>What happens</th><th>Main defence</th></tr>
+        <tr><td>Injection (SQL, command)</td><td>Input is run as code or as a database query</td><td>Input validation and parameterized queries</td></tr>
+        <tr><td>Buffer overflow</td><td>Too much data overwrites memory next to it, sometimes letting the attacker run code</td><td>Memory-safe languages, bounds checking</td></tr>
+        <tr><td>Forgery (CSRF)</td><td>A malicious page makes your browser send a request to a site you're signed in to</td><td>Anti-CSRF tokens, SameSite cookies</td></tr>
+        <tr><td>Directory traversal</td><td>"../../" in a filename reaches files outside the web folder</td><td>Validate and restrict file paths</td></tr>
+        <tr><td>Replay</td><td>A captured valid request or token is sent again</td><td>Timestamps, one-time tokens, encryption</td></tr>
+        <tr><td>Privilege escalation</td><td>A normal user gains admin rights through a flaw</td><td>Least privilege, patching</td></tr>
+      </table>
+
+      <h4>Secure coding basics</h4>
+      <ul>
+        <li><strong>Validate all input</strong> on the server: type, length, format. Never trust the browser.</li>
+        <li><strong>Secure cookies:</strong> the Secure flag (HTTPS only), HttpOnly (scripts can't read it), SameSite (not sent with requests from other sites).</li>
+        <li>Show users generic error messages; keep the details in logs. Unsafe exception handling leaks information.</li>
+        <li>Never hardcode passwords or API keys. Keep them in a secrets vault, and run <strong>secrets scanning</strong> on code repositories to catch any that slip in.</li>
+      </ul>
+
+      <h4>Testing and trust</h4>
+      <ul>
+        <li><strong>Static code analysis</strong> reads the source code without running it, early in development.</li>
+        <li><strong>Code signing</strong> proves software came from the publisher and hasn't been changed since. It protects against malicious updates.</li>
+        <li>In a <strong>CI/CD</strong> pipeline these checks run automatically on every change, so security doesn't slow releases down. This is DevSecOps.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A login form passes whatever the user types straight into a database query. Which attack does this allow, and what fixes it?</p>
+        <div class="check-options">
+          <button type="button">Replay; add timestamps</button>
+          <button type="button">Buffer overflow; add memory</button>
+          <button type="button">Directory traversal; restrict paths</button>
+          <button type="button">SQL injection; validate input and use parameterized queries</button>
+        </div>
+        <p class="check-why">Parameterized queries keep user input as data, so it can never change the query.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A developer accidentally commits a cloud API key to a public code repository. Which control would have caught it?</p>
+        <div class="check-options">
+          <button type="button">Code signing</button>
+          <button type="button">Secrets scanning</button>
+          <button type="button">A captive portal</button>
+          <button type="button">Rate limiting</button>
+        </div>
+        <p class="check-why">Secrets scanning checks repositories for keys and passwords. The key should also be revoked and replaced at once.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Which cookie setting stops JavaScript on the page from reading the session cookie?</p>
+        <div class="check-options">
+          <button type="button">HttpOnly</button>
+          <button type="button">Secure</button>
+          <button type="button">SameSite</button>
+          <button type="button">Expires</button>
+        </div>
+        <p class="check-why">HttpOnly limits the damage of cross-site scripting. Secure makes it HTTPS only; SameSite helps against CSRF.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +120,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-011"
     data-lesson-title="Enhance Application Security Capabilities"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-011"
     data-lesson-title="Enhance Application Security Capabilities"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

@@ -2,31 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 7: Explain Resiliency and Site Security Concepts</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 7: Explain Resiliency and Site Security Concepts</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Availability is a third of the CIA triad. This lesson covers how organizations keep running through hardware failures, disasters and attacks, and how buildings are protected.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>redundancy: load balancing, clustering, high availability, autoscaling and power protection;</li>
+        <li>backups: retention, immutability and restoration testing;</li>
+        <li>hot, warm and cold recovery sites, business continuity and disaster recovery;</li>
+        <li>recovery metrics (RTO, RPO, MTTR, MTBF) and physical security.</li>
+      </ul>
+      <p>On the exam this is mostly objective 3.4 (resilience and recovery), with physical threats from 2.3 and 2.5.</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 7</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 7</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 7</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 7: Explain Resiliency and Site Security Concepts</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        This lesson introduces resiliency and site security strategies for protecting business operations. Students will learn about physical site security, environmental controls, redundancy, failover mechanisms, disaster recovery sites, and business continuity planning. Emphasis is placed on designing resilient infrastructures that maintain operations during adverse events and ensuring continuity of critical systems.
-      </p>
+      <h3>Step 2: Key ideas to remember</h3>
+
+      <h4>Redundancy</h4>
+      <ul>
+        <li><strong>Load balancing</strong> spreads traffic across several servers; <strong>clustering</strong> lets servers take over from each other; <strong>autoscaling</strong> adds capacity when demand grows. Together they give <strong>high availability</strong>.</li>
+        <li><strong>Power:</strong> a UPS (battery) bridges short outages and gives time to shut down cleanly; a generator runs for longer outages; redundant power supplies and surge protectors protect each device.</li>
+        <li><strong>Platform diversity:</strong> different vendors or hardware so one flaw doesn't take everything down.</li>
+      </ul>
+
+      <h4>Backups that actually work</h4>
+      <ul>
+        <li><strong>Immutable</strong> backups can't be changed or deleted for a set time, so ransomware can't encrypt them.</li>
+        <li>Keep at least one copy offsite or offline. Decide <strong>retention</strong> (how long) and <strong>scope</strong> (what is included).</li>
+        <li><strong>Test restores regularly.</strong> A backup that has never been restored is only a hope.</li>
+      </ul>
+
+      <h4>Recovery sites</h4>
+      <table class="cmp">
+        <tr><th>Site</th><th>Ready to use</th><th>Cost</th></tr>
+        <tr><td>Hot</td><td>Within minutes or hours: equipment and current data in place</td><td>Highest</td></tr>
+        <tr><td>Warm</td><td>Within days: equipment in place, data must be restored</td><td>Medium</td></tr>
+        <tr><td>Cold</td><td>Weeks: space and power only</td><td>Lowest</td></tr>
+      </table>
+
+      <h4>Recovery metrics</h4>
+      <table class="cmp">
+        <tr><th>Metric</th><th>Question it answers</th></tr>
+        <tr><td>RTO (recovery time objective)</td><td>How long can we be down?</td></tr>
+        <tr><td>RPO (recovery point objective)</td><td>How much data can we afford to lose? (This sets how often to back up.)</td></tr>
+        <tr><td>MTTR (mean time to repair)</td><td>How long does a fix usually take?</td></tr>
+        <tr><td>MTBF (mean time between failures)</td><td>How long does it usually run before failing?</td></tr>
+      </table>
+      <p><strong>Business continuity</strong> keeps the business running during a disruption; <strong>disaster recovery</strong> restores IT systems afterwards. Both are tested with failover tests, simulations and tabletop exercises.</p>
+
+      <h4>Site security</h4>
+      <p>Fences, lighting, guards, badges and locks control entry. An <strong>access control vestibule</strong> (two doors, only one open at a time) stops <strong>tailgating</strong>, when someone follows an authorized person through a door. Cameras deter and record; card skimmers and shoulder surfing are physical attacks to watch for.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">The business can lose at most one hour of data. Which metric is this, and what does it decide?</p>
+        <div class="check-options">
+          <button type="button">RTO; how fast systems must come back</button>
+          <button type="button">MTBF; how often hardware fails</button>
+          <button type="button">MTTR; how long repairs take</button>
+          <button type="button">RPO; how often backups must run</button>
+        </div>
+        <p class="check-why">The recovery point objective is acceptable data loss, so backups must run at least hourly. RTO is acceptable downtime.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Ransomware encrypted a company's servers and tried to delete its backups, but failed. What backup feature most likely saved them?</p>
+        <div class="check-options">
+          <button type="button">Immutability</button>
+          <button type="button">Load balancing</button>
+          <button type="button">A cold site</button>
+          <button type="button">Clustering</button>
+        </div>
+        <p class="check-why">Immutable backups can't be changed or deleted during their retention period, even by an administrator account.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Which recovery site has equipment in place but needs data restored before use, and costs less than a fully ready site?</p>
+        <div class="check-options">
+          <button type="button">Hot site</button>
+          <button type="button">Warm site</button>
+          <button type="button">Cold site</button>
+          <button type="button">Mobile site</button>
+        </div>
+        <p class="check-why">A warm site sits between a hot site (ready almost at once) and a cold site (space and power only).</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +125,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-007"
     data-lesson-title="Explain Resiliency and Site Security Concepts"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-007"
     data-lesson-title="Explain Resiliency and Site Security Concepts"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

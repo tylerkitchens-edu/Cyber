@@ -2,31 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 6: Secure Cloud Network Architecture</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 6: Secure Cloud Network Architecture</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Most organizations now run at least part of their systems in the cloud. The cloud changes who is responsible for what, and new ways of building systems bring new risks.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>cloud deployment models (public, private, hybrid, community) and multicloud;</li>
+        <li>the shared responsibility model: what the provider secures and what you secure;</li>
+        <li>serverless, microservices and infrastructure as code (IaC);</li>
+        <li>cloud-delivered security (Security Service Edge) and the trade-offs between architectures.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 3.1 (cloud architecture models and their trade-offs) and 3.2 (Security Service Edge).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 6</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 6</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 6</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 6: Secure Cloud Network Architecture</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        This lesson explores securing cloud network architectures, focusing on best practices for public, private, and hybrid cloud environments. Topics include secure network design, cloud access security brokers (CASBs), virtual private networks (VPNs), cloud segmentation, encryption in cloud services, and identity/access management. Students will understand how to implement resilient and secure cloud networks while managing risk and compliance.
-      </p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 30 minutes</p>
+        <h4>Cloud Security Pitfalls</h4>
+        <p>See the mistakes companies make when they move to the cloud, such as public storage buckets and over-permissive accounts, and how a security team spots them.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/cloudsecuritypitfalls" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Deployment models</h4>
+      <table class="cmp">
+        <tr><th>Model</th><th>What it is</th></tr>
+        <tr><td>Public</td><td>Shared infrastructure run by a provider (AWS, Azure, Google Cloud)</td></tr>
+        <tr><td>Private</td><td>Cloud infrastructure used by one organization only</td></tr>
+        <tr><td>Hybrid</td><td>A mix of on-premises or private and public cloud, connected</td></tr>
+        <tr><td>Community</td><td>Shared by organizations with common needs (for example, government agencies)</td></tr>
+        <tr><td>Multicloud</td><td>Using more than one provider, for resilience or to avoid lock-in, at the cost of complexity</td></tr>
+      </table>
+
+      <h4>Shared responsibility</h4>
+      <p>The provider always secures the physical data centers and hardware. The more the provider manages, the less you do: with infrastructure as a service (IaaS) you patch the operating system; with software as a service (SaaS) you mostly manage users, permissions and data. <strong>You are always responsible for your data and who can access it.</strong> Most cloud breaches are customer misconfigurations, such as a storage bucket left public.</p>
+
+      <h4>New ways of building, new risks</h4>
+      <ul>
+        <li><strong>Serverless:</strong> you upload code and the provider runs it. No servers to patch, but each function's permissions must be tight.</li>
+        <li><strong>Microservices:</strong> an application split into many small services that talk over APIs. Each API is something more to secure.</li>
+        <li><strong>Infrastructure as code (IaC):</strong> networks and servers defined in files and built automatically. Every build is consistent and reviewable, but one mistake in a template is copied everywhere.</li>
+        <li><strong>Security Service Edge (SSE):</strong> security delivered from the cloud (secure web gateway, cloud access security broker, Zero Trust network access), so remote users are protected wherever they are.</li>
+      </ul>
+
+      <h4>Weighing an architecture</h4>
+      <p>Security+ asks you to compare options on availability, resilience, ease of recovery, cost, scalability, who is responsible, and <strong>data sovereignty</strong>: data stored in another country is subject to that country's laws.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A company uses software as a service (SaaS) for email. Which is still the company's responsibility?</p>
+        <div class="check-options">
+          <button type="button">Patching the mail server's operating system</button>
+          <button type="button">Physical security of the data center</button>
+          <button type="button">Managing user accounts and who can read which mailboxes</button>
+          <button type="button">Replacing failed disks</button>
+        </div>
+        <p class="check-why">In SaaS the provider runs everything below the application; the customer still owns its data, users and permissions.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A team builds all its cloud networks from template files kept in version control. What is this?</p>
+        <div class="check-options">
+          <button type="button">Infrastructure as code</button>
+          <button type="button">Serverless computing</button>
+          <button type="button">Multicloud</button>
+          <button type="button">Security Service Edge</button>
+        </div>
+        <p class="check-why">IaC makes builds repeatable and reviewable. It also means a mistake in the template spreads to every build.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Customer records stored with a cloud provider in another country become subject to that country's laws. What is this concern called?</p>
+        <div class="check-options">
+          <button type="button">Vendor lock-in</button>
+          <button type="button">Data sovereignty</button>
+          <button type="button">Scalability</button>
+          <button type="button">Microservices</button>
+        </div>
+        <p class="check-why">Data sovereignty: where data physically lives decides which laws apply to it.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +125,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-006"
     data-lesson-title="Secure Cloud Network Architecture"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-006"
     data-lesson-title="Secure Cloud Network Architecture"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

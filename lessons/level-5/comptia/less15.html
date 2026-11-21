@@ -2,29 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 15: Explain Risk Management Processes</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 15: Explain Risk Management Processes</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>No organization can remove every risk. Risk management is how it finds risks, measures them, decides what to do about each one, and keeps track, including the risks that come from suppliers.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>risk identification, assessment and analysis: qualitative and quantitative (SLE, ARO, ALE);</li>
+        <li>the risk register, risk appetite and residual risk, and the business impact analysis;</li>
+        <li>risk treatment: mitigate, transfer, avoid or accept;</li>
+        <li>third-party risk: vendor selection, agreements (SLA, MOU, NDA, MSA, SOW), monitoring and penetration testing.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 5.2 (risk management) and 5.3 (third-party risk), with penetration testing from 5.5.</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 15</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 15</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 15</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 15: Explain Risk Management Processes</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>Students will learn the processes of risk management, including identifying, analyzing, and mitigating risks to organizational assets. This lesson covers quantitative and qualitative risk analysis methods, risk prioritization, and the implementation of controls to reduce the likelihood and impact of security incidents. NIST RMF standards and best practices will be introduced as part of the methodology.</p>
+      <h3>Step 2: Key ideas to remember</h3>
+
+      <h4>Measuring risk</h4>
+      <p><strong>Qualitative</strong> analysis rates likelihood and impact as low, medium or high. <strong>Quantitative</strong> analysis uses money:</p>
+      <table class="cmp">
+        <tr><th>Term</th><th>Meaning</th><th>Example</th></tr>
+        <tr><td>SLE (single loss expectancy)</td><td>Cost of one occurrence = asset value × exposure factor</td><td>$100,000 server × 40% damage = $40,000</td></tr>
+        <tr><td>ARO (annualized rate of occurrence)</td><td>How often per year it is expected</td><td>Once every 4 years = 0.25</td></tr>
+        <tr><td>ALE (annualized loss expectancy)</td><td>Expected cost per year = SLE × ARO</td><td>$40,000 × 0.25 = $10,000</td></tr>
+      </table>
+      <p>If a control costs less per year than the ALE it removes, it is usually worth buying.</p>
+
+      <h4>Tracking and deciding</h4>
+      <ul>
+        <li>The <strong>risk register</strong> lists every risk with its owner, score, current mitigations and treatment, and is reviewed regularly.</li>
+        <li>A <strong>business impact analysis (BIA)</strong> works out which processes matter most and what an outage costs. It sets the RTO and RPO from Lesson 7.</li>
+        <li><strong>Risk appetite</strong> is how much risk leadership will accept; <strong>residual risk</strong> is what remains after controls.</li>
+      </ul>
+
+      <h4>Four treatments</h4>
+      <p><strong>Mitigate</strong> (add controls), <strong>transfer</strong> (cyber insurance, a contract), <strong>avoid</strong> (stop the risky activity), <strong>accept</strong> (leadership signs off, and it is recorded and reviewed).</p>
+
+      <h4>Third-party risk</h4>
+      <ul>
+        <li><strong>Selecting a vendor:</strong> requests for information, proposals and quotes (RFI, RFP, RFQ), <strong>due diligence</strong>, and checks for conflicts of interest.</li>
+        <li><strong>Agreements:</strong> an <strong>SLA</strong> sets measurable service levels (an <strong>SLO</strong> is one target within it); an <strong>MOU</strong> or <strong>MOA</strong> records an intent to cooperate; an <strong>NDA</strong> protects confidential information; an <strong>MSA</strong> sets the overall terms and each <strong>SOW</strong> defines one piece of work.</li>
+        <li><strong>Monitoring:</strong> a <strong>right-to-audit</strong> clause, service-level monitoring, vendor assessments and compliance attestations.</li>
+      </ul>
+
+      <h4>Penetration testing</h4>
+      <p>A pen test is an authorized simulated attack. In a <strong>known environment</strong> (white box) testers get full details; in a <strong>partially known</strong> (grey box) some; in an <strong>unknown environment</strong> (black box) none. Reconnaissance is <strong>passive</strong> (public information only) or <strong>active</strong> (touching the target). The <strong>rules of engagement</strong> set what is allowed, when and where.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A server worth $50,000 would be 50% damaged by a flood, expected once every 10 years. What is the ALE?</p>
+        <div class="check-options">
+          <button type="button">$2,500</button>
+          <button type="button">$25,000</button>
+          <button type="button">$5,000</button>
+          <button type="button">$250</button>
+        </div>
+        <p class="check-why">SLE = $50,000 × 0.5 = $25,000. ARO = 0.1. ALE = $25,000 × 0.1 = $2,500.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Which document sets the measurable uptime and response times a vendor promises?</p>
+        <div class="check-options">
+          <button type="button">NDA</button>
+          <button type="button">MOU</button>
+          <button type="button">SOW</button>
+          <button type="button">SLA</button>
+        </div>
+        <p class="check-why">A service-level agreement sets measurable service levels, often with penalties if they are missed.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Pen testers are given nothing but the company name. What kind of test is this?</p>
+        <div class="check-options">
+          <button type="button">Known environment</button>
+          <button type="button">Partially known environment</button>
+          <button type="button">Unknown environment</button>
+          <button type="button">Integrated</button>
+        </div>
+        <p class="check-why">An unknown environment (black box) test is closest to an outside attacker's view.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,25 +120,18 @@
     </div>
   </div>
 
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
-  <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-015"
     data-lesson-title="Explain Risk Management Processes"
-    data-course-id="Cybersecurity"></script>
-
-  <!-- Feedback Script -->
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-015"
     data-lesson-title="Explain Risk Management Processes"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

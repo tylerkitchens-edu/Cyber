@@ -2,31 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 8: Explain Vulnerability Management</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 8: Explain Vulnerability Management</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>New vulnerabilities are published every day. Vulnerability management is the repeating cycle of finding them on your systems, deciding which matter most, fixing them and proving they are fixed.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>the kinds of vulnerabilities: unpatched and unsupported systems, misconfigurations, code flaws, zero-days, shadow IT and more;</li>
+        <li>how vulnerabilities are found: scanning, cloud posture tools, code review and penetration tests;</li>
+        <li>prioritizing with CVSS, CVE and context, and reading a scan report;</li>
+        <li>remediation, verification, reporting, bug bounties and responsible disclosure.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 2.4 (types of vulnerabilities and attack surfaces) and 4.3 (vulnerability management tasks).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 8</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 8</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 8</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 8: Explain Vulnerability Management</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        This lesson covers vulnerability management practices to reduce risk and improve security posture. Students will explore vulnerability scanning, patch management, configuration management, threat intelligence, and risk prioritization. The lesson emphasizes continuous assessment and remediation, helping organizations proactively identify and mitigate vulnerabilities before they are exploited.
-      </p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Vulnerability Scanner Overview</h4>
+        <p>Learn what vulnerability scanners do and how they work, then run a scan and read the results.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/vulnerabilityscanneroverview" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/vulnerabilities101" target="_blank" rel="noopener">Vulnerabilities 101</a> (20 minutes: look up real flaws in vulnerability databases and see how they are scored).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Where vulnerabilities come from</h4>
+      <table class="cmp">
+        <tr><th>Kind</th><th>Example</th></tr>
+        <tr><td>Unpatched, unsupported or obsolete systems</td><td>An old Windows server that no longer gets updates</td></tr>
+        <tr><td>Misconfiguration</td><td>Default passwords, open ports, a public storage bucket</td></tr>
+        <tr><td>Code flaws</td><td>Hardcoded secrets, unsafe error handling, race conditions (time-of-check to time-of-use)</td></tr>
+        <tr><td>Zero-day</td><td>A flaw attackers use before a patch exists</td></tr>
+        <tr><td>Unmanaged things</td><td>Stale credentials, rogue devices, shadow IT (systems IT doesn't know about), code in public repositories</td></tr>
+        <tr><td>Newer surfaces</td><td>Large language models (LLMs), identity providers, mobile and wireless devices, virtualization</td></tr>
+      </table>
+
+      <h4>Finding them</h4>
+      <ul>
+        <li><strong>Vulnerability scanners</strong> compare systems against a database of known flaws. A <strong>credentialed</strong> scan signs in and sees far more than one that doesn't.</li>
+        <li><strong>IP address management (IPAM)</strong> helps find devices you didn't know about; <strong>cloud security posture management (CSPM)</strong> checks cloud settings; <strong>source code review</strong> finds flaws before release; <strong>penetration test reports</strong> show what an attacker could actually exploit.</li>
+        <li>A <strong>false positive</strong> is a reported flaw that isn't really there; a <strong>false negative</strong> is a real flaw the scan missed, which is the more dangerous of the two.</li>
+      </ul>
+
+      <h4>Prioritizing and fixing</h4>
+      <ol>
+        <li><strong>Prioritize:</strong> start with the CVSS score, then adjust for context: Is the system exposed to the internet? Is the flaw being exploited right now? How important is the system?</li>
+        <li><strong>Remediate:</strong> patch, change the configuration, or apply a compensating control (segmentation, a WAF) if a patch isn't possible. Some risks are formally accepted (with an exception) instead.</li>
+        <li><strong>Verify:</strong> rescan to prove the fix worked.</li>
+        <li><strong>Report:</strong> internally to management, and externally through <strong>bug bounty</strong> programs and <strong>responsible disclosure</strong> policies, which tell outside researchers how to report what they find.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A scanner reports a critical flaw, but the analyst confirms the software version listed isn't actually installed. What is this?</p>
+        <div class="check-options">
+          <button type="button">A false negative</button>
+          <button type="button">A zero-day</button>
+          <button type="button">A false positive</button>
+          <button type="button">A true positive</button>
+        </div>
+        <p class="check-why">A false positive is reported but not real. A false negative (a real flaw that wasn't reported) is more dangerous.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Two flaws both score CVSS 8.1. One is on an internet-facing web server and is being exploited in the wild. Which should be fixed first?</p>
+        <div class="check-options">
+          <button type="button">The internet-facing one being exploited</button>
+          <button type="button">Whichever was found first</button>
+          <button type="button">The internal one, because insiders are a bigger risk</button>
+          <button type="button">Neither, because both are below 9.0</button>
+        </div>
+        <p class="check-why">Same score, different context. Exposure and active exploitation raise the real priority.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">After a patch is applied, what step proves the vulnerability is gone?</p>
+        <div class="check-options">
+          <button type="button">Writing a responsible disclosure policy</button>
+          <button type="button">Rescanning the system (verification)</button>
+          <button type="button">Raising the CVSS score</button>
+          <button type="button">Accepting the risk</button>
+        </div>
+        <p class="check-why">Verification, usually a rescan, confirms the remediation worked before the item is closed.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +128,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-008"
     data-lesson-title="Explain Vulnerability Management"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-008"
     data-lesson-title="Explain Vulnerability Management"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

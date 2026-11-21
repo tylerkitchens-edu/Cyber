@@ -2,31 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 10: Assess Endpoint Security Capabilities</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 10: Assess Endpoint Security Capabilities</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Endpoints (laptops, desktops, servers, phones) are where users work and where most attacks land. This lesson covers hardening them, protecting them and managing them.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>hardening: secure baselines, removing what isn't needed, Group Policy and SELinux;</li>
+        <li>antivirus, endpoint detection and response (EDR) and extended detection and response (XDR);</li>
+        <li>application allow lists and block lists, and host-based intrusion prevention;</li>
+        <li>mobile device management (MDM) and the asset life cycle, from purchase to secure disposal.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 4.1 (endpoint and operating system security, hardening, application control, MDM) and 4.2 (hardware, software and data asset management).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 10</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 10</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 10</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 10: Assess Endpoint Security Capabilities</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        This lesson covers endpoint security strategies to protect devices such as workstations, laptops, mobile devices, and IoT endpoints. Students will learn about antivirus, antimalware, endpoint detection and response (EDR), patch management, encryption, and mobile device management (MDM). Emphasis is placed on evaluating endpoint security posture, hardening devices, and reducing the attack surface.
-      </p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Introduction to EDR</h4>
+        <p>Learn what endpoint detection and response tools record, and investigate an alert in an EDR console.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/introductiontoedrs" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Hardening</h4>
+      <ul>
+        <li>Start from a <strong>secure baseline</strong>, such as a CIS Benchmark: a tested list of secure settings for each operating system.</li>
+        <li>Remove or disable what isn't needed: services, ports, default accounts, unused software.</li>
+        <li>Patch the operating system, firmware and applications on a schedule.</li>
+        <li>Enforce settings centrally: <strong>Group Policy</strong> on Windows; <strong>SELinux</strong> (mandatory access control) on Linux.</li>
+        <li>Encrypt disks, and turn on the host firewall.</li>
+      </ul>
+
+      <h4>Antivirus, EDR and XDR</h4>
+      <table class="cmp">
+        <tr><th>Tool</th><th>What it does</th></tr>
+        <tr><td>Antivirus</td><td>Blocks known malware, mostly by signature</td></tr>
+        <tr><td>EDR</td><td>Records what happens on each endpoint (processes, files, connections), detects suspicious behaviour, and lets analysts investigate and isolate the device remotely</td></tr>
+        <tr><td>XDR</td><td>EDR extended across email, network, cloud and identity, so one attack is seen as one story</td></tr>
+      </table>
+
+      <h4>Application control</h4>
+      <p>An <strong>allow list</strong> lets only approved programs run: very strong, but needs upkeep. A <strong>block list</strong> stops known-bad programs: easier, but misses anything new. <strong>Sandboxing</strong> runs untrusted code in an isolated space.</p>
+
+      <h4>Mobile devices</h4>
+      <p><strong>MDM</strong> enforces a passcode and encryption, pushes apps and settings, separates work and personal data, and can locate or remotely wipe a lost phone. Policies differ for company-owned and bring-your-own (BYOD) devices.</p>
+
+      <h4>Asset management</h4>
+      <p>You can't protect what you don't know you have. Every device and licence is tracked through its life cycle: <strong>procurement</strong>, <strong>assignment</strong> to an owner, <strong>monitoring</strong>, and <strong>disposal</strong>, where drives are wiped or destroyed and a certificate of destruction is kept.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Which tool lets an analyst see the full chain of processes on a laptop and isolate it from the network remotely?</p>
+        <div class="check-options">
+          <button type="button">Antivirus</button>
+          <button type="button">EDR</button>
+          <button type="button">A content filter</button>
+          <button type="button">Group Policy</button>
+        </div>
+        <p class="check-why">EDR records endpoint activity and can contain a device. Traditional antivirus mainly blocks known malware.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A kiosk computer should only ever run one browser and one ticketing app. What is the strongest control?</p>
+        <div class="check-options">
+          <button type="button">An application allow list</button>
+          <button type="button">An application block list</button>
+          <button type="button">A bigger antivirus signature database</button>
+          <button type="button">A captive portal</button>
+        </div>
+        <p class="check-why">An allow list blocks everything not approved, including malware nobody has seen yet.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Old laptops containing customer data are being retired. What must happen to them?</p>
+        <div class="check-options">
+          <button type="button">Store them in a locked cupboard indefinitely</button>
+          <button type="button">Reinstall the operating system and donate them</button>
+          <button type="button">Re-enrol them in MDM</button>
+          <button type="button">Wipe or destroy the drives and record it</button>
+        </div>
+        <p class="check-why">Disposal is part of the asset life cycle: sanitize or destroy the storage and keep evidence, such as a certificate of destruction.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +127,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-010"
     data-lesson-title="Assess Endpoint Security Capabilities"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-010"
     data-lesson-title="Assess Endpoint Security Capabilities"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

@@ -2,31 +2,130 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 12: Explain Incident Response and Monitoring Concepts</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 12: Explain Incident Response and Monitoring Concepts</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Sooner or later, something gets through. This lesson covers how security teams watch for attacks, how they respond when one happens, and how automation and AI help.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>monitoring: log aggregation, SIEM, alerting and alert tuning, dashboards, agents and agentless tools;</li>
+        <li>the incident response process: preparation, identification, investigation, containment, eradication and recovery, notification and lessons learned;</li>
+        <li>digital forensics basics: chain of custody, preservation, legal hold and e-discovery;</li>
+        <li>automation and orchestration (SOAR, scripting) and how AI is used in security operations, new in SY0-801.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 4.4 (alerting and monitoring), 4.6 (automation and orchestration, including AI) and 4.7 (incident response).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 12</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 12</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 12</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 12: Explain Incident Response and Monitoring Concepts</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        This lesson covers incident response planning and monitoring concepts. Students will learn about the incident response lifecycle: preparation, detection, analysis, containment, eradication, recovery, and lessons learned. Additional focus is placed on monitoring techniques, security information and event management (SIEM) tools, log analysis, and alerting systems to detect and respond to threats efficiently.
-      </p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Incident Response Fundamentals</h4>
+        <p>Walk through the phases of incident response and use them to handle a simulated incident.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/incidentresponsefundamentals" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+        <p class="lab-more"><strong>Want more practice? (optional)</strong> <a href="https://tryhackme.com/room/introtosiem" target="_blank" rel="noopener">Introduction to SIEM</a> (120 minutes: how a SIEM collects logs and raises alerts) &middot; <a href="https://tryhackme.com/room/socfundamentals" target="_blank" rel="noopener">SOC Fundamentals</a> (45 minutes: who works in a security operations center and what they do).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Monitoring</h4>
+      <ul>
+        <li>A <strong>SIEM</strong> (security information and event management) collects logs from everywhere (<strong>log aggregation</strong>), links related events and raises <strong>alerts</strong>.</li>
+        <li><strong>Alert tuning</strong> cuts false positives so analysts don't drown in noise, while making sure real attacks still alert.</li>
+        <li>Collection can use an <strong>agent</strong> installed on each system or be <strong>agentless</strong> (pulling logs remotely). Logs are archived for as long as policy or law requires.</li>
+        <li><strong>SCAP</strong> (Security Content Automation Protocol) lets tools check systems against benchmarks automatically.</li>
+      </ul>
+
+      <h4>The incident response process</h4>
+      <table class="cmp">
+        <tr><th>Phase</th><th>What happens</th></tr>
+        <tr><td>Preparation</td><td>Playbooks, roles, training, tabletop exercises and simulations, before anything happens</td></tr>
+        <tr><td>Identification</td><td>Detect and confirm the incident (alerts, advisories, threat hunting)</td></tr>
+        <tr><td>Investigation</td><td>Forensics: what happened, how, and how far it spread</td></tr>
+        <tr><td>Containment</td><td>Stop the spread: quarantine or isolate affected systems</td></tr>
+        <tr><td>Eradication and recovery</td><td>Remove the attacker and malware, restore from clean backups, monitor closely</td></tr>
+        <tr><td>Notification</td><td>Tell stakeholders, customers, regulators and law enforcement as required</td></tr>
+        <tr><td>Post-incident</td><td>Root cause analysis, lessons learned and a written report</td></tr>
+      </table>
+      <p>During a ransomware attack, some organizations also go through <strong>negotiation</strong>; this is a business and legal decision, never one for the analyst alone.</p>
+
+      <h4>Handling evidence</h4>
+      <p><strong>Chain of custody</strong> records everyone who handled each piece of evidence, so it holds up in court. <strong>Preservation</strong> means capturing evidence before it changes (memory first, as it is lost at power-off). A <strong>legal hold</strong> stops data from being deleted; <strong>e-discovery</strong> finds and hands over electronic records for legal cases.</p>
+
+      <h4>Automation, orchestration and AI</h4>
+      <ul>
+        <li>Scripts and <strong>SOAR</strong> (security orchestration, automation and response) handle repetitive work: provisioning users, creating tickets, enriching alerts, enforcing baselines, isolating a device.</li>
+        <li>Benefits: speed, consistency, fewer mistakes, staff freed for harder work. Risks: complexity, cost, and one bad rule acting at machine speed. Build in <strong>guardrails</strong>.</li>
+        <li><strong>AI</strong> now helps with chatbots for analysts, predictive analysis, AI-adjusted baselines for anomaly detection, and <strong>agentic</strong> AI that can take actions itself, which needs the strictest guardrails.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Malware is spreading from one infected laptop. The analyst disconnects it from the network. Which phase is this?</p>
+        <div class="check-options">
+          <button type="button">Eradication</button>
+          <button type="button">Preparation</button>
+          <button type="button">Containment</button>
+          <button type="button">Lessons learned</button>
+        </div>
+        <p class="check-why">Isolating the device stops the spread. Removing the malware afterwards is eradication.</p>
+      </div>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Why must a chain of custody be kept for a hard drive taken as evidence?</p>
+        <div class="check-options">
+          <button type="button">To speed up the investigation</button>
+          <button type="button">To show the evidence was not tampered with, so it holds up in court</button>
+          <button type="button">To encrypt the drive</button>
+          <button type="button">To meet the RPO</button>
+        </div>
+        <p class="check-why">The record of who handled it and when proves its integrity.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A SOC gets 5,000 alerts a day, almost all false alarms, and analysts have started ignoring them. What is the first fix?</p>
+        <div class="check-options">
+          <button type="button">Tune the alert rules</button>
+          <button type="button">Turn off the SIEM</button>
+          <button type="button">Hire more Level 1 analysts</button>
+          <button type="button">Send every alert to management</button>
+        </div>
+        <p class="check-why">Alert tuning reduces noise so real alerts get attention. Alert fatigue is a real risk.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +133,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-012"
     data-lesson-title="Explain Incident Response and Monitoring Concepts"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-012"
     data-lesson-title="Explain Incident Response and Monitoring Concepts"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

@@ -2,31 +2,133 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 4: Implement Identity and Access Management</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 4: Implement Identity and Access Management</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Most breaches start with a stolen or misused account. Identity and access management (IAM) is how an organization makes sure every account belongs to the right person and can do only what it should.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>the account life cycle: identity proofing, provisioning, access reviews and deprovisioning;</li>
+        <li>multifactor authentication, passkeys and passwordless sign-in, and password best practices;</li>
+        <li>access control models: role-based, rule-based, mandatory, discretionary, time-based and just-in-time;</li>
+        <li>single sign-on and federation (SAML, OAuth, LDAP), and privileged and service accounts.</li>
+      </ul>
+      <p>On the exam this is mostly objective 4.5 (identity and access management) and the identity part of 3.2.</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 4</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 4</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 4</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 4: Implement Identity and Access Management</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        This lesson focuses on identity and access management (IAM) solutions to secure systems and data. Students will learn authentication techniques, multi-factor authentication (MFA), role-based access control (RBAC), single sign-on (SSO), and directory services like Active Directory and LDAP. Emphasis is placed on implementing secure policies, user provisioning, and monitoring to ensure proper access control within enterprise environments.
-      </p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 30 minutes</p>
+        <h4>Active Directory Basics</h4>
+        <p>Explore Active Directory, the directory most companies use to manage users, groups, computers and Group Policy, and delegate permissions the least-privilege way.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/winadbasics" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>The account life cycle</h4>
+      <ul>
+        <li><strong>Identity proofing:</strong> confirm the person is who they say (ID documents, HR records) before creating the account.</li>
+        <li><strong>Provisioning:</strong> create the account with just the permissions the role needs.</li>
+        <li><strong>Access review:</strong> regularly check who has what. People who change jobs collect permissions they no longer need: that is <strong>privilege creep</strong>.</li>
+        <li><strong>Deprovisioning:</strong> disable the account the day someone leaves. Stale accounts are a favourite way in.</li>
+      </ul>
+
+      <h4>Authentication factors</h4>
+      <table class="cmp">
+        <tr><th>Factor</th><th>Examples</th></tr>
+        <tr><td>Something you know</td><td>Password, PIN</td></tr>
+        <tr><td>Something you have</td><td>Hard token (a key fob), soft token (an authenticator app), a one-time password (OTP)</td></tr>
+        <tr><td>Something you are</td><td>Fingerprint, face (biometrics)</td></tr>
+      </table>
+      <p><strong>MFA</strong> means two or more <em>different</em> factors; a password plus a PIN is still one factor. <strong>Passkeys</strong> replace the password with a key pair stored on your device, which can't be phished. Keep <strong>backup codes</strong> for when a device is lost. Good password practice today favours length over complexity, no reuse, a password manager, and checking for compromised credentials.</p>
+
+      <h4>Access control models</h4>
+      <table class="cmp">
+        <tr><th>Model</th><th>Who decides</th></tr>
+        <tr><td>Role-based (RBAC)</td><td>Permissions go to roles (Nurse, Payroll); people get roles</td></tr>
+        <tr><td>Rule-based</td><td>Rules apply to everyone, such as "no sign-ins from outside the country"</td></tr>
+        <tr><td>Mandatory (MAC)</td><td>Labels (Secret, Top Secret) and clearances, set by the system; used by governments</td></tr>
+        <tr><td>Discretionary (DAC)</td><td>The owner of a file decides who can use it</td></tr>
+        <tr><td>Time-based and just-in-time</td><td>Access only during set hours, or granted for a short task and then removed automatically</td></tr>
+      </table>
+
+      <h4>One sign-in for many systems</h4>
+      <ul>
+        <li><strong>Single sign-on (SSO):</strong> sign in once, use many applications.</li>
+        <li><strong>Federation:</strong> trust another organization's sign-in, as with "Sign in with Microsoft" at a partner site.</li>
+        <li><strong>SAML</strong> passes sign-in assertions between organizations; <strong>OAuth</strong> lets one app use another on your behalf without your password; <strong>LDAP</strong> is how applications query a directory such as Active Directory.</li>
+        <li><strong>Privileged accounts</strong> (administrators) need the strongest protection; <strong>service accounts</strong> run software and should never be used by people (Windows gMSAs rotate their passwords automatically); <strong>emergency access</strong> ("break glass") accounts are locked away and monitored.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">An employee moved departments three times and still has access to systems from every old job. What is this called?</p>
+        <div class="check-options">
+          <button type="button">Privilege creep</button>
+          <button type="button">Federation</button>
+          <button type="button">Identity proofing</button>
+          <button type="button">Just-in-time access</button>
+        </div>
+        <p class="check-why">Permissions pile up as people move. Regular access reviews catch and remove them.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Which sign-in combination is true multifactor authentication?</p>
+        <div class="check-options">
+          <button type="button">A password and a security question</button>
+          <button type="button">A password and a PIN</button>
+          <button type="button">A PIN and a fingerprint</button>
+          <button type="button">Two different passwords</button>
+        </div>
+        <p class="check-why">A PIN is something you know and a fingerprint is something you are: two different factors. The others are all "something you know".</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A hospital gives every nurse the same permissions by putting them in a Nurse group. Which access control model is this?</p>
+        <div class="check-options">
+          <button type="button">Discretionary</button>
+          <button type="button">Mandatory</button>
+          <button type="button">Rule-based</button>
+          <button type="button">Role-based</button>
+        </div>
+        <p class="check-why">Permissions are attached to the role, and people are given the role.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +136,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-004"
     data-lesson-title="Implement Identity and Access Management"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-004"
     data-lesson-title="Implement Identity and Access Management"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

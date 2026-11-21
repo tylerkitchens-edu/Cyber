@@ -2,31 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 5: Secure Enterprise Network Architecture</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 5: Secure Enterprise Network Architecture</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Where you put a device and what it is allowed to talk to matters as much as how it is configured. This lesson covers designing an on-premises network so that one compromise doesn't spread everywhere.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>security zones, segmentation (logical and physical) and air-gapped networks;</li>
+        <li>device placement and attack surface, and how a device should fail (open or closed);</li>
+        <li>secure remote access: VPNs, tunneling, out-of-band management and secure file transfer;</li>
+        <li>Zero Trust architecture in practice: checking the user, the device's health and the application every time.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 3.1 (architecture models: on-premises, segmentation, air gaps) and 3.2 (managing the security architecture).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 5</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 5</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 5</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 5: Secure Enterprise Network Architecture</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        Students will explore best practices for securing enterprise network architectures. Topics include network segmentation, firewalls, intrusion detection/prevention systems (IDS/IPS), demilitarized zones (DMZs), VPNs, and defense-in-depth strategies. The lesson emphasizes designing resilient networks that reduce vulnerabilities, improve monitoring, and enforce secure communication across enterprise infrastructures.
-      </p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>Firewall Fundamentals</h4>
+        <p>Learn how firewalls decide what traffic to allow, then write rules in the built-in Windows and Linux firewalls.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/firewallfundamentals" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Zones and segmentation</h4>
+      <ul>
+        <li>Split the network into <strong>security zones</strong> by trust level: the internet, a screened subnet (DMZ) for public servers, the internal user network, and a restricted zone for the most sensitive systems.</li>
+        <li><strong>Logical segmentation</strong> (VLANs, firewall rules) separates zones on shared hardware. <strong>Physical segmentation</strong> uses separate hardware. An <strong>air-gapped</strong> network has no connection to other networks at all.</li>
+        <li>Segmentation limits <strong>lateral movement</strong>: an attacker on a guest laptop should not be able to reach the payroll server.</li>
+      </ul>
+
+      <h4>Placement, attack surface and failure modes</h4>
+      <ul>
+        <li>Put each control where it sees the traffic it must inspect, for example a firewall between every pair of zones.</li>
+        <li>The <strong>attack surface</strong> is everything an attacker could reach. Turn off unused ports and services to shrink it.</li>
+        <li><strong>Fail-closed</strong> (fail-secure) blocks everything when a device fails: safer, but it causes an outage. <strong>Fail-open</strong> lets everything through: traffic keeps flowing, but unprotected. The right choice depends on whether availability or security matters more for that link.</li>
+        <li><strong>Diversity:</strong> using different vendors at different layers means one vendor's flaw doesn't defeat every layer.</li>
+      </ul>
+
+      <h4>Secure communication and access</h4>
+      <table class="cmp">
+        <tr><th>Need</th><th>Solution</th></tr>
+        <tr><td>Staff working from home</td><td>A VPN, which creates an encrypted tunnel; or Zero Trust access per application</td></tr>
+        <tr><td>Managing switches and firewalls safely</td><td>Out-of-band management: a separate management network, so admins never log in over the user network</td></tr>
+        <tr><td>Sending files</td><td>Secure protocols (SFTP, HTTPS) instead of FTP</td></tr>
+        <tr><td>Private conversations</td><td>End-to-end encrypted messaging</td></tr>
+      </table>
+
+      <h4>Zero Trust in practice</h4>
+      <p>Zero Trust replaces "inside the network means trusted" with a check on every request: Is the <strong>user</strong> authenticated (with MFA)? Is the <strong>device</strong> known, in the inventory and healthy (patched, with endpoint protection running)? Is this user allowed to use <strong>this application</strong> right now? Only then is access granted, to that one application.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A company wants its public web server reachable from the internet but kept away from the internal network. Where should it go?</p>
+        <div class="check-options">
+          <button type="button">On the internal user network</button>
+          <button type="button">In a screened subnet (DMZ)</button>
+          <button type="button">On an air-gapped network</button>
+          <button type="button">On the management network</button>
+        </div>
+        <p class="check-why">A screened subnet sits between the internet and the internal network, with firewall rules on both sides.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A firewall protecting a hospital's patient records fails. The design blocks all traffic until it is fixed. What is this?</p>
+        <div class="check-options">
+          <button type="button">Fail-closed</button>
+          <button type="button">Fail-open</button>
+          <button type="button">Load balancing</button>
+          <button type="button">Out-of-band management</button>
+        </div>
+        <p class="check-why">Fail-closed (fail-secure) favours security over availability.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">Under Zero Trust, a signed-in employee's laptop is missing three months of patches. What should happen?</p>
+        <div class="check-options">
+          <button type="button">Allow access, because the user signed in with MFA</button>
+          <button type="button">Allow access, because the laptop is on the office network</button>
+          <button type="button">Block all access for that user permanently</button>
+          <button type="button">Deny or limit access until the device is healthy again</button>
+        </div>
+        <p class="check-why">Zero Trust checks the device as well as the user. An unhealthy device doesn't get access, whatever network it is on.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +128,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-005"
     data-lesson-title="Secure Enterprise Network Architecture"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-005"
     data-lesson-title="Secure Enterprise Network Architecture"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

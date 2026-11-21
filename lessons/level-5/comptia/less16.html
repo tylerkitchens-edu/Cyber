@@ -2,29 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 16: Summarize Data Protection and Compliance Concepts</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 16: Summarize Data Protection and Compliance Concepts</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Data is usually what attackers want and what laws regulate. This lesson covers classifying data, protecting it in every state, and meeting legal and privacy obligations.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>data types, states (at rest, in transit, in use) and classifications;</li>
+        <li>protection methods: encryption, hashing, masking, tokenization, de-identification, and data loss prevention (DLP);</li>
+        <li>data roles (owner, controller, processor, custodian, steward) and the data life cycle;</li>
+        <li>compliance: privacy rights, legal holds, consequences of non-compliance, and compliance monitoring.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 3.3 (protecting data) and 5.4 (security compliance).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 16</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 16</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 16</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 16: Summarize Data Protection and Compliance Concepts</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>This lesson teaches students about data protection strategies and compliance requirements, including encryption, data classification, regulatory frameworks, and legal obligations. Students will understand how to implement data protection measures, maintain privacy, and comply with standards such as GDPR, HIPAA, and PCI-DSS, ensuring organizational accountability and security.</p>
+      <h3>Step 2: Key ideas to remember</h3>
+
+      <h4>States and classifications</h4>
+      <ul>
+        <li>Data is <strong>at rest</strong> (stored), <strong>in transit</strong> (moving across a network) or <strong>in use</strong> (being processed in memory). Each state needs its own protection.</li>
+        <li>Data can be <strong>structured</strong> (database tables) or <strong>unstructured</strong> (documents, email, images).</li>
+        <li>Business labels such as <strong>public</strong>, <strong>sensitive</strong>, <strong>confidential</strong>, <strong>restricted</strong> and <strong>critical</strong>; government labels such as <strong>secret</strong> and <strong>top secret</strong>. Classification decides how data must be handled, marked and labelled.</li>
+        <li>Regulated categories: personal information, health data, financial data, children's data, intellectual property and legal data.</li>
+      </ul>
+
+      <h4>Protection methods</h4>
+      <table class="cmp">
+        <tr><th>Method</th><th>What it does</th><th>Example</th></tr>
+        <tr><td>Encryption</td><td>Unreadable without the key; reversible</td><td>Encrypted database</td></tr>
+        <tr><td>Hashing</td><td>One-way fingerprint</td><td>Stored passwords</td></tr>
+        <tr><td>Masking</td><td>Hides part of the value</td><td>Card number shown as **** **** **** 4821</td></tr>
+        <tr><td>Tokenization</td><td>Replaces the value with a meaningless token; the real value is kept in a secure vault</td><td>Card payments</td></tr>
+        <tr><td>De-identification</td><td>Removes what links the data to a person</td><td>Research data sets</td></tr>
+      </table>
+      <p><strong>Data loss prevention (DLP)</strong> spots sensitive data (card numbers, health records) leaving by email, upload or USB and blocks or reports it. <strong>Geofencing</strong> and controls on data location keep data in allowed places.</p>
+
+      <h4>Who is responsible</h4>
+      <ul>
+        <li><strong>Data owner:</strong> a senior person accountable for the data and its classification.</li>
+        <li><strong>Data controller:</strong> decides why and how personal data is processed. <strong>Data processor</strong> (and subprocessor): processes it on the controller's behalf, such as a payroll provider.</li>
+        <li><strong>Data custodian:</strong> the IT role that stores and protects it day to day. <strong>Data steward:</strong> looks after its quality and correct labelling.</li>
+      </ul>
+      <p>The data life cycle runs from creation through management, distribution and retention to secure <strong>disposal</strong>.</p>
+
+      <h4>Compliance</h4>
+      <ul>
+        <li><strong>Privacy rights</strong> include the right to be forgotten, data correction, opting in or out, and limits on processing.</li>
+        <li>A <strong>legal hold</strong> overrides normal deletion: data relevant to a lawsuit must be kept.</li>
+        <li>Non-compliance can bring fines, sanctions, legal action, broken contracts, loss of licence and reputational damage.</li>
+        <li><strong>Compliance monitoring</strong> uses attestations and acknowledgements (staff confirming they have read a policy); compliance training covers data handling, anti-bribery and anti-money laundering.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">A payment system replaces card numbers with random values and keeps the real numbers in a secure vault. What is this?</p>
+        <div class="check-options">
+          <button type="button">Masking</button>
+          <button type="button">Tokenization</button>
+          <button type="button">Hashing</button>
+          <button type="button">Geofencing</button>
+        </div>
+        <p class="check-why">Tokenization swaps the real value for a meaningless token; only the vault can map it back.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">A company hires a payroll firm to process employee data on its behalf. What is the payroll firm's role?</p>
+        <div class="check-options">
+          <button type="button">Data processor</button>
+          <button type="button">Data controller</button>
+          <button type="button">Data owner</button>
+          <button type="button">Data steward</button>
+        </div>
+        <p class="check-why">The company is the controller (decides why and how); the payroll firm processes on its behalf.</p>
+      </div>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A lawsuit is filed, and IT is told not to delete any email from the people involved, whatever the retention policy says. What is this?</p>
+        <div class="check-options">
+          <button type="button">Data sovereignty</button>
+          <button type="button">The right to be forgotten</button>
+          <button type="button">Data masking</button>
+          <button type="button">A legal hold</button>
+        </div>
+        <p class="check-why">A legal hold preserves relevant data and overrides normal deletion schedules.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -32,25 +125,18 @@
     </div>
   </div>
 
-  <!-- Prism.js Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
-  <!-- Lesson Entry Script -->
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-016"
     data-lesson-title="Summarize Data Protection and Compliance Concepts"
-    data-course-id="Cybersecurity"></script>
-
-  <!-- Feedback Script -->
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-016"
     data-lesson-title="Summarize Data Protection and Compliance Concepts"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

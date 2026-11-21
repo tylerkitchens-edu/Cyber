@@ -2,31 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 3: Explain Cryptographic Solutions</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 3: Explain Cryptographic Solutions</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Cryptography is how data stays secret and trustworthy, both stored and in transit. You met the basics in Level 4; Security+ expects you to pick the right tool for a situation.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>symmetric and asymmetric encryption, key exchange and key length;</li>
+        <li>hashing, salting and digital signatures;</li>
+        <li>public key infrastructure (PKI): certificates, certificate authorities, revocation (CRL and OCSP), wildcard and self-signed certificates;</li>
+        <li>where encryption is applied: full disk, partition, volume, file, database, record and in transit.</li>
+      </ul>
+      <p>On the exam this is mostly objective 1.3 (appropriate cryptographic solutions).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 3</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 3</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 3</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 3: Explain Cryptographic Solutions</strong>, including its practice questions. Then come back here and review the key ideas.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        This lesson covers cryptographic solutions for securing data in transit and at rest. Students will learn about symmetric and asymmetric encryption, public key infrastructure (PKI), certificate authorities, hashing, digital signatures, and secure protocols such as TLS/SSL. You will also explore practical applications of encryption in network security, authentication, and data integrity, as well as key lifecycle management.
-      </p>
+      <h3>Step 2: Key ideas to remember</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">Optional TryHackMe practice</p>
+        <p class="lab-more">There is no required lab for this lesson. <strong>Want some practice?</strong> <a href="https://tryhackme.com/room/johntheripperbasics" target="_blank" rel="noopener">John the Ripper: The Basics</a> (60 minutes: crack weak password hashes to see why salting and strong passwords matter).</p>
+      </div>
+
+      <h4>Symmetric, asymmetric and hashing</h4>
+      <table class="cmp">
+        <tr><th></th><th>How it works</th><th>Used for</th><th>Examples</th></tr>
+        <tr><td>Symmetric</td><td>One shared key locks and unlocks</td><td>Fast bulk encryption</td><td>AES</td></tr>
+        <tr><td>Asymmetric</td><td>A public key and a private key; what one locks, only the other unlocks</td><td>Key exchange, digital signatures</td><td>RSA, elliptic curve (ECC)</td></tr>
+        <tr><td>Hashing</td><td>One-way: data becomes a fixed-length fingerprint that can't be reversed</td><td>Integrity checks, storing passwords</td><td>SHA-256</td></tr>
+      </table>
+      <p>In practice they work together: asymmetric encryption safely exchanges a symmetric key, and the symmetric key encrypts the data. That is what TLS does for every HTTPS website. Longer keys are harder to break.</p>
+
+      <h4>Salting and signatures</h4>
+      <ul>
+        <li><strong>Salting</strong> adds a random value to each password before hashing, so two people with the same password get different hashes and precomputed cracking tables don't work.</li>
+        <li>A <strong>digital signature</strong> is a hash encrypted with the sender's <em>private</em> key. Anyone can check it with the sender's public key. It proves integrity and who sent it (non-repudiation).</li>
+        <li><strong>Obfuscation</strong> (hiding, for example steganography or tokenization) makes data harder to understand without being encryption.</li>
+      </ul>
+
+      <h4>PKI and certificates</h4>
+      <ul>
+        <li>A <strong>certificate</strong> binds a public key to a name (a website, a person). A <strong>certificate authority (CA)</strong> signs it; browsers trust it because they trust the CA's <strong>root</strong>.</li>
+        <li>To get one, you generate a key pair and send a <strong>certificate signing request (CSR)</strong> to the CA.</li>
+        <li>A <strong>wildcard</strong> certificate (*.example.com) covers every subdomain. A <strong>self-signed</strong> certificate is fine for internal testing but isn't trusted by others.</li>
+        <li>A stolen or compromised certificate is <strong>revoked</strong>: listed on a <strong>certificate revocation list (CRL)</strong>, or checked live with <strong>OCSP</strong>.</li>
+        <li><strong>Key escrow</strong> keeps a copy of keys with a trusted party so data can be recovered.</li>
+      </ul>
+
+      <h4>Where to encrypt</h4>
+      <p>A stolen laptop needs <strong>full disk encryption</strong>. One sensitive column in a database needs <strong>record</strong> or database-level encryption. Data moving across a network needs <strong>transport</strong> encryption (TLS, a VPN).</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="1">
+        <p class="check-q">Two users choose the same password, but their stored hashes are different. What explains this?</p>
+        <div class="check-options">
+          <button type="button">Key escrow</button>
+          <button type="button">A salt was added before hashing</button>
+          <button type="button">The passwords were encrypted with AES</button>
+          <button type="button">The hashes were signed</button>
+        </div>
+        <p class="check-why">A unique random salt per user changes the hash, which also defeats precomputed rainbow tables.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">A company wants one certificate to cover shop.example.com, mail.example.com and www.example.com. What should it request?</p>
+        <div class="check-options">
+          <button type="button">A self-signed certificate</button>
+          <button type="button">A certificate revocation list</button>
+          <button type="button">A wildcard certificate</button>
+          <button type="button">A root certificate</button>
+        </div>
+        <p class="check-why">*.example.com covers every subdomain of example.com.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Which key does a sender use to create a digital signature?</p>
+        <div class="check-options">
+          <button type="button">The sender's private key</button>
+          <button type="button">The sender's public key</button>
+          <button type="button">The receiver's public key</button>
+          <button type="button">A shared symmetric key</button>
+        </div>
+        <p class="check-why">Only the sender has the private key, so only they could have made the signature. Anyone checks it with the sender's public key.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +122,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-003"
     data-lesson-title="Explain Cryptographic Solutions"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-003"
     data-lesson-title="Explain Cryptographic Solutions"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>

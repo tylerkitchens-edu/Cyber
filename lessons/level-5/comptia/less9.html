@@ -2,31 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 9: Evaluate Network Security Capabilities</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="../../interactive.css">
+  <script src="../../interactive.js" defer></script>
+  <style>
+    .cmp { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    .cmp th, .cmp td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .cmp th { background: #f3f4f6; }
+  </style>
 </head>
 <body>
   <div class="slide-container">
     <div class="slide-header">
       <h1>Lesson 9: Evaluate Network Security Capabilities</h1>
-      <h2>CompTIA Security+</h2>
+      <h2>CompTIA Security+ (SY0-801)</h2>
     </div>
 
     <div class="section">
+      <h3>Overview</h3>
+      <p>Lesson 5 was about designing the network. This lesson is about the tools that protect and watch it: firewalls, intrusion detection and prevention, network access control and filtering.</p>
+      <p>You will learn:</p>
+      <ul>
+        <li>firewall types: rule-based, Layer 4 and Layer 7, unified threat management (UTM) and web application firewalls (WAF);</li>
+        <li>network and host intrusion detection and prevention (IDS and IPS);</li>
+        <li>network access control (NAC): 802.1X, captive portals and posture checks;</li>
+        <li>content filtering, proxies, email security (SPF, DKIM, DMARC) and network monitoring tools.</li>
+      </ul>
+      <p>On the exam this is mostly objectives 4.1 (mitigating controls: firewalls, IDS and IPS, NAC, content filters, email security) and 4.4 (monitoring tools and protocols).</p>
+      <p>The CompTIA material can feel dry. If you get stuck or lose momentum, reach out: come to the weekly meetings, book a 1-on-1 with an instructor, or ask a TA.</p>
+    </div>
+
+    <div class="section">
+      <h3>Step 1: CertMaster</h3>
       <div class="certmaster-card">
-        <h2>Next: CompTIA Security+, Lesson 9</h2>
-        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 9</strong>, including its practice questions. Then come back here and continue.</p>
+        <h2>CompTIA Security+, Lesson 9</h2>
+        <p>Open CertMaster Learn in a new tab and complete <strong>Lesson 9: Evaluate Network Security Capabilities</strong>, including its practice questions. Then come back here for the lab.</p>
         <p><a class="btn-primary" href="https://login.comptia.org/" target="_blank" rel="noopener">Sign in to CompTIA</a></p>
         <p class="certmaster-tip"><em>First time?</em> After you sign in and open your Security+ course, bookmark that page (Ctrl+D, or Cmd+D on a Mac) so you can go straight back to it next time.</p>
       </div>
     </div>
 
     <div class="section">
-      <h3>Overview</h3>
-      <p>
-        In this lesson, students will evaluate network security capabilities by analyzing security devices, technologies, and policies. Topics include firewalls, IDS/IPS, network segmentation, VPNs, access control lists (ACLs), and monitoring systems. The focus is on assessing strengths and weaknesses in network defenses and implementing improvements to reduce risk and enhance resiliency.
-      </p>
+      <h3>Step 2: Hands-on lab</h3>
+      <div class="lab-card">
+        <p class="lab-kicker">TryHackMe lab &middot; about 60 minutes</p>
+        <h4>IDS Fundamentals</h4>
+        <p>Learn how intrusion detection systems work and run Snort, a widely used open-source IDS, to catch malicious traffic.</p>
+        <p><a class="btn-primary" href="https://tryhackme.com/room/idsfundamentals" target="_blank" rel="noopener">Open the lab on TryHackMe</a></p>
+        <p><strong>Done when:</strong> every task is answered and the room shows 100%. Sign in with your TryHackMe account; the lab opens in a new tab.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step 3: Key ideas to remember</h3>
+
+      <h4>Firewalls</h4>
+      <table class="cmp">
+        <tr><th>Type</th><th>What it looks at</th></tr>
+        <tr><td>Layer 4 (stateful)</td><td>Addresses, ports and connection state: "allow TCP 443 to the web server"</td></tr>
+        <tr><td>Layer 7 (next-generation)</td><td>The application itself: can tell Facebook from Salesforce even on the same port</td></tr>
+        <tr><td>Web application firewall (WAF)</td><td>Web requests, to block attacks such as SQL injection and cross-site scripting</td></tr>
+        <tr><td>Unified threat management (UTM)</td><td>One box combining firewall, IPS, antivirus and content filtering; common in small offices</td></tr>
+      </table>
+      <p>Firewall rules are read top to bottom and the first match wins, ending in an implicit "deny everything else". <strong>Rate limiting</strong> caps how many requests a source can make, which slows brute-force and denial-of-service attacks.</p>
+
+      <h4>IDS and IPS</h4>
+      <ul>
+        <li>An <strong>IDS</strong> watches and alerts (detective). An <strong>IPS</strong> sits in the traffic path and can block (preventive).</li>
+        <li><strong>Network-based</strong> (NIDS/NIPS) watches traffic on a network segment; <strong>host-based</strong> (HIDS/HIPS) runs on one computer; a <strong>wireless</strong> IPS (WIPS) watches for rogue access points.</li>
+        <li><strong>Signature-based</strong> detection matches known attacks; <strong>anomaly-based</strong> detection flags anything unusual compared with normal behaviour (it can catch new attacks but raises more false alarms).</li>
+      </ul>
+
+      <h4>Network access control (NAC)</h4>
+      <p><strong>802.1X</strong> makes a device authenticate before a switch port or Wi-Fi network lets it on. NAC can also check <strong>posture</strong> (is it patched, is antivirus running?) and put failing devices in a quarantine network. Guest Wi-Fi often uses a <strong>captive portal</strong>, the page where you accept terms or sign in.</p>
+
+      <h4>Filtering and email security</h4>
+      <ul>
+        <li><strong>Content filters and proxies</strong> block malicious or unwanted websites, centrally or with an agent on each device.</li>
+        <li><strong>SPF</strong> lists the servers allowed to send a domain's email; <strong>DKIM</strong> signs each message; <strong>DMARC</strong> tells receivers what to do when SPF or DKIM fails (and sends reports). <strong>BIMI</strong> shows a verified brand logo next to authenticated mail.</li>
+      </ul>
+
+      <h4>Watching the network</h4>
+      <p><strong>NetFlow</strong> records who talked to whom and how much; a <strong>packet analyzer</strong> (fed by <strong>port mirroring</strong>) captures the full traffic; <strong>SNMP</strong> monitors device health; <strong>syslog</strong> carries logs to a central server.</p>
+    </div>
+
+    <div class="section">
+      <h3>Check your understanding</h3>
+
+      <div class="check" data-answer="3">
+        <p class="check-q">A device should block attacks in real time, not just report them. Which should be deployed?</p>
+        <div class="check-options">
+          <button type="button">An IDS</button>
+          <button type="button">NetFlow</button>
+          <button type="button">A packet analyzer</button>
+          <button type="button">An IPS</button>
+        </div>
+        <p class="check-why">An IPS sits in the traffic path and can drop malicious traffic. An IDS only alerts.</p>
+      </div>
+
+      <div class="check" data-answer="0">
+        <p class="check-q">Which email control tells receiving servers to reject messages that fail SPF and DKIM checks for your domain?</p>
+        <div class="check-options">
+          <button type="button">DMARC</button>
+          <button type="button">BIMI</button>
+          <button type="button">A content filter</button>
+          <button type="button">A captive portal</button>
+        </div>
+        <p class="check-why">DMARC sets the policy (none, quarantine, reject) and sends reports back to the domain owner.</p>
+      </div>
+
+      <div class="check" data-answer="2">
+        <p class="check-q">Laptops must authenticate and pass a patch check before they get on the corporate network. What provides this?</p>
+        <div class="check-options">
+          <button type="button">A web application firewall</button>
+          <button type="button">Port mirroring</button>
+          <button type="button">Network access control with 802.1X</button>
+          <button type="button">A UTM appliance</button>
+        </div>
+        <p class="check-why">NAC uses 802.1X for authentication and can check the device's posture before admitting it.</p>
+      </div>
     </div>
 
     <div class="slide-footer">
@@ -34,22 +130,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-
   <script src="https://vschool-reports.netlify.app/ltp.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-009"
     data-lesson-title="Evaluate Network Security Capabilities"
-    data-course-id="Cybersecurity"></script>
-
+    data-course-id="Cybersecurity">
+  </script>
   <script src="https://vschool-reports.netlify.app/feedback.js"
     data-api="https://vschool-reports.netlify.app"
     data-lesson-id="L5-COMPTIA-SEC-009"
     data-lesson-title="Evaluate Network Security Capabilities"
     data-course-id="Cybersecurity"
-    data-button-selector="#myFeedbackBtn"></script>
+    data-button-selector="#myFeedbackBtn">
+  </script>
 </body>
 </html>
